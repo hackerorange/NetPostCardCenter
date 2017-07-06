@@ -57,3 +57,5 @@ E:\project\PostCardCenter\PostCardCenter\obj\Debug\PostCardCenter.security.UserL
 E:\project\PostCardCenter\PostCardCenter\obj\Debug\PostCardCenter.csproj.GenerateResource.Cache
 E:\project\PostCardCenter\PostCardCenter\obj\Debug\PostCardCenter.exe.licenses
 E:\project\PostCardCenter\PostCardCenter\obj\Debug\PostCardCenter.form.postCard.SubmitWaitForm.resources
+E:\project\NetPostCardCenter\PostCardCenter\obj\Debug\PostCardCenter.exe
+E:\project\NetPostCardCenter\PostCardCenter\obj\Debug\PostCardCenter.pdb

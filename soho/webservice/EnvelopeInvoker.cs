@@ -36,6 +36,8 @@ namespace soho.webservice
             }
 
 
+
+
             throw new Exception("获取明信片集合错误");
         }
 
