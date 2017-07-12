@@ -38,7 +38,7 @@ namespace PostCardCenter.form.postCard
                     listNode.SetValue("name", orderDetailPostCard.fileName);
                     listNode.Tag = orderDetailPostCard;
                     listNode.ImageIndex = listNode.SelectImageIndex = 1;
-                    if (orderDetailPostCard.cropInfo==null)
+                    if (orderDetailPostCard.cropInfo == null)
                     {
                         needProcess.Enqueue(listNode);
                         orderDetailPostCard.processStatus = "未提交";
@@ -57,7 +57,7 @@ namespace PostCardCenter.form.postCard
         public void downloadFile(object fileId)
         {
             var fileIdString = fileId as PostCard;
-            fileIdString.fileInfo= SohoInvoker.downLoadFile(fileIdString.fileId);
+            fileIdString.fileInfo = SohoInvoker.downLoadFile(fileIdString.fileId);
         }
 
         private void postCardCropForm_Load(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace PostCardCenter.form.postCard
             //如果是明信片集合
             if (focusedNodeTag.GetType() == typeof(Envelope))
             {
-                var tmpEnvelope=focusedNodeTag as Envelope;
+                var tmpEnvelope = focusedNodeTag as Envelope;
                 cropControllerPreview.Image = cropControllerCrop.Image = null;
                 cropControllerPreview.RefreshPostCard();
                 cropControllerCrop.RefreshPostCard();
@@ -96,12 +96,12 @@ namespace PostCardCenter.form.postCard
 
             if (focusedNodeTag.GetType() == typeof(PostCard))
             {
-                var envelopeInfo=treeList1.FocusedNode.ParentNode.Tag as Envelope;
-                var tmpPostCard=  focusedNodeTag as PostCard;
-                var a=SohoInvoker.downLoadFile(tmpPostCard.fileId);
-                if(!a.Exists) return;
+                var envelopeInfo = treeList1.FocusedNode.ParentNode.Tag as Envelope;
+                var tmpPostCard = focusedNodeTag as PostCard;
+                var a = SohoInvoker.downLoadFile(tmpPostCard.fileId);
+                if (!a.Exists) return;
                 cropControllerPreview.PostCardId = cropControllerCrop.PostCardId = tmpPostCard.postCardId;
-                cropControllerPreview.Image=cropControllerCrop.Image = Image.FromFile(a.FullName);
+                cropControllerPreview.Image = cropControllerCrop.Image = Image.FromFile(a.FullName);
                 cropControllerPreview.Margin = cropControllerCrop.Margin = new Padding(5);
                 cropControllerPreview.Scale = cropControllerCrop.Scale = 0;
 
@@ -120,7 +120,9 @@ namespace PostCardCenter.form.postCard
                     cropControllerPreview.Margin = cropControllerCrop.Margin = new Padding(5);
                     cropControllerPreview.Scale = cropControllerCrop.Scale = 1;
                 }
-                cropControllerPreview.ProductSize = cropControllerCrop.ProductSize = new Size(envelopeInfo.productWidth, envelopeInfo.productHeight);
+
+                cropControllerPreview.ProductSize = cropControllerCrop.ProductSize =
+                    new Size(envelopeInfo.productWidth, envelopeInfo.productHeight);
                 cropControllerPreview.CropInfo = cropControllerCrop.CropInfo = tmpPostCard.cropInfo;
                 cropControllerPreview.RefreshPostCard();
                 cropControllerCrop.RefreshPostCard();
@@ -176,7 +178,7 @@ namespace PostCardCenter.form.postCard
             }
         }
 
-      
+
         private void ribbonControl1_Click(object sender, EventArgs e)
         {
         }
@@ -186,10 +188,12 @@ namespace PostCardCenter.form.postCard
             cropControllerPreview.CropInfo = newCropInfo;
             if (newCropInfo == null) return;
             var focusedNode = treeList1.FocusedNode;
-            if(focusedNode.Tag.GetType().FullName.Equals(typeof(PostCard).FullName)){
+            if (focusedNode.Tag.GetType().FullName.Equals(typeof(PostCard).FullName))
+            {
                 var tmpPostCard = focusedNode.Tag as PostCard;
-                
-                if(tmpPostCard.cropInfo == null||!tmpPostCard.cropInfo.Equals(newCropInfo)){
+
+                if (tmpPostCard.cropInfo == null || !tmpPostCard.cropInfo.Equals(newCropInfo))
+                {
                     if (tmpPostCard.cropInfo == null)
                     {
                         tmpPostCard.cropInfo = newCropInfo.Clone() as CropInfo;
@@ -216,14 +220,13 @@ namespace PostCardCenter.form.postCard
 
         private void cropControllerCrop_Load(object sender, EventArgs e)
         {
-
         }
 
-        private SubmitWaitForm submitWaitForm=new SubmitWaitForm();
+        private SubmitWaitForm submitWaitForm = new SubmitWaitForm();
 
         private void cropControllerCrop_AfterSubmit(object sender)
         {
-            var tmpPostCard=treeList1.FocusedNode.Tag as PostCard;
+            var tmpPostCard = treeList1.FocusedNode.Tag as PostCard;
 
             if (tmpPostCard != null)
             {
@@ -237,10 +240,9 @@ namespace PostCardCenter.form.postCard
                 if (needProcess.Count > 0)
                 {
                     var a = needProcess.Dequeue();
-                    var tmpNextPostCard=a.Tag as PostCard;
+                    var tmpNextPostCard = a.Tag as PostCard;
                     while (tmpNextPostCard == null && needProcess.Count > 0)
                     {
-
                     }
                     treeList1.SetFocusedNode(a);
                 }
@@ -257,12 +259,12 @@ namespace PostCardCenter.form.postCard
                     }
                 }
             }
-          
         }
 
         private void cropControllerCrop_BeforeSubmit(object sender)
         {
-            if("已修改".Equals(treeList1.FocusedNode.GetValue("status"))){
+            if ("已修改".Equals(treeList1.FocusedNode.GetValue("status")))
+            {
                 treeList1.FocusedNode.SetValue("status", "正在提交");
                 splashScreenManager1.ShowWaitForm();
             }

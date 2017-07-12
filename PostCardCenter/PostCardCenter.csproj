@@ -147,6 +147,12 @@
     <Compile Include="myController\CropBoxControl.Designer.cs">
       <DependentUpon>CropBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="myController\envelopeInfoController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myController\envelopeInfoController.Designer.cs">
+      <DependentUpon>envelopeInfoController.cs</DependentUpon>
+    </Compile>
     <Compile Include="myController\PostCardCropController.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="myController\CropBoxControl.resx">
       <DependentUpon>CropBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="myController\envelopeInfoController.resx">
+      <DependentUpon>envelopeInfoController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="myController\PostCardCropController.resx">
       <DependentUpon>PostCardCropController.cs</DependentUpon>

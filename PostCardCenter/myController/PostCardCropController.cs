@@ -20,6 +20,7 @@ namespace PostCardCenter.myController
     public partial class PostCardCropController : UserControl
     {
         public delegate void CropInfoChangeHandler(CropInfo newCropInfo);
+
         public delegate void SubmitEventHandler(object sender);
 
         public event CropInfoChangeHandler CropInfoChanged;
@@ -70,7 +71,11 @@ namespace PostCardCenter.myController
                 {
                     _imageClone = (Image) value.Clone();
                 }
+                //裁切信息初始化
                 _cropInfo = null;
+                //角度初始化
+                Angle = 0;
+                //图片框初始化
                 _pictureRectangle = Rectangle.Empty;
             }
         }
@@ -84,8 +89,6 @@ namespace PostCardCenter.myController
             get { return _cropInfo; }
             set
             {
-
-                
                 if (value != null)
                 {
                     _cropInfo = (CropInfo) value.Clone();
@@ -180,8 +183,10 @@ namespace PostCardCenter.myController
             get
             {
 //                if (CropBox == Rectangle.Empty) return Size.Empty;
-                if (ProductSize.Width - Margin.Horizontal <= 0 || ProductSize.Height - Margin.Vertical <= 0) return Size.Empty;
-                var tmpPicturePrintAreaSize = new Size(ProductSize.Width - Margin.Horizontal, ProductSize.Height - Margin.Vertical);
+                if (ProductSize.Width - Margin.Horizontal <= 0 || ProductSize.Height - Margin.Vertical <= 0)
+                    return Size.Empty;
+                var tmpPicturePrintAreaSize = new Size(ProductSize.Width - Margin.Horizontal,
+                    ProductSize.Height - Margin.Vertical);
                 if (Math.Abs(Scale) > 0.0001)
                 {
                     //如果按比例之前比较方，高度不变，宽度缩小
@@ -219,7 +224,8 @@ namespace PostCardCenter.myController
                     tmpRectangle.Height = (int) (pictureBox1.Height * WhiteSpacePercent);
                     tmpRectangle.Width = (int) (tmpRectangle.Height / ProductSize.Ratio());
                 }
-                tmpRectangle.Offset((pictureBox1.Width - tmpRectangle.Width) / 2, (pictureBox1.Height - tmpRectangle.Height) / 2);
+                tmpRectangle.Offset((pictureBox1.Width - tmpRectangle.Width) / 2,
+                    (pictureBox1.Height - tmpRectangle.Height) / 2);
                 return tmpRectangle;
             }
         }
@@ -266,7 +272,7 @@ namespace PostCardCenter.myController
             }
             if (a.Contains("RETURN"))
             {
-                submitPostCard();   
+                submitPostCard();
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -286,9 +292,9 @@ namespace PostCardCenter.myController
             //提交之后
             if (AfterSubmit != null)
             {
+                reset();
                 AfterSubmit(this);
             }
-
         }
 
 
@@ -298,6 +304,11 @@ namespace PostCardCenter.myController
         }
 
         private int _angle;
+
+        public void reset()
+        {
+            Angle = 0;
+        }
 
         private int Angle
         {
@@ -389,8 +400,6 @@ namespace PostCardCenter.myController
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-           
-
             if (_image == null || ProductSize.IsEmpty) return;
             //如果是预览图片，不处理鼠标移动操作
             if (IsPreview) return;
@@ -410,7 +419,7 @@ namespace PostCardCenter.myController
 
             //如果图片框为空，直接返回
             if (_pictureRectangle == Rectangle.Empty) return;
-            if (_lastMousePoint != Point.Empty &&e.Button == MouseButtons.Left)
+            if (_lastMousePoint != Point.Empty && e.Button == MouseButtons.Left)
             {
                 _pictureRectangle.X = e.X + _lastMousePoint.X;
                 _pictureRectangle.Y = e.Y + _lastMousePoint.Y;
@@ -449,7 +458,8 @@ namespace PostCardCenter.myController
             }
         }
 
-        public void CanvasResize(Point mousePoint, double wheelSpeed, int delta, bool isSlow = false, bool allowOut = false)
+        public void CanvasResize(Point mousePoint, double wheelSpeed, int delta, bool isSlow = false,
+            bool allowOut = false)
         {
             if (delta == 0) return;
             var oldRectangle = _pictureRectangle;
@@ -514,8 +524,10 @@ namespace PostCardCenter.myController
             #region 调整坐标位置
 
             _pictureRectangle.Offset(
-                (oldRectangle.Width - _pictureRectangle.Width) * (mousePoint.X - oldRectangle.Left) / (oldRectangle.Width),
-                (oldRectangle.Height - _pictureRectangle.Height) * (mousePoint.Y - oldRectangle.Top) / (oldRectangle.Height)
+                (oldRectangle.Width - _pictureRectangle.Width) * (mousePoint.X - oldRectangle.Left) /
+                (oldRectangle.Width),
+                (oldRectangle.Height - _pictureRectangle.Height) * (mousePoint.Y - oldRectangle.Top) /
+                (oldRectangle.Height)
             );
             CheckPictureRectangleLocation();
 
