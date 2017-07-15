@@ -69,6 +69,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="security\Security.cs" />
+    <Compile Include="test\MyTest.cs" />
     <Compile Include="webservice\PostCardInvoker.cs" />
     <Compile Include="webservice\EnvelopeInvoker.cs" />
     <Compile Include="webservice\FileDownload.cs" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\soho.test.MyTest.datasource" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

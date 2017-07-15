@@ -72,5 +72,7 @@ namespace soho.domain
                 return postCards.Sum(postCard => postCard.copy);
             }
         }
+
+        public string productFileId { get; set; }
     }
 }

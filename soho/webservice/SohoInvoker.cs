@@ -55,7 +55,7 @@ namespace soho.webservice
             }
         }
 
-        public static FileInfo downLoadFile(string fileId)
+        public static FileInfo downLoadFile(string fileId, bool original = false)
         {
             var fileInfo = new FileInfo("D:/postCardTmpFile/" + fileId + ".jpg");
             if (fileInfo.Exists)
@@ -63,7 +63,10 @@ namespace soho.webservice
                 Console.WriteLine(@"文件本地已经存在");
                 return fileInfo;
             }
-            var httpDownload = FileDownload.HttpDownload("http://localhost:8089/file/" + fileId, fileInfo.FullName);
+            var httpDownload =
+                FileDownload.HttpDownload(
+                    "http://localhost:8089/file/" + fileId + "?isOriginal=" + (original ? "true" : "false"),
+                    fileInfo.FullName);
             Console.WriteLine(httpDownload == true ? @"下载成功" : @"下载失败");
             return fileInfo;
 //            IDictionary<string,object> orange=new Dictionary<string, object>();

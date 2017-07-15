@@ -343,8 +343,11 @@ namespace PostCardCenter.myController
                 {
                     _imageClone.Dispose();
                 }
-                _imageClone = (Image) _image.Clone();
-                _imageClone.RotateFlip(rotateInfo);
+                if (_image != null)
+                {
+                    _imageClone = (Image)_image.Clone();
+                    _imageClone.RotateFlip(rotateInfo);
+                }
                 _pictureRectangle = Rectangle.Empty;
             }
             get { return _angle; }

@@ -29,47 +29,51 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.customerName = new DevExpress.XtraEditors.TextEdit();
+            this.paperName = new DevExpress.XtraEditors.TextEdit();
+            this.productWidth = new DevExpress.XtraEditors.TextEdit();
+            this.processorName = new DevExpress.XtraEditors.TextEdit();
+            this.downloadProductFile = new DevExpress.XtraEditors.SimpleButton();
+            this.productHeight = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paperName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productWidth.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processorName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productHeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.textEdit1);
-            this.layoutControl1.Controls.Add(this.textEdit2);
-            this.layoutControl1.Controls.Add(this.textEdit3);
-            this.layoutControl1.Controls.Add(this.textEdit4);
-            this.layoutControl1.Controls.Add(this.simpleButton1);
-            this.layoutControl1.Controls.Add(this.textEdit5);
+            this.layoutControl1.Controls.Add(this.customerName);
+            this.layoutControl1.Controls.Add(this.paperName);
+            this.layoutControl1.Controls.Add(this.productWidth);
+            this.layoutControl1.Controls.Add(this.processorName);
+            this.layoutControl1.Controls.Add(this.downloadProductFile);
+            this.layoutControl1.Controls.Add(this.productHeight);
+            this.layoutControl1.Controls.Add(this.simpleButton2);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -77,6 +81,56 @@
             this.layoutControl1.Size = new System.Drawing.Size(712, 337);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // customerName
+            // 
+            this.customerName.Location = new System.Drawing.Point(63, 12);
+            this.customerName.Name = "customerName";
+            this.customerName.Size = new System.Drawing.Size(637, 20);
+            this.customerName.StyleController = this.layoutControl1;
+            this.customerName.TabIndex = 4;
+            // 
+            // paperName
+            // 
+            this.paperName.Location = new System.Drawing.Point(63, 36);
+            this.paperName.Name = "paperName";
+            this.paperName.Size = new System.Drawing.Size(637, 20);
+            this.paperName.StyleController = this.layoutControl1;
+            this.paperName.TabIndex = 5;
+            // 
+            // productWidth
+            // 
+            this.productWidth.Location = new System.Drawing.Point(63, 60);
+            this.productWidth.Name = "productWidth";
+            this.productWidth.Size = new System.Drawing.Size(291, 20);
+            this.productWidth.StyleController = this.layoutControl1;
+            this.productWidth.TabIndex = 6;
+            // 
+            // processorName
+            // 
+            this.processorName.Location = new System.Drawing.Point(63, 84);
+            this.processorName.Name = "processorName";
+            this.processorName.Size = new System.Drawing.Size(637, 20);
+            this.processorName.StyleController = this.layoutControl1;
+            this.processorName.TabIndex = 7;
+            // 
+            // downloadProductFile
+            // 
+            this.downloadProductFile.Location = new System.Drawing.Point(550, 303);
+            this.downloadProductFile.Name = "downloadProductFile";
+            this.downloadProductFile.Size = new System.Drawing.Size(150, 22);
+            this.downloadProductFile.StyleController = this.layoutControl1;
+            this.downloadProductFile.TabIndex = 8;
+            this.downloadProductFile.Text = "下载文件(&D)";
+            this.downloadProductFile.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // productHeight
+            // 
+            this.productHeight.Location = new System.Drawing.Point(409, 60);
+            this.productHeight.Name = "productHeight";
+            this.productHeight.Size = new System.Drawing.Size(291, 20);
+            this.productHeight.StyleController = this.layoutControl1;
+            this.productHeight.TabIndex = 9;
             // 
             // layoutControlGroup1
             // 
@@ -90,45 +144,48 @@
             this.emptySpaceItem1,
             this.layoutControlItem5,
             this.emptySpaceItem2,
-            this.layoutControlItem6});
+            this.layoutControlItem6,
+            this.layoutControlItem7});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(712, 337);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(63, 12);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(637, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 4;
-            // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.textEdit1;
+            this.layoutControlItem1.Control = this.customerName;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(692, 24);
             this.layoutControlItem1.Text = "客户名称";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
             // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(63, 36);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(637, 20);
-            this.textEdit2.StyleController = this.layoutControl1;
-            this.textEdit2.TabIndex = 5;
-            // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.textEdit2;
+            this.layoutControlItem2.Control = this.paperName;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(692, 24);
             this.layoutControlItem2.Text = "纸张名称";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.productWidth;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(346, 24);
+            this.layoutControlItem3.Text = "成品宽度";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.processorName;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(692, 24);
+            this.layoutControlItem4.Text = "处理人";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(48, 14);
             // 
             // emptySpaceItem1
             // 
@@ -138,53 +195,9 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(692, 195);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // textEdit3
-            // 
-            this.textEdit3.Location = new System.Drawing.Point(63, 60);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(291, 20);
-            this.textEdit3.StyleController = this.layoutControl1;
-            this.textEdit3.TabIndex = 6;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.textEdit3;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(346, 24);
-            this.layoutControlItem3.Text = "成品宽度";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
-            // 
-            // textEdit4
-            // 
-            this.textEdit4.Location = new System.Drawing.Point(63, 84);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(637, 20);
-            this.textEdit4.StyleController = this.layoutControl1;
-            this.textEdit4.TabIndex = 7;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.textEdit4;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(692, 24);
-            this.layoutControlItem4.Text = "处理人";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(48, 14);
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(550, 303);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(150, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 8;
-            this.simpleButton1.Text = "下载文件(&D)";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.simpleButton1;
+            this.layoutControlItem5.Control = this.downloadProductFile;
             this.layoutControlItem5.Location = new System.Drawing.Point(538, 291);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(154, 26);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(154, 26);
@@ -200,25 +213,39 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 291);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(538, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(384, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.Location = new System.Drawing.Point(409, 60);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(291, 20);
-            this.textEdit5.StyleController = this.layoutControl1;
-            this.textEdit5.TabIndex = 9;
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.textEdit5;
+            this.layoutControlItem6.Control = this.productHeight;
             this.layoutControlItem6.Location = new System.Drawing.Point(346, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(346, 24);
             this.layoutControlItem6.Text = "成品高度";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(396, 303);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(150, 22);
+            this.simpleButton2.StyleController = this.layoutControl1;
+            this.simpleButton2.TabIndex = 10;
+            this.simpleButton2.Text = "刷新信息(&R)";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.simpleButton2;
+            this.layoutControlItem7.Location = new System.Drawing.Point(384, 291);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(154, 26);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(154, 26);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(154, 26);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
             // 
             // envelopeInfoController
             // 
@@ -229,20 +256,21 @@
             this.Size = new System.Drawing.Size(712, 337);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paperName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productWidth.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processorName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productHeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -251,19 +279,21 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
+        private DevExpress.XtraEditors.TextEdit customerName;
+        private DevExpress.XtraEditors.TextEdit paperName;
+        private DevExpress.XtraEditors.TextEdit productWidth;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
+        private DevExpress.XtraEditors.TextEdit processorName;
+        private DevExpress.XtraEditors.SimpleButton downloadProductFile;
+        private DevExpress.XtraEditors.TextEdit productHeight;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }
