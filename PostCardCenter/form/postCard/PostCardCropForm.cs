@@ -1,70 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
+using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
+using DevExpress.XtraLayout.Utils;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using PostCardCenter.myController;
 using soho.domain;
 using soho.webservice;
+using Padding = System.Windows.Forms.Padding;
 
 namespace PostCardCenter.form.postCard
 {
     public partial class PostCardCropForm : RibbonForm
     {
-        private Queue<Image> images = new Queue<Image>();
-        private readonly Queue<TreeListNode> needProcess = new Queue<TreeListNode>();
+        private readonly IList<TreeListNode> needProcess = new List<TreeListNode>();
+        private readonly string orderId;
 
-        private SubmitWaitForm submitWaitForm = new SubmitWaitForm();
 
         public PostCardCropForm(string focusedRowOrderId)
         {
             InitializeComponent();
-            var orderDetails = EnvelopeInvoker.GetOrderDetails(focusedRowOrderId);
-            foreach (var orderDetail in orderDetails)
-            {
-                var treeListNode = treeList1.Nodes.Add();
-                treeListNode.Tag = orderDetail;
-                treeListNode.SetValue("name", orderDetail.productWidth + "×" + orderDetail.productHeight);
-                if (orderDetail.postCards == null) continue;
-                foreach (var orderDetailPostCard in orderDetail.postCards)
-                {
-                    var listNode = treeListNode.Nodes.Add();
-                    listNode.SetValue("name", orderDetailPostCard.fileName);
-                    listNode.Tag = orderDetailPostCard;
-                    listNode.ImageIndex = listNode.SelectImageIndex = 1;
-                    if (orderDetailPostCard.cropInfo == null)
-                    {
-                        needProcess.Enqueue(listNode);
-                        orderDetailPostCard.processStatus = "未提交";
-                    }
-                    else
-                    {
-                        orderDetailPostCard.processStatus = "已提交";
-                    }
-                    listNode.SetValue("status", orderDetailPostCard.processStatus);
-                    new Thread(downloadFile).Start(orderDetailPostCard);
-                }
-                treeListNode.ExpandAll();
-            }
-        }
-
-        public void downloadFile(object fileId)
-        {
-            var fileIdString = fileId as PostCard;
-            fileIdString.fileInfo = SohoInvoker.downLoadFile(fileIdString.fileId);
+            orderId = focusedRowOrderId;
         }
 
         private void postCardCropForm_Load(object sender, EventArgs e)
         {
-//            if (needProcess.Count > 0)
-//            {
-//                var a = needProcess.Dequeue();
-//                treeList1.SetFocusedNode(a);
-//            }
+            EnvelopeInvoker.GetAllEnvelopeByOrderId(orderId, envelopeList =>
+            {
+                envelopeList.ForEach(envelope =>
+                {
+                    EnvelopeInvoker.GetPostCardByEnvelopeId(envelope.envelopeId, postCards =>
+                    {
+                        envelope.postCards = postCards;
+                        var treeListNode = treeList1.Nodes.Add();
+                        treeListNode.Tag = envelope;
+                        treeListNode.SetValue("name", "成品尺寸:" + envelope.productWidth + "×" + envelope.productHeight);
+                        if (envelope.postCards == null) return;
+                        foreach (var postCard in envelope.postCards)
+                        {
+                            var listNode = treeListNode.Nodes.Add();
+                            listNode.SetValue("name", postCard.fileName);
+                            listNode.Tag = postCard;
+
+                            listNode.ImageIndex = listNode.SelectImageIndex = 1;
+                            if (postCard.cropInfo == null)
+                            {
+                                needProcess.Add(listNode);
+                                postCard.processStatus = "未提交";
+                            }
+                            else
+                            {
+                                postCard.processStatus = "已提交";
+                            }
+                            listNode.SetValue("status", postCard.processStatus);
+
+                            var card = postCard;
+                            SohoInvoker.downLoadFile(postCard.fileId, false, fileInfo => { card.fileInfo = fileInfo; });
+                        }
+                        treeListNode.ExpandAll();
+                    }, message => { XtraMessageBox.Show(message); });
+                });
+            });
         }
 
         private void treeList1_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
@@ -89,16 +89,22 @@ namespace PostCardCenter.form.postCard
                 cropControllerPreview.PostCardId = null;
                 cropControllerCrop.PostCardId = null;
                 envelopeInfoController1.EnvelopeId = tmpEnvelope.envelopeId;
+                envelopeDetailGroup.Visibility = LayoutVisibility.Always;
+                
             }
 
             if (focusedNodeTag.GetType() == typeof(PostCard))
             {
+                envelopeDetailGroup.Visibility = LayoutVisibility.Never;
                 var envelopeInfo = treeList1.FocusedNode.ParentNode.Tag as Envelope;
                 var tmpPostCard = focusedNodeTag as PostCard;
-                var a = SohoInvoker.downLoadFile(tmpPostCard.fileId);
-                if (!a.Exists) return;
+                if (tmpPostCard.fileInfo == null)
+                {
+                    treeList1.FocusedNode = e.OldNode;
+                    return;
+                }
                 cropControllerPreview.PostCardId = cropControllerCrop.PostCardId = tmpPostCard.postCardId;
-                cropControllerPreview.Image = cropControllerCrop.Image = Image.FromFile(a.FullName);
+                cropControllerPreview.Image = cropControllerCrop.Image = Image.FromFile(tmpPostCard.fileInfo.FullName);
                 cropControllerPreview.Margin = cropControllerCrop.Margin = new Padding(5);
                 cropControllerPreview.Scale = cropControllerCrop.Scale = 0;
 
@@ -127,10 +133,6 @@ namespace PostCardCenter.form.postCard
                 layoutControlGroup6.Selected = true;
                 envelopeInfoController1.EnvelopeId = envelopeInfo.envelopeId;
             }
-        }
-
-        private void cropBoxControl1_Load(object sender, EventArgs e)
-        {
         }
 
 
@@ -225,14 +227,20 @@ namespace PostCardCenter.form.postCard
                 if (splashScreenManager1.IsSplashFormVisible)
                     splashScreenManager1.CloseWaitForm();
                 Application.DoEvents();
-                if (needProcess.Count > 0)
+                TreeListNode nexTreeListNode = null;
+                while (needProcess.Count > 0)
                 {
-                    var a = needProcess.Dequeue();
-                    var tmpNextPostCard = a.Tag as PostCard;
-                    while (tmpNextPostCard == null && needProcess.Count > 0)
+                    nexTreeListNode = needProcess[0];
+                    if (nexTreeListNode.GetValue("status") == "已提交")
                     {
+                        needProcess.Remove(nexTreeListNode);
+                        continue;
                     }
-                    treeList1.SetFocusedNode(a);
+                    break;
+                }
+                if (nexTreeListNode != null)
+                {
+                    treeList1.SetFocusedNode(nexTreeListNode);
                 }
                 else
                 {
@@ -247,21 +255,37 @@ namespace PostCardCenter.form.postCard
 
         private void cropControllerCrop_BeforeSubmit(object sender)
         {
-            if ("已修改".Equals(treeList1.FocusedNode.GetValue("status")))
+            if (!"已提交".Equals(treeList1.FocusedNode.GetValue("status")))
             {
                 treeList1.FocusedNode.SetValue("status", "正在提交");
-                splashScreenManager1.ShowWaitForm();
+                if (!splashScreenManager1.IsSplashFormVisible)
+                    splashScreenManager1.ShowWaitForm();
             }
             Application.DoEvents();
         }
-    }
 
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            cropControllerCrop.Rotate(270);
+        }
 
-    public class TestTreeList
-    {
-        public string name { get; set; }
-        public string status { get; set; }
+        private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            cropControllerCrop.Rotate(90);
+        }
 
-        public List<TestTreeList> tree { get; set; }
+        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            cropControllerCrop.Rotate(180);
+        }
+
+        private void ribbonStatusBar1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void envelopeInfoController1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

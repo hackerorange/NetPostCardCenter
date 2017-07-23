@@ -2,11 +2,8 @@
 {
     public static class Security
     {
-        private static string  _tokenId="admin";
-        public static string TokenId
-        {
-            get { return  _tokenId; }
-            set { _tokenId = value; }
-        }
+        public static AccountSessionInfo AccountSessionInfo { get; set; }
+
+        public static string TokenId { get; set; }
     }
 }

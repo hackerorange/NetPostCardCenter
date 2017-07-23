@@ -22,13 +22,16 @@ namespace PostCardCenter
         private void Form1_Load(object sender, EventArgs e)
         {
             var formUserLogin = new UserLogin();
-//            while (string.IsNullOrEmpty(Security.tokenId))
-//            {
-//                if (formUserLogin.ShowDialog(this) != DialogResult.Cancel) continue;
-//                Application.Exit();
-//                break; //中断当前循环
-//            }
-            barStaticItem1.Caption = Security.TokenId;
+            while (Security.AccountSessionInfo == null)
+            {
+                if (formUserLogin.ShowDialog(this) != DialogResult.Cancel) continue;
+                Application.Exit();
+                break; //中断当前循环
+            }
+            if (Security.AccountSessionInfo != null)
+            {
+                barStaticItem1.Caption = Security.AccountSessionInfo.accountName;
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -37,7 +40,6 @@ namespace PostCardCenter
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
- 
         }
 
         private void batchCreateOrder_ItemClick(object sender, ItemClickEventArgs e)
@@ -50,9 +52,7 @@ namespace PostCardCenter
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {
-           
-            
-            xtraTabbedMdiManager1.ClosePageButtonShowMode=ClosePageButtonShowMode.InActiveTabPageHeader;
+            xtraTabbedMdiManager1.ClosePageButtonShowMode = ClosePageButtonShowMode.InActiveTabPageHeader;
             var flag = false;
             foreach (XtraMdiTabPage page in xtraTabbedMdiManager1.Pages)
             {
@@ -70,7 +70,6 @@ namespace PostCardCenter
                 orderCenter.Show();
                 xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[orderCenter];
             }
-
         }
     }
 }

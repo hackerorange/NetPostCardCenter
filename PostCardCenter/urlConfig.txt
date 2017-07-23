@@ -1,0 +1,7 @@
+﻿getAllOrderUrl=http://localhost:8083/rest/orderController?createDate={startDate}&endDate={endDate}
+getAllEnvelopeByOrderIdUrl=http://localhost:8083/rest/EnvelopeController/{orderId}
+getOrderInfoUrl=http://localhost:8083/rest/orderController/info?orderId={orderId}
+submitOrderUrl=http://localhost:8083/rest/orderController/submit
+backStyleListUrl=http://localhost:8083/rest/system/backStyle
+loginUrl=http://localhost:8083/rest/security/login
+envelopeInfoUrl=http://localhost:8083/rest/EnvelopeController/info?envelopeId={envelopeId}

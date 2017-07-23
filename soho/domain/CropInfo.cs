@@ -104,7 +104,7 @@ namespace soho.domain
         }
 
         
-       public bool Equals(object obj)
+       public override bool Equals(object obj)
         {
             var tmpCropInfo =obj as CropInfo;
             if (tmpCropInfo.rotation != rotation) return false;

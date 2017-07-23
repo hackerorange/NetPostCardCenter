@@ -254,7 +254,7 @@
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1000, 700);
+            this.MaximumSize = new System.Drawing.Size(1004, 700);
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "OrderBatchCreateForm";
             this.Ribbon = this.ribbon;

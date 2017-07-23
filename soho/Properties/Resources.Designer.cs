@@ -61,6 +61,15 @@ namespace soho.Properties {
         }
         
         /// <summary>
+        ///   查找类似 order|getAll 的本地化字符串。
+        /// </summary>
+        public static string getAllOrderInfo {
+            get {
+                return ResourceManager.GetString("getAllOrderInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 http://localhost:8080/security/login 的本地化字符串。
         /// </summary>
         public static string loginPath {
@@ -75,6 +84,15 @@ namespace soho.Properties {
         public static string styleListPath {
             get {
                 return ResourceManager.GetString("styleListPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://localhost:8083/rest/url/get?category={category}&amp;method={method} 的本地化字符串。
+        /// </summary>
+        public static string urlDictionaryUrl {
+            get {
+                return ResourceManager.GetString("urlDictionaryUrl", resourceCulture);
             }
         }
     }

@@ -19,12 +19,7 @@ namespace PostCardCenter.form.envelope
             InitializeComponent();
         }
 
-        public XtraForm1(string orderId) : this()
-        {
-            var orderDetails = EnvelopeInvoker.GetOrderDetails(orderId);
-            gridControl1.DataSource = orderDetails;
-        }
-
+      
         private void XtraForm1_Load(object sender, EventArgs e)
         {
 

@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
@@ -18,6 +20,17 @@ namespace soho.webservice
 {
     public static class SohoInvoker
     {
+        public delegate void SuccessDownload(FileInfo file);
+
+        public delegate void SuccessUpload(FileInfo file);
+
+        public delegate void HttpRequestFailure(string message);
+
+        public delegate void SuccessGetBackStyles(List<BackStyleInfo> backStyleInfos);
+
+        public delegate void SuccessDo(bool result);
+        
+
         private static DataContractJsonHttpMessageConverter dataContractJsonHttpMessageConverter { get; set; }
 
         static SohoInvoker()
@@ -30,65 +43,89 @@ namespace soho.webservice
         /// </summary>
         /// <param name="file">要上传到服务器的文件</param>
         /// <returns>服务器返回的文件ID</returns>
-        public static string Upload(FileInfo file)
+        public static void Upload(FileInfo file, SuccessDo orange, HttpRequestFailure failure = null)
         {
-            try
+            var md5 = file.getMd5();
+            IsFileExistInServer(md5, isFileExist =>
             {
-                var md5 = file.getMd5();
-                if (!IsFileExistInServer(md5))
+                if (isFileExist)
+                {
+                    orange(true);
+                }
+                else
                 {
                     var restTemplate = new RestTemplate("http://localhost:8089");
                     restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
                     var dictionary = new Dictionary<string, object>();
                     var entity = new HttpEntity(file);
                     dictionary.Add("file", entity);
-                    var httpResponseMessage = restTemplate.PostForObject<StandardResponse>("file/upload", dictionary);
-                    if (httpResponseMessage.code != 200) return "服务器发生异常";
-                    restTemplate.HeadForHeaders("file/" + md5);
+                    restTemplate.PostForObjectAsync<StandardResponse>("file/upload", dictionary, resp =>
+                    {
+                        if (resp.Error != null)
+                        {
+                            if (failure != null)
+                            {
+                                failure(resp.Error.Message);
+                            }
+                        }
+                        else
+                        {
+                            orange(resp.Response.code == 200);
+                        }
+                    });
                 }
-
-                return md5;
-            }
-            catch (Exception)
-            {
-                throw new IOException("网络连接异常");
-            }
+            });
         }
 
-        public static FileInfo downLoadFile(string fileId, bool original = false)
+        public static void downLoadFile(string fileId, bool original, SuccessDownload aa)
         {
             var fileInfo = new FileInfo("D:/postCardTmpFile/" + fileId + ".jpg");
             if (fileInfo.Exists)
             {
                 Console.WriteLine(@"文件本地已经存在");
-                return fileInfo;
+                aa(fileInfo);
             }
-            var httpDownload =
-                FileDownload.HttpDownload(
-                    "http://localhost:8089/file/" + fileId + "?isOriginal=" + (original ? "true" : "false"),
-                    fileInfo.FullName);
-            Console.WriteLine(httpDownload == true ? @"下载成功" : @"下载失败");
-            return fileInfo;
-//            IDictionary<string,object> orange=new Dictionary<string, object>();
-//            orange.Add("fileId",fileId);
-//
-//            var restTemplate = new RestTemplate("http://localhost:8089");
-//            restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
-//            var fileStream = restTemplate.GetForObject<Stream>("file/{fileId}", orange);
+            var webClient = new WebClient();
+            webClient.DownloadFileCompleted += (sender, e) =>
+            {
+                if (e.Error != null)
+                {
+                }
+                else
+                {
+                    aa(fileInfo);
+                }
+            };
+            webClient.DownloadFileAsync(
+                new Uri("http://localhost:8089/file/" + fileId + "?isOriginal=" + (original ? "true" : "false")),
+                fileInfo.FullName, fileInfo.Name);
         }
+
 
         /// <summary>
         /// 询问服务器，文件是否存在
         /// </summary>
         /// <param name="fileId">要询问的文件信息</param>
         /// <returns>文件是否已经存在</returns>
-        public static bool IsFileExistInServer(string fileId)
+        public static void IsFileExistInServer(string fileId, SuccessDo success, HttpRequestFailure failure = null)
         {
             var restTemplate = new RestTemplate("http://localhost:8089");
             restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
-            var headForHeaders = restTemplate.HeadForHeaders("file/" + fileId);
-            var singleValue = headForHeaders.GetSingleValue("isExist");
-            return !string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE");
+            restTemplate.HeadForHeadersAsync("file/" + fileId, resp =>
+            {
+                if (resp.Error != null)
+                {
+                    if (failure != null)
+                    {
+                        failure(resp.Error.Message);
+                    }
+                }
+                else
+                {
+                    var singleValue = resp.Response.GetSingleValue("isExist");
+                    success(!string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE"));
+                }
+            });
         }
 
         /// <summary>
@@ -135,58 +172,59 @@ namespace soho.webservice
             };
         }
 
-        public static List<BackStyleInfo> GetBackStyleTemplateList()
+        public static void GetBackStyleTemplateList(SuccessGetBackStyles success,HttpRequestFailure failure=null)
         {
-            return new List<BackStyleInfo>
+            var restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
+            var url = RequestUtils.GetUrl("backStyleListUrl");
+            restTemplate.GetForObjectAsync<PageResponse<BackStyleInfo>>(url, response =>
             {
-                new BackStyleInfo {fileId = "fileId_A", name = "A"},
-                new BackStyleInfo {fileId = "fileId_B", name = "B"},
-                new BackStyleInfo {fileId = "fileId_C", name = "C"},
-                new BackStyleInfo {fileId = "fileId_D", name = "D"},
-                new BackStyleInfo {fileId = "fileId_E", name = "E"},
-                new BackStyleInfo {fileId = "fileId_F", name = "F"},
-                new BackStyleInfo {fileId = "fileId_G", name = "G"},
-                new BackStyleInfo {fileId = "fileId_H", name = "H"},
-                new BackStyleInfo {fileId = "fileId_I", name = "I"},
-                new BackStyleInfo {fileId = "fileId_J", name = "J"},
-                new BackStyleInfo {fileId = "fileId_K", name = "K"},
-                new BackStyleInfo {fileId = "fileId_L", name = "L"},
-                new BackStyleInfo {fileId = "fileId_M", name = "M"},
-                new BackStyleInfo {fileId = "fileId_N", name = "N"},
-                new BackStyleInfo {fileId = "fileId_O", name = "O"},
-                new BackStyleInfo {fileId = "fileId_P", name = "P"},
-                new BackStyleInfo {fileId = "fileId_Q", name = "Q"},
-                new BackStyleInfo {fileId = "fileId_R", name = "R"},
-                new BackStyleInfo {fileId = "fileId_S", name = "S"},
-                new BackStyleInfo {fileId = "fileId_T", name = "T"},
-                new BackStyleInfo {fileId = "fileId_U", name = "U"},
-                new BackStyleInfo {fileId = "fileId_V", name = "V"},
-                new BackStyleInfo {fileId = "fileId_W", name = "W"},
-                new BackStyleInfo {fileId = "fileId_X", name = "X"},
-                new BackStyleInfo {fileId = "fileId_Y", name = "Y"},
-                new BackStyleInfo {fileId = "fileId_Z", name = "Z"},
-            };
+                if (response.Error != null)
+                {
+                    if (failure != null)
+                    {
+                        failure(response.Error.Message);
+                    }
+                }
+                else
+                {
+                    if (response.Response.code == 200 && success != null)
+                    {
+                        success(response.Response.page);
+                    }
+                    else
+                    {
+                        failure(response.Response.message);
+                    }
+                }
+            });
         }
 
-        public static bool SubmitPostCardList(List<Order> postCards)
+        public static void SubmitPostCardList(Order postCards, SuccessDo success,HttpRequestFailure failure=null)
         {
-            try
-            {
-                var restTemplate = new RestTemplate("http://localhost:8083");
-                restTemplate.MessageConverters.Add(new DataContractJsonHttpMessageConverter());
+            var restTemplate = new RestTemplate("http://localhost:8083");
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
 
-                var httpHeaders = new HttpHeaders {{"tokenId", "123456"}};
+            var httpHeaders = new HttpHeaders {{"tokenId", "123456"}};
 
-                var headers = new HttpEntity(postCards, httpHeaders);
-                var postForObject = restTemplate.PostForObject<StandardResponse>("rest/orderController", headers);
-                Console.WriteLine(postForObject.message);
-                return postForObject.code == 200;
-            }
-            catch (Exception e)
+            var headers = new HttpEntity(postCards, httpHeaders);
+            restTemplate.PostForObjectAsync<StandardResponse>("rest/orderController", headers, res =>
             {
-                Console.WriteLine(@"无法连接到服务器");
-                return false;
-            }
+                if (res.Error != null)
+                {
+                    if (failure != null)
+                    {
+                        failure(res.Error.Message);
+                    }
+                }
+                else
+                {
+                    if (success != null)
+                    {
+                        success(res.Response.code == 200);
+                    }
+                }
+            });
         }
 
         /// <summary>

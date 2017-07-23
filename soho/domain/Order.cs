@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace soho.domain
 {
@@ -11,6 +13,10 @@ namespace soho.domain
         public string orderId { get; set; }
         public string taobaoId { get; set; }
         public bool urgent { get; set; }
+
+        [JsonIgnore]
         public DirectoryInfo directory { get; set; }
+
+     
     }
 }

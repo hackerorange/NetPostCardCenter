@@ -91,11 +91,11 @@
             this.layoutControl1.Controls.Add(this.orderTaobaoIdTextEdit);
             this.layoutControl1.Controls.Add(this.orderIsUrgentCheckEdit);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 129);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 126);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(512, 310, 450, 344);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(890, 672);
+            this.layoutControl1.Size = new System.Drawing.Size(890, 675);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -105,7 +105,7 @@
             this.gridControl1.MainView = this.advBandedGridView1;
             this.gridControl1.MenuManager = this.ribbon;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(842, 514);
+            this.gridControl1.Size = new System.Drawing.Size(842, 517);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.advBandedGridView1});
@@ -311,7 +311,7 @@
             this.ribbonPage1});
             this.ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbon.Size = new System.Drawing.Size(890, 129);
+            this.ribbon.Size = new System.Drawing.Size(890, 126);
             // 
             // batchCreateFromDesktop
             // 
@@ -432,7 +432,7 @@
             this.layoutControlGroup3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(890, 672);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(890, 675);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -441,7 +441,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 91);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(870, 561);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(870, 564);
             this.layoutControlGroup2.Text = "明信片集合";
             // 
             // layoutControlItem1
@@ -449,7 +449,7 @@
             this.layoutControlItem1.Control = this.gridControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(846, 518);
+            this.layoutControlItem1.Size = new System.Drawing.Size(846, 521);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -503,9 +503,9 @@
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbon);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(916, 814);
+            this.MaximumSize = new System.Drawing.Size(918, 815);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(904, 808);
+            this.MinimumSize = new System.Drawing.Size(906, 809);
             this.Name = "OrderInfoForm";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

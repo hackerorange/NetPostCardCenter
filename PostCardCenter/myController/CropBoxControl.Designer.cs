@@ -128,6 +128,7 @@
             this.postCardCropController2.IsPreview = true;
             this.postCardCropController2.Location = new System.Drawing.Point(612, 33);
             this.postCardCropController2.Name = "postCardCropController2";
+            this.postCardCropController2.PostCardId = null;
             this.postCardCropController2.ProductSize = new System.Drawing.Size(148, 100);
             this.postCardCropController2.Scale = 0D;
             this.postCardCropController2.Size = new System.Drawing.Size(300, 300);
@@ -142,6 +143,7 @@
             this.postCardCropController1.Location = new System.Drawing.Point(2, 2);
             this.postCardCropController1.Margin = new System.Windows.Forms.Padding(10);
             this.postCardCropController1.Name = "postCardCropController1";
+            this.postCardCropController1.PostCardId = null;
             this.postCardCropController1.ProductSize = new System.Drawing.Size(148, 100);
             this.postCardCropController1.Scale = 0D;
             this.postCardCropController1.Size = new System.Drawing.Size(594, 623);

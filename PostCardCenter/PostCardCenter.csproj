@@ -147,11 +147,11 @@
     <Compile Include="myController\CropBoxControl.Designer.cs">
       <DependentUpon>CropBoxControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="myController\envelopeInfoController.cs">
+    <Compile Include="myController\EnvelopeInfoController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="myController\envelopeInfoController.Designer.cs">
-      <DependentUpon>envelopeInfoController.cs</DependentUpon>
+    <Compile Include="myController\EnvelopeInfoController.Designer.cs">
+      <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
     </Compile>
     <Compile Include="myController\PostCardCropController.cs">
       <SubType>UserControl</SubType>
@@ -198,8 +198,8 @@
     <EmbeddedResource Include="myController\CropBoxControl.resx">
       <DependentUpon>CropBoxControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="myController\envelopeInfoController.resx">
-      <DependentUpon>envelopeInfoController.cs</DependentUpon>
+    <EmbeddedResource Include="myController\EnvelopeInfoController.resx">
+      <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="myController\PostCardCropController.resx">
       <DependentUpon>PostCardCropController.cs</DependentUpon>
@@ -235,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Spring.Rest.txt" />
+    <Content Include="urlConfig.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\soho\soho.csproj">

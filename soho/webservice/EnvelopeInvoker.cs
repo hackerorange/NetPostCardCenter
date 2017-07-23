@@ -1,96 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
 using soho.domain;
+using soho.helper;
+using soho.security;
 using soho.web;
+using Spring.Http;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 
 namespace soho.webservice
 {
+    public delegate void SuccessGetEnvelopeInfo(Envelope envelope);
+
+    public delegate void SuccessGetEnvelopeList(List<Envelope> envelopeList);
+
+    public delegate void SuccessGetPostCardList(List<PostCard> envelopeList);
+
+    public delegate void FailureGetEnvelopeInfo(string message);
+
     public static class EnvelopeInvoker
     {
-        public static List<Envelope> GetOrderDetails(string orderId)
+        public static void GetAllEnvelopeByOrderId(string orderId, SuccessGetEnvelopeList success,
+            FailureGetEnvelopeInfo failure = null)
         {
             var restTemplate = new RestTemplate();
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
 
-            var nameValueCollection = new Dictionary<string, object>();
-
-
-            nameValueCollection.Add("orderId", orderId);
-            var postForObject =
-                restTemplate.GetForObject<PageResponse<Envelope>>(
-                    "http://localhost:8083/rest/EnvelopeController/{orderId}", nameValueCollection);
-
-            if (postForObject.code == 200)
+            var nameValueCollection = new Dictionary<string, object>
             {
-                var orderDetails = postForObject.page;
-                foreach (var envelopeInfo in orderDetails)
-                    envelopeInfo.postCards = GetPostCardByEnvelopeId(envelopeInfo.envelopeId);
-                return postForObject.page;
-            }
+                {"orderId", orderId}
+            };
 
-
-            throw new Exception("获取明信片集合错误");
+            restTemplate.GetForMessageAsync<PageResponse<Envelope>>(RequestUtils.GetUrl("getAllEnvelopeByOrderIdUrl"),
+                nameValueCollection,
+                resp =>
+                {
+                    if (resp.Error != null)
+                    {
+                        if (failure != null) failure(resp.Error.Message);
+                    }
+                    else
+                    {
+                        if (resp.Response.Body.code == 200)
+                        {
+                            if (success != null) success(resp.Response.Body.page);
+                        }
+                        else
+                        {
+                            if (failure != null) failure(resp.Response.Body.message);
+                        }
+                    }
+                });
         }
 
-        public static List<PostCard> GetPostCardByEnvelopeId(string envelopeId)
+        public static void GetPostCardByEnvelopeId(string envelopeId, SuccessGetPostCardList success,
+            FailureGetEnvelopeInfo failure = null)
         {
-            try
-            {
-                var restTemplate = new RestTemplate();
-                restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
 
-                var nameValueCollection = new Dictionary<string, object>
+            var nameValueCollection = new Dictionary<string, object>
+            {
+                {"envelopeId", envelopeId}
+            };
+
+            restTemplate.GetForObjectAsync<PageResponse<PostCard>>(
+                "http://localhost:8083/rest/PostCardController/{envelopeId}", nameValueCollection,
+                resp =>
                 {
-                    {"envelopeId", envelopeId}
-                };
-                var postForObject =
-                    restTemplate.GetForObject<PageResponse<PostCard>>(
-                        "http://localhost:8083/rest/PostCardController/{envelopeId}", nameValueCollection);
-
-                if (postForObject.code == 200)
-                    return postForObject.page;
-                return null;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                throw new Exception("获取明信片集合错误");
-            }
+                    if (resp.Error != null || resp.Response.code != 200)
+                    {
+                        if (failure != null)
+                            failure(resp.Error != null ? resp.Error.Message : resp.Response.message);
+                    }
+                    else
+                    {
+                        if (success != null) success(resp.Response.page);
+                    }
+                });
         }
 
-        public static Envelope GetEnvelopeInfoById(string envelopeId)
+        public static void GetEnvelopeInfoById(string envelopeId, SuccessGetEnvelopeInfo success,
+            FailureGetEnvelopeInfo failure = null)
         {
-            try
+            var restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+
+            var nameValueCollection = new Dictionary<string, object>
             {
-                var restTemplate = new RestTemplate();
-                restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-
-                var nameValueCollection = new Dictionary<string, object>
+                {"envelopeId", envelopeId}
+            };
+            restTemplate.GetForObjectAsync<BodyResponse<Envelope>>(RequestUtils.GetUrl("envelopeInfoUrl"), nameValueCollection,
+                headCompleted =>
                 {
-                    {"envelopeId", envelopeId}
-                };
-                var postForObject =
-                    restTemplate.HeadForHeaders(
-                        "http://localhost:8083/rest/EnvelopeController/{envelopeId}", nameValueCollection);
-
-
-                if (postForObject.GetSingleValue("code") != "200") return null;
-
-                var envelope = new Envelope
-                {
-                    envelopeId = postForObject.GetSingleValue("envelopeId"),
-                    orderId = postForObject.GetSingleValue("orderId"),
-                    productFileId = postForObject.GetSingleValue("productFileId")
-                };
-                return envelope;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
+                    if (headCompleted.Error != null)
+                    {
+                        if (failure != null)
+                        {
+                            failure(headCompleted.Error.Message);
+                        }
+                    }
+                    else
+                    {
+                        if(headCompleted.Response.code!=200)
+                        {
+                            if (failure != null)
+                            {
+                                failure(headCompleted.Response.message);
+                            }
+                            return;
+                        }
+                        if (success != null)
+                        {
+                            success(headCompleted.Response.body);
+                        }
+                    }
+                });
         }
     }
 }

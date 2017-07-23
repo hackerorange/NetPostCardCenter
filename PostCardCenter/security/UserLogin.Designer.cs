@@ -71,9 +71,9 @@
             // CloseButton
             // 
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseButton.Location = new System.Drawing.Point(147, 75);
+            this.CloseButton.Location = new System.Drawing.Point(150, 75);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(138, 22);
+            this.CloseButton.Size = new System.Drawing.Size(135, 22);
             this.CloseButton.StyleController = this.layoutControl1;
             this.CloseButton.TabIndex = 6;
             this.CloseButton.Text = "关闭";
@@ -83,7 +83,7 @@
             // 
             this.loginButton.Location = new System.Drawing.Point(12, 75);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(131, 22);
+            this.loginButton.Size = new System.Drawing.Size(134, 22);
             this.loginButton.StyleController = this.layoutControl1;
             this.loginButton.TabIndex = 6;
             this.loginButton.Text = "登陆";
@@ -135,7 +135,7 @@
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(277, 24);
-            this.layoutControlItem2.Text = "密码：";
+            this.layoutControlItem2.Text = "密　码：";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem3
@@ -143,16 +143,16 @@
             this.layoutControlItem3.Control = this.loginButton;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 63);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(135, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(138, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.CloseButton;
-            this.layoutControlItem4.Location = new System.Drawing.Point(135, 63);
+            this.layoutControlItem4.Location = new System.Drawing.Point(138, 63);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(142, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(139, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 

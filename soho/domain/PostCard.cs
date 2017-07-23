@@ -61,8 +61,10 @@ namespace soho.domain
         [JsonIgnore]
         public FileInfo backFileInfo { get; set; }
 
+        [JsonIgnore]
         private Image _image;
 
+        [JsonIgnore]
         public Image imageBefore { 
             get{
                 if (_image == null)
@@ -87,5 +89,7 @@ namespace soho.domain
         public string processStatus { get; set; }
 
         public string processStatusCode { get; set; }
+
+        
     }
 }

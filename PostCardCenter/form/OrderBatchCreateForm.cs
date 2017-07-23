@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
+using DevExpress.XtraEditors;
 using PostCardCenter.helper;
 using soho.domain;
 using soho.webservice;
@@ -59,10 +60,10 @@ namespace PostCardCenter.form
                 };
                 foreach (var info in directory.GetDirectories())
                 {
-                    var envelopeInfoForm = new EnvelopeInfoForm(info);
-                    if (envelopeInfoForm.envelope == null)
-                        continue;
-                    envelopeInfoForm.order = tmpOrder;
+                    var envelopeInfoForm = new EnvelopeInfoForm(info)
+                    {
+                        order = tmpOrder
+                    };
                     if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
                     if (tmpOrder.envelopes == null)
                     {
@@ -161,7 +162,17 @@ namespace PostCardCenter.form
 
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
-            SohoInvoker.SubmitPostCardList(orderList);
+            orderList.ForEach(order =>
+            {
+                SohoInvoker.SubmitPostCardList(order, response =>
+                {
+                    //如果操作成功，移除此项目
+                    if (response)
+                    {
+                        orderList.Remove(order);
+                    }
+                }, error => { XtraMessageBox.Show(error); });
+            });
         }
     }
 }

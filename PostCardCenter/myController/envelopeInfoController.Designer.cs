@@ -1,6 +1,6 @@
 ﻿namespace PostCardCenter.myController
 {
-    partial class envelopeInfoController
+    partial class EnvelopeInfoController
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -35,6 +35,7 @@
             this.processorName = new DevExpress.XtraEditors.TextEdit();
             this.downloadProductFile = new DevExpress.XtraEditors.SimpleButton();
             this.productHeight = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -44,7 +45,6 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -131,6 +131,16 @@
             this.productHeight.Size = new System.Drawing.Size(291, 20);
             this.productHeight.StyleController = this.layoutControl1;
             this.productHeight.TabIndex = 9;
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(396, 303);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(150, 22);
+            this.simpleButton2.StyleController = this.layoutControl1;
+            this.simpleButton2.TabIndex = 10;
+            this.simpleButton2.Text = "刷新信息(&R)";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // layoutControlGroup1
             // 
@@ -225,16 +235,6 @@
             this.layoutControlItem6.Text = "成品高度";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(396, 303);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(150, 22);
-            this.simpleButton2.StyleController = this.layoutControl1;
-            this.simpleButton2.TabIndex = 10;
-            this.simpleButton2.Text = "刷新信息(&R)";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.simpleButton2;
@@ -247,12 +247,12 @@
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // envelopeInfoController
+            // EnvelopeInfoController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
-            this.Name = "envelopeInfoController";
+            this.Name = "EnvelopeInfoController";
             this.Size = new System.Drawing.Size(712, 337);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
