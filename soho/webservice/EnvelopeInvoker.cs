@@ -65,7 +65,7 @@ namespace soho.webservice
             };
 
             restTemplate.GetForObjectAsync<PageResponse<PostCard>>(
-                "http://localhost:8083/rest/PostCardController/{envelopeId}", nameValueCollection,
+                RequestUtils.GetUrl("getPostCardByEnvelopeIdUrl"), nameValueCollection,
                 resp =>
                 {
                     if (resp.Error != null || resp.Response.code != 200)

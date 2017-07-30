@@ -4,14 +4,18 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraTreeList.Native;
+using DevExpress.XtraTreeList.Nodes;
 using soho.domain;
 using soho.helper;
+using soho.webservice;
 
 namespace PostCardCenter.myController
 {
@@ -21,12 +25,15 @@ namespace PostCardCenter.myController
     {
         public delegate void CropInfoChangeHandler(CropInfo newCropInfo);
 
-        public delegate void SubmitEventHandler(object sender);
+        public delegate void SubmitEventHandler(TreeListNode node, PostCardCropController sender);
+
+        public delegate void SubmitResultHandler(TreeListNode node);
 
         public event CropInfoChangeHandler CropInfoChanged;
-        public event SubmitEventHandler BeforeSubmit;
-        public event SubmitEventHandler AfterSubmit;
+        public event SubmitResultHandler FailureSubmit;
+        public event SubmitResultHandler SuccessSubmit;
         public event SubmitEventHandler OnSubmit;
+
 
         private Rectangle _paperBox;
 
@@ -159,7 +166,7 @@ namespace PostCardCenter.myController
                 //如果纸张尺寸为空，返回空
                 var tmpPaperRectangle = PaperRectangle;
                 if (tmpPaperRectangle == Rectangle.Empty) return tmpPaperRectangle;
-                double tmpRatio = tmpPaperRectangle.Height / (double) ProductSize.Height;
+                var tmpRatio = tmpPaperRectangle.Height / (double) ProductSize.Height;
                 var tmpCropBox = new Rectangle
                 {
                     Width = (int) ((ProductSize.Width - Margin.Horizontal) * tmpRatio)
@@ -272,31 +279,128 @@ namespace PostCardCenter.myController
             }
             if (a.Contains("RETURN"))
             {
-                submitPostCard();
+                SubmitPostCard();
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void submitPostCard()
+        private void SubmitPostCard()
         {
-            //提交之前
-            if (BeforeSubmit != null)
+            var tmpNode = Node;
+            if ("已提交".Equals(Node.GetValue("status")))
             {
-                BeforeSubmit(this);
+                if (OnSubmit != null)
+                {
+                    OnSubmit(tmpNode, this);
+                }
+                return;
             }
+            if (CropInfo == null) return;
+            PostCardInvoker.SubmitPostCardCropInfo(PostCardId, CropInfo, postCard =>
+            {
+                tmpNode.SetValue("status", "提交成功");
+                var tmpPostCard = tmpNode.Tag as PostCard;
+                if (tmpPostCard != null)
+                {
+                    tmpPostCard.cropInfo = postCard.cropInfo;
+                    tmpPostCard.processStatus = "已提交";
+                }
+                Application.DoEvents();
+                //提交之后
+                if (SuccessSubmit != null)
+                    SuccessSubmit(tmpNode);
+            }, failure =>
+            {
+                if (FailureSubmit != null)
+                    FailureSubmit(tmpNode);
+            });
+            tmpNode.SetValue("status", "正在提交");
             //开始提交
             if (OnSubmit != null)
             {
-                OnSubmit(this);
-            }
-            //提交之后
-            if (AfterSubmit != null)
-            {
-                reset();
-                AfterSubmit(this);
+                OnSubmit(tmpNode, this);
             }
         }
 
+
+        private TreeListNode _treeListNode;
+
+        public TreeListNode Node
+        {
+            get { return _treeListNode; }
+            set
+            {
+                _treeListNode = value;
+                reset();
+                if (value == null) return;
+
+                var focusedNodeTag = _treeListNode.Tag;
+                if (focusedNodeTag == null) return;
+
+                //如果是明信片集合
+                if (focusedNodeTag.GetType() == typeof(Envelope))
+                {
+                    Image = null;
+                    RefreshPostCard();
+                    PostCardId = null;
+                }
+
+                if (focusedNodeTag.GetType() == typeof(PostCard))
+                {
+                    var envelopeInfo = _treeListNode.ParentNode.Tag as Envelope;
+                    if (envelopeInfo == null) return;
+
+                    var tmpPostCard = focusedNodeTag as PostCard;
+                    //如果没有找到postCard对象，直接返回
+                    if (tmpPostCard == null) return;
+                    PostCardId = tmpPostCard.postCardId;
+                    try
+                    {
+                        Image = Image.FromFile(tmpPostCard.fileInfo.FullName);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            if (tmpPostCard.fileInfo != null)
+                            {
+                                tmpPostCard.fileInfo.Delete();
+                                XtraMessageBox.Show("发生异常，图片读取失败，正在重新获取图片");
+                                SohoInvoker.DownLoadFile(tmpPostCard.fileId, false, null);
+                            }
+                        }
+                        catch
+                        {
+                            XtraMessageBox.Show("发生未知错误，请重新打开此订单");
+                        }
+                    }
+
+                    Margin = new Padding(5);
+                    Scale = 0;
+
+                    if (tmpPostCard.frontStyle.Equals("A", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Margin = new Padding(5);
+                        Scale = 0;
+                    }
+                    if (tmpPostCard.frontStyle.Equals("B", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Margin = new Padding(0);
+                        Scale = 0;
+                    }
+                    if (tmpPostCard.frontStyle.Equals("C", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Margin = new Padding(5);
+                        Scale = 1;
+                    }
+
+                    ProductSize = new Size(envelopeInfo.productWidth, envelopeInfo.productHeight);
+                    CropInfo = tmpPostCard.cropInfo;
+                    RefreshPostCard();
+                    _treeListNode.SetValue("status", tmpPostCard.processStatus);
+                }
+            }
+        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -345,7 +449,7 @@ namespace PostCardCenter.myController
                 }
                 if (_image != null)
                 {
-                    _imageClone = (Image)_image.Clone();
+                    _imageClone = (Image) _image.Clone();
                     _imageClone.RotateFlip(rotateInfo);
                 }
                 _pictureRectangle = Rectangle.Empty;
@@ -613,6 +717,8 @@ namespace PostCardCenter.myController
             if (_cropInfo == null)
             {
                 _cropInfo = new CropInfo(_image.Size, PicturePrintAreaSize);
+
+
                 if (CropInfoChanged != null)
                 {
                     CropInfoChanged(_cropInfo);
@@ -627,6 +733,12 @@ namespace PostCardCenter.myController
                 _cropInfo.heightScale = (tmpCropBox.Height) / (double) _pictureRectangle.Height;
                 if (CropInfoChanged != null)
                 {
+                    var postCard = Node.Tag as PostCard;
+                    if (postCard != null)
+                    {
+                        postCard.processorName = "已修改";
+                        Node.SetValue("status", "已修改");
+                    }
                     CropInfoChanged(_cropInfo);
                 }
                 Angle = _cropInfo.rotation;

@@ -28,12 +28,18 @@ namespace PostCardCenter.form.order
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            RefreshOrderList();
+        }
+
+        public void RefreshOrderList()
+        {
             OrderCenterInvoker.GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
             {
                 orderDetailGridController.DataSource = orders;
                 orderDetailGridController.RefreshDataSource();
             }, message => { XtraMessageBox.Show(message); });
         }
+
 
         private void orderDetailGridController_DoubleClick(object sender, EventArgs e)
         {
@@ -93,11 +99,8 @@ namespace PostCardCenter.form.order
             );
             radioGroup1.Tag = oo;
             radioGroup1.SelectedIndex = 0;
-            OrderCenterInvoker.GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
-            {
-                orderDetailGridController.DataSource = orders;
-                orderDetailGridController.RefreshDataSource();
-            }, message => { XtraMessageBox.Show(message); });
+            //刷新列表
+            RefreshOrderList();
         }
 
         private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,7 +134,23 @@ namespace PostCardCenter.form.order
             {
                 //如果当前没有处理人，我来处理可用
                 barButtonItem1.Enabled = string.IsNullOrEmpty(orderInfo.processorName);
+                barButtonItem4.Enabled = !"已完成".Equals(orderInfo.processStatus);
             }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
+            if (orderInfo == null) return;
+            OrderCenterInvoker.ChangeOrderProcessor(orderInfo.orderId, order => { RefreshOrderList(); },
+                message => { XtraMessageBox.Show(message); });
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
+            if (orderInfo == null) return;
+            OrderCenterInvoker.ChangeOrderStatus(orderInfo.orderId, "4", re => { RefreshOrderList(); });
         }
     }
 

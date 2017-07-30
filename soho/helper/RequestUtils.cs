@@ -26,7 +26,7 @@ namespace soho.helper
                         while (!streamReader.EndOfStream)
                         {
                             var urlLine = streamReader.ReadLine();
-                            if (urlLine != null)
+                            if (!string.IsNullOrEmpty(urlLine))
                             {
                                 var match = regex.Match(urlLine);
                                 var groupCollection = match.Groups;

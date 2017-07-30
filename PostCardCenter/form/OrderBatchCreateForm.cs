@@ -117,13 +117,15 @@ namespace PostCardCenter.form
                 RootFolder = Environment.SpecialFolder.Desktop,
                 ShowNewFolderButton = false
             };
+
+
             if (folderBrowserDialog.ShowDialog() != DialogResult.OK) return;
 
             var directoryInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
             foreach (var directory in directoryInfo.GetDirectories(@"*[订单]*"))
             {
                 //如果订单列表中已经存在此订单，则跳过
-                if (orderList.Exists(order => order.directory.FullName.Equals(directory.FullName)))
+                if (orderList != null && orderList.Exists(order => order.directory.FullName.Equals(directory.FullName)))
                     continue;
                 var match = new Regex(@"\[TID=.+]").Match(directoryInfo.FullName);
                 var customerTaobaoId = "";
@@ -140,10 +142,10 @@ namespace PostCardCenter.form
                 };
                 foreach (var info in directory.GetDirectories())
                 {
-                    var envelopeInfoForm = new EnvelopeInfoForm(info);
-                    if (envelopeInfoForm.envelope == null)
-                        continue;
-                    envelopeInfoForm.order = tmpOrder;
+                    var envelopeInfoForm = new EnvelopeInfoForm(info)
+                    {
+                        order = tmpOrder
+                    };
                     if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
                     if (tmpOrder.envelopes == null)
                     {
@@ -153,6 +155,10 @@ namespace PostCardCenter.form
                 }
                 if (tmpOrder.hasEnvelope())
                 {
+                    if (orderList == null)
+                    {
+                        orderList = new List<Order>();
+                    }
                     orderList.Add(tmpOrder);
                 }
                 gridControl1.DataSource = orderList;
@@ -167,9 +173,11 @@ namespace PostCardCenter.form
                 SohoInvoker.SubmitPostCardList(order, response =>
                 {
                     //如果操作成功，移除此项目
-                    if (response)
+                    if (!response) return;
+                    orderList.Remove(order);
+                    if (orderList.Count == 0)
                     {
-                        orderList.Remove(order);
+                        DialogResult = DialogResult.OK;
                     }
                 }, error => { XtraMessageBox.Show(error); });
             });

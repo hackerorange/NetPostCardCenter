@@ -139,7 +139,7 @@
             this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer1.Controls.Add(this.layoutControl2);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(242, 264);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(242, 261);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl2
@@ -152,7 +152,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(242, 264);
+            this.layoutControl2.Size = new System.Drawing.Size(242, 261);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -171,7 +171,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("30天内", "30天内"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("全部", "全部"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("自定义", "自定义")});
-            this.radioGroup1.Size = new System.Drawing.Size(167, 81);
+            this.radioGroup1.Size = new System.Drawing.Size(167, 80);
             this.radioGroup1.StyleController = this.layoutControl2;
             this.radioGroup1.TabIndex = 7;
             this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged);
@@ -235,6 +235,7 @@
             this.barButtonItem1.Caption = "我来处理";
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barButtonItem4
             // 
@@ -243,6 +244,7 @@
             this.barButtonItem4.ImageIndexDisabled = 0;
             this.barButtonItem4.ImageOptions.DisabledImageIndex = 0;
             this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
             // repositoryItemTextEdit1
             // 
@@ -291,7 +293,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(12, 145);
+            this.simpleButton1.Location = new System.Drawing.Point(12, 144);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(218, 22);
             this.simpleButton1.StyleController = this.layoutControl2;
@@ -311,7 +313,7 @@
             this.emptySpaceItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(242, 264);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(242, 261);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem3
@@ -335,7 +337,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 133);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 132);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(222, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -346,16 +348,16 @@
             this.layoutControlItem6.Control = this.radioGroup1;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(222, 85);
+            this.layoutControlItem6.Size = new System.Drawing.Size(222, 84);
             this.layoutControlItem6.Text = "日期选择";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 159);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 158);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(222, 85);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(222, 83);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // orderDetailGridController

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
@@ -16,35 +17,43 @@ namespace PostCardCenter.myController
             InitializeComponent();
         }
 
+        private string _envelopeId;
 
         public string EnvelopeId
         {
-            get { return _envelope != null ? _envelope.envelopeId : ""; }
+            get { return _envelopeId; }
             set
             {
-                if (string.IsNullOrEmpty(value)) return;
-                EnvelopeInvoker.GetEnvelopeInfoById(value, result =>
-                {
-                    _envelope = result;
-                    if (!string.IsNullOrEmpty(_envelope.productFileId))
-                    {
-                        downloadProductFile.Tag = _envelope.productFileId;
-                        downloadProductFile.Enabled = true;
-                    }
-                    else
-                    {
-                        downloadProductFile.Tag = null;
-                        downloadProductFile.Enabled = false;
-                    }
-                    OrderCenterInvoker.GetOrderInfo(_envelope.orderId,
-                        orderInfo => { customerName.Text = orderInfo.taobaoId; },
-                        message => { XtraMessageBox.Show(message); });
-                    paperName.Text = _envelope.paperName;
-                    productWidth.Text = _envelope.productWidth.ToString();
-                    productHeight.Text = _envelope.productHeight.ToString();
-                });
+                _envelopeId = value;
+                RefreshEnvelopeInfo();
             }
         }
+
+        public void RefreshEnvelopeInfo()
+        {
+            if (string.IsNullOrEmpty(_envelopeId)) return;
+            EnvelopeInvoker.GetEnvelopeInfoById(_envelopeId, result =>
+            {
+                _envelope = result;
+                if (!string.IsNullOrEmpty(_envelope.productFileId))
+                {
+                    downloadProductFile.Tag = _envelope.productFileId;
+                    downloadProductFile.Enabled = true;
+                }
+                else
+                {
+                    downloadProductFile.Tag = null;
+                    downloadProductFile.Enabled = false;
+                }
+                OrderCenterInvoker.GetOrderInfo(_envelope.orderId,
+                    orderInfo => { customerName.Text = orderInfo.taobaoId; },
+                    message => { XtraMessageBox.Show(message); });
+                paperName.Text = _envelope.paperName;
+                productWidth.Text = _envelope.productWidth.ToString();
+                productHeight.Text = _envelope.productHeight.ToString();
+            });
+        }
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -60,15 +69,34 @@ namespace PostCardCenter.myController
 
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
-            var tmp = sender as SimpleButton;
-            if (tmp == null || tmp.Tag == null) return;
-            SohoInvoker.downLoadFile(tmp.Tag.ToString(), true, fileInfo =>
+            EnvelopeInvoker.GetEnvelopeInfoById(_envelopeId, result =>
             {
-                if (File.Exists(saveFileDialog.FileName))
+                var productFileId = result.productFileId;
+
+                if (string.IsNullOrEmpty(productFileId))
                 {
-                    File.Delete(saveFileDialog.FileName);
+                    XtraMessageBox.Show("此集合没有成品，请稍后重试");
+                    return;
                 }
-                fileInfo.MoveTo(saveFileDialog.FileName);
+                SohoInvoker.DownLoadFile(productFileId, true, fileInfo =>
+                {
+                    if (File.Exists(saveFileDialog.FileName))
+                    {
+                        File.Delete(saveFileDialog.FileName);
+                    }
+                    fileInfo.MoveTo(saveFileDialog.FileName);
+                    if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel,
+                            MessageBoxIcon.Question) != DialogResult.OK) return;
+                    var p = new Process
+                    {
+                        StartInfo =
+                        {
+                            FileName = "explorer.exe",
+                            Arguments = fileInfo.FullName
+                        }
+                    };
+                    p.Start();
+                });
             });
         }
 

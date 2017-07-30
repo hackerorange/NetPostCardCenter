@@ -9,43 +9,55 @@ using soho.web;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 using System.Collections.Specialized;
+using System.Globalization;
+using soho.helper;
 
 namespace soho.webservice
 {
     public static class PostCardInvoker
     {
-        
+        public delegate void Failure(string message);
 
-        public static PostCard SubmitPostCardCropInfo(string postCardId,CropInfo cropInfo)
+        public delegate void SuccessGetObject(PostCard backStyleInfos);
+
+        public static void SubmitPostCardCropInfo(string postCardId, CropInfo cropInfo, SuccessGetObject success,
+            Failure failure = null)
         {
-            try
+            var restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+
+
+            
+            var nameValueCollection = new NameValueCollection()
             {
-                var restTemplate = new RestTemplate();
-                restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-
-
-                var nameValueCollection = new NameValueCollection()
+                {"postCardId", postCardId},
+                {"cropLeft", cropInfo.leftScale.ToString()},
+                {"cropTop", cropInfo.topScale.ToString()},
+                {"cropHeight", cropInfo.heightScale.ToString()},
+                {"cropWidth", cropInfo.widthScale.ToString()},
+                {"rotation", cropInfo.rotation.ToString()}
+            };
+            restTemplate.PostForObjectAsync<BodyResponse<PostCard>>(
+                RequestUtils.GetUrl("cropInfoSubmitUrl"),
+                nameValueCollection,
+                response =>
                 {
-                    {"postCardId", postCardId},
-                    {"cropLeft", cropInfo.leftScale.ToString()},
-                    {"cropTop", cropInfo.topScale.ToString()},
-                    {"cropHeight", cropInfo.heightScale.ToString()},
-                    {"cropWidth", cropInfo.widthScale.ToString()},
-                    {"rotation",cropInfo.rotation.ToString()}
-                };
-                var postForObject =restTemplate.PostForObject<BodyResponse<PostCard>>("http://localhost:8083/rest/PostCardController/submitPostCardCropInfo", nameValueCollection);
-
-                if (postForObject.code == 200)
-                {
-                    return postForObject.body;
-                }
-                return null;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                throw new Exception("获取明信片集合错误");
-            }
+                    if (response.Error != null)
+                    {
+                        if (failure != null) failure(response.Error.Message);
+                    }
+                    else
+                    {
+                        if (response.Response.code == 200)
+                        {
+                            if (success != null) success(response.Response.body);
+                        }
+                        else
+                        {
+                            if (failure != null) failure(response.Response.message);
+                        }
+                    }
+                });
         }
     }
 }

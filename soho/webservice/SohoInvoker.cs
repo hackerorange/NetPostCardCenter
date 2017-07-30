@@ -10,6 +10,7 @@ using System.Threading;
 using Newtonsoft.Json;
 using soho.domain;
 using soho.helper;
+using soho.security;
 using soho.web;
 using Spring.Http;
 using Spring.Http.Converters.Json;
@@ -29,61 +30,57 @@ namespace soho.webservice
         public delegate void SuccessGetBackStyles(List<BackStyleInfo> backStyleInfos);
 
         public delegate void SuccessDo(bool result);
-        
 
-        private static DataContractJsonHttpMessageConverter dataContractJsonHttpMessageConverter { get; set; }
-
-        static SohoInvoker()
-        {
-            dataContractJsonHttpMessageConverter = new DataContractJsonHttpMessageConverter();
-        }
 
         /// <summary>
         /// 向服务器上传文件
         /// </summary>
         /// <param name="file">要上传到服务器的文件</param>
+        /// <param name="success">成功回调函数</param>
+        /// <param name="failure">失败回调函数</param>
         /// <returns>服务器返回的文件ID</returns>
-        public static void Upload(FileInfo file, SuccessDo orange, HttpRequestFailure failure = null)
+        public static void Upload(FileInfo file, SuccessDo success, HttpRequestFailure failure = null)
         {
             var md5 = file.getMd5();
             IsFileExistInServer(md5, isFileExist =>
             {
                 if (isFileExist)
                 {
-                    orange(true);
+                    success(true);
                 }
                 else
                 {
-                    var restTemplate = new RestTemplate("http://localhost:8089");
-                    restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
+                    var restTemplate = new RestTemplate();
+                    restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
                     var dictionary = new Dictionary<string, object>();
                     var entity = new HttpEntity(file);
                     dictionary.Add("file", entity);
-                    restTemplate.PostForObjectAsync<StandardResponse>("file/upload", dictionary, resp =>
-                    {
-                        if (resp.Error != null)
+                    restTemplate.PostForObjectAsync<StandardResponse>(RequestUtils.GetUrl("fileUploadUrl"), dictionary,
+                        resp =>
                         {
-                            if (failure != null)
+                            if (resp.Error != null)
                             {
-                                failure(resp.Error.Message);
+                                if (failure != null)
+                                {
+                                    failure(resp.Error.Message);
+                                }
                             }
-                        }
-                        else
-                        {
-                            orange(resp.Response.code == 200);
-                        }
-                    });
+                            else
+                            {
+                                success(resp.Response.code == 200);
+                            }
+                        });
                 }
             });
         }
 
-        public static void downLoadFile(string fileId, bool original, SuccessDownload aa)
+        public static void DownLoadFile(string fileId, bool original, SuccessDownload success)
         {
             var fileInfo = new FileInfo("D:/postCardTmpFile/" + fileId + ".jpg");
             if (fileInfo.Exists)
             {
                 Console.WriteLine(@"文件本地已经存在");
-                aa(fileInfo);
+                success(fileInfo);
             }
             var webClient = new WebClient();
             webClient.DownloadFileCompleted += (sender, e) =>
@@ -93,11 +90,12 @@ namespace soho.webservice
                 }
                 else
                 {
-                    aa(fileInfo);
+                    success(fileInfo);
                 }
             };
             webClient.DownloadFileAsync(
-                new Uri("http://localhost:8089/file/" + fileId + "?isOriginal=" + (original ? "true" : "false")),
+                new Uri(RequestUtils.GetUrl("fileDownloadUrl") + "/" + fileId + "?isOriginal=" +
+                        (original ? "true" : "false")),
                 fileInfo.FullName, fileInfo.Name);
         }
 
@@ -106,12 +104,14 @@ namespace soho.webservice
         /// 询问服务器，文件是否存在
         /// </summary>
         /// <param name="fileId">要询问的文件信息</param>
+        /// <param name="success">成功回调函数</param>
+        /// <param name="failure">失败回调函数</param>
         /// <returns>文件是否已经存在</returns>
         public static void IsFileExistInServer(string fileId, SuccessDo success, HttpRequestFailure failure = null)
         {
-            var restTemplate = new RestTemplate("http://localhost:8089");
-            restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
-            restTemplate.HeadForHeadersAsync("file/" + fileId, resp =>
+            var restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            restTemplate.HeadForHeadersAsync(RequestUtils.GetUrl("fileInfoUrl") + "/" + fileId, resp =>
             {
                 if (resp.Error != null)
                 {
@@ -135,14 +135,14 @@ namespace soho.webservice
         /// <returns></returns>
         public static bool IsImageFile(string fileId)
         {
-            var restTemplate = new RestTemplate("http://localhost:8089");
-            restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
-            var headForHeaders = restTemplate.HeadForHeaders("file/" + fileId);
+            var restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var headForHeaders = restTemplate.HeadForHeaders(RequestUtils.GetUrl("fileInfoUrl") + "/" + fileId);
             var singleValue = headForHeaders.GetSingleValue("isImage");
             return !string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE");
         }
 
-        public static List<ProductSize> getProductSizeTemplateList()
+        public static List<ProductSize> GetProductSizeTemplateList()
         {
             var list = new List<ProductSize>
             {
@@ -162,7 +162,7 @@ namespace soho.webservice
             return list;
         }
 
-        public static List<String> GetFrontStyleTemplateList()
+        public static List<string> GetFrontStyleTemplateList()
         {
             return new List<string>
             {
@@ -172,10 +172,10 @@ namespace soho.webservice
             };
         }
 
-        public static void GetBackStyleTemplateList(SuccessGetBackStyles success,HttpRequestFailure failure=null)
+        public static void GetBackStyleTemplateList(SuccessGetBackStyles success, HttpRequestFailure failure = null)
         {
             var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             var url = RequestUtils.GetUrl("backStyleListUrl");
             restTemplate.GetForObjectAsync<PageResponse<BackStyleInfo>>(url, response =>
             {
@@ -200,15 +200,20 @@ namespace soho.webservice
             });
         }
 
-        public static void SubmitPostCardList(Order postCards, SuccessDo success,HttpRequestFailure failure=null)
+        public static void SubmitPostCardList(Order postCards, SuccessDo success, HttpRequestFailure failure = null)
         {
-            var restTemplate = new RestTemplate("http://localhost:8083");
+            var restTemplate = new RestTemplate();
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            if (Security.AccountSessionInfo == null)
+            {
+                if (failure != null) failure("此操作需要登录，当前用户没有登录");
+            }
 
-            var httpHeaders = new HttpHeaders {{"tokenId", "123456"}};
+            var httpHeaders = new HttpHeaders {{"tokenId", Security.TokenId}};
 
             var headers = new HttpEntity(postCards, httpHeaders);
-            restTemplate.PostForObjectAsync<StandardResponse>("rest/orderController", headers, res =>
+
+            restTemplate.PostForObjectAsync<StandardResponse>(RequestUtils.GetUrl("submitOrderUrl"), headers, res =>
             {
                 if (res.Error != null)
                 {
@@ -225,28 +230,6 @@ namespace soho.webservice
                     }
                 }
             });
-        }
-
-        /// <summary>
-        /// 获取请求URL
-        /// </summary>
-        /// <param name="category">请求分类</param>
-        /// <param name="key">请求Key</param>
-        /// <returns>URL</returns>
-        public static string getInvokeUrl(string category, string key)
-        {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(dataContractJsonHttpMessageConverter);
-            IDictionary<string, object> dictionary = new Dictionary<string, object>(2);
-            dictionary.Add("category", Encoding.UTF8.GetBytes(category));
-
-            var postForObject =
-                restTemplate.PostForObject<BodyResponse<string>>("http://localhost:8080/invokeUrl", dictionary);
-            if (postForObject.code == 200)
-            {
-                return postForObject.body;
-            }
-            throw new Exception("获取URL错误");
         }
     }
 }

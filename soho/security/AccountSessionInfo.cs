@@ -6,6 +6,8 @@
 
         public string accountName { get; set; }
 
+        public string realName { get; set; }
+
 
 //        public static string TokenId
 //        {

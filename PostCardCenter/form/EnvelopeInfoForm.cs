@@ -24,7 +24,7 @@ namespace PostCardCenter.form
         public EnvelopeInfoForm()
         {
             InitializeComponent();
-            envelopeSizeSelect.Properties.DataSource = SohoInvoker.getProductSizeTemplateList();
+            envelopeSizeSelect.Properties.DataSource = SohoInvoker.GetProductSizeTemplateList();
             PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource =
                 SohoInvoker.GetFrontStyleTemplateList();
 

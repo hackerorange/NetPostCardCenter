@@ -30,7 +30,7 @@ namespace PostCardCenter
             }
             if (Security.AccountSessionInfo != null)
             {
-                barStaticItem1.Caption = Security.AccountSessionInfo.accountName;
+                barStaticItem1.Caption = Security.AccountSessionInfo.realName;
             }
         }
 
@@ -47,29 +47,34 @@ namespace PostCardCenter
             var orderBatchCreate = new OrderBatchCreateForm();
             if (orderBatchCreate.ShowDialog(this) == DialogResult.OK)
             {
+                var openOrderCenter = OpenOrderCenter();
+                openOrderCenter.RefreshOrderList();
             }
         }
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {
+            OpenOrderCenter();
+        }
+
+        private OrderCenter OpenOrderCenter()
+        {
             xtraTabbedMdiManager1.ClosePageButtonShowMode = ClosePageButtonShowMode.InActiveTabPageHeader;
             var flag = false;
             foreach (XtraMdiTabPage page in xtraTabbedMdiManager1.Pages)
             {
-                if (page.MdiChild.GetType().FullName == typeof(OrderCenter).FullName)
-                {
-                    xtraTabbedMdiManager1.SelectedPage = page;
-                    flag = true;
-                    break;
-                }
+                if (page.MdiChild.GetType().FullName != typeof(OrderCenter).FullName) continue;
+                xtraTabbedMdiManager1.SelectedPage = page;
+                var pageMdiChild = page.MdiChild as OrderCenter;
+                return pageMdiChild;
             }
-            if (!flag)
+            var orderCenter = new OrderCenter
             {
-                var orderCenter = new OrderCenter();
-                orderCenter.MdiParent = this;
-                orderCenter.Show();
-                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[orderCenter];
-            }
+                MdiParent = this
+            };
+            orderCenter.Show();
+            xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[orderCenter];
+            return orderCenter;
         }
     }
 }
