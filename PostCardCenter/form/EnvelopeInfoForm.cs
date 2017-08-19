@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using Common.Logging;
 using DevExpress.XtraEditors;
@@ -251,7 +252,7 @@ namespace PostCardCenter.form
                 gridView1.RefreshData();
                 //问价
                 if (tmpSender != null) tmpSender.Text = backFileInfo.Name;
-            });
+            }, message => { XtraMessageBox.Show(message); });
         }
 
         private void PostCardBackStyleGridLookUpEdit_EditValueChanged(object sender, EventArgs e)
@@ -314,6 +315,7 @@ namespace PostCardCenter.form
 
                 Text = envelope.directory.FullName;
                 envelopeDetailGridView.DataSource = envelope.postCards;
+                var postCards = new Queue<PostCard>();
 
                 foreach (var fileInfo in fileInfos)
                 {
@@ -327,30 +329,54 @@ namespace PostCardCenter.form
                     };
                     //向明信片集合中添加此文件
 
-                    var md5 = postCard.fileInfo.getMd5();
+
                     envelope.postCards.Add(postCard);
                     //如果文件不存在服务器
 
                     //上传文件
-                    SohoInvoker.Upload(postCard.fileInfo, standardResponse =>
-                    {
-                        if (standardResponse)
-                        {
-                            postCard.isImage = SohoInvoker.IsImageFile(md5);
-                            postCard.fileId = md5;
-                            postCard.fileName = postCard.fileInfo.Name;
-
-                            envelopeDetailGridView.RefreshDataSource();
-                            Application.DoEvents();
-                        }
-                        else
-                        {
-                            XtraMessageBox.Show("文件上传失败");
-                        }
-                    }, error => { XtraMessageBox.Show(error); });
-                    Application.DoEvents();
+                    postCards.Enqueue(postCard);
                 }
+                tmpUpload(postCards);
             }
+        }
+
+        public void tmpUpload(Queue<PostCard> postCards)
+        {
+            if (postCards.Count <= 0) return;
+            Console.WriteLine(postCards.Count);
+            var postCard = postCards.Dequeue();
+            var md5 = postCard.fileInfo.getMd5();
+            
+            postCard.fileUploadStat = "正在上传";
+            envelopeDetailGridView.Update();
+            gridView1.RefreshData();
+
+            SohoInvoker.Upload(postCard.fileInfo, result =>
+            {
+                if (result)
+                {
+                    postCard.isImage = SohoInvoker.IsImageFile(md5);
+                    postCard.fileId = md5;
+                    postCard.fileName = postCard.fileInfo.Name;
+                    postCard.fileUploadStat = "已上传";
+                    gridView1.RefreshData();
+                }
+                else
+                {
+                    postCard.fileUploadStat = "上传失败";
+//                    XtraMessageBox.Show("文件上传失败");
+                }
+                envelopeDetailGridView.Update();
+                Application.DoEvents();
+                tmpUpload(postCards);
+            }, failure: error =>
+            {
+                postCard.fileUploadStat = "上传失败";
+                gridView1.RefreshData();
+                envelopeDetailGridView.Update();
+                Application.DoEvents();
+                tmpUpload(postCards);
+            });
         }
     }
 }

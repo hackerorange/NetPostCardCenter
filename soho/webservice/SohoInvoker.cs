@@ -71,6 +71,28 @@ namespace soho.webservice
                             }
                         });
                 }
+            },failure: result =>
+            {
+                var restTemplate = new RestTemplate();
+                restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+                var dictionary = new Dictionary<string, object>();
+                var entity = new HttpEntity(file);
+                dictionary.Add("file", entity);
+                restTemplate.PostForObjectAsync<StandardResponse>(RequestUtils.GetUrl("fileUploadUrl"), dictionary,
+                    resp =>
+                    {
+                        if (resp.Error != null)
+                        {
+                            if (failure != null)
+                            {
+                                failure(resp.Error.Message);
+                            }
+                        }
+                        else
+                        {
+                            success(resp.Response.code == 200);
+                        }
+                    });
             });
         }
 

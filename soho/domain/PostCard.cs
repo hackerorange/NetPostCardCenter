@@ -61,12 +61,15 @@ namespace soho.domain
         [JsonIgnore]
         public FileInfo backFileInfo { get; set; }
 
-        [JsonIgnore]
-        private Image _image;
+        
+
+        [JsonIgnore] private Image _image;
 
         [JsonIgnore]
-        public Image imageBefore { 
-            get{
+        public Image imageBefore
+        {
+            get
+            {
                 if (_image == null)
                 {
                     _image = Image.FromFile(fileInfo.FullName);
@@ -89,7 +92,5 @@ namespace soho.domain
         public string processStatus { get; set; }
 
         public string processStatusCode { get; set; }
-
-        
     }
 }
