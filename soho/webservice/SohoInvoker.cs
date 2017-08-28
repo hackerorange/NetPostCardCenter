@@ -98,6 +98,11 @@ namespace soho.webservice
 
         public static void DownLoadFile(string fileId, bool original, SuccessDownload success)
         {
+            var ff = new DirectoryInfo("D:/postCardTmpFile/");
+            if (!ff.Exists)
+            {
+                ff.Create();
+            }
             var fileInfo = new FileInfo("D:/postCardTmpFile/" + fileId + ".jpg");
             if (fileInfo.Exists)
             {
