@@ -47,6 +47,8 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.OrderStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.OrderFolderPath = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -75,7 +77,7 @@
             this.ribbon.RibbonCaptionAlignment = DevExpress.XtraBars.Ribbon.RibbonCaptionAlignment.Center;
             this.ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbon.Size = new System.Drawing.Size(986, 129);
+            this.ribbon.Size = new System.Drawing.Size(986, 125);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // CreateOrderFromDesktopButtonItem
@@ -145,20 +147,20 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 676);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 668);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(986, 23);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(986, 31);
             // 
             // layoutControl1
             // 
             this.layoutControl1.AllowCustomization = false;
             this.layoutControl1.Controls.Add(this.gridControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 129);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 125);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(986, 547);
+            this.layoutControl1.Size = new System.Drawing.Size(986, 543);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -168,7 +170,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbon;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(938, 480);
+            this.gridControl1.Size = new System.Drawing.Size(938, 476);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -177,7 +179,9 @@
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.taobaiId,
-            this.isUrgent});
+            this.isUrgent,
+            this.OrderStatus,
+            this.OrderFolderPath});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
@@ -191,13 +195,15 @@
             this.taobaiId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.taobaiId.Caption = "客户淘宝ID";
             this.taobaiId.FieldName = "taobaoId";
+            this.taobaiId.MaxWidth = 200;
+            this.taobaiId.MinWidth = 200;
             this.taobaiId.Name = "taobaiId";
             this.taobaiId.OptionsColumn.AllowEdit = false;
             this.taobaiId.OptionsColumn.AllowFocus = false;
             this.taobaiId.OptionsColumn.ReadOnly = true;
             this.taobaiId.Visible = true;
-            this.taobaiId.VisibleIndex = 0;
-            this.taobaiId.Width = 825;
+            this.taobaiId.VisibleIndex = 1;
+            this.taobaiId.Width = 200;
             // 
             // isUrgent
             // 
@@ -212,7 +218,7 @@
             this.isUrgent.OptionsColumn.AllowFocus = false;
             this.isUrgent.OptionsColumn.ReadOnly = true;
             this.isUrgent.Visible = true;
-            this.isUrgent.VisibleIndex = 1;
+            this.isUrgent.VisibleIndex = 3;
             this.isUrgent.Width = 100;
             // 
             // layoutControlGroup1
@@ -223,7 +229,7 @@
             this.layoutControlGroup2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(986, 547);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(986, 543);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -232,7 +238,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(966, 527);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(966, 523);
             this.layoutControlGroup2.Text = "待提交订单列表";
             // 
             // layoutControlItem1
@@ -240,9 +246,32 @@
             this.layoutControlItem1.Control = this.gridControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(942, 484);
+            this.layoutControlItem1.Size = new System.Drawing.Size(942, 480);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // OrderStatus
+            // 
+            this.OrderStatus.AppearanceHeader.Options.UseTextOptions = true;
+            this.OrderStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.OrderStatus.Caption = "订单状态";
+            this.OrderStatus.FieldName = "OrderStatus";
+            this.OrderStatus.MaxWidth = 100;
+            this.OrderStatus.MinWidth = 100;
+            this.OrderStatus.Name = "OrderStatus";
+            this.OrderStatus.Visible = true;
+            this.OrderStatus.VisibleIndex = 2;
+            this.OrderStatus.Width = 100;
+            // 
+            // OrderFolderPath
+            // 
+            this.OrderFolderPath.AppearanceHeader.Options.UseTextOptions = true;
+            this.OrderFolderPath.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.OrderFolderPath.Caption = "文件夹路径";
+            this.OrderFolderPath.Name = "OrderFolderPath";
+            this.OrderFolderPath.Visible = true;
+            this.OrderFolderPath.VisibleIndex = 0;
+            this.OrderFolderPath.Width = 390;
             // 
             // OrderBatchCreateForm
             // 
@@ -255,7 +284,7 @@
             this.Controls.Add(this.ribbon);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1004, 700);
-            this.MinimumSize = new System.Drawing.Size(1000, 700);
+            this.MinimumSize = new System.Drawing.Size(996, 700);
             this.Name = "OrderBatchCreateForm";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -295,5 +324,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraGrid.Columns.GridColumn OrderStatus;
+        private DevExpress.XtraGrid.Columns.GridColumn OrderFolderPath;
     }
 }
