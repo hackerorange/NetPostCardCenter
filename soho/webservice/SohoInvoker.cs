@@ -169,21 +169,21 @@ namespace soho.webservice
             return !string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE");
         }
 
-        public static List<ProductSize> GetProductSizeTemplateList()
+        public static List<PostSize> GetProductSizeTemplateList()
         {
-            var list = new List<ProductSize>
+            var list = new List<PostSize>
             {
-                new ProductSize
+                new PostSize
                 {
-                    name = "标准尺寸",
-                    productHeight = 100,
-                    productWidth = 148
+                    Name = "标准尺寸",
+                    Height = 100,
+                    Width = 148                    
                 },
-                new ProductSize
+                new PostSize
                 {
-                    name = "大尺寸",
-                    productHeight = 105,
-                    productWidth = 160
+                    Name = "大尺寸",
+                    Height = 105,
+                    Width = 160
                 }
             };
             return list;

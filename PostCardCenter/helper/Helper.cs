@@ -11,7 +11,7 @@ namespace PostCardCenter.helper
             return order.envelopes != null && order.envelopes.Count > 0;
         }
 
-        public static double getRatio(this Size size)
+        public static double getRatio(this System.Drawing.Size size)
         {
             if (size.Width==0)
             {

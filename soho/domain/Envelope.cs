@@ -7,7 +7,15 @@ namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Envelope
+
+
+
     {
+
+
+        public Envelope(){
+            PaperSize = new PostSize();
+        }
         /// <summary>
         /// 明信片订单ID
         /// </summary>
@@ -21,6 +29,7 @@ namespace soho.domain
         /// <summary>
         /// 纸张类型
         /// </summary>
+        [JSONField]
         public string paperName { get; set; }
 
 
@@ -57,7 +66,7 @@ namespace soho.domain
         public List<PostCard> postCards { get; set; }
 
 
-
+        public PostSize PaperSize { get; set; }
 
 
 
@@ -74,5 +83,6 @@ namespace soho.domain
         }
 
         public string productFileId { get; set; }
+        
     }
 }

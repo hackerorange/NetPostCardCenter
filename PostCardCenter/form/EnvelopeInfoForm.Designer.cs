@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnvelopeInfoForm));
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem1 = new DevExpress.XtraBars.Ribbon.GalleryItem();
@@ -88,75 +85,16 @@
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem50 = new DevExpress.XtraBars.Ribbon.GalleryItem();
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup4 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraBars.Ribbon.GalleryItem galleryItem51 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.postCardIsImage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.envelopeSubmit = new DevExpress.XtraEditors.SimpleButton();
-            this.envelopeDoubleSideCheckBox = new DevExpress.XtraEditors.CheckEdit();
-            this.orderUrgentCheckEdit = new DevExpress.XtraEditors.CheckEdit();
-            this.orderTaobaoIdTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.envelopePaperName = new DevExpress.XtraEditors.TextEdit();
-            this.envelopeDetailGridView = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.postcardFileName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.postCardCopy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.postCardFrontStyle = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.PostCardFrontStyleGridLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.repositoryItemGridLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.postCardBackStyle = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.postCardBackStyleGridLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.postCardBackFileName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.envelopeProductWidth = new DevExpress.XtraEditors.SpinEdit();
-            this.envelopeProductHeight = new DevExpress.XtraEditors.SpinEdit();
-            this.envelopeSizeSelect = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.sizeTemplateName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.envelopeBackStyle = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.envelopeFrontStyle = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.envelopePostCardCopyEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.postCardCountEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.envelopeCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.removeSelectedPostCard = new DevExpress.XtraEditors.SimpleButton();
-            this.backStyleCustomerButton = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem38 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.envelopeProductSize = new DevExpress.XtraEditors.PopupContainerEdit();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemGridLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
@@ -188,6 +126,72 @@
             this.repositoryItemRadioGroup3 = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemRadioGroup4 = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
+            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.envelopeSubmit = new DevExpress.XtraEditors.SimpleButton();
+            this.envelopeDoubleSideCheckBox = new DevExpress.XtraEditors.CheckEdit();
+            this.orderUrgentCheckEdit = new DevExpress.XtraEditors.CheckEdit();
+            this.orderTaobaoIdTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.envelopePaperName = new DevExpress.XtraEditors.TextEdit();
+            this.envelopeBackStyle = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.envelopeFrontStyle = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.envelopePostCardCopyEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.envelopeCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.removeSelectedPostCard = new DevExpress.XtraEditors.SimpleButton();
+            this.envelopeDetailGridView = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.postcardFileName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.postCardCopy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.postCardFrontStyle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PostCardFrontStyleGridLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.postCardBackStyle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.postCardBackStyleGridLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.postCardBackFileName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.postCardCountEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem38 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem40 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -251,61 +255,27 @@
             this.tabFormContentContainer1 = new DevExpress.XtraBars.TabFormContentContainer();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup7 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlGroup8 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.spinEdit5 = new DevExpress.XtraEditors.SpinEdit();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.spinEdit6 = new DevExpress.XtraEditors.SpinEdit();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem39 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
+            this.layoutControlItem41 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeDoubleSideCheckBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderUrgentCheckEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderTaobaoIdTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeDetailGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PostCardFrontStyleGridLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postCardBackStyleGridLookUpEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductWidth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductHeight.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeSizeSelect.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeBackStyle.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeFrontStyle.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopePostCardCopyEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postCardCountEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductSize.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
@@ -320,6 +290,55 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
+            this.popupContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeDoubleSideCheckBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderUrgentCheckEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderTaobaoIdTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeBackStyle.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeFrontStyle.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopePostCardCopyEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeDetailGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PostCardFrontStyleGridLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postCardBackStyleGridLookUpEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postCardCountEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).BeginInit();
@@ -378,11 +397,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).BeginInit();
             this.SuspendLayout();
             // 
             // postCardIsImage
@@ -414,24 +444,29 @@
             // layoutControl1
             // 
             this.layoutControl1.AllowCustomization = false;
+            this.layoutControl1.Controls.Add(this.envelopeProductSize);
             this.layoutControl1.Controls.Add(this.textEdit1);
             this.layoutControl1.Controls.Add(this.envelopeSubmit);
             this.layoutControl1.Controls.Add(this.envelopeDoubleSideCheckBox);
             this.layoutControl1.Controls.Add(this.orderUrgentCheckEdit);
             this.layoutControl1.Controls.Add(this.orderTaobaoIdTextEdit);
             this.layoutControl1.Controls.Add(this.envelopePaperName);
-            this.layoutControl1.Controls.Add(this.envelopeDetailGridView);
-            this.layoutControl1.Controls.Add(this.envelopeProductWidth);
-            this.layoutControl1.Controls.Add(this.envelopeProductHeight);
-            this.layoutControl1.Controls.Add(this.envelopeSizeSelect);
             this.layoutControl1.Controls.Add(this.envelopeBackStyle);
             this.layoutControl1.Controls.Add(this.envelopeFrontStyle);
             this.layoutControl1.Controls.Add(this.envelopePostCardCopyEdit);
-            this.layoutControl1.Controls.Add(this.postCardCountEdit);
             this.layoutControl1.Controls.Add(this.envelopeCancel);
             this.layoutControl1.Controls.Add(this.simpleButton1);
             this.layoutControl1.Controls.Add(this.removeSelectedPostCard);
-            this.layoutControl1.Controls.Add(this.backStyleCustomerButton);
+            this.layoutControl1.Controls.Add(this.envelopeDetailGridView);
+            this.layoutControl1.Controls.Add(this.popupContainerControl1);
+            this.layoutControl1.Controls.Add(this.postCardCountEdit);
+            this.layoutControl1.Controls.Add(this.simpleButton2);
+            this.layoutControl1.Controls.Add(this.simpleButton3);
+            this.layoutControl1.Controls.Add(this.spinEdit5);
+            this.layoutControl1.Controls.Add(this.spinEdit6);
+            this.layoutControl1.Controls.Add(this.textEdit6);
+            this.layoutControl1.Controls.Add(this.textEdit7);
+            this.layoutControl1.Controls.Add(this.buttonEdit1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -441,779 +476,22 @@
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // envelopeSubmit
+            // envelopeProductSize
             // 
-            this.envelopeSubmit.Image = ((System.Drawing.Image)(resources.GetObject("envelopeSubmit.Image")));
-            this.envelopeSubmit.Location = new System.Drawing.Point(896, 821);
-            this.envelopeSubmit.Name = "envelopeSubmit";
-            this.envelopeSubmit.Size = new System.Drawing.Size(132, 22);
-            this.envelopeSubmit.StyleController = this.layoutControl1;
-            this.envelopeSubmit.TabIndex = 17;
-            this.envelopeSubmit.Text = "确定";
-            this.envelopeSubmit.Click += new System.EventHandler(this.envelopeSubmit_Click);
-            // 
-            // envelopeDoubleSideCheckBox
-            // 
-            this.envelopeDoubleSideCheckBox.EditValue = true;
-            this.envelopeDoubleSideCheckBox.Location = new System.Drawing.Point(24, 182);
-            this.envelopeDoubleSideCheckBox.Name = "envelopeDoubleSideCheckBox";
-            this.envelopeDoubleSideCheckBox.Properties.Caption = "双面(&D)";
-            this.envelopeDoubleSideCheckBox.Size = new System.Drawing.Size(159, 19);
-            this.envelopeDoubleSideCheckBox.StyleController = this.layoutControl1;
-            this.envelopeDoubleSideCheckBox.TabIndex = 5;
-            this.envelopeDoubleSideCheckBox.CheckedChanged += new System.EventHandler(this.envelopeDoubleSideCheckBox_CheckedChanged);
-            // 
-            // orderUrgentCheckEdit
-            // 
-            this.orderUrgentCheckEdit.Location = new System.Drawing.Point(243, 67);
-            this.orderUrgentCheckEdit.Name = "orderUrgentCheckEdit";
-            this.orderUrgentCheckEdit.Properties.Caption = "加急(&U)";
-            this.orderUrgentCheckEdit.Size = new System.Drawing.Size(75, 19);
-            this.orderUrgentCheckEdit.StyleController = this.layoutControl1;
-            this.orderUrgentCheckEdit.TabIndex = 3;
-            this.orderUrgentCheckEdit.CheckedChanged += new System.EventHandler(this.orderUrgentCheckEdit_CheckedChanged);
-            // 
-            // orderTaobaoIdTextEdit
-            // 
-            this.orderTaobaoIdTextEdit.Location = new System.Drawing.Point(97, 67);
-            this.orderTaobaoIdTextEdit.Name = "orderTaobaoIdTextEdit";
-            this.orderTaobaoIdTextEdit.Size = new System.Drawing.Size(142, 20);
-            this.orderTaobaoIdTextEdit.StyleController = this.layoutControl1;
-            this.orderTaobaoIdTextEdit.TabIndex = 2;
-            this.orderTaobaoIdTextEdit.EditValueChanged += new System.EventHandler(this.orderTaobaoIdTextEdit_EditValueChanged);
-            // 
-            // envelopePaperName
-            // 
-            this.envelopePaperName.Location = new System.Drawing.Point(97, 433);
-            this.envelopePaperName.Name = "envelopePaperName";
-            this.envelopePaperName.Size = new System.Drawing.Size(221, 20);
-            this.envelopePaperName.StyleController = this.layoutControl1;
-            this.envelopePaperName.TabIndex = 4;
-            this.envelopePaperName.EditValueChanged += new System.EventHandler(this.envelopePaperName_EditValueChanged);
-            // 
-            // envelopeDetailGridView
-            // 
-            this.envelopeDetailGridView.Location = new System.Drawing.Point(346, 67);
-            this.envelopeDetailGridView.MainView = this.gridView1;
-            this.envelopeDetailGridView.Name = "envelopeDetailGridView";
-            this.envelopeDetailGridView.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.PostCardFrontStyleGridLookUpEdit,
-            this.postCardBackStyleGridLookUpEdit,
-            this.repositoryItemButtonEdit1,
-            this.repositoryItemButtonEdit2,
-            this.repositoryItemButtonEdit3});
-            this.envelopeDetailGridView.Size = new System.Drawing.Size(817, 750);
-            this.envelopeDetailGridView.TabIndex = 16;
-            this.envelopeDetailGridView.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.postcardFileName,
-            this.postCardCopy,
-            this.postCardFrontStyle,
-            this.postCardIsImage,
-            this.postCardBackStyle,
-            this.gridColumn7,
-            this.postCardBackFileName,
-            this.gridColumn9});
-            gridFormatRule1.ApplyToRow = true;
-            gridFormatRule1.Column = this.postCardIsImage;
-            gridFormatRule1.Name = "Format0";
-            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red;
-            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.Transparent;
-            formatConditionRuleValue1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue1.Appearance.Options.UseFont = true;
-            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue1.Value1 = false;
-            gridFormatRule1.Rule = formatConditionRuleValue1;
-            this.gridView1.FormatRules.Add(gridFormatRule1);
-            this.gridView1.GridControl = this.envelopeDetailGridView;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowFooter = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
-            // 
-            // postcardFileName
-            // 
-            this.postcardFileName.AppearanceHeader.Options.UseTextOptions = true;
-            this.postcardFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postcardFileName.Caption = "文件名称";
-            this.postcardFileName.FieldName = "fileInfo.Name";
-            this.postcardFileName.Name = "postcardFileName";
-            this.postcardFileName.OptionsColumn.AllowEdit = false;
-            this.postcardFileName.OptionsColumn.AllowFocus = false;
-            this.postcardFileName.Visible = true;
-            this.postcardFileName.VisibleIndex = 0;
-            this.postcardFileName.Width = 485;
-            // 
-            // postCardCopy
-            // 
-            this.postCardCopy.AppearanceHeader.Options.UseTextOptions = true;
-            this.postCardCopy.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postCardCopy.Caption = "份数";
-            this.postCardCopy.FieldName = "copy";
-            this.postCardCopy.MaxWidth = 50;
-            this.postCardCopy.MinWidth = 50;
-            this.postCardCopy.Name = "postCardCopy";
-            this.postCardCopy.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "copy", "{0:0}")});
-            this.postCardCopy.Visible = true;
-            this.postCardCopy.VisibleIndex = 4;
-            this.postCardCopy.Width = 50;
-            // 
-            // postCardFrontStyle
-            // 
-            this.postCardFrontStyle.AppearanceCell.Options.UseTextOptions = true;
-            this.postCardFrontStyle.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postCardFrontStyle.AppearanceHeader.Options.UseTextOptions = true;
-            this.postCardFrontStyle.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postCardFrontStyle.Caption = "正面";
-            this.postCardFrontStyle.ColumnEdit = this.PostCardFrontStyleGridLookUpEdit;
-            this.postCardFrontStyle.FieldName = "frontStyle";
-            this.postCardFrontStyle.MaxWidth = 70;
-            this.postCardFrontStyle.MinWidth = 70;
-            this.postCardFrontStyle.Name = "postCardFrontStyle";
-            this.postCardFrontStyle.Visible = true;
-            this.postCardFrontStyle.VisibleIndex = 1;
-            this.postCardFrontStyle.Width = 70;
-            // 
-            // PostCardFrontStyleGridLookUpEdit
-            // 
-            this.PostCardFrontStyleGridLookUpEdit.AutoHeight = false;
-            this.PostCardFrontStyleGridLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.envelopeProductSize.EditValue = "100×100";
+            this.envelopeProductSize.Location = new System.Drawing.Point(24, 233);
+            this.envelopeProductSize.MenuManager = this.ribbonControl1;
+            this.envelopeProductSize.Name = "envelopeProductSize";
+            this.envelopeProductSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.PostCardFrontStyleGridLookUpEdit.Name = "PostCardFrontStyleGridLookUpEdit";
-            this.PostCardFrontStyleGridLookUpEdit.NullText = "";
-            this.PostCardFrontStyleGridLookUpEdit.PopupSizeable = false;
-            this.PostCardFrontStyleGridLookUpEdit.ShowFooter = false;
-            this.PostCardFrontStyleGridLookUpEdit.View = this.repositoryItemGridLookUpEdit4View;
-            // 
-            // repositoryItemGridLookUpEdit4View
-            // 
-            this.repositoryItemGridLookUpEdit4View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemGridLookUpEdit4View.Name = "repositoryItemGridLookUpEdit4View";
-            this.repositoryItemGridLookUpEdit4View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemGridLookUpEdit4View.OptionsView.ShowFooter = true;
-            this.repositoryItemGridLookUpEdit4View.OptionsView.ShowGroupPanel = false;
-            this.repositoryItemGridLookUpEdit4View.OptionsView.ShowIndicator = false;
-            // 
-            // postCardBackStyle
-            // 
-            this.postCardBackStyle.AppearanceCell.Options.UseTextOptions = true;
-            this.postCardBackStyle.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postCardBackStyle.AppearanceHeader.Options.UseTextOptions = true;
-            this.postCardBackStyle.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postCardBackStyle.Caption = "反面";
-            this.postCardBackStyle.ColumnEdit = this.postCardBackStyleGridLookUpEdit;
-            this.postCardBackStyle.FieldName = "backStyle";
-            this.postCardBackStyle.MaxWidth = 70;
-            this.postCardBackStyle.MinWidth = 70;
-            this.postCardBackStyle.Name = "postCardBackStyle";
-            this.postCardBackStyle.Visible = true;
-            this.postCardBackStyle.VisibleIndex = 2;
-            this.postCardBackStyle.Width = 70;
-            // 
-            // postCardBackStyleGridLookUpEdit
-            // 
-            this.postCardBackStyleGridLookUpEdit.AutoHeight = false;
-            this.postCardBackStyleGridLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.postCardBackStyleGridLookUpEdit.DisplayMember = "name";
-            this.postCardBackStyleGridLookUpEdit.Name = "postCardBackStyleGridLookUpEdit";
-            this.postCardBackStyleGridLookUpEdit.NullText = "";
-            this.postCardBackStyleGridLookUpEdit.PopupSizeable = false;
-            this.postCardBackStyleGridLookUpEdit.ShowFooter = false;
-            this.postCardBackStyleGridLookUpEdit.ValueMember = "name";
-            this.postCardBackStyleGridLookUpEdit.View = this.gridView4;
-            this.postCardBackStyleGridLookUpEdit.EditValueChanged += new System.EventHandler(this.PostCardBackStyleGridLookUpEdit_EditValueChanged);
-            // 
-            // gridView4
-            // 
-            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn8});
-            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView4.Name = "gridView4";
-            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView4.OptionsView.ShowFooter = true;
-            this.gridView4.OptionsView.ShowGroupPanel = false;
-            this.gridView4.OptionsView.ShowIndicator = false;
-            // 
-            // gridColumn8
-            // 
-            this.gridColumn8.Caption = "gridColumn8";
-            this.gridColumn8.FieldName = "name";
-            this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 0;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn7.Caption = "删除";
-            this.gridColumn7.ColumnEdit = this.repositoryItemButtonEdit2;
-            this.gridColumn7.MaxWidth = 50;
-            this.gridColumn7.MinWidth = 50;
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 50;
-            // 
-            // repositoryItemButtonEdit2
-            // 
-            this.repositoryItemButtonEdit2.AutoHeight = false;
-            this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
-            this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repositoryItemButtonEdit2.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.removeSelectedPostCardButton_Click);
-            // 
-            // postCardBackFileName
-            // 
-            this.postCardBackFileName.AppearanceHeader.Options.UseTextOptions = true;
-            this.postCardBackFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.postCardBackFileName.Caption = "反面文件名称";
-            this.postCardBackFileName.ColumnEdit = this.repositoryItemButtonEdit3;
-            this.postCardBackFileName.FieldName = "backFileInfo.Name";
-            this.postCardBackFileName.MaxWidth = 200;
-            this.postCardBackFileName.MinWidth = 200;
-            this.postCardBackFileName.Name = "postCardBackFileName";
-            this.postCardBackFileName.Visible = true;
-            this.postCardBackFileName.VisibleIndex = 3;
-            this.postCardBackFileName.Width = 200;
-            // 
-            // repositoryItemButtonEdit3
-            // 
-            this.repositoryItemButtonEdit3.AutoHeight = false;
-            this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
-            this.repositoryItemButtonEdit3.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit3_ButtonClick);
-            // 
-            // gridColumn9
-            // 
-            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn9.Caption = "文件上传状态";
-            this.gridColumn9.FieldName = "fileUploadStat";
-            this.gridColumn9.MaxWidth = 100;
-            this.gridColumn9.MinWidth = 100;
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 5;
-            this.gridColumn9.Width = 100;
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            // 
-            // envelopeProductWidth
-            // 
-            this.envelopeProductWidth.EditValue = new decimal(new int[] {
-            148,
-            0,
-            0,
-            0});
-            this.envelopeProductWidth.Location = new System.Drawing.Point(246, 366);
-            this.envelopeProductWidth.Name = "envelopeProductWidth";
-            this.envelopeProductWidth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopeProductWidth.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.envelopeProductWidth.Properties.MaxLength = 4;
-            this.envelopeProductWidth.Properties.MaxValue = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.envelopeProductWidth.Properties.MinValue = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.envelopeProductWidth.Size = new System.Drawing.Size(72, 20);
-            this.envelopeProductWidth.StyleController = this.layoutControl1;
-            this.envelopeProductWidth.TabIndex = 13;
-            this.envelopeProductWidth.EditValueChanged += new System.EventHandler(this.envelopeProductWidth_EditValueChanged);
-            // 
-            // envelopeProductHeight
-            // 
-            this.envelopeProductHeight.EditValue = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.envelopeProductHeight.Location = new System.Drawing.Point(97, 366);
-            this.envelopeProductHeight.Name = "envelopeProductHeight";
-            this.envelopeProductHeight.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopeProductHeight.Properties.MaxLength = 4;
-            this.envelopeProductHeight.Properties.MaxValue = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.envelopeProductHeight.Properties.MinValue = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.envelopeProductHeight.Size = new System.Drawing.Size(72, 20);
-            this.envelopeProductHeight.StyleController = this.layoutControl1;
-            this.envelopeProductHeight.TabIndex = 14;
-            this.envelopeProductHeight.EditValueChanged += new System.EventHandler(this.envelopeProductHeight_EditValueChanged);
-            // 
-            // envelopeSizeSelect
-            // 
-            this.envelopeSizeSelect.EditValue = "[选择尺寸模板或手动输入]";
-            this.envelopeSizeSelect.Location = new System.Drawing.Point(97, 342);
-            this.envelopeSizeSelect.Name = "envelopeSizeSelect";
-            this.envelopeSizeSelect.Properties.Appearance.Options.UseTextOptions = true;
-            this.envelopeSizeSelect.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.envelopeSizeSelect.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopeSizeSelect.Properties.DisplayMember = "name";
-            this.envelopeSizeSelect.Properties.NullText = "[选择尺寸]";
-            this.envelopeSizeSelect.Properties.View = this.gridLookUpEdit1View;
-            this.envelopeSizeSelect.Size = new System.Drawing.Size(221, 20);
-            this.envelopeSizeSelect.StyleController = this.layoutControl1;
-            this.envelopeSizeSelect.TabIndex = 12;
-            this.envelopeSizeSelect.EditValueChanged += new System.EventHandler(this.envelopeSizeSelect_EditValueChanged);
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.sizeTemplateName});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // sizeTemplateName
-            // 
-            this.sizeTemplateName.Caption = "尺寸名称";
-            this.sizeTemplateName.FieldName = "name";
-            this.sizeTemplateName.Name = "sizeTemplateName";
-            this.sizeTemplateName.Visible = true;
-            this.sizeTemplateName.VisibleIndex = 0;
-            // 
-            // envelopeBackStyle
-            // 
-            this.envelopeBackStyle.EditValue = "[请选反面样式]";
-            this.envelopeBackStyle.Location = new System.Drawing.Point(97, 158);
-            this.envelopeBackStyle.Name = "envelopeBackStyle";
-            this.envelopeBackStyle.Properties.Appearance.Options.UseTextOptions = true;
-            this.envelopeBackStyle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.envelopeBackStyle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopeBackStyle.Properties.DisplayMember = "name";
-            this.envelopeBackStyle.Properties.NullText = "[反面样式]";
-            this.envelopeBackStyle.Properties.View = this.gridView2;
-            this.envelopeBackStyle.Size = new System.Drawing.Size(221, 20);
-            this.envelopeBackStyle.StyleController = this.layoutControl1;
-            this.envelopeBackStyle.TabIndex = 8;
-            this.envelopeBackStyle.EditValueChanged += new System.EventHandler(this.envelopeBackStyle_EditValueChanged);
-            // 
-            // gridView2
-            // 
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView2.OptionsView.ShowColumnHeaders = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.OptionsView.ShowIndicator = false;
-            // 
-            // envelopeFrontStyle
-            // 
-            this.envelopeFrontStyle.EditValue = "";
-            this.envelopeFrontStyle.Location = new System.Drawing.Point(97, 134);
-            this.envelopeFrontStyle.Name = "envelopeFrontStyle";
-            this.envelopeFrontStyle.Properties.Appearance.Options.UseTextOptions = true;
-            this.envelopeFrontStyle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.envelopeFrontStyle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopeFrontStyle.Properties.NullText = "[正面样式]";
-            this.envelopeFrontStyle.Properties.View = this.gridView3;
-            this.envelopeFrontStyle.Size = new System.Drawing.Size(221, 20);
-            this.envelopeFrontStyle.StyleController = this.layoutControl1;
-            this.envelopeFrontStyle.TabIndex = 7;
-            this.envelopeFrontStyle.EditValueChanged += new System.EventHandler(this.envelopeFrontStyle_EditValueChanged);
-            // 
-            // gridView3
-            // 
-            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView3.OptionsView.ShowColumnHeaders = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            this.gridView3.OptionsView.ShowIndicator = false;
-            // 
-            // envelopePostCardCopyEdit
-            // 
-            this.envelopePostCardCopyEdit.EditValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.envelopePostCardCopyEdit.Location = new System.Drawing.Point(97, 251);
-            this.envelopePostCardCopyEdit.Name = "envelopePostCardCopyEdit";
-            this.envelopePostCardCopyEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopePostCardCopyEdit.Properties.MaxValue = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.envelopePostCardCopyEdit.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.envelopePostCardCopyEdit.Size = new System.Drawing.Size(221, 20);
-            this.envelopePostCardCopyEdit.StyleController = this.layoutControl1;
-            this.envelopePostCardCopyEdit.TabIndex = 10;
-            this.envelopePostCardCopyEdit.EditValueChanged += new System.EventHandler(this.envelopePostCardCopyEdit_EditValueChanged);
-            // 
-            // postCardCountEdit
-            // 
-            this.postCardCountEdit.EditValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.postCardCountEdit.Location = new System.Drawing.Point(97, 275);
-            this.postCardCountEdit.Name = "postCardCountEdit";
-            this.postCardCountEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.postCardCountEdit.Properties.MaxValue = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.postCardCountEdit.Properties.MinValue = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.postCardCountEdit.Size = new System.Drawing.Size(221, 20);
-            this.postCardCountEdit.StyleController = this.layoutControl1;
-            this.postCardCountEdit.TabIndex = 11;
-            this.postCardCountEdit.EditValueChanged += new System.EventHandler(this.postCardCountEdit_EditValueChanged);
-            // 
-            // envelopeCancel
-            // 
-            this.envelopeCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.envelopeCancel.Image = ((System.Drawing.Image)(resources.GetObject("envelopeCancel.Image")));
-            this.envelopeCancel.Location = new System.Drawing.Point(1032, 821);
-            this.envelopeCancel.Name = "envelopeCancel";
-            this.envelopeCancel.Size = new System.Drawing.Size(131, 22);
-            this.envelopeCancel.StyleController = this.layoutControl1;
-            this.envelopeCancel.TabIndex = 18;
-            this.envelopeCancel.Text = "取消";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(346, 821);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(135, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 19;
-            this.simpleButton1.Text = "手动添加(&A)";
-            // 
-            // removeSelectedPostCard
-            // 
-            this.removeSelectedPostCard.Image = ((System.Drawing.Image)(resources.GetObject("removeSelectedPostCard.Image")));
-            this.removeSelectedPostCard.Location = new System.Drawing.Point(485, 821);
-            this.removeSelectedPostCard.Name = "removeSelectedPostCard";
-            this.removeSelectedPostCard.Size = new System.Drawing.Size(135, 22);
-            this.removeSelectedPostCard.StyleController = this.layoutControl1;
-            this.removeSelectedPostCard.TabIndex = 21;
-            this.removeSelectedPostCard.Text = "移除明信片(&D)";
-            // 
-            // backStyleCustomerButton
-            // 
-            this.backStyleCustomerButton.Location = new System.Drawing.Point(187, 182);
-            this.backStyleCustomerButton.Name = "backStyleCustomerButton";
-            this.backStyleCustomerButton.Size = new System.Drawing.Size(131, 22);
-            this.backStyleCustomerButton.StyleController = this.layoutControl1;
-            this.backStyleCustomerButton.TabIndex = 22;
-            this.backStyleCustomerButton.Text = "自定义反面图案";
-            this.backStyleCustomerButton.Click += new System.EventHandler(this.backStyleCustomerButton_Click);
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup2,
-            this.layoutControlGroup4,
-            this.layoutControlGroup3,
-            this.layoutControlGroup5,
-            this.layoutControlGroup6,
-            this.layoutControlItem2,
-            this.layoutControlGroup7});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1187, 867);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.orderTaobaoIdTextEdit;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem14.MaxSize = new System.Drawing.Size(219, 24);
-            this.layoutControlItem14.MinSize = new System.Drawing.Size(219, 24);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(219, 24);
-            this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem14.Text = "客户名称(&N)";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlGroup4
-            // 
-            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem35,
-            this.layoutControlItem4,
-            this.layoutControlItem36,
-            this.emptySpaceItem2,
-            this.layoutControlItem38,
-            this.emptySpaceItem3});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(322, 24);
-            this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(845, 823);
-            this.layoutControlGroup4.Text = "明信片图片详情";
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.envelopeDetailGridView;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(821, 754);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem35
-            // 
-            this.layoutControlItem35.Control = this.envelopeCancel;
-            this.layoutControlItem35.Location = new System.Drawing.Point(686, 754);
-            this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(135, 26);
-            this.layoutControlItem35.Text = "取消";
-            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem35.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.envelopeSubmit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(550, 754);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(136, 26);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlItem36
-            // 
-            this.layoutControlItem36.Control = this.simpleButton1;
-            this.layoutControlItem36.Location = new System.Drawing.Point(0, 754);
-            this.layoutControlItem36.MaxSize = new System.Drawing.Size(139, 26);
-            this.layoutControlItem36.MinSize = new System.Drawing.Size(139, 26);
-            this.layoutControlItem36.Name = "layoutControlItem36";
-            this.layoutControlItem36.Size = new System.Drawing.Size(139, 26);
-            this.layoutControlItem36.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem36.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(278, 754);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(136, 26);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem38
-            // 
-            this.layoutControlItem38.Control = this.removeSelectedPostCard;
-            this.layoutControlItem38.Location = new System.Drawing.Point(139, 754);
-            this.layoutControlItem38.MaxSize = new System.Drawing.Size(139, 26);
-            this.layoutControlItem38.MinSize = new System.Drawing.Size(139, 26);
-            this.layoutControlItem38.Name = "layoutControlItem38";
-            this.layoutControlItem38.Size = new System.Drawing.Size(139, 26);
-            this.layoutControlItem38.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem38.TextVisible = false;
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(414, 754);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(136, 26);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem8,
-            this.layoutControlItem9,
-            this.layoutControlItem16,
-            this.layoutControlItem17});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 91);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(322, 117);
-            this.layoutControlGroup2.Text = "样式设置";
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.envelopeFrontStyle;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(298, 24);
-            this.layoutControlItem8.Text = "正面板式(&F)";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.envelopeBackStyle;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(298, 24);
-            this.layoutControlItem9.Text = "反面板式(&B)";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.backStyleCustomerButton;
-            this.layoutControlItem16.Location = new System.Drawing.Point(163, 48);
-            this.layoutControlItem16.MaxSize = new System.Drawing.Size(135, 26);
-            this.layoutControlItem16.MinSize = new System.Drawing.Size(135, 26);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(135, 26);
-            this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem16.TextVisible = false;
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.envelopeDoubleSideCheckBox;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(163, 26);
-            this.layoutControlItem17.Text = " ";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem17.TextVisible = false;
-            // 
-            // layoutControlGroup3
-            // 
-            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem7,
-            this.layoutControlItem5,
-            this.layoutControlItem6});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 299);
-            this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(322, 91);
-            this.layoutControlGroup3.Text = "明信片尺寸设置";
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.envelopeProductHeight;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.OptionsTableLayoutItem.RowIndex = 1;
-            this.layoutControlItem7.Size = new System.Drawing.Size(149, 24);
-            this.layoutControlItem7.Text = "成品高度(&H)";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.envelopeSizeSelect;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(298, 24);
-            this.layoutControlItem5.Text = "尺寸选择(&S)";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.envelopeProductWidth;
-            this.layoutControlItem6.Location = new System.Drawing.Point(149, 24);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.OptionsTableLayoutItem.ColumnIndex = 1;
-            this.layoutControlItem6.Size = new System.Drawing.Size(149, 24);
-            this.layoutControlItem6.Text = "成品宽度(&W)";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlGroup5
-            // 
-            this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem10,
-            this.layoutControlItem11});
-            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 208);
-            this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(322, 91);
-            this.layoutControlGroup5.Text = "张数设置";
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.envelopePostCardCopyEdit;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(298, 24);
-            this.layoutControlItem10.Text = "统一份数(&C)";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlItem11
-            // 
-            this.layoutControlItem11.Control = this.postCardCountEdit;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(298, 24);
-            this.layoutControlItem11.Text = "设定总数(&M)";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.orderUrgentCheckEdit;
-            this.layoutControlItem15.Location = new System.Drawing.Point(219, 0);
-            this.layoutControlItem15.MaxSize = new System.Drawing.Size(79, 23);
-            this.layoutControlItem15.MinSize = new System.Drawing.Size(79, 23);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(79, 24);
-            this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.envelopePaperName;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(298, 24);
-            this.layoutControlItem3.Text = "纸张名称(&P)";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(70, 14);
-            // 
-            // barToggleSwitchItem1
-            // 
-            this.barToggleSwitchItem1.Caption = "barToggleSwitchItem1";
-            this.barToggleSwitchItem1.Id = 16;
-            this.barToggleSwitchItem1.Name = "barToggleSwitchItem1";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.envelopeProductSize.Properties.Mask.EditMask = "\\d{1,3}×\\d{1,3}";
+            this.envelopeProductSize.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.envelopeProductSize.Properties.PopupControl = this.popupContainerControl1;
+            this.envelopeProductSize.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.envelopeProductSize.Size = new System.Drawing.Size(137, 20);
+            this.envelopeProductSize.StyleController = this.layoutControl1;
+            this.envelopeProductSize.TabIndex = 28;
+            this.envelopeProductSize.EditValueChanged += new System.EventHandler(this.popupContainerEdit1_EditValueChanged);
             // 
             // ribbonControl1
             // 
@@ -1812,6 +1090,788 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "单面打印"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "双面打印")});
             this.repositoryItemRadioGroup4.Name = "repositoryItemRadioGroup4";
+            // 
+            // popupContainerControl1
+            // 
+            this.popupContainerControl1.Controls.Add(this.gridControl1);
+            this.popupContainerControl1.Location = new System.Drawing.Point(419, 366);
+            this.popupContainerControl1.Name = "popupContainerControl1";
+            this.popupContainerControl1.Size = new System.Drawing.Size(219, 298);
+            this.popupContainerControl1.TabIndex = 29;
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView14;
+            this.gridControl1.MenuManager = this.ribbonControl1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(219, 298);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView14});
+            // 
+            // gridView14
+            // 
+            this.gridView14.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn10,
+            this.gridColumn12,
+            this.gridColumn13});
+            this.gridView14.GridControl = this.gridControl1;
+            this.gridView14.Name = "gridView14";
+            this.gridView14.OptionsBehavior.ReadOnly = true;
+            this.gridView14.OptionsCustomization.AllowColumnMoving = false;
+            this.gridView14.OptionsCustomization.AllowColumnResizing = false;
+            this.gridView14.OptionsCustomization.AllowFilter = false;
+            this.gridView14.OptionsCustomization.AllowGroup = false;
+            this.gridView14.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gridView14.OptionsCustomization.AllowRowSizing = true;
+            this.gridView14.OptionsCustomization.AllowSort = false;
+            this.gridView14.OptionsEditForm.ActionOnModifiedRowChange = DevExpress.XtraGrid.Views.Grid.EditFormModifiedAction.Save;
+            this.gridView14.OptionsView.ShowColumnHeaders = false;
+            this.gridView14.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.gridView14.OptionsView.ShowGroupPanel = false;
+            this.gridView14.OptionsView.ShowIndicator = false;
+            this.gridView14.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView14_FocusedRowChanged);
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn10.Caption = "尺寸名称";
+            this.gridColumn10.FieldName = "Name";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn10.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn10.OptionsColumn.AllowMove = false;
+            this.gridColumn10.OptionsColumn.AllowShowHide = false;
+            this.gridColumn10.OptionsColumn.AllowSize = false;
+            this.gridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            this.gridColumn10.Width = 117;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "宽度";
+            this.gridColumn12.FieldName = "Width";
+            this.gridColumn12.MaxWidth = 50;
+            this.gridColumn12.MinWidth = 50;
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn12.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn12.OptionsColumn.AllowMove = false;
+            this.gridColumn12.OptionsColumn.AllowShowHide = false;
+            this.gridColumn12.OptionsColumn.AllowSize = false;
+            this.gridColumn12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 1;
+            this.gridColumn12.Width = 50;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "高度";
+            this.gridColumn13.FieldName = "Height";
+            this.gridColumn13.MaxWidth = 50;
+            this.gridColumn13.MinWidth = 50;
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowFocus = false;
+            this.gridColumn13.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn13.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn13.OptionsColumn.AllowMove = false;
+            this.gridColumn13.OptionsColumn.AllowShowHide = false;
+            this.gridColumn13.OptionsColumn.AllowSize = false;
+            this.gridColumn13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 2;
+            this.gridColumn13.Width = 50;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(63, 12);
+            this.textEdit1.MenuManager = this.ribbonControl1;
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(1112, 20);
+            this.textEdit1.StyleController = this.layoutControl1;
+            this.textEdit1.TabIndex = 23;
+            // 
+            // envelopeSubmit
+            // 
+            this.envelopeSubmit.Image = ((System.Drawing.Image)(resources.GetObject("envelopeSubmit.Image")));
+            this.envelopeSubmit.Location = new System.Drawing.Point(753, 821);
+            this.envelopeSubmit.Name = "envelopeSubmit";
+            this.envelopeSubmit.Size = new System.Drawing.Size(140, 22);
+            this.envelopeSubmit.StyleController = this.layoutControl1;
+            this.envelopeSubmit.TabIndex = 17;
+            this.envelopeSubmit.Text = "确定";
+            this.envelopeSubmit.Click += new System.EventHandler(this.envelopeSubmit_Click);
+            // 
+            // envelopeDoubleSideCheckBox
+            // 
+            this.envelopeDoubleSideCheckBox.EditValue = true;
+            this.envelopeDoubleSideCheckBox.Location = new System.Drawing.Point(24, 257);
+            this.envelopeDoubleSideCheckBox.Name = "envelopeDoubleSideCheckBox";
+            this.envelopeDoubleSideCheckBox.Properties.Caption = "双面(&D)";
+            this.envelopeDoubleSideCheckBox.Size = new System.Drawing.Size(64, 19);
+            this.envelopeDoubleSideCheckBox.StyleController = this.layoutControl1;
+            this.envelopeDoubleSideCheckBox.TabIndex = 5;
+            this.envelopeDoubleSideCheckBox.CheckedChanged += new System.EventHandler(this.envelopeDoubleSideCheckBox_CheckedChanged);
+            // 
+            // orderUrgentCheckEdit
+            // 
+            this.orderUrgentCheckEdit.Location = new System.Drawing.Point(1088, 67);
+            this.orderUrgentCheckEdit.Name = "orderUrgentCheckEdit";
+            this.orderUrgentCheckEdit.Properties.Caption = "加急(&U)";
+            this.orderUrgentCheckEdit.Size = new System.Drawing.Size(75, 19);
+            this.orderUrgentCheckEdit.StyleController = this.layoutControl1;
+            this.orderUrgentCheckEdit.TabIndex = 3;
+            this.orderUrgentCheckEdit.CheckedChanged += new System.EventHandler(this.orderUrgentCheckEdit_CheckedChanged);
+            // 
+            // orderTaobaoIdTextEdit
+            // 
+            this.orderTaobaoIdTextEdit.Location = new System.Drawing.Point(75, 67);
+            this.orderTaobaoIdTextEdit.Name = "orderTaobaoIdTextEdit";
+            this.orderTaobaoIdTextEdit.Size = new System.Drawing.Size(1009, 20);
+            this.orderTaobaoIdTextEdit.StyleController = this.layoutControl1;
+            this.orderTaobaoIdTextEdit.TabIndex = 2;
+            this.orderTaobaoIdTextEdit.EditValueChanged += new System.EventHandler(this.orderTaobaoIdTextEdit_EditValueChanged);
+            // 
+            // envelopePaperName
+            // 
+            this.envelopePaperName.Location = new System.Drawing.Point(24, 434);
+            this.envelopePaperName.Name = "envelopePaperName";
+            this.envelopePaperName.Size = new System.Drawing.Size(137, 20);
+            this.envelopePaperName.StyleController = this.layoutControl1;
+            this.envelopePaperName.TabIndex = 4;
+            this.envelopePaperName.EditValueChanged += new System.EventHandler(this.envelopePaperName_EditValueChanged);
+            // 
+            // envelopeBackStyle
+            // 
+            this.envelopeBackStyle.EditValue = "[请选反面样式]";
+            this.envelopeBackStyle.Location = new System.Drawing.Point(24, 192);
+            this.envelopeBackStyle.Name = "envelopeBackStyle";
+            this.envelopeBackStyle.Properties.Appearance.Options.UseTextOptions = true;
+            this.envelopeBackStyle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.envelopeBackStyle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.envelopeBackStyle.Properties.DisplayMember = "name";
+            this.envelopeBackStyle.Properties.NullText = "[反面样式]";
+            this.envelopeBackStyle.Properties.View = this.gridView2;
+            this.envelopeBackStyle.Size = new System.Drawing.Size(137, 20);
+            this.envelopeBackStyle.StyleController = this.layoutControl1;
+            this.envelopeBackStyle.TabIndex = 8;
+            this.envelopeBackStyle.EditValueChanged += new System.EventHandler(this.envelopeBackStyle_EditValueChanged);
+            // 
+            // gridView2
+            // 
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowColumnHeaders = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.OptionsView.ShowIndicator = false;
+            // 
+            // envelopeFrontStyle
+            // 
+            this.envelopeFrontStyle.EditValue = "";
+            this.envelopeFrontStyle.Location = new System.Drawing.Point(24, 151);
+            this.envelopeFrontStyle.Name = "envelopeFrontStyle";
+            this.envelopeFrontStyle.Properties.Appearance.Options.UseTextOptions = true;
+            this.envelopeFrontStyle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.envelopeFrontStyle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.envelopeFrontStyle.Properties.NullText = "[正面样式]";
+            this.envelopeFrontStyle.Properties.View = this.gridView3;
+            this.envelopeFrontStyle.Size = new System.Drawing.Size(137, 20);
+            this.envelopeFrontStyle.StyleController = this.layoutControl1;
+            this.envelopeFrontStyle.TabIndex = 7;
+            this.envelopeFrontStyle.EditValueChanged += new System.EventHandler(this.envelopeFrontStyle_EditValueChanged);
+            // 
+            // gridView3
+            // 
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowColumnHeaders = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            this.gridView3.OptionsView.ShowIndicator = false;
+            // 
+            // envelopePostCardCopyEdit
+            // 
+            this.envelopePostCardCopyEdit.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.envelopePostCardCopyEdit.Location = new System.Drawing.Point(75, 326);
+            this.envelopePostCardCopyEdit.Name = "envelopePostCardCopyEdit";
+            this.envelopePostCardCopyEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.envelopePostCardCopyEdit.Properties.MaxValue = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.envelopePostCardCopyEdit.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.envelopePostCardCopyEdit.Size = new System.Drawing.Size(86, 20);
+            this.envelopePostCardCopyEdit.StyleController = this.layoutControl1;
+            this.envelopePostCardCopyEdit.TabIndex = 10;
+            this.envelopePostCardCopyEdit.EditValueChanged += new System.EventHandler(this.envelopePostCardCopyEdit_EditValueChanged);
+            // 
+            // envelopeCancel
+            // 
+            this.envelopeCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.envelopeCancel.Image = ((System.Drawing.Image)(resources.GetObject("envelopeCancel.Image")));
+            this.envelopeCancel.Location = new System.Drawing.Point(897, 821);
+            this.envelopeCancel.Name = "envelopeCancel";
+            this.envelopeCancel.Size = new System.Drawing.Size(266, 22);
+            this.envelopeCancel.StyleController = this.layoutControl1;
+            this.envelopeCancel.TabIndex = 18;
+            this.envelopeCancel.Text = "取消";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(189, 821);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(135, 22);
+            this.simpleButton1.StyleController = this.layoutControl1;
+            this.simpleButton1.TabIndex = 19;
+            this.simpleButton1.Text = "手动添加(&A)";
+            // 
+            // removeSelectedPostCard
+            // 
+            this.removeSelectedPostCard.Image = ((System.Drawing.Image)(resources.GetObject("removeSelectedPostCard.Image")));
+            this.removeSelectedPostCard.Location = new System.Drawing.Point(328, 821);
+            this.removeSelectedPostCard.Name = "removeSelectedPostCard";
+            this.removeSelectedPostCard.Size = new System.Drawing.Size(135, 22);
+            this.removeSelectedPostCard.StyleController = this.layoutControl1;
+            this.removeSelectedPostCard.TabIndex = 21;
+            this.removeSelectedPostCard.Text = "移除明信片(&D)";
+            // 
+            // envelopeDetailGridView
+            // 
+            this.envelopeDetailGridView.Location = new System.Drawing.Point(189, 134);
+            this.envelopeDetailGridView.MainView = this.gridView1;
+            this.envelopeDetailGridView.Name = "envelopeDetailGridView";
+            this.envelopeDetailGridView.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.PostCardFrontStyleGridLookUpEdit,
+            this.postCardBackStyleGridLookUpEdit,
+            this.repositoryItemButtonEdit1,
+            this.repositoryItemButtonEdit2,
+            this.repositoryItemButtonEdit3});
+            this.envelopeDetailGridView.Size = new System.Drawing.Size(974, 683);
+            this.envelopeDetailGridView.TabIndex = 16;
+            this.envelopeDetailGridView.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.postcardFileName,
+            this.postCardCopy,
+            this.postCardFrontStyle,
+            this.postCardIsImage,
+            this.postCardBackStyle,
+            this.gridColumn7,
+            this.postCardBackFileName,
+            this.gridColumn9});
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Column = this.postCardIsImage;
+            gridFormatRule1.Name = "Format0";
+            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red;
+            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.Transparent;
+            formatConditionRuleValue1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue1.Appearance.Options.UseFont = true;
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue1.Value1 = false;
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
+            this.gridView1.GridControl = this.envelopeDetailGridView;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowFooter = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            // 
+            // postcardFileName
+            // 
+            this.postcardFileName.AppearanceHeader.Options.UseTextOptions = true;
+            this.postcardFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postcardFileName.Caption = "文件名称";
+            this.postcardFileName.FieldName = "fileInfo.Name";
+            this.postcardFileName.Name = "postcardFileName";
+            this.postcardFileName.OptionsColumn.AllowEdit = false;
+            this.postcardFileName.OptionsColumn.AllowFocus = false;
+            this.postcardFileName.Visible = true;
+            this.postcardFileName.VisibleIndex = 0;
+            this.postcardFileName.Width = 485;
+            // 
+            // postCardCopy
+            // 
+            this.postCardCopy.AppearanceHeader.Options.UseTextOptions = true;
+            this.postCardCopy.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postCardCopy.Caption = "份数";
+            this.postCardCopy.FieldName = "copy";
+            this.postCardCopy.MaxWidth = 50;
+            this.postCardCopy.MinWidth = 50;
+            this.postCardCopy.Name = "postCardCopy";
+            this.postCardCopy.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "copy", "{0:0}")});
+            this.postCardCopy.Visible = true;
+            this.postCardCopy.VisibleIndex = 4;
+            this.postCardCopy.Width = 50;
+            // 
+            // postCardFrontStyle
+            // 
+            this.postCardFrontStyle.AppearanceCell.Options.UseTextOptions = true;
+            this.postCardFrontStyle.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postCardFrontStyle.AppearanceHeader.Options.UseTextOptions = true;
+            this.postCardFrontStyle.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postCardFrontStyle.Caption = "正面";
+            this.postCardFrontStyle.ColumnEdit = this.PostCardFrontStyleGridLookUpEdit;
+            this.postCardFrontStyle.FieldName = "frontStyle";
+            this.postCardFrontStyle.MaxWidth = 70;
+            this.postCardFrontStyle.MinWidth = 70;
+            this.postCardFrontStyle.Name = "postCardFrontStyle";
+            this.postCardFrontStyle.Visible = true;
+            this.postCardFrontStyle.VisibleIndex = 1;
+            this.postCardFrontStyle.Width = 70;
+            // 
+            // PostCardFrontStyleGridLookUpEdit
+            // 
+            this.PostCardFrontStyleGridLookUpEdit.AutoHeight = false;
+            this.PostCardFrontStyleGridLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.PostCardFrontStyleGridLookUpEdit.Name = "PostCardFrontStyleGridLookUpEdit";
+            this.PostCardFrontStyleGridLookUpEdit.NullText = "";
+            this.PostCardFrontStyleGridLookUpEdit.PopupSizeable = false;
+            this.PostCardFrontStyleGridLookUpEdit.ShowFooter = false;
+            this.PostCardFrontStyleGridLookUpEdit.View = this.repositoryItemGridLookUpEdit4View;
+            // 
+            // repositoryItemGridLookUpEdit4View
+            // 
+            this.repositoryItemGridLookUpEdit4View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit4View.Name = "repositoryItemGridLookUpEdit4View";
+            this.repositoryItemGridLookUpEdit4View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit4View.OptionsView.ShowFooter = true;
+            this.repositoryItemGridLookUpEdit4View.OptionsView.ShowGroupPanel = false;
+            this.repositoryItemGridLookUpEdit4View.OptionsView.ShowIndicator = false;
+            // 
+            // postCardBackStyle
+            // 
+            this.postCardBackStyle.AppearanceCell.Options.UseTextOptions = true;
+            this.postCardBackStyle.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postCardBackStyle.AppearanceHeader.Options.UseTextOptions = true;
+            this.postCardBackStyle.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postCardBackStyle.Caption = "反面";
+            this.postCardBackStyle.ColumnEdit = this.postCardBackStyleGridLookUpEdit;
+            this.postCardBackStyle.FieldName = "backStyle";
+            this.postCardBackStyle.MaxWidth = 70;
+            this.postCardBackStyle.MinWidth = 70;
+            this.postCardBackStyle.Name = "postCardBackStyle";
+            this.postCardBackStyle.Visible = true;
+            this.postCardBackStyle.VisibleIndex = 2;
+            this.postCardBackStyle.Width = 70;
+            // 
+            // postCardBackStyleGridLookUpEdit
+            // 
+            this.postCardBackStyleGridLookUpEdit.AutoHeight = false;
+            this.postCardBackStyleGridLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.postCardBackStyleGridLookUpEdit.DisplayMember = "name";
+            this.postCardBackStyleGridLookUpEdit.Name = "postCardBackStyleGridLookUpEdit";
+            this.postCardBackStyleGridLookUpEdit.NullText = "";
+            this.postCardBackStyleGridLookUpEdit.PopupSizeable = false;
+            this.postCardBackStyleGridLookUpEdit.ShowFooter = false;
+            this.postCardBackStyleGridLookUpEdit.ValueMember = "name";
+            this.postCardBackStyleGridLookUpEdit.View = this.gridView4;
+            this.postCardBackStyleGridLookUpEdit.EditValueChanged += new System.EventHandler(this.PostCardBackStyleGridLookUpEdit_EditValueChanged);
+            // 
+            // gridView4
+            // 
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn8});
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowFooter = true;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            this.gridView4.OptionsView.ShowIndicator = false;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "gridColumn8";
+            this.gridColumn8.FieldName = "name";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 0;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.Caption = "删除";
+            this.gridColumn7.ColumnEdit = this.repositoryItemButtonEdit2;
+            this.gridColumn7.MaxWidth = 50;
+            this.gridColumn7.MinWidth = 50;
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.Width = 50;
+            // 
+            // repositoryItemButtonEdit2
+            // 
+            this.repositoryItemButtonEdit2.AutoHeight = false;
+            this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
+            this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repositoryItemButtonEdit2.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.removeSelectedPostCardButton_Click);
+            // 
+            // postCardBackFileName
+            // 
+            this.postCardBackFileName.AppearanceHeader.Options.UseTextOptions = true;
+            this.postCardBackFileName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.postCardBackFileName.Caption = "反面文件名称";
+            this.postCardBackFileName.ColumnEdit = this.repositoryItemButtonEdit3;
+            this.postCardBackFileName.FieldName = "backFileInfo.Name";
+            this.postCardBackFileName.MaxWidth = 200;
+            this.postCardBackFileName.MinWidth = 200;
+            this.postCardBackFileName.Name = "postCardBackFileName";
+            this.postCardBackFileName.Visible = true;
+            this.postCardBackFileName.VisibleIndex = 3;
+            this.postCardBackFileName.Width = 200;
+            // 
+            // repositoryItemButtonEdit3
+            // 
+            this.repositoryItemButtonEdit3.AutoHeight = false;
+            this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
+            this.repositoryItemButtonEdit3.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit3_ButtonClick);
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn9.Caption = "文件上传状态";
+            this.gridColumn9.FieldName = "fileUploadStat";
+            this.gridColumn9.MaxWidth = 100;
+            this.gridColumn9.MinWidth = 100;
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 5;
+            this.gridColumn9.Width = 100;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            // 
+            // postCardCountEdit
+            // 
+            this.postCardCountEdit.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.postCardCountEdit.Location = new System.Drawing.Point(75, 350);
+            this.postCardCountEdit.MenuManager = this.ribbonControl1;
+            this.postCardCountEdit.Name = "postCardCountEdit";
+            this.postCardCountEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.postCardCountEdit.Size = new System.Drawing.Size(86, 20);
+            this.postCardCountEdit.StyleController = this.layoutControl1;
+            this.postCardCountEdit.TabIndex = 33;
+            this.postCardCountEdit.EditValueChanged += new System.EventHandler(this.postCardCountEdit_EditValueChanged);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Location = new System.Drawing.Point(92, 257);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(69, 22);
+            this.simpleButton2.StyleController = this.layoutControl1;
+            this.simpleButton2.TabIndex = 34;
+            this.simpleButton2.Text = "自定义反面";
+            this.simpleButton2.Click += new System.EventHandler(this.backStyleCustomerButton_Click);
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroup2,
+            this.layoutControlGroup4,
+            this.layoutControlGroup5,
+            this.layoutControlGroup6,
+            this.layoutControlItem2,
+            this.layoutControlGroup7,
+            this.layoutControlGroup3});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1187, 867);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem17,
+            this.layoutControlItem9,
+            this.layoutControlItem8,
+            this.layoutControlItem37,
+            this.layoutControlItem40});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 91);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(165, 192);
+            this.layoutControlGroup2.Text = "明信片设置";
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.envelopeDoubleSideCheckBox;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 123);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(68, 26);
+            this.layoutControlItem17.Text = " ";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.envelopeBackStyle;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 41);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(141, 41);
+            this.layoutControlItem9.Text = "反面板式";
+            this.layoutControlItem9.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.envelopeFrontStyle;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(141, 41);
+            this.layoutControlItem8.Text = "正面板式";
+            this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem37
+            // 
+            this.layoutControlItem37.Control = this.simpleButton2;
+            this.layoutControlItem37.Location = new System.Drawing.Point(68, 123);
+            this.layoutControlItem37.Name = "layoutControlItem37";
+            this.layoutControlItem37.Size = new System.Drawing.Size(73, 26);
+            this.layoutControlItem37.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem37.TextVisible = false;
+            // 
+            // layoutControlGroup4
+            // 
+            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem35,
+            this.layoutControlItem4,
+            this.layoutControlItem36,
+            this.emptySpaceItem2,
+            this.layoutControlItem38,
+            this.emptySpaceItem3});
+            this.layoutControlGroup4.Location = new System.Drawing.Point(165, 91);
+            this.layoutControlGroup4.Name = "layoutControlGroup4";
+            this.layoutControlGroup4.Size = new System.Drawing.Size(1002, 756);
+            this.layoutControlGroup4.Text = "明信片图片详情";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.envelopeDetailGridView;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(978, 687);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlItem35
+            // 
+            this.layoutControlItem35.Control = this.envelopeCancel;
+            this.layoutControlItem35.Location = new System.Drawing.Point(708, 687);
+            this.layoutControlItem35.Name = "layoutControlItem35";
+            this.layoutControlItem35.Size = new System.Drawing.Size(270, 26);
+            this.layoutControlItem35.Text = "取消";
+            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem35.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.envelopeSubmit;
+            this.layoutControlItem4.Location = new System.Drawing.Point(564, 687);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(144, 26);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem36
+            // 
+            this.layoutControlItem36.Control = this.simpleButton1;
+            this.layoutControlItem36.Location = new System.Drawing.Point(0, 687);
+            this.layoutControlItem36.MaxSize = new System.Drawing.Size(139, 26);
+            this.layoutControlItem36.MinSize = new System.Drawing.Size(139, 26);
+            this.layoutControlItem36.Name = "layoutControlItem36";
+            this.layoutControlItem36.Size = new System.Drawing.Size(139, 26);
+            this.layoutControlItem36.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem36.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(278, 687);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(143, 26);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem38
+            // 
+            this.layoutControlItem38.Control = this.removeSelectedPostCard;
+            this.layoutControlItem38.Location = new System.Drawing.Point(139, 687);
+            this.layoutControlItem38.MaxSize = new System.Drawing.Size(139, 26);
+            this.layoutControlItem38.MinSize = new System.Drawing.Size(139, 26);
+            this.layoutControlItem38.Name = "layoutControlItem38";
+            this.layoutControlItem38.Size = new System.Drawing.Size(139, 26);
+            this.layoutControlItem38.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem38.TextVisible = false;
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(421, 687);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(143, 26);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem40
+            // 
+            this.layoutControlItem40.Control = this.envelopeProductSize;
+            this.layoutControlItem40.Location = new System.Drawing.Point(0, 82);
+            this.layoutControlItem40.Name = "layoutControlItem40";
+            this.layoutControlItem40.Size = new System.Drawing.Size(141, 41);
+            this.layoutControlItem40.Text = "成品尺寸";
+            this.layoutControlItem40.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem40.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlGroup5
+            // 
+            this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem10,
+            this.layoutControlItem11});
+            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 283);
+            this.layoutControlGroup5.Name = "layoutControlGroup5";
+            this.layoutControlGroup5.Size = new System.Drawing.Size(165, 91);
+            this.layoutControlGroup5.Text = "张数设置";
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.envelopePostCardCopyEdit;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(141, 24);
+            this.layoutControlItem10.Text = "每张份数";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.postCardCountEdit;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(141, 24);
+            this.layoutControlItem11.Text = "固定总数";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlGroup6
+            // 
+            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem3,
+            this.layoutControlItem41});
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 374);
+            this.layoutControlGroup6.Name = "layoutControlGroup6";
+            this.layoutControlGroup6.Size = new System.Drawing.Size(165, 126);
+            this.layoutControlGroup6.Text = "纸张设置";
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.envelopePaperName;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(141, 41);
+            this.layoutControlItem3.Text = "纸张名称";
+            this.layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.textEdit1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(1167, 24);
+            this.layoutControlItem2.Text = "文件夹";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlGroup7
+            // 
+            this.layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem14,
+            this.layoutControlItem15});
+            this.layoutControlGroup7.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlGroup7.Name = "layoutControlGroup7";
+            this.layoutControlGroup7.Size = new System.Drawing.Size(1167, 67);
+            this.layoutControlGroup7.Text = "订单属性";
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.orderTaobaoIdTextEdit;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(1064, 24);
+            this.layoutControlItem14.Text = "客户名称";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.orderUrgentCheckEdit;
+            this.layoutControlItem15.Location = new System.Drawing.Point(1064, 0);
+            this.layoutControlItem15.MaxSize = new System.Drawing.Size(79, 23);
+            this.layoutControlItem15.MinSize = new System.Drawing.Size(79, 23);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(79, 24);
+            this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
+            // 
+            // barToggleSwitchItem1
+            // 
+            this.barToggleSwitchItem1.Caption = "barToggleSwitchItem1";
+            this.barToggleSwitchItem1.Id = 16;
+            this.barToggleSwitchItem1.Name = "barToggleSwitchItem1";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // layoutControl3
             // 
@@ -2574,51 +2634,199 @@
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(294, 281);
             // 
-            // emptySpaceItem1
+            // gridColumn11
             // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 24);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(298, 390);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.gridColumn11.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn11.Caption = "长度";
+            this.gridColumn11.FieldName = "width";
+            this.gridColumn11.MaxWidth = 50;
+            this.gridColumn11.MinWidth = 50;
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn11.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn11.OptionsColumn.AllowMove = false;
+            this.gridColumn11.OptionsColumn.AllowShowHide = false;
+            this.gridColumn11.OptionsColumn.AllowSize = false;
+            this.gridColumn11.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
+            this.gridColumn11.Width = 50;
             // 
-            // layoutControlGroup6
+            // emptySpaceItem4
             // 
-            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem1,
-            this.layoutControlItem3});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 390);
-            this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(322, 457);
-            this.layoutControlGroup6.Text = "纸张设置";
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 605);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(147, 242);
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // textEdit1
+            // layoutControlGroup8
             // 
-            this.textEdit1.Location = new System.Drawing.Point(85, 12);
-            this.textEdit1.MenuManager = this.ribbonControl1;
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(1090, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 23;
+            this.layoutControlGroup8.Location = new System.Drawing.Point(0, 562);
+            this.layoutControlGroup8.Name = "layoutControlGroup8";
+            this.layoutControlGroup8.Size = new System.Drawing.Size(147, 43);
+            this.layoutControlGroup8.Text = "布局设置";
             // 
-            // layoutControlItem2
+            // layoutControlItem7
             // 
-            this.layoutControlItem2.Control = this.textEdit1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1167, 24);
-            this.layoutControlItem2.Text = "文件夹信息";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(70, 14);
+            this.layoutControlItem7.Control = this.orderTaobaoIdTextEdit;
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(123, 24);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(1167, 24);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.Text = "客户名称(&N)";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(66, 14);
             // 
-            // layoutControlGroup7
+            // layoutControlGroup3
             // 
-            this.layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem14,
-            this.layoutControlItem15});
-            this.layoutControlGroup7.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlGroup7.Name = "layoutControlGroup7";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(322, 67);
-            this.layoutControlGroup7.Text = "订单属性";
+            this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem5,
+            this.layoutControlItem6,
+            this.layoutControlItem13,
+            this.layoutControlItem16,
+            this.layoutControlItem39});
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 500);
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(165, 347);
+            this.layoutControlGroup3.Text = "排版信息";
+            // 
+            // simpleButton3
+            // 
+            this.simpleButton3.Location = new System.Drawing.Point(24, 543);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.Size = new System.Drawing.Size(137, 22);
+            this.simpleButton3.StyleController = this.layoutControl1;
+            this.simpleButton3.TabIndex = 35;
+            this.simpleButton3.Text = "计算";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.simpleButton3;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(141, 26);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // spinEdit5
+            // 
+            this.spinEdit5.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit5.Location = new System.Drawing.Point(75, 569);
+            this.spinEdit5.MenuManager = this.ribbonControl1;
+            this.spinEdit5.Name = "spinEdit5";
+            this.spinEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEdit5.Size = new System.Drawing.Size(86, 20);
+            this.spinEdit5.StyleController = this.layoutControl1;
+            this.spinEdit5.TabIndex = 36;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.spinEdit5;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 26);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(141, 24);
+            this.layoutControlItem6.Text = "排版列数";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // spinEdit6
+            // 
+            this.spinEdit6.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit6.Location = new System.Drawing.Point(75, 593);
+            this.spinEdit6.MenuManager = this.ribbonControl1;
+            this.spinEdit6.Name = "spinEdit6";
+            this.spinEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEdit6.Size = new System.Drawing.Size(86, 20);
+            this.spinEdit6.StyleController = this.layoutControl1;
+            this.spinEdit6.TabIndex = 37;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.spinEdit6;
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 50);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(141, 24);
+            this.layoutControlItem13.Text = "排版行数";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // textEdit6
+            // 
+            this.textEdit6.Location = new System.Drawing.Point(75, 617);
+            this.textEdit6.MenuManager = this.ribbonControl1;
+            this.textEdit6.Name = "textEdit6";
+            this.textEdit6.Properties.ReadOnly = true;
+            this.textEdit6.Size = new System.Drawing.Size(86, 20);
+            this.textEdit6.StyleController = this.layoutControl1;
+            this.textEdit6.TabIndex = 38;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.textEdit6;
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 74);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(141, 24);
+            this.layoutControlItem16.Text = "左右白边";
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // textEdit7
+            // 
+            this.textEdit7.Location = new System.Drawing.Point(75, 641);
+            this.textEdit7.MenuManager = this.ribbonControl1;
+            this.textEdit7.Name = "textEdit7";
+            this.textEdit7.Properties.ReadOnly = true;
+            this.textEdit7.Size = new System.Drawing.Size(86, 20);
+            this.textEdit7.StyleController = this.layoutControl1;
+            this.textEdit7.TabIndex = 39;
+            // 
+            // layoutControlItem39
+            // 
+            this.layoutControlItem39.Control = this.textEdit7;
+            this.layoutControlItem39.Location = new System.Drawing.Point(0, 98);
+            this.layoutControlItem39.Name = "layoutControlItem39";
+            this.layoutControlItem39.Size = new System.Drawing.Size(141, 206);
+            this.layoutControlItem39.Text = "上下白边";
+            this.layoutControlItem39.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // buttonEdit1
+            // 
+            this.buttonEdit1.EditValue = "450×320";
+            this.buttonEdit1.Location = new System.Drawing.Point(24, 475);
+            this.buttonEdit1.MenuManager = this.ribbonControl1;
+            this.buttonEdit1.Name = "buttonEdit1";
+            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "旋转", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "旋转纸张", null, null, true)});
+            this.buttonEdit1.Properties.Mask.EditMask = "[1-9]\\d{1,2}×[1-9]\\d{1,2}";
+            this.buttonEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.buttonEdit1.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_Properties_ButtonClick);
+            this.buttonEdit1.Size = new System.Drawing.Size(137, 21);
+            this.buttonEdit1.StyleController = this.layoutControl1;
+            this.buttonEdit1.TabIndex = 40;
+            this.buttonEdit1.EditValueChanged += new System.EventHandler(this.buttonEdit1_EditValueChanged);
+            // 
+            // layoutControlItem41
+            // 
+            this.layoutControlItem41.Control = this.buttonEdit1;
+            this.layoutControlItem41.Location = new System.Drawing.Point(0, 41);
+            this.layoutControlItem41.Name = "layoutControlItem41";
+            this.layoutControlItem41.Size = new System.Drawing.Size(141, 42);
+            this.layoutControlItem41.Text = "纸张尺寸";
+            this.layoutControlItem41.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem41.TextSize = new System.Drawing.Size(48, 14);
             // 
             // EnvelopeInfoForm
             // 
@@ -2639,54 +2847,7 @@
             this.Shown += new System.EventHandler(this.EnvelopeInfoForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeDoubleSideCheckBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderUrgentCheckEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderTaobaoIdTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeDetailGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PostCardFrontStyleGridLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postCardBackStyleGridLookUpEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductWidth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductHeight.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeSizeSelect.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeBackStyle.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeFrontStyle.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopePostCardCopyEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.postCardCountEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductSize.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
@@ -2701,6 +2862,55 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
+            this.popupContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeDoubleSideCheckBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderUrgentCheckEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderTaobaoIdTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeBackStyle.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeFrontStyle.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopePostCardCopyEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeDetailGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PostCardFrontStyleGridLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postCardBackStyleGridLookUpEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.postCardCountEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl2)).EndInit();
@@ -2759,11 +2969,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2781,22 +3002,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn postCardFrontStyle;
         private DevExpress.XtraGrid.Columns.GridColumn postCardIsImage;
         private DevExpress.XtraEditors.TextEdit envelopePaperName;
-        private DevExpress.XtraEditors.SpinEdit envelopeProductWidth;
-        private DevExpress.XtraEditors.SpinEdit envelopeProductHeight;
-        private DevExpress.XtraEditors.GridLookUpEdit envelopeSizeSelect;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraEditors.GridLookUpEdit envelopeBackStyle;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.GridLookUpEdit envelopeFrontStyle;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn postCardBackStyle;
-        private DevExpress.XtraGrid.Columns.GridColumn sizeTemplateName;
         private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit PostCardFrontStyleGridLookUpEdit;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit4View;
         private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit postCardBackStyleGridLookUpEdit;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private DevExpress.XtraEditors.SpinEdit envelopePostCardCopyEdit;
-        private DevExpress.XtraEditors.SpinEdit postCardCountEdit;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
         private DevExpress.XtraEditors.CheckEdit orderUrgentCheckEdit;
         private DevExpress.XtraEditors.TextEdit orderTaobaoIdTextEdit;
@@ -2906,21 +3121,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn postCardBackFileName;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraEditors.SimpleButton backStyleCustomerButton;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem36;
@@ -2928,13 +3133,45 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem38;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.XtraEditors.PopupContainerEdit envelopeProductSize;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem40;
+        private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup8;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraEditors.SpinEdit postCardCountEdit;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup7;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem37;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.SpinEdit spinEdit5;
+        private DevExpress.XtraEditors.SpinEdit spinEdit6;
+        private DevExpress.XtraEditors.TextEdit textEdit6;
+        private DevExpress.XtraEditors.TextEdit textEdit7;
+        private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem41;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem39;
     }
 }

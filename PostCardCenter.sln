@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostCardCenter", "PostCardCenter\PostCardCenter.csproj", "{E0978DFF-872F-49FC-9608-02A32C5DD4A3}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostCardCenter", "PostCardC
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "soho", "soho\soho.csproj", "{1F086FC8-76BF-4345-B62A-5F90D381EB6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "postCardCenterSdk", "postCardCenterSdk\postCardCenterSdk.csproj", "{9ADA8C78-8813-4853-86DC-2B1A7C62C516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +26,15 @@ Global
 		{1F086FC8-76BF-4345-B62A-5F90D381EB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F086FC8-76BF-4345-B62A-5F90D381EB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F086FC8-76BF-4345-B62A-5F90D381EB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ADA8C78-8813-4853-86DC-2B1A7C62C516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADA8C78-8813-4853-86DC-2B1A7C62C516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADA8C78-8813-4853-86DC-2B1A7C62C516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADA8C78-8813-4853-86DC-2B1A7C62C516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BA107A8-069D-40BF-892B-7D9591CF99B0}
 	EndGlobalSection
 EndGlobal

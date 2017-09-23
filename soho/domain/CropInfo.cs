@@ -62,7 +62,7 @@ namespace soho.domain
         /// <param name="pictureAreaSize">图像显示尺寸</param>
         /// <param name="rotate">是否自动旋转，默认值为true</param>
         /// <returns></returns>
-        public CropInfo(Size imageSize, Size pictureAreaSize,bool rotate=true)
+        public CropInfo(System.Drawing.Size imageSize, System.Drawing.Size pictureAreaSize,bool rotate=true)
         {
             var imageSizeRatio = imageSize.Ratio();
             var pictureAreaSizeRatio = pictureAreaSize.Ratio();

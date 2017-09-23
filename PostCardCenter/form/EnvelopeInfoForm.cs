@@ -13,6 +13,7 @@ using PostCardCenter.Properties;
 using soho.domain;
 using soho.helper;
 using soho.webservice;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace PostCardCenter.form
 {
@@ -25,7 +26,8 @@ namespace PostCardCenter.form
         public EnvelopeInfoForm()
         {
             InitializeComponent();
-            envelopeSizeSelect.Properties.DataSource = SohoInvoker.GetProductSizeTemplateList();
+            var productSizeList = SohoInvoker.GetProductSizeTemplateList();
+            gridControl1.DataSource = productSizeList;
             PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource =
                 SohoInvoker.GetFrontStyleTemplateList();
 
@@ -49,9 +51,12 @@ namespace PostCardCenter.form
             orderUrgentCheckEdit.Checked = order.urgent;
             envelopeDoubleSideCheckBox.Checked = envelope.doubleSide;
 
-            envelopeProductHeight.EditValue = envelope.productHeight;
-
-            envelopeProductWidth.EditValue = envelope.productWidth;
+            PostSize postSize = new PostSize
+            {
+                Width = envelope.productWidth,
+                Height = envelope.productHeight
+            };
+            envelopeProductSize.EditValue = postSize.ToString();
         }
 
         public EnvelopeInfoForm(DirectoryInfo directoryInfo) : this()
@@ -59,6 +64,7 @@ namespace PostCardCenter.form
             _directoryInfo = directoryInfo;
         }
 
+        
         public Envelope envelope { get; set; }
         public Order order { get; set; }
 
@@ -90,27 +96,9 @@ namespace PostCardCenter.form
             envelopeDetailGridView.RefreshDataSource();
         }
 
-        private void envelopeProductWidth_EditValueChanged(object sender, EventArgs e)
-        {
-            envelope.productWidth = (int) envelopeProductWidth.Value;
-        }
-
-        private void envelopeProductHeight_EditValueChanged(object sender, EventArgs e)
-        {
-            envelope.productHeight = (int) envelopeProductHeight.Value;
-        }
-
         private void envelopePaperName_EditValueChanged(object sender, EventArgs e)
         {
             envelope.paperName = envelopePaperName.Text;
-        }
-
-        private void envelopeSizeSelect_EditValueChanged(object sender, EventArgs e)
-        {
-            var size = envelopeSizeSelect.EditValue as ProductSize;
-            if (size == null) return;
-            envelopeProductHeight.EditValue = size.productHeight;
-            envelopeProductWidth.EditValue = size.productWidth;
         }
 
         private void envelopeBackStyle_EditValueChanged(object sender, EventArgs e)
@@ -186,7 +174,7 @@ namespace PostCardCenter.form
 
         private void envelopeDoubleSideCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            layoutControlItem9.Visibility = layoutControlItem16.Visibility =
+            layoutControlItem9.Visibility = layoutControlItem37.Visibility =
                 envelopeDoubleSideCheckBox.Checked ? LayoutVisibility.Always : LayoutVisibility.Never;
             envelope.doubleSide = envelopeDoubleSideCheckBox.Checked;
         }
@@ -364,7 +352,6 @@ namespace PostCardCenter.form
                 else
                 {
                     postCard.fileUploadStat = "上传失败";
-//                    XtraMessageBox.Show("文件上传失败");
                 }
                 envelopeDetailGridView.Update();
                 Application.DoEvents();
@@ -377,6 +364,66 @@ namespace PostCardCenter.form
                 Application.DoEvents();
                 tmpUpload(postCards);
             });
+        }
+
+        private void popupContainerEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            var a = envelopeProductSize.EditValue.ToString().Split('×');
+            var b=a.Length;
+            if (b == 2)
+            {
+                if (envelope != null)
+                {
+                    envelope.productWidth = int.Parse(a[0]);
+                    envelope.productHeight = int.Parse(a[1]);
+                    XtraMessageBox.Show("明信片集合尺寸更新");
+                }
+            }
+        }
+
+        private void gridView14_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
+        {
+            var b=(GridView)sender;
+            PostSize size =(PostSize) b.GetFocusedRow();
+            if (size == null)
+            {
+                return;
+            }
+            envelopeProductSize.EditValue = size.ToString();
+            envelopeProductSize.ClosePopup();
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            var buttonEdit = (ButtonEdit)sender;
+            if (buttonEdit == null)
+            {
+                return;
+            }
+
+            var values=buttonEdit.EditValue.ToString().Split('×');
+            envelope.PaperSize.Width= int.Parse(values[0]);            
+            envelope.PaperSize.Height= int.Parse(values[1]);
+        }
+
+        private void buttonEdit1_Properties_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            if (e.Button.Index == 0)
+            {
+                var a = (ButtonEdit)sender;
+                var arr=a.EditValue.ToString().Split('×');
+                if (arr.Length == 2)
+                {
+                    a.EditValue = arr[1] + "×" + arr[0];
+                }
+
+            }
+            Console.WriteLine(sender);
         }
     }
 }

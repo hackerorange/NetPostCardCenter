@@ -191,9 +191,9 @@ namespace PostCardCenter.myController
             {
 //                if (CropBox == Rectangle.Empty) return Size.Empty;
                 if (ProductSize.Width - Margin.Horizontal <= 0 || ProductSize.Height - Margin.Vertical <= 0)
-                    return Size.Empty;
-                var tmpPicturePrintAreaSize = new Size(ProductSize.Width - Margin.Horizontal,
-                    ProductSize.Height - Margin.Vertical);
+                    return System.Drawing.Size.Empty;
+                var tmpPicturePrintAreaSize = new System.Drawing.Size((int)(ProductSize.Width - Margin.Horizontal),
+(int)(ProductSize.Height - Margin.Vertical));
                 if (Math.Abs(Scale) > 0.0001)
                 {
                     //如果按比例之前比较方，高度不变，宽度缩小
@@ -394,7 +394,7 @@ namespace PostCardCenter.myController
                         Scale = 1;
                     }
 
-                    ProductSize = new Size(envelopeInfo.productWidth, envelopeInfo.productHeight);
+                    ProductSize = new System.Drawing.Size(envelopeInfo.productWidth, envelopeInfo.productHeight);
                     CropInfo = tmpPostCard.cropInfo;
                     RefreshPostCard();
                     _treeListNode.SetValue("status", tmpPostCard.processStatus);

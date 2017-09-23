@@ -3,21 +3,29 @@
 namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class ProductSize
+    public class PostSize
     {
         /// <summary>
         /// 成品尺寸名称
         /// </summary>
-        public string name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 成品尺寸宽度
         /// </summary>
-        public int productWidth { get; set; }
+        public int Width { get; set; }
 
         /// <summary>
         /// 成品尺寸高度
         /// </summary>
-        public int productHeight { get; set; }
+        public int Height { get; set; }
+
+
+        /// <summary>
+        /// 获取显示文本
+        /// </summary>
+        public override string ToString (){
+            return Width.ToString() + "×" + Height.ToString();
+        }
     }
 }

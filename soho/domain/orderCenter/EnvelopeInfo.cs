@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace soho.domain.orderCenter
@@ -6,26 +7,27 @@ namespace soho.domain.orderCenter
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class EnvelopeInfo
     {
-        public string envelopeId { get; set; }
-
-        public string taobaoId { get; set; }
-
-        public DateTime createDate { get; set; }
-
-        public string processorName { get; set; }
-
-        public string processStatus { get; set; }
-
-        public string processStatusCode { get; set; }
-
-        public string productHeight { get; set; }
-
-        public string productWidth { get; set; }
-
-        public bool urgent { get; set; }
-
-        public string paperType { get; set; }
-
-        public string orderId { get; set; }
+        [JsonProperty("envelopeId")]
+        public string EnvelopeId { get; set; }
+        [JsonProperty("taobaoId")]
+        public string TaobaoId { get; set; }
+        [JsonProperty("createDate")]
+        public DateTime CreateDate { get; set; }
+        [JsonProperty("processorName")]
+        public string ProcessorName { get; set; }
+        [JsonProperty("processStatus")]
+        public string ProcessStatus { get; set; }
+        [JsonProperty("processStatusCode")]
+        public string ProcessStatusCode { get; set; }
+        [JsonProperty("productHeight")]
+        public string ProductHeight { get; set; }
+        [JsonProperty("productWidth")]
+        public string ProductWidth { get; set; }
+        [JsonProperty("urgent")]
+        public bool Urgent { get; set; }
+        [JsonProperty("paperType")]
+        public string PaperType { get; set; }
+        [JsonProperty("orderId")]
+        public string OrderId { get; set; }
     }
 }
