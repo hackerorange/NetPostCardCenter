@@ -49,11 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="request\order\OrderPostRequest.cs" />
     <Compile Include="response\BodyResponse.cs" />
+    <Compile Include="response\order\OrderCenterResponse.cs" />
     <Compile Include="response\Page.cs" />
+    <Compile Include="response\system\BackStyleResponse.cs" />
+    <Compile Include="response\system\FrontStyleResponse.cs" />
+    <Compile Include="response\system\PostCardSizeResponse.cs" />
+    <Compile Include="sdk\WebServiceInvoker.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -61,6 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Spring.Rest.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

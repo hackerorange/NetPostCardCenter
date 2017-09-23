@@ -10,6 +10,7 @@ using DevExpress.XtraTreeList.Nodes;
 using PostCardCenter.myController;
 using soho.domain;
 using soho.webservice;
+using postCardCenterSdk.sdk;
 
 namespace PostCardCenter.form.postCard
 {
@@ -51,7 +52,7 @@ namespace PostCardCenter.form.postCard
                             var card = postCard;
                             listNode.SetValue("status", "下载中");
 
-                            SohoInvoker.DownLoadFile(postCard.fileId, false, fileInfo =>
+                            WebServiceInvoker.DownLoadFileByFileId(postCard.fileId, success:fileInfo =>
                             {
                                 card.fileInfo = fileInfo;
                                 if (tmpPostCard.cropInfo == null)

@@ -8,6 +8,9 @@ using DevExpress.XtraEditors;
 using PostCardCenter.helper;
 using soho.domain;
 using soho.webservice;
+using postCardCenterSdk.sdk;
+using postCardCenterSdk.request.order;
+using soho.helper;
 
 namespace PostCardCenter.form
 {
@@ -170,10 +173,9 @@ namespace PostCardCenter.form
         {
             orderList.ForEach(order =>
             {
-                SohoInvoker.SubmitPostCardList(order, response =>
+                WebServiceInvoker.SubmitPostCardList(order.PrepareSubmitRequest(), response =>
                 {
                     //如果操作成功，移除此项目
-                    if (!response) return;
                     orderList.Remove(order);
                     if (orderList.Count == 0)
                     {

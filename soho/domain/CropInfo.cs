@@ -114,5 +114,17 @@ namespace soho.domain
             if (tmpCropInfo.heightScale != heightScale) return false;
             return true;
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1796389260;
+            hashCode = hashCode * -1521134295 + leftScale.GetHashCode();
+            hashCode = hashCode * -1521134295 + topScale.GetHashCode();
+            hashCode = hashCode * -1521134295 + widthScale.GetHashCode();
+            hashCode = hashCode * -1521134295 + heightScale.GetHashCode();
+            hashCode = hashCode * -1521134295 + rotation.GetHashCode();
+            hashCode = hashCode * -1521134295 + isEmpty.GetHashCode();
+            return hashCode;
+        }
     }
 }

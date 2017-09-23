@@ -1,7 +1,10 @@
 ﻿
 
+using postCardCenterSdk.sdk;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace soho.helper
 {
@@ -49,5 +52,22 @@ namespace soho.helper
                 return null;
             }
         }  
+
+
+        public static bool IsImage(this FileInfo fileInfo)
+        {
+            try
+            {
+                Image image = Image.FromFile(fileInfo.FullName);
+                if (image != null)
+                {
+                    return true;
+                }               
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return WebServiceInvoker.IsImageFile(fileInfo.getMd5());
+        }
     }
 }

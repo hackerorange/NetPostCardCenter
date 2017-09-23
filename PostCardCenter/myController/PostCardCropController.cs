@@ -16,6 +16,7 @@ using DevExpress.XtraTreeList.Nodes;
 using soho.domain;
 using soho.helper;
 using soho.webservice;
+using postCardCenterSdk.sdk;
 
 namespace PostCardCenter.myController
 {
@@ -354,6 +355,7 @@ namespace PostCardCenter.myController
                     //如果没有找到postCard对象，直接返回
                     if (tmpPostCard == null) return;
                     PostCardId = tmpPostCard.postCardId;
+                    download:
                     try
                     {
                         Image = Image.FromFile(tmpPostCard.fileInfo.FullName);
@@ -366,7 +368,9 @@ namespace PostCardCenter.myController
                             {
                                 tmpPostCard.fileInfo.Delete();
                                 XtraMessageBox.Show("发生异常，图片读取失败，正在重新获取图片");
-                                SohoInvoker.DownLoadFile(tmpPostCard.fileId, false, null);
+                                WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.fileId,success:success=> {                                    
+                                    Image = Image.FromFile(tmpPostCard.fileInfo.FullName);
+                                });
                             }
                         }
                         catch

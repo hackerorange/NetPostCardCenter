@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using soho.domain;
 using soho.webservice;
+using postCardCenterSdk.sdk;
 
 namespace PostCardCenter.myController
 {
@@ -78,24 +79,16 @@ namespace PostCardCenter.myController
                     XtraMessageBox.Show("此集合没有成品，请稍后重试");
                     return;
                 }
-                SohoInvoker.DownLoadFile(productFileId, true, fileInfo =>
+                if (File.Exists(saveFileDialog.FileName))
                 {
-                    if (File.Exists(saveFileDialog.FileName))
-                    {
-                        File.Delete(saveFileDialog.FileName);
-                    }
-                    fileInfo.MoveTo(saveFileDialog.FileName);
-                    if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel,
-                            MessageBoxIcon.Question) != DialogResult.OK) return;
-                    var p = new Process
-                    {
-                        StartInfo =
-                        {
-                            FileName = "explorer.exe",
-                            Arguments = fileInfo.FullName
-                        }
-                    };
-                    p.Start();
+                    File.Delete(saveFileDialog.FileName);
+                }
+                FileInfo fileInfo= new FileInfo(saveFileDialog.FileName);
+
+                WebServiceInvoker.DownLoadFileByFileId(productFileId, fileInfo, success:downloadFileInfo =>
+                {                       
+                    if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+                    Process.Start("explorer.exe", downloadFileInfo.FullName);
                 });
             });
         }

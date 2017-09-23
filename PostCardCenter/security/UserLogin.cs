@@ -12,6 +12,7 @@ using Spring.Http;
 using Spring.Http.Converters;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
+using postCardCenterSdk.sdk;
 
 namespace PostCardCenter.security
 {
@@ -54,9 +55,10 @@ namespace PostCardCenter.security
                     else
                     {
                         if (resp.Response.code == 200)
-                        {
+                        {                            
                             Security.AccountSessionInfo = resp.Response.body;
                             Security.TokenId = Security.AccountSessionInfo.tokenId;
+                            WebServiceInvoker.Token = Security.AccountSessionInfo.tokenId;
                             DialogResult = DialogResult.OK;
                         }
                         else

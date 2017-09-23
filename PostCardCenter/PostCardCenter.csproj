@@ -250,6 +250,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
+      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
+      <Name>postCardCenterSdk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\soho\soho.csproj">
       <Project>{1f086fc8-76bf-4345-b62a-5f90d381eb6a}</Project>
       <Name>soho</Name>

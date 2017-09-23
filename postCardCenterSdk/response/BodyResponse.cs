@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace postCardCenterSdk.response
 {
 
-    public class BodyResponse<T>
+    public  class BodyResponse<T>
     {
         [JsonProperty("code")]
         public int Code { get; set; }

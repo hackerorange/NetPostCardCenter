@@ -14,6 +14,7 @@ using soho.domain;
 using soho.helper;
 using soho.webservice;
 using DevExpress.XtraGrid.Views.Grid;
+using postCardCenterSdk.sdk;
 
 namespace PostCardCenter.form
 {
@@ -26,16 +27,52 @@ namespace PostCardCenter.form
         public EnvelopeInfoForm()
         {
             InitializeComponent();
-            var productSizeList = SohoInvoker.GetProductSizeTemplateList();
-            gridControl1.DataSource = productSizeList;
-            PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource =
-                SohoInvoker.GetFrontStyleTemplateList();
+            //异步获取产品尺寸
+            WebServiceInvoker.GetProductSizeTemplateList(success: response =>
+            {
+                List<PostSize> postSize = new List<PostSize>();
 
-            SohoInvoker.GetBackStyleTemplateList(
-                success =>
+
+                response.ForEach(postCard =>
                 {
-                    postCardBackStyleGridLookUpEdit.DataSource = envelopeBackStyle.Properties.DataSource = success;
-                }, errorMessage => { XtraMessageBox.Show(errorMessage); });
+                    postSize.Add(new PostSize()
+                    {
+                        Name = postCard.Name,
+                        Height=postCard.Height,
+                        Width=postCard.Width
+                    });
+                });
+
+                gridControl1.DataSource = postSize;
+            });
+            //异步获取正面样式
+            WebServiceInvoker.GetFrontStyleTemplateList(success: response =>
+            {
+                List<String> frontStyles = new List<String>();
+                //获取正面集合，暂时只是字符串
+                response.ForEach(frontStyle =>
+                {
+                    frontStyles.Add(frontStyle.Name);
+                });
+                PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource = frontStyles;
+            });
+            //异步获取反面样式列表
+            WebServiceInvoker.GetBackStyleTemplateList(success =>
+            {
+                List<BackStyleInfo> backStyleInfos = new List<BackStyleInfo>();
+                success.ForEach(ba =>
+                {
+                    backStyleInfos.Add(new BackStyleInfo()
+                    {
+                        name=ba.Name,
+                        fileId=ba.FileId
+                    });
+                });
+                postCardBackStyleGridLookUpEdit.DataSource = envelopeBackStyle.Properties.DataSource = backStyleInfos;
+            }, errorMessage => 
+            {
+                XtraMessageBox.Show(errorMessage);
+            });
         }
 
         public EnvelopeInfoForm(Order order, Envelope envelope) : this()
@@ -64,7 +101,7 @@ namespace PostCardCenter.form
             _directoryInfo = directoryInfo;
         }
 
-        
+
         public Envelope envelope { get; set; }
         public Order order { get; set; }
 
@@ -131,7 +168,7 @@ namespace PostCardCenter.form
 
         private void envelopePostCardCopyEdit_EditValueChanged(object sender, EventArgs e)
         {
-            envelope.postCards.ForEach(postCard => postCard.copy = (int) envelopePostCardCopyEdit.Value);
+            envelope.postCards.ForEach(postCard => postCard.copy = (int)envelopePostCardCopyEdit.Value);
         }
 
         private void postCardCountEdit_EditValueChanged(object sender, EventArgs e)
@@ -141,7 +178,7 @@ namespace PostCardCenter.form
                 XtraMessageBox.Show("请删除明信片列表中的非图片条目，如果文件识别判断错误，请手工修改文件后，点击刷新按钮重新加载");
                 return;
             }
-            var count = (int) postCardCountEdit.Value;
+            var count = (int)postCardCountEdit.Value;
             var copy = count / envelope.postCards.Count;
             var tmpCopy = count % envelope.postCards.Count;
             for (var i = 0; i < envelope.postCards.Count; i++)
@@ -232,7 +269,7 @@ namespace PostCardCenter.form
             //获取文件MD5
             var md5 = backFileInfo.getMd5();
             //上传文件
-            SohoInvoker.Upload(backFileInfo, res =>
+            backFileInfo.Upload(res =>
             {
                 focusedValue.backFileInfo = backFileInfo;
                 focusedValue.backFileId = md5;
@@ -269,7 +306,7 @@ namespace PostCardCenter.form
                 //获取文件MD5
                 var md5 = backFileInfo.getMd5();
                 //上传文件
-                SohoInvoker.Upload(backFileInfo, resp =>
+                backFileInfo.Upload(resp =>
                 {
                     envelope.backStyle = "自定义";
                     foreach (var envelopePostCard in envelope.postCards)
@@ -334,16 +371,16 @@ namespace PostCardCenter.form
             Console.WriteLine(postCards.Count);
             var postCard = postCards.Dequeue();
             var md5 = postCard.fileInfo.getMd5();
-            
+
             postCard.fileUploadStat = "正在上传";
             envelopeDetailGridView.Update();
             gridView1.RefreshData();
 
-            SohoInvoker.Upload(postCard.fileInfo, result =>
+            postCard.fileInfo.Upload(result =>
             {
                 if (result)
                 {
-                    postCard.isImage = SohoInvoker.IsImageFile(md5);
+                    postCard.isImage = postCard.fileInfo.IsImage();
                     postCard.fileId = md5;
                     postCard.fileName = postCard.fileInfo.Name;
                     postCard.fileUploadStat = "已上传";
@@ -369,7 +406,7 @@ namespace PostCardCenter.form
         private void popupContainerEdit1_EditValueChanged(object sender, EventArgs e)
         {
             var a = envelopeProductSize.EditValue.ToString().Split('×');
-            var b=a.Length;
+            var b = a.Length;
             if (b == 2)
             {
                 if (envelope != null)
@@ -383,8 +420,8 @@ namespace PostCardCenter.form
 
         private void gridView14_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            var b=(GridView)sender;
-            PostSize size =(PostSize) b.GetFocusedRow();
+            var b = (GridView)sender;
+            PostSize size = (PostSize)b.GetFocusedRow();
             if (size == null)
             {
                 return;
@@ -406,9 +443,9 @@ namespace PostCardCenter.form
                 return;
             }
 
-            var values=buttonEdit.EditValue.ToString().Split('×');
-            envelope.PaperSize.Width= int.Parse(values[0]);            
-            envelope.PaperSize.Height= int.Parse(values[1]);
+            var values = buttonEdit.EditValue.ToString().Split('×');
+            envelope.PaperSize.Width = int.Parse(values[0]);
+            envelope.PaperSize.Height = int.Parse(values[1]);
         }
 
         private void buttonEdit1_Properties_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -416,7 +453,7 @@ namespace PostCardCenter.form
             if (e.Button.Index == 0)
             {
                 var a = (ButtonEdit)sender;
-                var arr=a.EditValue.ToString().Split('×');
+                var arr = a.EditValue.ToString().Split('×');
                 if (arr.Length == 2)
                 {
                     a.EditValue = arr[1] + "×" + arr[0];

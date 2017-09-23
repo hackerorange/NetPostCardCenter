@@ -64,8 +64,10 @@
     <Compile Include="domain\PostCard.cs" />
     <Compile Include="domain\PostCardStyle.cs" />
     <Compile Include="domain\ProductSize.cs" />
+    <Compile Include="helper\FileHelper.cs" />
     <Compile Include="helper\ImageHelper.cs" />
     <Compile Include="helper\Md5Helper.cs" />
+    <Compile Include="helper\OrderHelper.cs" />
     <Compile Include="helper\RequestUtils.cs" />
     <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -78,7 +80,6 @@
     <Compile Include="webservice\PostCardInvoker.cs" />
     <Compile Include="webservice\EnvelopeInvoker.cs" />
     <Compile Include="webservice\OrderCenterInvoker.cs" />
-    <Compile Include="webservice\SohoInvoker.cs" />
     <Compile Include="web\webServicePath.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +108,12 @@
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
     <Folder Include="test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
+      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
+      <Name>postCardCenterSdk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

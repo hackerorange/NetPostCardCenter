@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -7,15 +8,13 @@ namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Envelope
-
-
-
     {
-
-
         public Envelope(){
             PaperSize = new PostSize();
+            postCards = new List<PostCard>();
         }
+       
+
         /// <summary>
         /// 明信片订单ID
         /// </summary>
@@ -29,7 +28,7 @@ namespace soho.domain
         /// <summary>
         /// 纸张类型
         /// </summary>
-        [JSONField]
+
         public string paperName { get; set; }
 
 
