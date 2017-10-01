@@ -4,15 +4,16 @@ using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using soho.domain;
-using soho.webservice;
 using postCardCenterSdk.sdk;
+using soho.translator;
+using soho.translator.response;
 
 namespace PostCardCenter.myController
 {
     public partial class EnvelopeInfoController : UserControl
     {
-        private Envelope _envelope;
-
+        private EnvelopeInfo _envelope;
+              
         public EnvelopeInfoController()
         {
             InitializeComponent();
@@ -33,12 +34,12 @@ namespace PostCardCenter.myController
         public void RefreshEnvelopeInfo()
         {
             if (string.IsNullOrEmpty(_envelopeId)) return;
-            EnvelopeInvoker.GetEnvelopeInfoById(_envelopeId, result =>
+            WebServiceInvoker.GetEnvelopeInfoById(_envelopeId, result =>
             {
-                _envelope = result;
-                if (!string.IsNullOrEmpty(_envelope.productFileId))
+                _envelope = result.TranslateToEnvelope();
+                if (!string.IsNullOrEmpty(_envelope.ProductFileId))
                 {
-                    downloadProductFile.Tag = _envelope.productFileId;
+                    downloadProductFile.Tag = _envelope.ProductFileId;
                     downloadProductFile.Enabled = true;
                 }
                 else
@@ -46,23 +47,22 @@ namespace PostCardCenter.myController
                     downloadProductFile.Tag = null;
                     downloadProductFile.Enabled = false;
                 }
-                OrderCenterInvoker.GetOrderInfo(_envelope.orderId,
-                    orderInfo => { customerName.Text = orderInfo.taobaoId; },
+                WebServiceInvoker.GetOrderInfo(_envelope.OrderId,
+                    orderInfo => { customerName.Text = orderInfo.TaobaoId; },
                     message => { XtraMessageBox.Show(message); });
-                paperName.Text = _envelope.paperName;
-                productWidth.Text = _envelope.productWidth.ToString();
-                productHeight.Text = _envelope.productHeight.ToString();
+                paperName.Text = _envelope.PaperName;
+                productWidth.Text = _envelope.ProductSize.Width.ToString();
+                productHeight.Text = _envelope.ProductSize.Height.ToString();
             });
         }
-
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             if (_envelope == null) return;
             var saveFileDialog = new SaveFileDialog
             {
-                FileName = customerName.Text + "_" + _envelope.paperName + "_正面" + _envelope.frontStyle + "_反面" +
-                           _envelope.backStyle,
+                FileName = customerName.Text + "_" + _envelope.PaperName + "_正面" + _envelope.FrontStyle + "_反面" +
+                           _envelope.BackStyle,
                 Filter = @"PDF文件|*.pdf",
                 OverwritePrompt = true,
                 DefaultExt = "pdf",
@@ -70,10 +70,10 @@ namespace PostCardCenter.myController
 
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
-            EnvelopeInvoker.GetEnvelopeInfoById(_envelopeId, result =>
+            WebServiceInvoker.GetEnvelopeInfoById(_envelopeId, tmpresult =>
             {
-                var productFileId = result.productFileId;
-
+                var result = tmpresult.TranslateToEnvelope();
+                var productFileId = result.ProductFileId;
                 if (string.IsNullOrEmpty(productFileId))
                 {
                     XtraMessageBox.Show("此集合没有成品，请稍后重试");
@@ -89,6 +89,9 @@ namespace PostCardCenter.myController
                 {                       
                     if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                     Process.Start("explorer.exe", downloadFileInfo.FullName);
+                },process:proce=> {
+                    progressBarControl1.EditValue = proce;
+                    Application.DoEvents();
                 });
             });
         }
@@ -97,7 +100,7 @@ namespace PostCardCenter.myController
         {
             if (_envelope != null)
             {
-                EnvelopeId = _envelope.envelopeId;
+                EnvelopeId = _envelope.Id;
             }
         }
     }

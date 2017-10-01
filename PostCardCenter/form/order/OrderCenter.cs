@@ -5,7 +5,9 @@ using DevExpress.XtraEditors;
 using PostCardCenter.form.postCard;
 using soho.domain;
 using soho.domain.orderCenter;
-using soho.webservice;
+using postCardCenterSdk.sdk;
+using soho.translator;
+using soho.translator.response;
 
 namespace PostCardCenter.form.order
 {
@@ -33,9 +35,14 @@ namespace PostCardCenter.form.order
 
         public void RefreshOrderList()
         {
-            OrderCenterInvoker.GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
+            WebServiceInvoker.GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
             {
-                orderDetailGridController.DataSource = orders;
+                var orderInfoList = new List<OrderInfo>();
+                orders.ForEach(orderResponse =>
+                {
+                    orderInfoList.Add(orderResponse.TranslateToOrderInfo());
+                });
+                orderDetailGridController.DataSource = orderInfoList;
                 orderDetailGridController.RefreshDataSource();
             }, message => { XtraMessageBox.Show(message); });
         }
@@ -43,10 +50,10 @@ namespace PostCardCenter.form.order
 
         private void orderDetailGridController_DoubleClick(object sender, EventArgs e)
         {
-            var focusedRow = gridView1.GetFocusedRow() as Order;
+            var focusedRow = gridView1.GetFocusedRow() as OrderInfo;
             if (focusedRow != null)
             {
-                var xtraForm1 = new PostCardCropForm(focusedRow.orderId);
+                var xtraForm1 = new PostCardCropForm(focusedRow.Id);
                 xtraForm1.Show();
             }
         }
@@ -133,8 +140,8 @@ namespace PostCardCenter.form.order
             if (orderInfo != null)
             {
                 //如果当前没有处理人，我来处理可用
-                barButtonItem1.Enabled = string.IsNullOrEmpty(orderInfo.processorName);
-                barButtonItem4.Enabled = !"已完成".Equals(orderInfo.processStatus);
+                barButtonItem1.Enabled = string.IsNullOrEmpty(orderInfo.ProcessorName);
+                barButtonItem4.Enabled = !"已完成".Equals(orderInfo.ProcessStatus);
             }
         }
 
@@ -142,7 +149,7 @@ namespace PostCardCenter.form.order
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
-            OrderCenterInvoker.ChangeOrderProcessor(orderInfo.orderId, order => { RefreshOrderList(); },
+            WebServiceInvoker.ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); },
                 message => { XtraMessageBox.Show(message); });
         }
 
@@ -150,7 +157,7 @@ namespace PostCardCenter.form.order
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
-            OrderCenterInvoker.ChangeOrderStatus(orderInfo.orderId, "4", re => { RefreshOrderList(); });
+            WebServiceInvoker.ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
         }
     }
 

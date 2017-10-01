@@ -1,59 +1,40 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using soho.helper;
+using postCardCenterSdk.request.postCard;
+using soho.translator;
 
 namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class CropInfo : ICloneable
+    public class CropInfo 
     {
         /// <summary>
         /// 裁切框X坐标相对于图像尺寸的比例
         /// </summary>
-        public double leftScale { get; set; }
+        public double LeftScale { get; set; }
 
         /// <summary>
         /// 裁切框Y坐标相对于图像尺寸的比例
         /// </summary>
-        public double topScale { get; set; }
+        public double TopScale { get; set; }
 
         /// <summary>
         /// 裁切框宽度相对于图像尺寸的比例
         /// </summary>
-        public double widthScale { get; set; }
+        public double WidthScale { get; set; }
 
         /// <summary>
         /// 裁切框高度相对于图像尺寸的比例
         /// </summary>
-        public double heightScale { get; set; }
+        public double HeightScale { get; set; }
 
         /// <summary>
         /// 旋转的角度
         /// </summary>
-        public int rotation { get; set; }
+        public int Rotation { get; set; }
 
-        /// <summary>
-        /// 根据已有裁切信息，创建CropInfo对象
-        /// </summary>
-        /// <param name="leftScale">X坐标所在位置比例</param>
-        /// <param name="topScale">Y坐标所在位置比例</param>
-        /// <param name="widthScale">宽度相对于图片比例</param>
-        /// <param name="heightScale">高度相对于图片比例</param>
-        /// <param name="rotation">图片的旋转角度</param>
-        public CropInfo(double leftScale, double topScale, double widthScale, double heightScale, int rotation)
-        {
-            this.leftScale = leftScale;
-            this.topScale = topScale;
-            this.widthScale = widthScale;
-            this.heightScale = heightScale;
-            this.rotation = rotation;
-        }
-
-        public CropInfo()
-        {
-        }
-
+        public CropInfo() { }
 
         /// <summary>
         /// 根据图像尺寸和图像区域尺寸，生成裁切信息
@@ -70,61 +51,37 @@ namespace soho.domain
             if ((imageSizeRatio - 1) * (pictureAreaSizeRatio - 1) < 0 && rotate)
             {
                 imageSizeRatio = 1 / imageSize.Ratio();
-                rotation = 270;
+                Rotation = 270;
             }
            
             //如果图片的长宽比比区域的长宽比大（宽度相同，高度有剩余）
             if (imageSizeRatio > pictureAreaSizeRatio)
             {
-                heightScale = pictureAreaSizeRatio / imageSizeRatio;
-                widthScale = 1;
+                HeightScale = pictureAreaSizeRatio / imageSizeRatio;
+                WidthScale = 1;
             }
             else
             {
-                heightScale = 1;
-                widthScale = imageSizeRatio / pictureAreaSizeRatio;
+                HeightScale = 1;
+                WidthScale = imageSizeRatio / pictureAreaSizeRatio;
             }
         }
 
-        public bool isEmpty
+        public bool IsEmpty
         {
-            get { return Math.Abs(heightScale * widthScale) < 0.001; }
+            get { return Math.Abs(HeightScale * WidthScale) < 0.001; }
         }
 
-        public object Clone()
+        public CropInfo CloneNew()
         {
             return new CropInfo
             {
-                heightScale = heightScale,
-                widthScale = widthScale,
-                leftScale = leftScale,
-                topScale = topScale,
-                rotation = rotation
+                HeightScale = HeightScale,
+                WidthScale = WidthScale,
+                LeftScale = LeftScale,
+                TopScale = TopScale,
+                Rotation = Rotation
             };
-        }
-
-        
-       public override bool Equals(object obj)
-        {
-            var tmpCropInfo =obj as CropInfo;
-            if (tmpCropInfo.rotation != rotation) return false;
-            if (tmpCropInfo.leftScale != leftScale) return false;
-            if (tmpCropInfo.topScale != topScale) return false;
-            if (tmpCropInfo.widthScale != widthScale) return false;
-            if (tmpCropInfo.heightScale != heightScale) return false;
-            return true;
-        }
-
-        public override int GetHashCode()
-        {
-            var hashCode = 1796389260;
-            hashCode = hashCode * -1521134295 + leftScale.GetHashCode();
-            hashCode = hashCode * -1521134295 + topScale.GetHashCode();
-            hashCode = hashCode * -1521134295 + widthScale.GetHashCode();
-            hashCode = hashCode * -1521134295 + heightScale.GetHashCode();
-            hashCode = hashCode * -1521134295 + rotation.GetHashCode();
-            hashCode = hashCode * -1521134295 + isEmpty.GetHashCode();
-            return hashCode;
         }
     }
 }

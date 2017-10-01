@@ -44,11 +44,11 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.taobaiId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.isUrgent = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.OrderStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.OrderFolderPath = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.OrderStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.OrderFolderPath = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -77,7 +77,7 @@
             this.ribbon.RibbonCaptionAlignment = DevExpress.XtraBars.Ribbon.RibbonCaptionAlignment.Center;
             this.ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbon.Size = new System.Drawing.Size(986, 125);
+            this.ribbon.Size = new System.Drawing.Size(1190, 129);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // CreateOrderFromDesktopButtonItem
@@ -147,33 +147,38 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 668);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 676);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(986, 31);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1190, 23);
             // 
             // layoutControl1
             // 
             this.layoutControl1.AllowCustomization = false;
             this.layoutControl1.Controls.Add(this.gridControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 125);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 129);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(986, 543);
+            this.layoutControl1.Size = new System.Drawing.Size(1190, 547);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gridControl1
             // 
+            this.gridControl1.AllowDrop = true;
             this.gridControl1.Location = new System.Drawing.Point(24, 43);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbon;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(938, 476);
+            this.gridControl1.Size = new System.Drawing.Size(1142, 480);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
+            this.gridControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControl1_DragDrop);
+            this.gridControl1.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControl1_DragEnter);
+            this.gridControl1.DragOver += new System.Windows.Forms.DragEventHandler(this.gridControl1_DragOver);
             // 
             // gridView1
             // 
@@ -182,6 +187,7 @@
             this.isUrgent,
             this.OrderStatus,
             this.OrderFolderPath});
+            this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(1085, 615, 210, 179);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
@@ -194,12 +200,13 @@
             this.taobaiId.AppearanceHeader.Options.UseTextOptions = true;
             this.taobaiId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.taobaiId.Caption = "客户淘宝ID";
-            this.taobaiId.FieldName = "taobaoId";
+            this.taobaiId.FieldName = "TaobaoId";
             this.taobaiId.MaxWidth = 200;
             this.taobaiId.MinWidth = 200;
             this.taobaiId.Name = "taobaiId";
             this.taobaiId.OptionsColumn.AllowEdit = false;
             this.taobaiId.OptionsColumn.AllowFocus = false;
+            this.taobaiId.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.taobaiId.OptionsColumn.ReadOnly = true;
             this.taobaiId.Visible = true;
             this.taobaiId.VisibleIndex = 1;
@@ -210,45 +217,17 @@
             this.isUrgent.AppearanceHeader.Options.UseTextOptions = true;
             this.isUrgent.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.isUrgent.Caption = "是否加急";
-            this.isUrgent.FieldName = "urgent";
+            this.isUrgent.FieldName = "Urgent";
             this.isUrgent.MaxWidth = 100;
             this.isUrgent.MinWidth = 100;
             this.isUrgent.Name = "isUrgent";
             this.isUrgent.OptionsColumn.AllowEdit = false;
             this.isUrgent.OptionsColumn.AllowFocus = false;
+            this.isUrgent.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.isUrgent.OptionsColumn.ReadOnly = true;
             this.isUrgent.Visible = true;
             this.isUrgent.VisibleIndex = 3;
             this.isUrgent.Width = 100;
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup2});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(986, 543);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(966, 523);
-            this.layoutControlGroup2.Text = "待提交订单列表";
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.gridControl1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(942, 480);
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextVisible = false;
             // 
             // OrderStatus
             // 
@@ -259,6 +238,9 @@
             this.OrderStatus.MaxWidth = 100;
             this.OrderStatus.MinWidth = 100;
             this.OrderStatus.Name = "OrderStatus";
+            this.OrderStatus.OptionsColumn.AllowEdit = false;
+            this.OrderStatus.OptionsColumn.AllowFocus = false;
+            this.OrderStatus.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.OrderStatus.Visible = true;
             this.OrderStatus.VisibleIndex = 2;
             this.OrderStatus.Width = 100;
@@ -268,23 +250,56 @@
             this.OrderFolderPath.AppearanceHeader.Options.UseTextOptions = true;
             this.OrderFolderPath.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.OrderFolderPath.Caption = "文件夹路径";
+            this.OrderFolderPath.FieldName = "Directory.FullName";
             this.OrderFolderPath.Name = "OrderFolderPath";
+            this.OrderFolderPath.OptionsColumn.AllowEdit = false;
+            this.OrderFolderPath.OptionsColumn.AllowFocus = false;
+            this.OrderFolderPath.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.OrderFolderPath.Visible = true;
             this.OrderFolderPath.VisibleIndex = 0;
-            this.OrderFolderPath.Width = 390;
+            this.OrderFolderPath.Width = 719;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroup2});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1190, 547);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1170, 527);
+            this.layoutControlGroup2.Text = "待提交订单列表";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.gridControl1;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(1146, 484);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
             // 
             // OrderBatchCreateForm
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 699);
+            this.ClientSize = new System.Drawing.Size(1190, 699);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1004, 700);
-            this.MinimumSize = new System.Drawing.Size(996, 700);
+            this.MaximumSize = new System.Drawing.Size(1204, 700);
+            this.MinimumSize = new System.Drawing.Size(1204, 700);
             this.Name = "OrderBatchCreateForm";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

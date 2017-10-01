@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace soho.helper
+namespace soho.translator
 {
     public static class ImageHelper
     {
@@ -67,7 +67,7 @@ namespace soho.helper
             {
                 Console.WriteLine(ex.Message);
             }
-            return WebServiceInvoker.IsImageFile(fileInfo.getMd5());
+            return WebServiceInvoker.IsImageFile(fileInfo.GetMd5());
         }
     }
 }

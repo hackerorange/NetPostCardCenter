@@ -7,36 +7,40 @@ using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using PostCardCenter.helper;
 using soho.domain;
-using soho.webservice;
 using postCardCenterSdk.sdk;
 using postCardCenterSdk.request.order;
+using soho.translator;
+using soho.translator.response;
+using soho.translator.request;
 using soho.helper;
 
 namespace PostCardCenter.form
 {
     public partial class OrderBatchCreateForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public List<Order> orderList { get; set; }
+        public List<OrderInfo> OrderList { get; set; }
 
 
         public OrderBatchCreateForm()
         {
             InitializeComponent();
+            OrderList = new List<OrderInfo>();
+            gridControl1.DataSource = OrderList;
         }
 
         private void CreateOrderFromDesktopButtonItem_ItemClick(object sender, ItemClickEventArgs e)
         {
             var directoryInfo =
                 new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
-            if (orderList == null)
+            if (OrderList == null)
             {
-                orderList = new List<Order>();
+                OrderList = new List<OrderInfo>();
             }
             var directoryInfos = directoryInfo.GetDirectories(@"*[订单]*");
             foreach (var directory in directoryInfo.GetDirectories(@"*[订单]*"))
             {
                 //如果订单列表中已经存在此订单，则跳过
-                if (orderList.Exists(order => order.directory.FullName.Equals(directory.FullName)))
+                if (OrderList.Exists(order => order.Directory.FullName.Equals(directory.FullName)))
                     continue;
                 var match = new Regex("\\[TID=(.+)]|\\[tid=(.+)]").Match(directory.FullName);
                 var customerTaobaoId = "";
@@ -45,40 +49,44 @@ namespace PostCardCenter.form
                     customerTaobaoId = match.Result("$1");
                 }
 
-//                string pattern = "--(.+?)--";
-//                string replacement = "$1";
-//                string input = "He said--decisively--that the time--whatever time it was--had come.";
-//                foreach (Match match in Regex.Matches(input, pattern))
-//                {
-//                    string result = match.Result(replacement);
-//                    Console.WriteLine(result);
-//                }
+                //                string pattern = "--(.+?)--";
+                //                string replacement = "$1";
+                //                string input = "He said--decisively--that the time--whatever time it was--had come.";
+                //                foreach (Match match in Regex.Matches(input, pattern))
+                //                {
+                //                    string result = match.Result(replacement);
+                //                    Console.WriteLine(result);
+                //                }
 
 
-                var tmpOrder = new Order
+                var tmpOrder = new OrderInfo
                 {
-                    directory = directory,
-                    urgent = directory.FullName.Contains("[加急]"),
-                    taobaoId = customerTaobaoId
+                    Directory = directory,
+                    Urgent = directory.FullName.Contains("[加急]"),
+                    TaobaoId = customerTaobaoId,
+                    OrderStatus = "待设置"
                 };
-                foreach (var info in directory.GetDirectories())
-                {
-                    var envelopeInfoForm = new EnvelopeInfoForm(info)
-                    {
-                        order = tmpOrder
-                    };
-                    if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
-                    if (tmpOrder.envelopes == null)
-                    {
-                        tmpOrder.envelopes = new List<Envelope>();
-                    }
-                    tmpOrder.envelopes.Add(envelopeInfoForm.envelope);
-                }
-                if (tmpOrder.hasEnvelope())
-                {
-                    orderList.Add(tmpOrder);
-                }
-                gridControl1.DataSource = orderList;
+                OrderList.Add(tmpOrder);
+
+
+                //foreach (var info in directory.GetDirectories())
+                //{
+                //    var envelopeInfoForm = new EnvelopeInfoForm(info)
+                //    {
+                //        order = tmpOrder
+                //    };
+                //    if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
+                //    if (tmpOrder.Envelopes == null)
+                //    {
+                //        tmpOrder.Envelopes = new List<EnvelopeInfo>();
+                //    }
+                //    tmpOrder.Envelopes.Add(envelopeInfoForm.envelope);
+                //}
+                //if (tmpOrder.hasEnvelope())
+                //{
+                //    orderList.Add(tmpOrder);
+                //}
+                gridControl1.DataSource = OrderList;
                 gridControl1.RefreshDataSource();
             }
         }
@@ -89,27 +97,78 @@ namespace PostCardCenter.form
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
-            var a = gridView1.GetFocusedRow() as Order;
+            var a = gridView1.GetFocusedRow() as OrderInfo;
             if (a == null) return;
-            if (gridView1.GetFocusedRow() == null) return;
-            if (a.hasEnvelope())
+            switch (a.OrderStatus)
             {
-                if (a.envelopes.Count == 1)
-                {
-                    new EnvelopeInfoForm(a, a.envelopes[0]).ShowDialog(this);
-                }
-                else
-                {
-                    new OrderInfoForm(a).ShowDialog();
-                }
+                case "待设置":
+
+                    foreach (var info in a.Directory.GetDirectories())
+                    {
+                        var envelopeInfoForm = new EnvelopeInfoForm(info)
+                        {
+                            order = a
+                        };
+                        if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
+                        if (a.Envelopes == null)
+                        {
+                            a.Envelopes = new List<EnvelopeInfo>();
+                        }
+                        a.Envelopes.Add(envelopeInfoForm.envelope);
+                    }
+                    if (a.hasEnvelope())
+                    {
+                        if (XtraMessageBox.Show("明信片是否已经设置完成", "设置完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            a.OrderStatus = "待提交";
+                            //上传此明信片订单下的所有明信片图像
+                            a.Envelopes.ForEach(EnvelopeInfo =>
+                            {
+                                if (EnvelopeInfo.PostCardCount > 0)
+                                {
+                                    EnvelopeInfo.PostCards.ForEach(PostCardInfo =>
+                                    {
+                                        PostCardInfo.FileInfo.Upload(
+                                            success: result =>
+                                            {
+                                                PostCardInfo.FileId = result;
+                                                PostCardInfo.FileName = PostCardInfo.FileInfo.Name;
+                                            }, 
+                                            failure: message => 
+                                            {
+                                                XtraMessageBox.Show("文件上传失败！" + message);
+                                            });
+                                    });
+                                }
+                            });
+                        }
+                    }
+                    break;
+                case "待提交":
+                    if (a.hasEnvelope())
+                    {
+                        if (a.Envelopes.Count == 1)
+                        {
+                            new EnvelopeInfoForm(a, a.Envelopes[0]).ShowDialog(this);
+                        }
+                        else
+                        {
+                            new OrderInfoForm(a).ShowDialog();
+                        }
+                    }
+                    break;
+                default:
+                    XtraMessageBox.Show("明信片集合设置错误");
+                    break;
             }
         }
 
+
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var order = gridView1.GetFocusedRow() as Order;
+            var order = gridView1.GetFocusedRow() as OrderInfo;
             if (order == null) return;
-            orderList.Remove(order);
+            OrderList.Remove(order);
             gridControl1.RefreshDataSource();
         }
 
@@ -128,7 +187,7 @@ namespace PostCardCenter.form
             foreach (var directory in directoryInfo.GetDirectories(@"*[订单]*"))
             {
                 //如果订单列表中已经存在此订单，则跳过
-                if (orderList != null && orderList.Exists(order => order.directory.FullName.Equals(directory.FullName)))
+                if (OrderList != null && OrderList.Exists(order => order.Directory.FullName.Equals(directory.FullName)))
                     continue;
                 var match = new Regex(@"\[TID=.+]").Match(directoryInfo.FullName);
                 var customerTaobaoId = "";
@@ -137,11 +196,11 @@ namespace PostCardCenter.form
                     customerTaobaoId = match.Result("$1");
                 }
 
-                var tmpOrder = new Order
+                var tmpOrder = new OrderInfo
                 {
-                    directory = directory,
-                    urgent = directory.FullName.Contains("[加急]"),
-                    taobaoId = customerTaobaoId
+                    Directory = directory,
+                    Urgent = directory.FullName.Contains("[加急]"),
+                    TaobaoId = customerTaobaoId
                 };
                 foreach (var info in directory.GetDirectories())
                 {
@@ -150,39 +209,94 @@ namespace PostCardCenter.form
                         order = tmpOrder
                     };
                     if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
-                    if (tmpOrder.envelopes == null)
+                    if (tmpOrder.Envelopes == null)
                     {
-                        tmpOrder.envelopes = new List<Envelope>();
+                        tmpOrder.Envelopes = new List<EnvelopeInfo>();
                     }
-                    tmpOrder.envelopes.Add(envelopeInfoForm.envelope);
+                    tmpOrder.Envelopes.Add(envelopeInfoForm.envelope);
                 }
                 if (tmpOrder.hasEnvelope())
                 {
-                    if (orderList == null)
+                    if (OrderList == null)
                     {
-                        orderList = new List<Order>();
+                        OrderList = new List<OrderInfo>();
                     }
-                    orderList.Add(tmpOrder);
+                    OrderList.Add(tmpOrder);
                 }
-                gridControl1.DataSource = orderList;
+                gridControl1.DataSource = OrderList;
                 gridControl1.RefreshDataSource();
             }
         }
 
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
-            orderList.ForEach(order =>
+            OrderList.ForEach(order =>
             {
-                WebServiceInvoker.SubmitPostCardList(order.PrepareSubmitRequest(), response =>
+                if (order.OrderStatus != "待提交") return;
+                if (order.IsAllPostCardUpload())
                 {
-                    //如果操作成功，移除此项目
-                    orderList.Remove(order);
-                    if (orderList.Count == 0)
+                    order.OrderStatus = "正在提交";
+                    WebServiceInvoker.SubmitPostCardList(order.PrepareSubmitRequest(), response =>
                     {
-                        DialogResult = DialogResult.OK;
-                    }
-                }, error => { XtraMessageBox.Show(error); });
+                        //如果操作成功，移除此项目
+                        //OrderList.Remove(order);
+                        order.OrderStatus = "订单已提交";
+                        //if (OrderList.Count == 0)
+                        //{
+                        //    DialogResult = DialogResult.OK;
+                        //}
+                    }, error =>
+                    {
+                        XtraMessageBox.Show("订单提交失败");
+                        order.OrderStatus = "待提交";
+                    });
+                }
+                else
+                {
+                    XtraMessageBox.Show("订单" + order.TaobaoId + "存在没有上传的图片");
+                }
             });
+        }
+
+        private void gridControl1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void gridControl1_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void gridControl1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                String[] files = (String[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (String s in files)
+                {
+                    //如果存在此路径
+                    if (Directory.Exists(s))
+                    {
+                        var OrderInfo = new OrderInfo
+                        {
+                            Directory = new DirectoryInfo(s),
+                            ProcessStatus = "待设置"
+                        };
+                        OrderList.Add(OrderInfo);
+                    }
+                    XtraMessageBox.Show(s);
+                }
+            }
+
+            gridControl1.RefreshDataSource();
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

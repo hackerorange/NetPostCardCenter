@@ -11,8 +11,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraLayout.Utils;
 using PostCardCenter.Properties;
 using soho.domain;
-using soho.helper;
-using soho.webservice;
+using soho.translator;
 using DevExpress.XtraGrid.Views.Grid;
 using postCardCenterSdk.sdk;
 
@@ -64,8 +63,8 @@ namespace PostCardCenter.form
                 {
                     backStyleInfos.Add(new BackStyleInfo()
                     {
-                        name=ba.Name,
-                        fileId=ba.FileId
+                        Name=ba.Name,
+                        FileId=ba.FileId
                     });
                 });
                 postCardBackStyleGridLookUpEdit.DataSource = envelopeBackStyle.Properties.DataSource = backStyleInfos;
@@ -75,35 +74,31 @@ namespace PostCardCenter.form
             });
         }
 
-        public EnvelopeInfoForm(Order order, Envelope envelope) : this()
+        public EnvelopeInfoForm(OrderInfo order, EnvelopeInfo envelope) : this()
         {
             this.envelope = envelope;
             this.order = order;
-            envelopeDetailGridView.DataSource = envelope.postCards;
+            envelopeDetailGridView.DataSource = envelope.PostCards;
 
-            envelopePaperName.EditValue = envelope.paperName;
-            envelopeFrontStyle.EditValue = envelope.frontStyle;
-            envelopeFrontStyle.Text = envelope.frontStyle;
-            orderTaobaoIdTextEdit.Text = order.taobaoId;
-            orderUrgentCheckEdit.Checked = order.urgent;
-            envelopeDoubleSideCheckBox.Checked = envelope.doubleSide;
-
-            PostSize postSize = new PostSize
-            {
-                Width = envelope.productWidth,
-                Height = envelope.productHeight
-            };
-            envelopeProductSize.EditValue = postSize.ToString();
+            envelopePaperName.EditValue = envelope.PaperName;
+            envelopeFrontStyle.EditValue = envelope.FrontStyle;
+            envelopeFrontStyle.Text = envelope.FrontStyle;
+            orderTaobaoIdTextEdit.Text = order.TaobaoId;
+            orderUrgentCheckEdit.Checked = order.Urgent;
+            envelopeDoubleSideCheckBox.Checked = envelope.DoubleSide;
+            envelopeProductSize.EditValue = envelope.ProductSize.ToString();
+            textEdit1.Text = envelope.Directory.FullName;
         }
 
         public EnvelopeInfoForm(DirectoryInfo directoryInfo) : this()
         {
             _directoryInfo = directoryInfo;
+            textEdit1.Text = _directoryInfo.FullName;
         }
 
 
-        public Envelope envelope { get; set; }
-        public Order order { get; set; }
+        public EnvelopeInfo envelope { get; set; }
+        public OrderInfo order { get; set; }
 
         private void EnvelopeInfoForm_Load(object sender, EventArgs e)
         {
@@ -112,6 +107,7 @@ namespace PostCardCenter.form
                 DialogResult = DialogResult.Abort;
                 Close();
             }
+            
 
             dxValidationProvider1.SetValidationRule(envelopePaperName,
                 new ConditionValidationRule
@@ -135,7 +131,7 @@ namespace PostCardCenter.form
 
         private void envelopePaperName_EditValueChanged(object sender, EventArgs e)
         {
-            envelope.paperName = envelopePaperName.Text;
+            envelope.PaperName = envelopePaperName.Text;
         }
 
         private void envelopeBackStyle_EditValueChanged(object sender, EventArgs e)
@@ -146,13 +142,13 @@ namespace PostCardCenter.form
 
             if (envelopeBackStyle.Focused)
             {
-                envelope.backStyle = backStyleInfo.name;
-                foreach (var envelopePostCard in envelope.postCards)
+                envelope.BackStyle = backStyleInfo.Name;
+                foreach (var envelopePostCard in envelope.PostCards)
                 {
-                    envelopePostCard.backStyle = backStyleInfo.name;
-                    envelopePostCard.backFileInfo = null;
-                    envelopePostCard.backFileId = backStyleInfo.fileId;
-                    envelopePostCard.customerBackStyle = false;
+                    envelopePostCard.BackStyle = backStyleInfo.Name;
+                    envelopePostCard.BackFileInfo = null;
+                    envelopePostCard.BackFileId = backStyleInfo.FileId;
+                    envelopePostCard.CustomerBackStyle = false;
                 }
             }
             gridView1.RefreshData();
@@ -161,34 +157,34 @@ namespace PostCardCenter.form
         private void envelopeFrontStyle_EditValueChanged(object sender, EventArgs e)
         {
             if (envelopeFrontStyle.EditValue == null) return;
-            envelope.frontStyle = envelopeFrontStyle.EditValue as string;
+            envelope.FrontStyle = envelopeFrontStyle.EditValue as string;
             if (envelopeFrontStyle.Focused)
-                envelope.postCards.ForEach(postCard => postCard.frontStyle = envelope.frontStyle);
+                envelope.PostCards.ForEach(postCard => postCard.FrontStyle = envelope.FrontStyle);
         }
 
         private void envelopePostCardCopyEdit_EditValueChanged(object sender, EventArgs e)
         {
-            envelope.postCards.ForEach(postCard => postCard.copy = (int)envelopePostCardCopyEdit.Value);
+            envelope.PostCards.ForEach(postCard => postCard.Copy = (int)envelopePostCardCopyEdit.Value);
         }
 
         private void postCardCountEdit_EditValueChanged(object sender, EventArgs e)
         {
-            if (envelope.postCards.Exists(postCard => !postCard.isImage))
+            if (envelope.PostCards.Exists(postCard => !postCard.IsImage))
             {
                 XtraMessageBox.Show("请删除明信片列表中的非图片条目，如果文件识别判断错误，请手工修改文件后，点击刷新按钮重新加载");
                 return;
             }
             var count = (int)postCardCountEdit.Value;
-            var copy = count / envelope.postCards.Count;
-            var tmpCopy = count % envelope.postCards.Count;
-            for (var i = 0; i < envelope.postCards.Count; i++)
+            var copy = count / envelope.PostCards.Count;
+            var tmpCopy = count % envelope.PostCards.Count;
+            for (var i = 0; i < envelope.PostCards.Count; i++)
             {
                 if (i < tmpCopy)
                 {
-                    envelope.postCards[i].copy = copy + 1;
+                    envelope.PostCards[i].Copy = copy + 1;
                     continue;
                 }
-                envelope.postCards[i].copy = copy;
+                envelope.PostCards[i].Copy = copy;
             }
             envelopeDetailGridView.RefreshDataSource();
         }
@@ -201,38 +197,38 @@ namespace PostCardCenter.form
 
         private void orderTaobaoIdTextEdit_EditValueChanged(object sender, EventArgs e)
         {
-            order.taobaoId = orderTaobaoIdTextEdit.Text;
+            order.TaobaoId = orderTaobaoIdTextEdit.Text;
         }
 
         private void orderUrgentCheckEdit_CheckedChanged(object sender, EventArgs e)
         {
-            order.urgent = orderUrgentCheckEdit.Checked;
+            order.Urgent = orderUrgentCheckEdit.Checked;
         }
 
         private void envelopeDoubleSideCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             layoutControlItem9.Visibility = layoutControlItem37.Visibility =
                 envelopeDoubleSideCheckBox.Checked ? LayoutVisibility.Always : LayoutVisibility.Never;
-            envelope.doubleSide = envelopeDoubleSideCheckBox.Checked;
+            envelope.DoubleSide = envelopeDoubleSideCheckBox.Checked;
         }
 
         private void envelopeSubmit_Click(object sender, EventArgs e)
         {
             if (!dxValidationProvider1.Validate()) return;
-            foreach (var envelopePostCard in envelope.postCards)
+            foreach (var envelopePostCard in envelope.PostCards)
             {
-                if (!envelopePostCard.isImage)
+                if (!envelopePostCard.IsImage)
                 {
                     XtraMessageBox.Show("存在不是图片的明信片，请删除或手动");
                     return;
                 }
-                if (envelopePostCard.frontStyle == null ||
-                    envelope.doubleSide && envelopePostCard.backStyle == null)
+                if (envelopePostCard.FrontStyle == null ||
+                    envelope.DoubleSide && envelopePostCard.BackStyle == null)
                 {
                     XtraMessageBox.Show("存在没有设置正面或反面样式的明信片，请检查");
                     return;
                 }
-                if (envelopePostCard.copy > 0) continue;
+                if (envelopePostCard.Copy > 0) continue;
                 XtraMessageBox.Show("存在打印张数不正确的明信片，请检查");
                 return;
             }
@@ -242,9 +238,9 @@ namespace PostCardCenter.form
         private void removeSelectedPostCardButton_Click(object sender,
             ButtonPressedEventArgs e)
         {
-            var postCard = gridView1.GetFocusedRow() as PostCard;
+            var postCard = gridView1.GetFocusedRow() as PostCardInfo;
             if (postCard != null)
-                envelope.postCards.Remove(postCard);
+                envelope.PostCards.Remove(postCard);
         }
 
         private void repositoryItemButtonEdit3_ButtonClick(object sender,
@@ -252,14 +248,14 @@ namespace PostCardCenter.form
         {
             var tmpSender = sender as ButtonEdit;
 
-            var focusedValue = gridView1.GetFocusedRow() as PostCard;
+            var focusedValue = gridView1.GetFocusedRow() as PostCardInfo;
             //如果当前没有选中的行,或者选中行的文件没有父目录（一般不会），直接返回
-            if (focusedValue == null || focusedValue.fileInfo.Directory == null) return;
+            if (focusedValue == null || focusedValue.FileInfo.Directory == null) return;
 
             //打开文件选择框
             var openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = focusedValue.fileInfo.Directory.FullName
+                InitialDirectory = focusedValue.FileInfo.Directory.FullName
             };
             //如果取消选择文件，直接返回
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
@@ -267,13 +263,13 @@ namespace PostCardCenter.form
             //要上传的文件信息
             var backFileInfo = new FileInfo(openFileDialog.FileName);
             //获取文件MD5
-            var md5 = backFileInfo.getMd5();
+            //var md5 = backFileInfo.GetMd5();
             //上传文件
-            backFileInfo.Upload(res =>
+            backFileInfo.Upload(fileId =>
             {
-                focusedValue.backFileInfo = backFileInfo;
-                focusedValue.backFileId = md5;
-                focusedValue.customerBackStyle = true;
+                focusedValue.BackFileInfo = backFileInfo;
+                focusedValue.BackFileId = fileId;
+                focusedValue.CustomerBackStyle = true;
                 gridView1.RefreshData();
                 //问价
                 if (tmpSender != null) tmpSender.Text = backFileInfo.Name;
@@ -285,12 +281,12 @@ namespace PostCardCenter.form
             var b = sender as GridLookUpEdit;
             if (b == null) return;
             var styleInfo = b.GetSelectedDataRow() as BackStyleInfo;
-            var focusedRow = gridView1.GetFocusedRow() as PostCard;
+            var focusedRow = gridView1.GetFocusedRow() as PostCardInfo;
             if (focusedRow == null) return;
-            focusedRow.customerBackStyle = false;
-            if (styleInfo != null) focusedRow.backFileId = styleInfo.fileId;
-            envelope.backStyle = focusedRow.backStyle;
-            focusedRow.backFileInfo = null;
+            focusedRow.CustomerBackStyle = false;
+            if (styleInfo != null) focusedRow.BackFileId = styleInfo.FileId;
+            envelope.BackStyle = focusedRow.BackStyle;
+            focusedRow.BackFileInfo = null;
             gridView1.RefreshData();
         }
 
@@ -298,23 +294,23 @@ namespace PostCardCenter.form
         {
             var openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = envelope.directory.FullName
+                InitialDirectory = envelope.Directory.FullName
             }; //如果选择了文件
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var backFileInfo = new FileInfo(openFileDialog.FileName);
                 //获取文件MD5
-                var md5 = backFileInfo.getMd5();
+                // var md5 = backFileInfo.GetMd5();
                 //上传文件
-                backFileInfo.Upload(resp =>
+                backFileInfo.Upload(fileId =>
                 {
-                    envelope.backStyle = "自定义";
-                    foreach (var envelopePostCard in envelope.postCards)
+                    envelope.BackStyle = "自定义";
+                    foreach (var envelopePostCard in envelope.PostCards)
                     {
-                        envelopePostCard.backStyle = "自定义";
-                        envelopePostCard.backFileInfo = backFileInfo;
-                        envelopePostCard.backFileId = md5;
-                        envelopePostCard.customerBackStyle = true;
+                        envelopePostCard.BackStyle = "自定义";
+                        envelopePostCard.BackFileInfo = backFileInfo;
+                        envelopePostCard.BackFileId = fileId;
+                        envelopePostCard.CustomerBackStyle = true;
                     }
                     gridView1.RefreshData();
                 }, error => { XtraMessageBox.Show(error); });
@@ -328,80 +324,77 @@ namespace PostCardCenter.form
             {
                 var fileInfos = _directoryInfo.GetFiles();
                 if (fileInfos.Length == 0) return;
-                envelope = new Envelope
+                envelope = new EnvelopeInfo
                 {
-                    directory = _directoryInfo,
-                    postCards = new List<PostCard>(),
-                    productHeight = 100,
-                    productWidth = 148,
-                    doubleSide = !_directoryInfo.FullName.Contains("[单面]")
+                    Directory = _directoryInfo,
+                    PostCards = new List<PostCardInfo>(),
+                    ProductSize=new PostSize
+                    {
+                        Width=148,
+                        Height=100
+                    },
+                    DoubleSide = !_directoryInfo.FullName.Contains("[单面]")
                 };
-
-
-                Text = envelope.directory.FullName;
-                envelopeDetailGridView.DataSource = envelope.postCards;
-                var postCards = new Queue<PostCard>();
+                Text = envelope.Directory.FullName;
+                envelopeDetailGridView.DataSource = envelope.PostCards;
+                var postCards = new Queue<PostCardInfo>();
 
                 foreach (var fileInfo in fileInfos)
                 {
                     if (Resources.notPostCardFileExtension.Contains(fileInfo.Extension.ToLower()))
                         continue;
-                    var postCard = new PostCard
+                    if (fileInfo.CheckIsImage())
                     {
-                        copy = 1,
-                        fileInfo = fileInfo,
-                        isImage = true
-                    };
-                    //向明信片集合中添加此文件
-
-
-                    envelope.postCards.Add(postCard);
-                    //如果文件不存在服务器
-
-                    //上传文件
-                    postCards.Enqueue(postCard);
+                        var postCard = new PostCardInfo
+                        {
+                            Copy = 1,
+                            FileInfo = fileInfo,
+                            IsImage = true
+                        };
+                        envelope.PostCards.Add(postCard);
+                        Application.DoEvents();
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show(fileInfo.FullName + "不是一个有效的图像，请确认！");
+                    }
                 }
-                tmpUpload(postCards);
             }
         }
 
-        public void tmpUpload(Queue<PostCard> postCards)
-        {
-            if (postCards.Count <= 0) return;
-            Console.WriteLine(postCards.Count);
-            var postCard = postCards.Dequeue();
-            var md5 = postCard.fileInfo.getMd5();
+        //public void tmpUpload(Queue<PostCardInfo> postCards)
+        //{
+        //    if (postCards.Count <= 0) return;
+        //    Console.WriteLine(postCards.Count);
+        //    var postCard = postCards.Dequeue();
+        //    var md5 = postCard.FileInfo.GetMd5();
 
-            postCard.fileUploadStat = "正在上传";
-            envelopeDetailGridView.Update();
-            gridView1.RefreshData();
+        //    postCard.FileUploadStat = "正在上传";
+        //    envelopeDetailGridView.Update();
+        //    gridView1.RefreshData();
 
-            postCard.fileInfo.Upload(result =>
-            {
-                if (result)
-                {
-                    postCard.isImage = postCard.fileInfo.IsImage();
-                    postCard.fileId = md5;
-                    postCard.fileName = postCard.fileInfo.Name;
-                    postCard.fileUploadStat = "已上传";
-                    gridView1.RefreshData();
-                }
-                else
-                {
-                    postCard.fileUploadStat = "上传失败";
-                }
-                envelopeDetailGridView.Update();
-                Application.DoEvents();
-                tmpUpload(postCards);
-            }, failure: error =>
-            {
-                postCard.fileUploadStat = "上传失败";
-                gridView1.RefreshData();
-                envelopeDetailGridView.Update();
-                Application.DoEvents();
-                tmpUpload(postCards);
-            });
-        }
+        //    postCard.FileInfo.Upload(result =>
+        //    {
+        //        if (String.result)
+        //        {
+        //            postCard.IsImage = postCard.FileInfo.IsImage();
+        //            postCard.FileId = md5;
+        //            postCard.FileName = postCard.FileInfo.Name;
+        //            postCard.FileUploadStat = "已上传";
+        //            gridView1.RefreshData();
+        //        }
+        //        else
+        //        {
+        //            postCard.FileUploadStat = "上传失败";
+        //        }
+        //        envelopeDetailGridView.Update();
+        //    }, failure: error =>
+        //    {
+        //        postCard.FileUploadStat = "上传失败";
+        //        gridView1.RefreshData();
+        //        envelopeDetailGridView.Update();
+        //    });
+        //}
 
         private void popupContainerEdit1_EditValueChanged(object sender, EventArgs e)
         {
@@ -411,9 +404,11 @@ namespace PostCardCenter.form
             {
                 if (envelope != null)
                 {
-                    envelope.productWidth = int.Parse(a[0]);
-                    envelope.productHeight = int.Parse(a[1]);
-                    XtraMessageBox.Show("明信片集合尺寸更新");
+                    envelope.ProductSize = new PostSize
+                    {
+                        Width = int.Parse(a[0]),
+                        Height = int.Parse(a[1])
+                    };
                 }
             }
         }

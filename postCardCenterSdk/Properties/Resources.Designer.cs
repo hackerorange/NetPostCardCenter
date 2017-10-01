@@ -61,7 +61,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://www.hackerorange.com:8083/rest/system/backStyle 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/system/backStyle 的本地化字符串。
         /// </summary>
         public static string backStyleListUrl {
             get {
@@ -70,7 +70,43 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://www.hackerorange.com:8089/file 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/postCardOrder/changeProcessor 的本地化字符串。
+        /// </summary>
+        public static string changeOrderProcessorUrl {
+            get {
+                return ResourceManager.GetString("changeOrderProcessorUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/postCardOrder/changeStatus 的本地化字符串。
+        /// </summary>
+        public static string changeOrderStatusUrl {
+            get {
+                return ResourceManager.GetString("changeOrderStatusUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/PostCardController/submitPostCardCropInfo 的本地化字符串。
+        /// </summary>
+        public static string cropInfoSubmitUrl {
+            get {
+                return ResourceManager.GetString("cropInfoSubmitUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/EnvelopeController/info?envelopeId={envelopeId} 的本地化字符串。
+        /// </summary>
+        public static string envelopeInfoUrl {
+            get {
+                return ResourceManager.GetString("envelopeInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8089/file 的本地化字符串。
         /// </summary>
         public static string fileDownloadUrl {
             get {
@@ -79,7 +115,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://www.hackerorange.com:8089/file 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8089/file 的本地化字符串。
         /// </summary>
         public static string fileInfoUrl {
             get {
@@ -88,7 +124,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://www.hackerorange.com:8089/file/upload 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8089/file/upload 的本地化字符串。
         /// </summary>
         public static string fileUploadUrl {
             get {
@@ -97,7 +133,52 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://www.hackerorange.com:8083/rest/orderController/submit 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/EnvelopeController/{orderId} 的本地化字符串。
+        /// </summary>
+        public static string getAllEnvelopeByOrderIdUrl {
+            get {
+                return ResourceManager.GetString("getAllEnvelopeByOrderIdUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/postCardOrder/all 的本地化字符串。
+        /// </summary>
+        public static string getAllOrderUrl {
+            get {
+                return ResourceManager.GetString("getAllOrderUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/postCardOrder/info?orderId={orderId} 的本地化字符串。
+        /// </summary>
+        public static string getOrderInfoUrl {
+            get {
+                return ResourceManager.GetString("getOrderInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/PostCardController/{envelopeId} 的本地化字符串。
+        /// </summary>
+        public static string getPostCardByEnvelopeIdUrl {
+            get {
+                return ResourceManager.GetString("getPostCardByEnvelopeIdUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/security/login 的本地化字符串。
+        /// </summary>
+        public static string loginUrl {
+            get {
+                return ResourceManager.GetString("loginUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/postCardOrder/submit 的本地化字符串。
         /// </summary>
         public static string postCardSubmitUrl {
             get {

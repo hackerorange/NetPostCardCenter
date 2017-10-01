@@ -1,19 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace soho.domain
 {
-    public class OrderInfo : Order
+    public class OrderInfo
     {
-        public string processorName { get; set; }
-        public string processStatus { get; set; }
 
+        public OrderInfo()
+        {
+            //初始化明信片集合
+            Envelopes = new List<EnvelopeInfo>();
+        }
 
-        public DateTime createDate { get; set; }
+        /// <summary>
+        /// 处理者名称
+        /// </summary>
+        public string ProcessorName { get; set; }
 
-        public string paperType { get; set; }
+        /// <summary>
+        /// 处理状态
+        /// </summary>
+        public string ProcessStatus { get; set; }
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public string OrderStatus { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateDate { get; set; }
+
+        /// <summary>
+        /// 纸张类型
+        /// </summary>
+        public string PaperType { get; set; }
+
+        /// <summary>
+        /// 明信片集合
+        /// </summary>
+        public List<EnvelopeInfo> Envelopes { get; set; }
+
+        /// <summary>
+        /// 订单ID
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 淘宝ID
+        /// </summary>
+        public string TaobaoId { get; set; }
+
+        /// <summary>
+        /// 是否加急
+        /// </summary>
+        public bool Urgent { get; set; }
+
+        /// <summary>
+        /// 此订单所处文件夹
+        /// </summary>
+        public DirectoryInfo Directory { get; set; }
     }
 }

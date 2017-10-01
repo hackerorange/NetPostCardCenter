@@ -3,85 +3,98 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using postCardCenterSdk.response.envelope;
 
 namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class Envelope
+    public class EnvelopeInfo
     {
-        public Envelope(){
-            PaperSize = new PostSize();
-            postCards = new List<PostCard>();
-        }
-       
+//        private EnvelopeResponse tmpEnvelope;
 
-        /// <summary>
-        /// 明信片订单ID
-        /// </summary>
-        public string orderId { get; set; }
+        public EnvelopeInfo(){
+            PaperSize = new PostSize();
+            PostCards = new List<PostCardInfo>();
+        }
+
+        public EnvelopeInfo(EnvelopeResponse tmpEnvelope)
+        {
+            if (tmpEnvelope != null)
+            {
+
+            }
+            
+        }
+
 
         /// <summary>
         /// 明信片集合ID
         /// </summary>
-        public string envelopeId { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 纸张类型
         /// </summary>
 
-        public string paperName { get; set; }
+        public string PaperName { get; set; }
 
 
         /// <summary>
         /// 是否为双面
         /// </summary>
-        public bool doubleSide { get; set; }
+        public bool DoubleSide { get; set; }
 
         /// <summary>
         /// 明信片板式ID
         /// </summary>
-        public string frontStyle { get; set; }
+        public string FrontStyle { get; set; }
 
         /// <summary>
         /// 明信片反面样式
         /// </summary>
-        public string backStyle { get; set; }
+        public string BackStyle { get; set; }
+        /// <summary>
+        /// 成品尺寸
+        /// </summary>
+        public PostSize ProductSize { get; set; }
 
         /// <summary>
-        /// 成品宽度
+        /// 打印时使用的纸张尺寸
         /// </summary>
-        public int productWidth { get; set; }
-
-        /// <summary>
-        /// 成品高度
-        /// </summary>
-        public int productHeight { get; set; }
+        public PostSize PaperSize { get; set; }
 
         /// <summary>
         /// 此明信片集合在本地的路径
         /// </summary>
-        public DirectoryInfo directory { get; set; }
+        public DirectoryInfo Directory { get; set; }
 
-        public List<PostCard> postCards { get; set; }
+        /// <summary>
+        /// 此订单下的所有订单列表
+        /// </summary>
+        public List<PostCardInfo> PostCards { get; set; }
 
-
-        public PostSize PaperSize { get; set; }
-
-
-
-        public int postCardCount
+        /// <summary>
+        /// 明信片总张数
+        /// </summary>
+        public int PostCardCount
         {
             get
             {
-                if (postCards == null || postCards.Count == 0)
+                if (PostCards == null || PostCards.Count == 0)
                 {
                     return 0;
                 }
-                return postCards.Sum(postCard => postCard.copy);
+                return PostCards.Sum(postCard => postCard.Copy);
             }
         }
 
-        public string productFileId { get; set; }
-        
+        /// <summary>
+        /// 成品文件ID
+        /// </summary>
+        public string ProductFileId { get; set; }
+        /// <summary>
+        /// 此明信片所属的订单ID
+        /// </summary>
+        public string OrderId { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace postCardCenterSdk.response
         /// <summary>
         /// 详细数据
         /// </summary>
-        [JsonProperty("detail")]        
+        [JsonProperty("page")]        
         public List<T> Detail { get; set; }
         /// <summary>
         /// 每一页的大小

@@ -6,9 +6,9 @@ namespace PostCardCenter.helper
 {
     public static class Helper
     {
-        public static bool hasEnvelope(this Order order)
+        public static bool hasEnvelope(this OrderInfo order)
         {
-            return order.envelopes != null && order.envelopes.Count > 0;
+            return order.Envelopes != null && order.Envelopes.Count > 0;
         }
 
         public static double getRatio(this System.Drawing.Size size)

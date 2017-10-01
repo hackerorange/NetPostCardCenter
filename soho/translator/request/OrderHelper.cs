@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace soho.helper
+namespace soho.translator.request
 {
     public static class OrderHelper
     {
@@ -15,33 +15,33 @@ namespace soho.helper
         /// </summary>
         /// <param name="order">Order对象</param>
         /// <returns>提交订单请求对象</returns>
-        public static OrderSubmitRequest PrepareSubmitRequest(this Order order)
+        public static OrderSubmitRequest PrepareSubmitRequest(this OrderInfo order)
         {
             OrderSubmitRequest orderSubmit = new OrderSubmitRequest
             {
-                TaobaoId = order.taobaoId,
-                Urgent = order.urgent ? 1 : 0,
+                TaobaoId = order.TaobaoId,
+                Urgent = order.Urgent ? 1 : 0,
                 EnvelopeList = new List<OrderSubmitEnvelope>()
             };
-            order.envelopes.ForEach(Envelope =>
+            order.Envelopes.ForEach(Envelope =>
             {
                 orderSubmit.EnvelopeList.Add(Envelope.PrepareSubmitEnvelope());
             });
             return orderSubmit;
         }
 
-        public static OrderSubmitEnvelope PrepareSubmitEnvelope(this Envelope envelope)
+        public static OrderSubmitEnvelope PrepareSubmitEnvelope(this EnvelopeInfo envelope)
         {
             OrderSubmitEnvelope orderSubmitEnvelope = new OrderSubmitEnvelope
             {
-                BackStyle = envelope.backStyle,
-                FrontStyle = envelope.frontStyle,
-                DoubleSide = envelope.doubleSide,
-                PaperName = envelope.paperName,
-                ProductHeight = envelope.productHeight,
-                ProductWidth = envelope.productWidth
+                BackStyle = envelope.BackStyle,
+                FrontStyle = envelope.FrontStyle,
+                DoubleSide = envelope.DoubleSide,
+                PaperName = envelope.PaperName,
+                ProductHeight = envelope.ProductSize.Height,
+                ProductWidth = envelope.ProductSize.Width
             };
-            envelope.postCards.ForEach(postCard =>
+            envelope.PostCards.ForEach(postCard =>
             {
                 orderSubmitEnvelope.PostCards.Add(postCard.PrepareSubmitPostCard());
             });
@@ -49,17 +49,17 @@ namespace soho.helper
         }
 
 
-        public static OrderSubmitPostCard PrepareSubmitPostCard(this PostCard postCard)
+        public static OrderSubmitPostCard PrepareSubmitPostCard(this PostCardInfo postCard)
         {
             OrderSubmitPostCard orderSubmitPostCard = new OrderSubmitPostCard()
             {
-                BackFileId = postCard.backFileId,
-                BackStyle = postCard.backStyle,
-                Copy = postCard.copy,
-                FileId = postCard.fileId,
-                FileName = postCard.fileName,
-                FrontStyle = postCard.frontStyle,
-                CustomerBackStyle = postCard.customerBackStyle
+                BackFileId = postCard.BackFileId,
+                BackStyle = postCard.BackStyle,
+                Copy = postCard.Copy,
+                FileId = postCard.FileId,
+                FileName = postCard.FileName,
+                FrontStyle = postCard.FrontStyle,
+                CustomerBackStyle = postCard.CustomerBackStyle
             };
             return orderSubmitPostCard;
         }

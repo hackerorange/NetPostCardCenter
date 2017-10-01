@@ -58,16 +58,21 @@
     <Compile Include="domain\BackStyleInfo.cs" />
     <Compile Include="domain\CropInfo.cs" />
     <Compile Include="domain\Envelope.cs" />
-    <Compile Include="domain\Order.cs" />
     <Compile Include="domain\orderCenter\EnvelopeInfo.cs" />
     <Compile Include="domain\OrderInfo.cs" />
     <Compile Include="domain\PostCard.cs" />
     <Compile Include="domain\PostCardStyle.cs" />
     <Compile Include="domain\ProductSize.cs" />
+    <Compile Include="helper\OrderInfoHelper.cs" />
+    <Compile Include="security\AccountSessionInfo.cs" />
+    <Compile Include="thread\MultiThreadUpload.cs" />
+    <Compile Include="translator\request\CropInfoTranslator.cs" />
+    <Compile Include="translator\response\EnvelopeHelper.cs" />
     <Compile Include="helper\FileHelper.cs" />
     <Compile Include="helper\ImageHelper.cs" />
     <Compile Include="helper\Md5Helper.cs" />
-    <Compile Include="helper\OrderHelper.cs" />
+    <Compile Include="translator\request\OrderHelper.cs" />
+    <Compile Include="translator\response\PostCardHelper.cs" />
     <Compile Include="helper\RequestUtils.cs" />
     <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -75,23 +80,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="security\AccountSessionInfo.cs" />
     <Compile Include="security\Security.cs" />
-    <Compile Include="webservice\PostCardInvoker.cs" />
-    <Compile Include="webservice\EnvelopeInvoker.cs" />
-    <Compile Include="webservice\OrderCenterInvoker.cs" />
+    <Compile Include="translator\response\OrderInfoTranslator.cs" />
     <Compile Include="web\webServicePath.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>webServicePath.resx</DependentUpon>
     </Compile>
-    <Compile Include="web\response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="web\webServicePath.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -107,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
-    <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">

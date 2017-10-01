@@ -9,8 +9,9 @@ using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using PostCardCenter.myController;
 using soho.domain;
-using soho.webservice;
 using postCardCenterSdk.sdk;
+using soho.translator;
+using soho.translator.response;
 
 namespace PostCardCenter.form.postCard
 {
@@ -28,47 +29,56 @@ namespace PostCardCenter.form.postCard
 
         private void postCardCropForm_Load(object sender, EventArgs e)
         {
-            EnvelopeInvoker.GetAllEnvelopeByOrderId(orderId, envelopeList =>
+            WebServiceInvoker.GetAllEnvelopeByOrderId(orderId, envelopeList =>
             {
-                envelopeList.ForEach(envelope =>
+                envelopeList.ForEach(tmpEnvelope =>
                 {
-                    EnvelopeInvoker.GetPostCardByEnvelopeId(envelope.envelopeId, postCards =>
+                    EnvelopeInfo envelope = tmpEnvelope.TranslateToEnvelope();
+                    
+
+                    WebServiceInvoker.GetPostCardByEnvelopeId(envelope.Id, postCards =>
                     {
-                        envelope.postCards = postCards;
+                        envelope.PostCards = new List<PostCardInfo>();
                         var treeListNode = treeList1.Nodes.Add();
                         treeListNode.Tag = envelope;
-                        treeListNode.SetValue("name", "成品尺寸:" + envelope.productWidth + "×" + envelope.productHeight);
-                        if (envelope.postCards == null) return;
-                        foreach (var postCard in envelope.postCards)
+                        treeListNode.SetValue("name", envelope.ProductSize.Name);
+                        
+                        if (postCards==null) return;
+                        foreach (var postCard1 in postCards)
                         {
-                            var tmpPostCard = postCard;
+                            var tmpPostCard = postCard1.TranlateToPostCard();
                             var listNode = treeListNode.Nodes.Add();
-                            listNode.SetValue("name", postCard.fileName);
-                            listNode.Tag = postCard;
+                            listNode.SetValue("name", tmpPostCard.FileName);
+                            listNode.Tag = tmpPostCard;
 
                             listNode.ImageIndex = listNode.SelectImageIndex = 1;
 
 
-                            var card = postCard;
+                            //var card = postCard;
                             listNode.SetValue("status", "下载中");
 
-                            WebServiceInvoker.DownLoadFileByFileId(postCard.fileId, success:fileInfo =>
+                            WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId, success:fileInfo =>
                             {
-                                card.fileInfo = fileInfo;
-                                if (tmpPostCard.cropInfo == null)
+                                tmpPostCard.FileInfo = fileInfo;
+                                if (tmpPostCard.CropInfo == null)
                                 {
                                     needProcess.Add(listNode);
-                                    tmpPostCard.processStatus = "未提交";
+                                    tmpPostCard.ProcessStatus = "未提交";
                                 }
                                 else
                                 {
-                                    tmpPostCard.processStatus = "已提交";
+                                    tmpPostCard.ProcessStatus = "已提交";
                                 }
-                                listNode.SetValue("status", tmpPostCard.processStatus);
+                                listNode.SetValue("status", tmpPostCard.ProcessStatus);
                                 listNode.SetValue("downloadState", true);
                             });
                         }
                         treeListNode.ExpandAll();
+                        if (String.IsNullOrEmpty(envelopeInfoController1.EnvelopeId))
+                        {
+                            envelopeInfoController1.EnvelopeId = envelope.Id;
+                            envelopeInfoController1.RefreshEnvelopeInfo();
+                        }
                     }, message => { XtraMessageBox.Show(message); });
                 });
             });
@@ -76,6 +86,8 @@ namespace PostCardCenter.form.postCard
 
         private void treeList1_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
         {
+            //清理图片
+            cropControllerCrop.ReleaseImage();
             if ("下载中".Equals(e.Node.GetValue("status")))
             {
                 XtraMessageBox.Show("该图片正在下载中,请稍后重试!");
@@ -93,22 +105,22 @@ namespace PostCardCenter.form.postCard
 
 
             //如果是明信片集合
-            if (focusedNodeTag.GetType() == typeof(Envelope))
+            if (focusedNodeTag.GetType() == typeof(EnvelopeInfo))
             {
-                var tmpEnvelope = focusedNodeTag as Envelope;
+                var tmpEnvelope = focusedNodeTag as EnvelopeInfo;
 
                 if (tmpEnvelope != null)
                 {
-                    envelopeInfoController1.EnvelopeId = tmpEnvelope.envelopeId;
+                    envelopeInfoController1.EnvelopeId = tmpEnvelope.Id;
                     envelopeDetailGroup.Visibility = LayoutVisibility.Always;
                     cropControllerCrop.Node = e.Node;
                     cropControllerPreview.Node = e.Node;
                 }
             }
             //如果不是明信片，直接返回
-            if (focusedNodeTag.GetType() != typeof(PostCard)) return;
-            var tmpPostCard = focusedNodeTag as PostCard;
-            if (tmpPostCard != null && tmpPostCard.fileInfo == null)
+            if (focusedNodeTag.GetType() != typeof(PostCardInfo)) return;
+            var tmpPostCard = focusedNodeTag as PostCardInfo;
+            if (tmpPostCard != null && tmpPostCard.FileInfo == null)
             {
                 treeList1.FocusedNode = e.OldNode;
                 return;

@@ -388,7 +388,6 @@
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
             this.gridView1.OptionsDetail.ShowDetailTabs = false;
             this.gridView1.OptionsDetail.ShowEmbeddedDetailIndent = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
@@ -397,7 +396,7 @@
             this.orderCustomerTaobaoIdColum.AppearanceHeader.Options.UseTextOptions = true;
             this.orderCustomerTaobaoIdColum.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderCustomerTaobaoIdColum.Caption = "客户淘宝ID";
-            this.orderCustomerTaobaoIdColum.FieldName = "taobaoId";
+            this.orderCustomerTaobaoIdColum.FieldName = "TaobaoId";
             this.orderCustomerTaobaoIdColum.Name = "orderCustomerTaobaoIdColum";
             this.orderCustomerTaobaoIdColum.OptionsColumn.AllowEdit = false;
             this.orderCustomerTaobaoIdColum.OptionsColumn.AllowFocus = false;
@@ -413,7 +412,7 @@
             this.orderCreateDateColum.Caption = "创建时间";
             this.orderCreateDateColum.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
             this.orderCreateDateColum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.orderCreateDateColum.FieldName = "createDate";
+            this.orderCreateDateColum.FieldName = "CreateDate";
             this.orderCreateDateColum.MaxWidth = 150;
             this.orderCreateDateColum.MinWidth = 150;
             this.orderCreateDateColum.Name = "orderCreateDateColum";
@@ -429,7 +428,7 @@
             this.orderProcessorName.AppearanceHeader.Options.UseTextOptions = true;
             this.orderProcessorName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderProcessorName.Caption = "当前处理";
-            this.orderProcessorName.FieldName = "processorName";
+            this.orderProcessorName.FieldName = "ProcessorName";
             this.orderProcessorName.MaxWidth = 100;
             this.orderProcessorName.MinWidth = 100;
             this.orderProcessorName.Name = "orderProcessorName";
@@ -445,7 +444,7 @@
             this.orderProcessStatus.AppearanceHeader.Options.UseTextOptions = true;
             this.orderProcessStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderProcessStatus.Caption = "处理状态";
-            this.orderProcessStatus.FieldName = "processStatus";
+            this.orderProcessStatus.FieldName = "ProcessStatus";
             this.orderProcessStatus.MaxWidth = 75;
             this.orderProcessStatus.MinWidth = 75;
             this.orderProcessStatus.Name = "orderProcessStatus";
@@ -460,7 +459,7 @@
             this.orderPaperType.AppearanceHeader.Options.UseTextOptions = true;
             this.orderPaperType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderPaperType.Caption = "纸张类型";
-            this.orderPaperType.FieldName = "paperType";
+            this.orderPaperType.FieldName = "PaperType";
             this.orderPaperType.MaxWidth = 200;
             this.orderPaperType.MinWidth = 100;
             this.orderPaperType.Name = "orderPaperType";
@@ -476,7 +475,7 @@
             this.orderUrgent.AppearanceHeader.Options.UseTextOptions = true;
             this.orderUrgent.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderUrgent.Caption = "加急";
-            this.orderUrgent.FieldName = "urgent";
+            this.orderUrgent.FieldName = "Urgent";
             this.orderUrgent.MaxWidth = 50;
             this.orderUrgent.MinWidth = 50;
             this.orderUrgent.Name = "orderUrgent";
@@ -492,7 +491,7 @@
             this.orderId.AppearanceHeader.Options.UseTextOptions = true;
             this.orderId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderId.Caption = "订单ID";
-            this.orderId.FieldName = "orderId";
+            this.orderId.FieldName = "Id";
             this.orderId.MaxWidth = 200;
             this.orderId.MinWidth = 200;
             this.orderId.Name = "orderId";

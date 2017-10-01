@@ -6,15 +6,16 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace soho.helper
+namespace soho.translator
 {
     public static class Md5Helper
     {
-        public static string getMd5(this FileInfo fileInfo)
+        public static string GetMd5(this FileInfo fileInfo)
         {
+            FileStream file = null;
             try
             {
-                var file = new FileStream(fileInfo.FullName, FileMode.Open);
+                file=new FileStream(fileInfo.FullName, FileMode.Open);
                 var md5 = new MD5CryptoServiceProvider();
                 var retVal = md5.ComputeHash(file);
                 file.Close();
@@ -28,6 +29,10 @@ namespace soho.helper
             catch (Exception ex)
             {
                 throw new Exception("GetMD5HashFromFile() fail,error:" + ex.Message);
+            }
+            finally
+            {
+                file.Close();
             }
         }
     }

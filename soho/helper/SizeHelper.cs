@@ -1,7 +1,8 @@
-﻿using System;
+﻿using soho.domain;
+using System;
 using System.Drawing;
 
-namespace soho.helper
+namespace soho.translator
 {
     public static class SizeHelper
     {
@@ -14,7 +15,12 @@ namespace soho.helper
         {
             if (size.Width == 0)
                 throw new Exception("尺寸的宽度不可以为0");
-            return size.Height / (double) size.Width;
+            return size.Height / (double)size.Width;
+        }
+
+        public static Size ToSize(this PostSize postSize){
+            return new Size(postSize.Width, postSize.Height);
+
         }
     }
 }

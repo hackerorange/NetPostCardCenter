@@ -122,15 +122,15 @@
     <comment>获取所有订单信息</comment>
   </data>
   <data name="loginPath" xml:space="preserve">
-    <value>http://localhost:8080/security/login</value>
+    <value>http://192.168.1.136:8080/security/login</value>
     <comment>用户登录接口地址</comment>
   </data>
   <data name="styleListPath" xml:space="preserve">
-    <value>http://localhost:8081/system/styleController/</value>
+    <value>http://192.168.1.136:8081/system/styleController/</value>
     <comment>获取所有样式</comment>
   </data>
   <data name="urlDictionaryUrl" xml:space="preserve">
-    <value>http://localhost:8083/rest/url/get?category={category}&amp;method={method}</value>
+    <value>http://192.168.1.136:8083/rest/url/get?category={category}&amp;method={method}</value>
     <comment>URL资源获取路径</comment>
   </data>
 </root>

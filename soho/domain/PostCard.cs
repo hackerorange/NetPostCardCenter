@@ -6,91 +6,101 @@ using System.Drawing;
 namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class PostCard
+    public class PostCardInfo
     {
         /// <summary>
         /// 明信片ID
         /// </summary>
-        public string postCardId { get; set; }
+        public string PostCardId { get; set; }
 
         /// <summary>
         /// 此文件在文件服务器的ID
         /// </summary>
-        public string fileId { get; set; }
+        public string FileId { get; set; }
 
         /// <summary>
         /// 明信片原始文件信息
         /// </summary>
-        [JsonIgnore]
-        public FileInfo fileInfo { get; set; }
+        public FileInfo FileInfo { get; set; }
 
         /// <summary>
         /// 此张明信片打印的份数
         /// </summary>
-        public int copy { get; set; }
+        public int Copy { get; set; }
 
         /// <summary>
         /// 此张明信片的正面样式
         /// </summary>
-        public string frontStyle { get; set; }
+        public string FrontStyle { get; set; }
 
         /// <summary>
         /// 此张明信片的反面样式
         /// </summary>
-        public string backStyle { get; set; }
+        public string BackStyle { get; set; }
 
         /// <summary>
         /// 文件上传状态，分为：未上传，正在上传，已上传，
         /// </summary>
-        public string fileUploadStat { get; set; }
+        public string FileUploadStat { get; set; }
 
         /// <summary>
         /// 文件是否是图片文件，根据Header请求获取文件信息
         /// </summary>
-        public bool isImage { get; set; }
+        public bool IsImage { get; set; }
 
 
         /// <summary>
         /// 明信片反面是否自定义
         /// </summary>
-        public bool customerBackStyle { get; set; }
+        public bool CustomerBackStyle { get; set; }
 
         /// <summary>
         /// 明信片反面文件信息
         /// </summary>
-        [JsonIgnore]
-        public FileInfo backFileInfo { get; set; }
+        public FileInfo BackFileInfo { get; set; }
 
-        
+        //private Image _image;
 
-        [JsonIgnore] private Image _image;
-
-        [JsonIgnore]
-        public Image imageBefore
-        {
-            get
-            {
-                if (_image == null)
-                {
-                    _image = Image.FromFile(fileInfo.FullName);
-                }
-                return _image;
-            }
-        }
+        //public Image ImageBefore
+        //{
+        //    get
+        //    {
+        //        if (_image == null)
+        //        {
+        //            _image = Image.FromFile(FileInfo.FullName);
+        //        }
+        //        return _image;
+        //    }
+        //}
 
         /// <summary>
         /// 明信片反面文件ID
         /// </summary>
-        public string backFileId { get; set; }
+        public string BackFileId { get; set; }
 
-        public string fileName { get; set; }
+        /// <summary>
+        /// 文件名称
+        /// </summary>
+        public string FileName { get; set; }
 
-        public CropInfo cropInfo { get; set; }
+        /// <summary>
+        /// 裁切信息
+        /// </summary>
+        public CropInfo CropInfo { get; set; }
 
-        public string processorName { get; set; }
+        /// <summary>
+        /// 处理者名称
+        /// </summary>
+        public string ProcessorName { get; set; }
 
-        public string processStatus { get; set; }
+        /// <summary>
+        /// 处理状态
+        /// </summary>
+        public string ProcessStatus { get; set; }
 
-        public string processStatusCode { get; set; }
+        /// <summary>
+        /// 处理状态码
+        /// </summary>
+        public int ProcessStatusCode { get; set; }
     }
 }

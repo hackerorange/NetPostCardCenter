@@ -15,7 +15,7 @@ namespace PostCardCenter.form
 {
     public partial class OrderInfoForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public Order order { get; set; }
+        public OrderInfo order { get; set; }
         private IDictionary<string, string> iDictionay { get; set; }
 
         public OrderInfoForm()
@@ -23,12 +23,12 @@ namespace PostCardCenter.form
             InitializeComponent();
         }
 
-        public OrderInfoForm(Order order) : this()
+        public OrderInfoForm(OrderInfo order) : this()
         {
             this.order = order;
             if (order.hasEnvelope())
             {
-                gridControl1.DataSource = order.envelopes;
+                gridControl1.DataSource = order.Envelopes;
             }
         }
 
@@ -41,17 +41,17 @@ namespace PostCardCenter.form
 
         private void getEnvelopeFromOrderDictionary()
         {
-            if (order == null || order.directory == null) return;
-            var directoryInfos = order.directory.GetDirectories();
+            if (order == null || order.Directory == null) return;
+            var directoryInfos = order.Directory.GetDirectories();
 
             for (var index = 0; index < directoryInfos.Length; index++)
             {
-                var directoryInfo = order.directory.GetDirectories()[index];
-                if (order.envelopes == null)
+                var directoryInfo = order.Directory.GetDirectories()[index];
+                if (order.Envelopes == null)
                 {
-                    order.envelopes = new List<Envelope>();
+                    order.Envelopes = new List<EnvelopeInfo>();
                 } //如果此文件夹已经存在，则不再处理          
-                if (order.envelopes.Exists(orderEnvelope => orderEnvelope.directory.FullName == directoryInfo.FullName))
+                if (order.Envelopes.Exists(orderEnvelope => orderEnvelope.Directory.FullName == directoryInfo.FullName))
                 {
                     Console.WriteLine(@"此文件夹已经存在");
                     continue;
@@ -64,9 +64,9 @@ namespace PostCardCenter.form
                 //如果弹出的窗口返回结果不为OK，跳到下一个训话
                 if (envelopeInfoForm.ShowDialog() != DialogResult.OK) continue;
                 //向此集合中添加明信片集合
-                order.envelopes.Add(envelopeInfoForm.envelope);
+                order.Envelopes.Add(envelopeInfoForm.envelope);
                 //向明信片集合中链接此订单
-                gridControl1.DataSource = order.envelopes;
+                gridControl1.DataSource = order.Envelopes;
                 gridControl1.RefreshDataSource();
             }
         }
@@ -83,11 +83,11 @@ namespace PostCardCenter.form
                 ConditionOperator = ConditionOperator.IsNotBlank,
                 ErrorText = "请输入客户淘宝ID"
             };
-            orderDirectoryTextEdit.Text = order.directory.FullName;
+            orderDirectoryTextEdit.Text = order.Directory.FullName;
             //显示淘宝信息
-            orderTaobaoIdTextEdit.Text = order.taobaoId;
+            orderTaobaoIdTextEdit.Text = order.TaobaoId;
             //设置是否加急状态
-            orderIsUrgentCheckEdit.Checked = order.urgent;
+            orderIsUrgentCheckEdit.Checked = order.Urgent;
             orderInfoValidationProvider.SetValidationRule(orderTaobaoIdTextEdit, notEmptyValidationRule);
             if (!order.hasEnvelope())
             {
@@ -98,19 +98,19 @@ namespace PostCardCenter.form
 
         private void orderTaobaoIdTextEdit_EditValueChanged(object sender, EventArgs e)
         {
-            order.taobaoId = orderTaobaoIdTextEdit.EditValue.ToString();
+            order.TaobaoId = orderTaobaoIdTextEdit.EditValue.ToString();
         }
 
         private void orderIsUrgentCheckEdit_CheckedChanged(object sender, EventArgs e)
         {
-            order.urgent = orderIsUrgentCheckEdit.Checked;
+            order.Urgent = orderIsUrgentCheckEdit.Checked;
         }
 
         private void removeEnvelopeButton_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var envelope = advBandedGridView1.GetFocusedRow() as Envelope;
+            var envelope = advBandedGridView1.GetFocusedRow() as EnvelopeInfo;
             if (envelope == null) return;
-            order.envelopes.Remove(envelope);
+            order.Envelopes.Remove(envelope);
             gridControl1.RefreshDataSource();
         }
 
@@ -120,7 +120,7 @@ namespace PostCardCenter.form
 
         private void advBandedGridView1_DoubleClick(object sender, EventArgs e)
         {
-            var envelope = advBandedGridView1.GetFocusedRow() as Envelope;
+            var envelope = advBandedGridView1.GetFocusedRow() as EnvelopeInfo;
             if (envelope == null) return;
             new EnvelopeInfoForm(order, envelope).ShowDialog(this);
         }

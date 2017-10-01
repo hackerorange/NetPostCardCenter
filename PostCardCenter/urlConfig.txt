@@ -1,14 +1,2 @@
-﻿getAllOrderUrl=http://www.hackerorange.com:8083/rest/orderController/all
-getAllEnvelopeByOrderIdUrl=http://www.hackerorange.com:8083/rest/EnvelopeController/{orderId}
-getOrderInfoUrl=http://www.hackerorange.com:8083/rest/orderController/info?orderId={orderId}
-submitOrderUrl=http://www.hackerorange.com:8083/rest/orderController/submit
-backStyleListUrl=http://www.hackerorange.com:8083/rest/system/backStyle
-loginUrl=http://www.hackerorange.com:8083/rest/security/login
-envelopeInfoUrl=http://www.hackerorange.com:8083/rest/EnvelopeController/info?envelopeId={envelopeId}
-changeOrderStatusUrl=http://www.hackerorange.com:8083/rest/orderController/changeStatus
-changeOrderProcessorUrl=http://www.hackerorange.com:8083/rest/orderController/changeProcessor
-fileUploadUrl=http://www.hackerorange.com:8089/file/upload
-fileDownloadUrl=http://www.hackerorange.com:8089/file
-fileInfoUrl=http://www.hackerorange.com:8089/file
+﻿loginUrl=http://www.hackerorange.com:8083/rest/security/login
 cropInfoSubmitUrl=http://www.hackerorange.com:8083/rest/PostCardController/submitPostCardCropInfo
-getPostCardByEnvelopeIdUrl=http://www.hackerorange.com:8083/rest/PostCardController/{envelopeId}
