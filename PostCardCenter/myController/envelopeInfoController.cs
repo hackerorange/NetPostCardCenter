@@ -90,8 +90,7 @@ namespace PostCardCenter.myController
                     if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                     Process.Start("explorer.exe", downloadFileInfo.FullName);
                 },process:proce=> {
-                    progressBarControl1.EditValue = proce;
-                    Application.DoEvents();
+                    progressBarControl1.EditValue = proce;                    
                 });
             });
         }

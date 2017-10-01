@@ -436,10 +436,12 @@ namespace PostCardCenter.myController
             if (_image != null)
             {
                 _image.Dispose();
+                _image = null;
             }
             if (_imageClone != null)
             {
                 _imageClone.Dispose();
+                _imageClone = null;
             }
         }
 
@@ -578,12 +580,7 @@ namespace PostCardCenter.myController
             _lastMousePoint = Point.Empty;
         }
 
-        private void PostCardCropController_Load(object sender, EventArgs e)
-        {
-            pictureBox1.MouseWheel += CanvasMouseWheel;
-        }
-
-        private void CanvasMouseWheel(object sender, MouseEventArgs e)
+        public void CanvasMouseWheel(object sender, MouseEventArgs e)
         {
             //如果是预览模式，直接返回，不响应操作
             if (IsPreview) return;

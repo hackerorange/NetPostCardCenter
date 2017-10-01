@@ -470,7 +470,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(885, 380, 450, 647);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(984, 861);
+            this.layoutControl1.Size = new System.Drawing.Size(1138, 861);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -527,7 +527,7 @@
             this.repositoryItemRadioGroup4});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
             // 
             // barEditItem3
             // 
@@ -1195,16 +1195,16 @@
             this.textEdit1.MenuManager = this.ribbonControl1;
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.ReadOnly = true;
-            this.textEdit1.Size = new System.Drawing.Size(909, 20);
+            this.textEdit1.Size = new System.Drawing.Size(1063, 20);
             this.textEdit1.StyleController = this.layoutControl1;
             this.textEdit1.TabIndex = 23;
             // 
             // envelopeSubmit
             // 
             this.envelopeSubmit.Image = ((System.Drawing.Image)(resources.GetObject("envelopeSubmit.Image")));
-            this.envelopeSubmit.Location = new System.Drawing.Point(679, 815);
+            this.envelopeSubmit.Location = new System.Drawing.Point(772, 815);
             this.envelopeSubmit.Name = "envelopeSubmit";
-            this.envelopeSubmit.Size = new System.Drawing.Size(138, 22);
+            this.envelopeSubmit.Size = new System.Drawing.Size(168, 22);
             this.envelopeSubmit.StyleController = this.layoutControl1;
             this.envelopeSubmit.TabIndex = 17;
             this.envelopeSubmit.Text = "确定";
@@ -1347,9 +1347,9 @@
             // 
             this.envelopeCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.envelopeCancel.Image = ((System.Drawing.Image)(resources.GetObject("envelopeCancel.Image")));
-            this.envelopeCancel.Location = new System.Drawing.Point(821, 815);
+            this.envelopeCancel.Location = new System.Drawing.Point(944, 815);
             this.envelopeCancel.Name = "envelopeCancel";
-            this.envelopeCancel.Size = new System.Drawing.Size(139, 22);
+            this.envelopeCancel.Size = new System.Drawing.Size(170, 22);
             this.envelopeCancel.StyleController = this.layoutControl1;
             this.envelopeCancel.TabIndex = 18;
             this.envelopeCancel.Text = "取消";
@@ -1359,7 +1359,7 @@
             this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
             this.simpleButton1.Location = new System.Drawing.Point(253, 815);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(138, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(169, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 19;
             this.simpleButton1.Text = "手动添加(&A)";
@@ -1367,9 +1367,9 @@
             // removeSelectedPostCard
             // 
             this.removeSelectedPostCard.Image = ((System.Drawing.Image)(resources.GetObject("removeSelectedPostCard.Image")));
-            this.removeSelectedPostCard.Location = new System.Drawing.Point(395, 815);
+            this.removeSelectedPostCard.Location = new System.Drawing.Point(426, 815);
             this.removeSelectedPostCard.Name = "removeSelectedPostCard";
-            this.removeSelectedPostCard.Size = new System.Drawing.Size(138, 22);
+            this.removeSelectedPostCard.Size = new System.Drawing.Size(169, 22);
             this.removeSelectedPostCard.StyleController = this.layoutControl1;
             this.removeSelectedPostCard.TabIndex = 21;
             this.removeSelectedPostCard.Text = "移除明信片(&D)";
@@ -1385,7 +1385,7 @@
             this.repositoryItemButtonEdit1,
             this.repositoryItemButtonEdit2,
             this.repositoryItemButtonEdit3});
-            this.envelopeDetailGridView.Size = new System.Drawing.Size(707, 744);
+            this.envelopeDetailGridView.Size = new System.Drawing.Size(861, 744);
             this.envelopeDetailGridView.TabIndex = 16;
             this.envelopeDetailGridView.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1705,7 +1705,7 @@
             this.layoutControlGroup7});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(984, 861);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1138, 861);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -1781,7 +1781,7 @@
             this.layoutControlItem38});
             this.layoutControlGroup4.Location = new System.Drawing.Point(229, 24);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(735, 817);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(889, 817);
             this.layoutControlGroup4.Text = "明信片图片详情";
             // 
             // layoutControlItem1
@@ -1789,16 +1789,16 @@
             this.layoutControlItem1.Control = this.envelopeDetailGridView;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(711, 748);
+            this.layoutControlItem1.Size = new System.Drawing.Size(865, 748);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem35
             // 
             this.layoutControlItem35.Control = this.envelopeCancel;
-            this.layoutControlItem35.Location = new System.Drawing.Point(568, 748);
+            this.layoutControlItem35.Location = new System.Drawing.Point(691, 748);
             this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(143, 26);
+            this.layoutControlItem35.Size = new System.Drawing.Size(174, 26);
             this.layoutControlItem35.Text = "取消";
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
@@ -1806,9 +1806,9 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.envelopeSubmit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(426, 748);
+            this.layoutControlItem4.Location = new System.Drawing.Point(519, 748);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(142, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(172, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -1817,24 +1817,24 @@
             this.layoutControlItem36.Control = this.simpleButton1;
             this.layoutControlItem36.Location = new System.Drawing.Point(0, 748);
             this.layoutControlItem36.Name = "layoutControlItem36";
-            this.layoutControlItem36.Size = new System.Drawing.Size(142, 26);
+            this.layoutControlItem36.Size = new System.Drawing.Size(173, 26);
             this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem36.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(284, 748);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(346, 748);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(142, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(173, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem38
             // 
             this.layoutControlItem38.Control = this.removeSelectedPostCard;
-            this.layoutControlItem38.Location = new System.Drawing.Point(142, 748);
+            this.layoutControlItem38.Location = new System.Drawing.Point(173, 748);
             this.layoutControlItem38.Name = "layoutControlItem38";
-            this.layoutControlItem38.Size = new System.Drawing.Size(142, 26);
+            this.layoutControlItem38.Size = new System.Drawing.Size(173, 26);
             this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem38.TextVisible = false;
             // 
@@ -1871,7 +1871,7 @@
             this.layoutControlItem2.Control = this.textEdit1;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(964, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1118, 24);
             this.layoutControlItem2.Text = "文件夹";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -2822,11 +2822,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.envelopeCancel;
-            this.ClientSize = new System.Drawing.Size(984, 861);
+            this.ClientSize = new System.Drawing.Size(1138, 861);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.xtraTabControl1);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1000, 900);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1000, 900);
             this.Name = "EnvelopeInfoForm";

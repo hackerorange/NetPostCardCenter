@@ -45,11 +45,13 @@ namespace PostCardCenter
         private void batchCreateOrder_ItemClick(object sender, ItemClickEventArgs e)
         {
             var orderBatchCreate = new OrderBatchCreateForm();
+            this.Hide();
             if (orderBatchCreate.ShowDialog(this) == DialogResult.OK)
             {
                 var openOrderCenter = OpenOrderCenter();
                 openOrderCenter.RefreshOrderList();
             }
+            this.Show();
         }
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)

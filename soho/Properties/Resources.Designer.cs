@@ -70,7 +70,7 @@ namespace soho.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://192.168.1.136:8080/security/login 的本地化字符串。
+        ///   查找类似 http://127.0.0.1:8080/security/login 的本地化字符串。
         /// </summary>
         public static string loginPath {
             get {
@@ -79,7 +79,7 @@ namespace soho.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://192.168.1.136:8081/system/styleController/ 的本地化字符串。
+        ///   查找类似 http://127.0.0.1:8081/system/styleController/ 的本地化字符串。
         /// </summary>
         public static string styleListPath {
             get {
@@ -88,7 +88,7 @@ namespace soho.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://192.168.1.136:8083/rest/url/get?category={category}&amp;method={method} 的本地化字符串。
+        ///   查找类似 http://127.0.0.1:8083/rest/url/get?category={category}&amp;method={method} 的本地化字符串。
         /// </summary>
         public static string urlDictionaryUrl {
             get {

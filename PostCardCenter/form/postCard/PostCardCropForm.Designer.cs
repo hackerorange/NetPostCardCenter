@@ -144,6 +144,11 @@ namespace PostCardCenter.form.postCard
             this.cropControllerCrop.FailureSubmit += new PostCardCenter.myController.PostCardCropController.SubmitResultHandler(this.cropControllerCrop_FailureSubmit);
             this.cropControllerCrop.SuccessSubmit += new PostCardCenter.myController.PostCardCropController.SubmitResultHandler(this.cropControllerCrop_SuccessSubmit);
             this.cropControllerCrop.OnSubmit += new PostCardCenter.myController.PostCardCropController.SubmitEventHandler(this.cropControllerCrop_OnSubmit);
+            this.cropControllerCrop.Load += new System.EventHandler(this.cropControllerCrop_Load);
+            this.cropControllerCrop.MouseWheel += this.cropControllerCrop.CanvasMouseWheel;
+
+
+                //pictureBox1.MouseWheel += 
             // 
             // cropControllerPreview
             // 

@@ -2,6 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using System.Drawing;
+using PostCardCenter.constant;
 
 namespace soho.domain
 {
@@ -41,7 +42,7 @@ namespace soho.domain
         /// <summary>
         /// 文件上传状态，分为：未上传，正在上传，已上传，
         /// </summary>
-        public string FileUploadStat { get; set; }
+        public PostCardFileUploadStatusEnum FileUploadStat { get; set; }
 
         /// <summary>
         /// 文件是否是图片文件，根据Header请求获取文件信息
@@ -58,21 +59,7 @@ namespace soho.domain
         /// 明信片反面文件信息
         /// </summary>
         public FileInfo BackFileInfo { get; set; }
-
-        //private Image _image;
-
-        //public Image ImageBefore
-        //{
-        //    get
-        //    {
-        //        if (_image == null)
-        //        {
-        //            _image = Image.FromFile(FileInfo.FullName);
-        //        }
-        //        return _image;
-        //    }
-        //}
-
+      
         /// <summary>
         /// 明信片反面文件ID
         /// </summary>

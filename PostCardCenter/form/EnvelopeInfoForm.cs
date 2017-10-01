@@ -31,7 +31,6 @@ namespace PostCardCenter.form
             {
                 List<PostSize> postSize = new List<PostSize>();
 
-
                 response.ForEach(postCard =>
                 {
                     postSize.Add(new PostSize()
@@ -349,7 +348,9 @@ namespace PostCardCenter.form
                         {
                             Copy = 1,
                             FileInfo = fileInfo,
-                            IsImage = true
+                            IsImage = true,
+                            FileUploadStat = constant.PostCardFileUploadStatusEnum.BEFOREL_UPLOAD
+                            
                         };
                         envelope.PostCards.Add(postCard);
                         Application.DoEvents();

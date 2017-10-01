@@ -63,7 +63,6 @@
             this.orderProcessStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.orderPaperType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.orderUrgent = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.orderId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -381,8 +380,7 @@
             this.orderProcessorName,
             this.orderProcessStatus,
             this.orderPaperType,
-            this.orderUrgent,
-            this.orderId});
+            this.orderUrgent});
             this.gridView1.GridControl = this.orderDetailGridController;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
@@ -402,7 +400,7 @@
             this.orderCustomerTaobaoIdColum.OptionsColumn.AllowFocus = false;
             this.orderCustomerTaobaoIdColum.OptionsColumn.ReadOnly = true;
             this.orderCustomerTaobaoIdColum.Visible = true;
-            this.orderCustomerTaobaoIdColum.VisibleIndex = 1;
+            this.orderCustomerTaobaoIdColum.VisibleIndex = 0;
             this.orderCustomerTaobaoIdColum.Width = 77;
             // 
             // orderCreateDateColum
@@ -420,11 +418,13 @@
             this.orderCreateDateColum.OptionsColumn.AllowFocus = false;
             this.orderCreateDateColum.OptionsColumn.ReadOnly = true;
             this.orderCreateDateColum.Visible = true;
-            this.orderCreateDateColum.VisibleIndex = 3;
+            this.orderCreateDateColum.VisibleIndex = 2;
             this.orderCreateDateColum.Width = 150;
             // 
             // orderProcessorName
             // 
+            this.orderProcessorName.AppearanceCell.Options.UseTextOptions = true;
+            this.orderProcessorName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderProcessorName.AppearanceHeader.Options.UseTextOptions = true;
             this.orderProcessorName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderProcessorName.Caption = "当前处理";
@@ -436,11 +436,13 @@
             this.orderProcessorName.OptionsColumn.AllowFocus = false;
             this.orderProcessorName.OptionsColumn.ReadOnly = true;
             this.orderProcessorName.Visible = true;
-            this.orderProcessorName.VisibleIndex = 5;
+            this.orderProcessorName.VisibleIndex = 4;
             this.orderProcessorName.Width = 100;
             // 
             // orderProcessStatus
             // 
+            this.orderProcessStatus.AppearanceCell.Options.UseTextOptions = true;
+            this.orderProcessStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderProcessStatus.AppearanceHeader.Options.UseTextOptions = true;
             this.orderProcessStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.orderProcessStatus.Caption = "处理状态";
@@ -452,7 +454,7 @@
             this.orderProcessStatus.OptionsColumn.AllowFocus = false;
             this.orderProcessStatus.OptionsColumn.ReadOnly = true;
             this.orderProcessStatus.Visible = true;
-            this.orderProcessStatus.VisibleIndex = 6;
+            this.orderProcessStatus.VisibleIndex = 5;
             // 
             // orderPaperType
             // 
@@ -467,7 +469,7 @@
             this.orderPaperType.OptionsColumn.AllowFocus = false;
             this.orderPaperType.OptionsColumn.ReadOnly = true;
             this.orderPaperType.Visible = true;
-            this.orderPaperType.VisibleIndex = 2;
+            this.orderPaperType.VisibleIndex = 1;
             this.orderPaperType.Width = 100;
             // 
             // orderUrgent
@@ -483,25 +485,8 @@
             this.orderUrgent.OptionsColumn.AllowFocus = false;
             this.orderUrgent.OptionsColumn.ReadOnly = true;
             this.orderUrgent.Visible = true;
-            this.orderUrgent.VisibleIndex = 4;
+            this.orderUrgent.VisibleIndex = 3;
             this.orderUrgent.Width = 50;
-            // 
-            // orderId
-            // 
-            this.orderId.AppearanceHeader.Options.UseTextOptions = true;
-            this.orderId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.orderId.Caption = "订单ID";
-            this.orderId.FieldName = "Id";
-            this.orderId.MaxWidth = 200;
-            this.orderId.MinWidth = 200;
-            this.orderId.Name = "orderId";
-            this.orderId.OptionsColumn.AllowEdit = false;
-            this.orderId.OptionsColumn.AllowFocus = false;
-            this.orderId.OptionsColumn.AllowSize = false;
-            this.orderId.OptionsColumn.ReadOnly = true;
-            this.orderId.Visible = true;
-            this.orderId.VisibleIndex = 0;
-            this.orderId.Width = 200;
             // 
             // layoutControlGroup1
             // 
@@ -624,7 +609,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraGrid.Columns.GridColumn orderId;
         private DevExpress.XtraEditors.RadioGroup radioGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;

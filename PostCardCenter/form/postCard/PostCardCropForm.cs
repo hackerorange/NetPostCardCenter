@@ -202,6 +202,10 @@ namespace PostCardCenter.form.postCard
         private void cropControllerCrop_SuccessSubmit(TreeListNode node)
         {
             node.SetValue("status", "已提交");
+            if(treeList1.FocusedNode == node.ParentNode)
+            {
+                envelopeInfoController1.RefreshEnvelopeInfo();
+            }
             Application.DoEvents();
         }
 
@@ -230,11 +234,12 @@ namespace PostCardCenter.form.postCard
             }
             else
             {
-                var nextVisibleNode = treeList1.FocusedNode.NextVisibleNode;
-                if (nextVisibleNode != null)
-                    treeList1.FocusedNode = nextVisibleNode;
-                else if (treeList1.FocusedNode.ParentNode != null)
-                    treeList1.FocusedNode = treeList1.FocusedNode.ParentNode;
+                treeList1.FocusedNode = treeList1.FocusedNode.ParentNode;
+                //var nextVisibleNode = treeList1.FocusedNode.NextVisibleNode;
+                //if (nextVisibleNode != null)
+                //    treeList1.FocusedNode = nextVisibleNode;
+                //else if (treeList1.FocusedNode.ParentNode != null)
+                //    treeList1.FocusedNode = treeList1.FocusedNode.ParentNode;
             }
         }
 
@@ -242,5 +247,28 @@ namespace PostCardCenter.form.postCard
         {
             cropControllerCrop.Image = cropControllerPreview.Image = null;
         }
+
+        private void cropControllerCrop_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //private void PostCardCropController_Load(object sender, EventArgs e)
+        //{
+        //    cropControllerCrop.MouseWheel += CanvasMouseWheel;
+        //}
+
+        //private void CanvasMouseWheel(object sender, MouseEventArgs e)
+        //{
+        //    //如果是预览模式，直接返回，不响应操作
+        //    if (cropControllerCrop.IsPreview) return;
+        //    if (cropControllerCrop._image != null)
+        //    {
+        //        cropControllerCrop.CanvasResize(e.Location, 0.05, e.Delta, _scaleSlow, _allowOut);
+        //        pictureBox1.Refresh();
+        //    }
+        //}
+
+
     }
 }

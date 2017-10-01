@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="loginPath" xml:space="preserve">
-    <value>http://192.168.1.136:8080/security/login</value>
+    <value>http://127.0.0.1:8080/security/login</value>
     <comment>用户登录接口地址</comment>
   </data>
   <data name="notPostCardFileExtension" xml:space="preserve">
@@ -126,7 +126,7 @@
     <comment>非明信片文件</comment>
   </data>
   <data name="styleListPath" xml:space="preserve">
-    <value>http://192.168.1.136:8081/system/styleController/</value>
+    <value>http://127.0.0.1:8081/system/styleController/</value>
     <comment>获取所有样式</comment>
   </data>
   <data name="testMessage" xml:space="preserve">

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="constant\PostCardFileUploadStatusEnum.cs" />
     <Compile Include="domain\BackStyleInfo.cs" />
     <Compile Include="domain\CropInfo.cs" />
     <Compile Include="domain\Envelope.cs" />
@@ -65,7 +66,6 @@
     <Compile Include="domain\ProductSize.cs" />
     <Compile Include="helper\OrderInfoHelper.cs" />
     <Compile Include="security\AccountSessionInfo.cs" />
-    <Compile Include="thread\MultiThreadUpload.cs" />
     <Compile Include="translator\request\CropInfoTranslator.cs" />
     <Compile Include="translator\response\EnvelopeHelper.cs" />
     <Compile Include="helper\FileHelper.cs" />

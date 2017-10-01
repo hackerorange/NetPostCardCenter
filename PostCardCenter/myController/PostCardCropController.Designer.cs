@@ -52,7 +52,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "PostCardCropController";
             this.Size = new System.Drawing.Size(582, 374);
-            this.Load += new System.EventHandler(this.PostCardCropController_Load);
             this.SizeChanged += new System.EventHandler(this.PostCardCropController_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PostCardCropController_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PostCardCropController_KeyUp);

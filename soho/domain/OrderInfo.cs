@@ -65,5 +65,19 @@ namespace soho.domain
         /// 此订单所处文件夹
         /// </summary>
         public DirectoryInfo Directory { get; set; }
+
+
+        public Double FileUploadPercent {
+            get {
+                int total = 0;
+                int uploaded = 0;
+
+                uploaded= Envelopes.Sum(EnvelopeInfo=> { return EnvelopeInfo.PostCards.Sum(PostCardInfo => {
+                    total++;
+                    return String.IsNullOrEmpty(PostCardInfo.FileId) ? 0 :1; });
+                });
+                return 100* uploaded / (double)total;
+            }
+        }
     }
 }

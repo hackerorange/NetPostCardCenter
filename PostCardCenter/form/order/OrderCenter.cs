@@ -8,6 +8,7 @@ using soho.domain.orderCenter;
 using postCardCenterSdk.sdk;
 using soho.translator;
 using soho.translator.response;
+using soho.security;
 
 namespace PostCardCenter.form.order
 {
@@ -53,8 +54,35 @@ namespace PostCardCenter.form.order
             var focusedRow = gridView1.GetFocusedRow() as OrderInfo;
             if (focusedRow != null)
             {
-                var xtraForm1 = new PostCardCropForm(focusedRow.Id);
-                xtraForm1.Show();
+                if (String.IsNullOrEmpty(focusedRow.ProcessorName))
+                {
+                    if (XtraMessageBox.Show("当前订单没有处理者，是否由我来处理此订单？", "我来处理", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        WebServiceInvoker.ChangeOrderProcessor(focusedRow.Id, success:order => {
+                            if (order.ProcessorName != Security.AccountSessionInfo.realName)
+                            {
+                                XtraMessageBox.Show("很抱歉，你没有抢到此订单，此订单被["+ order .ProcessorName+ "]抢到了！");
+                                return;
+                            }
+                            focusedRow.ProcessorName = order.ProcessorName;
+                        },
+                            failure: message => { XtraMessageBox.Show(message); });
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("要想查看订单，必须处理此订单");
+                    }
+                    return;
+                }                
+                if (focusedRow.ProcessorName == Security.AccountSessionInfo.realName)
+                {
+                    var xtraForm1 = new PostCardCropForm(focusedRow.Id);
+                    xtraForm1.Show();
+                }
+                else
+                {
+                    XtraMessageBox.Show("抱歉，您不是当前订单的负责人，当前订单的负责人为[" + focusedRow.ProcessorName + "]");
+                }
             }
         }
 
@@ -131,6 +159,7 @@ namespace PostCardCenter.form.order
                 dateEdit2.DateTime = timeArea.end;
                 dateEdit2.Properties.ReadOnly = true;
             }
+            RefreshOrderList();
         }
 
         private void gridView1_FocusedRowChanged(object sender,
@@ -140,7 +169,7 @@ namespace PostCardCenter.form.order
             if (orderInfo != null)
             {
                 //如果当前没有处理人，我来处理可用
-                barButtonItem1.Enabled = string.IsNullOrEmpty(orderInfo.ProcessorName);
+                //barButtonItem1.Enabled = string.IsNullOrEmpty(orderInfo.ProcessorName);
                 barButtonItem4.Enabled = !"已完成".Equals(orderInfo.ProcessStatus);
             }
         }
@@ -149,15 +178,28 @@ namespace PostCardCenter.form.order
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
-            WebServiceInvoker.ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); },
-                message => { XtraMessageBox.Show(message); });
+            if (orderInfo.ProcessorName != Security.AccountSessionInfo.realName)
+            {
+                XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
+                return;
+            }
+            WebServiceInvoker.ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); }, message => { XtraMessageBox.Show(message); });            
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
-            WebServiceInvoker.ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
+            if (orderInfo.ProcessorName != Security.AccountSessionInfo.realName)
+            {
+                XtraMessageBox.Show("只有订单的负责人才能修改订单状态，订单负责人为[" + orderInfo.ProcessorName + "]");
+                return;
+            }
+            if (XtraMessageBox.Show("是否真的将订单状态修改为已处理？", "订单状态修改", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+
+                WebServiceInvoker.ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
+            }
         }
     }
 
