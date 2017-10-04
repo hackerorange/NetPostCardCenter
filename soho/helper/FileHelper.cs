@@ -19,9 +19,9 @@ namespace soho.translator
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
         /// <returns>服务器返回的文件ID</returns>
-        public static void Upload(this FileInfo file, Success<string> success, Failure failure = null)
+        public static void Upload(this FileInfo file, string category, Success<string> success, Failure failure = null)
         {
-            WebServiceInvoker.Upload(file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
+            WebServiceInvoker.Upload(category, file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
         }
 
         /// <summary>

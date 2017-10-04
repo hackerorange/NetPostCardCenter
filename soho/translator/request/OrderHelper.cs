@@ -39,7 +39,12 @@ namespace soho.translator.request
                 DoubleSide = envelope.DoubleSide,
                 PaperName = envelope.PaperName,
                 ProductHeight = envelope.ProductSize.Height,
-                ProductWidth = envelope.ProductSize.Width
+                ProductWidth = envelope.ProductSize.Width,
+                PaperColumn=envelope.ArrayColumn,
+                PaperRow=envelope.ArrayRow,
+                PaperHeight=envelope.PaperSize.Height,
+                PaperWidth=envelope.PaperSize.Width
+                
             };
             //如果反面样式不为null，返回将反面样式提交上去
             if (envelope.BackStyle != null)

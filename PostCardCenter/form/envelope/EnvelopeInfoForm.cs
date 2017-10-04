@@ -16,7 +16,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using postCardCenterSdk.sdk;
 using soho.helper;
 
-namespace PostCardCenter.form
+namespace PostCardCenter.form.envelope
 {
     public partial class EnvelopeInfoForm : XtraForm
     {
@@ -217,9 +217,20 @@ namespace PostCardCenter.form
 
         private void envelopeDoubleSideCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            layoutControlItem9.Visibility = layoutControlItem37.Visibility =
-                envelopeDoubleSideCheckBox.Checked ? LayoutVisibility.Always : LayoutVisibility.Never;
-            postCardBackStyle.Visible=_envelope.DoubleSide = envelopeDoubleSideCheckBox.Checked;
+            if (envelopeDoubleSideCheckBox.Checked)
+            {
+                layoutControlItem9.Visibility = layoutControlItem37.Visibility = LayoutVisibility.Always;
+                _envelope.BackStyle = null;
+            }
+            else
+            {
+                layoutControlItem9.Visibility = layoutControlItem37.Visibility = LayoutVisibility.Never;
+            }
+            postCardBackStyle.Visible = _envelope.DoubleSide = envelopeDoubleSideCheckBox.Checked;
+
+
+
+
         }
 
         private void envelopeSubmit_Click(object sender, EventArgs e)
@@ -292,7 +303,7 @@ namespace PostCardCenter.form
             //获取文件MD5
             //var md5 = backFileInfo.GetMd5();
             //上传文件
-            backFileInfo.Upload(fileId =>
+            backFileInfo.Upload("自定义反面样式", fileId =>
             {
                 //focusedValue.BackFileInfo = backFileInfo;
                 focusedValue.BackFileId = fileId;
@@ -329,7 +340,7 @@ namespace PostCardCenter.form
                 //获取文件MD5
                 // var md5 = backFileInfo.GetMd5();
                 //上传文件
-                backFileInfo.Upload(fileId =>
+                backFileInfo.Upload("自定义反面样式", fileId =>
                 {
                     _envelope.BackStyle =new BackStyleInfo
                     {

@@ -28,13 +28,14 @@ namespace PostCardCenter.myController
         public delegate void CropInfoChangeHandler(CropInfo newCropInfo);
 
         public delegate void SubmitEventHandler(TreeListNode node, PostCardCropController sender);
-
+        public delegate void MatchHandler(TreeListNode node, PostCardInfo postCardInfo);
         public delegate void SubmitResultHandler(TreeListNode node);
 
         public event CropInfoChangeHandler CropInfoChanged;
         public event SubmitResultHandler FailureSubmit;
         public event SubmitResultHandler SuccessSubmit;
         public event SubmitEventHandler OnSubmit;
+        public event MatchHandler match;
 
 
         private Rectangle _paperBox;
@@ -272,7 +273,7 @@ namespace PostCardCenter.myController
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void SubmitPostCard()
+        public void SubmitPostCard()
         {
             var tmpNode = Node;
             if ("已提交".Equals(Node.GetValue("status")))
@@ -295,19 +296,14 @@ namespace PostCardCenter.myController
                 }
                 Application.DoEvents();
                 //提交之后
-                if (SuccessSubmit != null)
-                    SuccessSubmit(tmpNode);
+                SuccessSubmit?.Invoke(tmpNode);
             }, failure =>
             {
-                if (FailureSubmit != null)
-                    FailureSubmit(tmpNode);
+                    FailureSubmit?.Invoke(tmpNode);
             });
             tmpNode.SetValue("status", "正在提交");
             //开始提交
-            if (OnSubmit != null)
-            {
-                OnSubmit(tmpNode, this);
-            }
+            OnSubmit?.Invoke(tmpNode, this);
         }
 
 
@@ -401,6 +397,14 @@ namespace PostCardCenter.myController
 
                     ProductSize = envelopeInfo.ProductSize.ToSize();
                     CropInfo = tmpPostCard.CropInfo;
+                    if (CropInfo != null)
+                    {
+                        if (CropInfo.WidthScale > 0.995 && CropInfo.HeightScale > 0.995)
+                        {
+                            match?.Invoke(_treeListNode, tmpPostCard);
+                            return;
+                        }
+                    }
                     RefreshPostCard();
                     _treeListNode.SetValue("status", tmpPostCard.ProcessStatus);
                 }

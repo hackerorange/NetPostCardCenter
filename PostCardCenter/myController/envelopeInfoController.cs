@@ -62,7 +62,7 @@ namespace PostCardCenter.myController
             var saveFileDialog = new SaveFileDialog
             {
                 FileName = customerName.Text + "_" + _envelope.PaperName + "_正面" + _envelope.FrontStyle + "_反面" +
-                           _envelope.BackStyle,
+                           _envelope.BackStyle.Name,
                 Filter = @"PDF文件|*.pdf",
                 OverwritePrompt = true,
                 DefaultExt = "pdf",

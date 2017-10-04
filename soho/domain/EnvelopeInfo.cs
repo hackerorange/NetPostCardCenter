@@ -26,7 +26,7 @@ namespace soho.domain
             //纸张尺寸
             PaperSize = new PostSize
             {
-                Width = 450,
+                Width = 464,
                 Height = 320
             };
             //成品尺寸
@@ -96,10 +96,19 @@ namespace soho.domain
             get { return _backStyle; }
             set {
                 _backStyle = value;
+
                 foreach (var envelopePostCard in PostCards)
                 {
-                    envelopePostCard.BackStyle = value.Name;
-                    envelopePostCard.BackFileId = value.FileId;
+                    if (value != null)
+                    {
+                        envelopePostCard.BackStyle = value.Name;
+                        envelopePostCard.BackFileId = value.FileId;
+                    }
+                    else
+                    {
+                        envelopePostCard.BackStyle = "空白";
+                        envelopePostCard.BackFileId = null;
+                    }
                 }
             }
         }

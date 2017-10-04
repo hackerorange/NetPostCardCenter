@@ -14,8 +14,9 @@ using soho.translator.response;
 using soho.translator.request;
 using soho.helper;
 using PostCardCenter.constant;
+using PostCardCenter.form.envelope;
 
-namespace PostCardCenter.form
+namespace PostCardCenter.form.order
 {
     public partial class OrderBatchCreateForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
@@ -142,7 +143,7 @@ namespace PostCardCenter.form
             if (PostCardInfo.FileUploadStat == PostCardFileUploadStatusEnum.BEFOREL_UPLOAD)
             {
                 PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.UPLOADING;
-                PostCardInfo.FileInfo.Upload(
+                PostCardInfo.FileInfo.Upload("明信片原始文件",
                 success: result =>
                 {
                     PostCardInfo.FileId = result;

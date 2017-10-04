@@ -12,6 +12,7 @@ using PostCardCenter.helper;
 using soho.domain;
 using soho.translator;
 using PostCardCenter.constant;
+using PostCardCenter.form.envelope;
 
 namespace PostCardCenter.form
 {
@@ -96,7 +97,7 @@ namespace PostCardCenter.form
             if (PostCardInfo.FileUploadStat == PostCardFileUploadStatusEnum.BEFOREL_UPLOAD)
             {
                 PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.UPLOADING;
-                PostCardInfo.FileInfo.Upload(
+                PostCardInfo.FileInfo.Upload("明信片原始文件",
                 success: result =>
                 {
                     PostCardInfo.FileId = result;

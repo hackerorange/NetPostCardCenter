@@ -17,7 +17,6 @@ using System.Collections.Specialized;
 using postCardCenterSdk.response.security;
 using postCardCenterSdk.request.postCard;
 using postCardCenterSdk.response.file;
-using System.Text;
 
 namespace postCardCenterSdk.sdk
 {
@@ -284,14 +283,13 @@ namespace postCardCenterSdk.sdk
         /// <param name="file">要上传的文件</param>
         /// <param name="success">上传成功的回调函数</param>
         /// <param name="failure">上传失败的回调函数</param>
-        public static void Upload(string category,FileInfo file, Success<FileUploadResponse> success, Failure failure)
+        public static void Upload(FileInfo file, Success<FileUploadResponse> success, Failure failure)
         {
             var restTemplate = new RestTemplate();
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
-            dictionary.Add("file", entity);
-            dictionary.Add("category", Encoding.UTF8.GetBytes(category));
+            dictionary.Add("file", entity);            
             restTemplate.PostForObjectAsync<BodyResponse<FileUploadResponse>>(Resources.fileUploadUrl, dictionary,
                 resp =>
                 {

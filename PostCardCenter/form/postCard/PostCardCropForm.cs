@@ -24,6 +24,8 @@ namespace PostCardCenter.form.postCard
         public PostCardCropForm(string focusedRowOrderId)
         {
             InitializeComponent();
+            //绑定鼠标滑轮事件
+            this.cropControllerCrop.MouseWheel += cropControllerCrop.CanvasMouseWheel;
             orderId = focusedRowOrderId;
         }
 
@@ -115,7 +117,8 @@ namespace PostCardCenter.form.postCard
                 if (tmpEnvelope != null)
                 {
                     envelopeInfoController1.EnvelopeId = tmpEnvelope.Id;
-                    envelopeDetailGroup.Visibility = LayoutVisibility.Always;
+                    envelopeDetailGroup.Enabled = true;
+                    
                     cropControllerCrop.Node = e.Node;
                     cropControllerPreview.Node = e.Node;
                 }
@@ -128,7 +131,7 @@ namespace PostCardCenter.form.postCard
                 treeList1.FocusedNode = e.OldNode;
                 return;
             }
-            envelopeDetailGroup.Visibility = LayoutVisibility.Never;
+            envelopeDetailGroup.Enabled = false;
             cropControllerCrop.Node = e.Node;
             cropControllerPreview.Node = e.Node;
         }
@@ -227,6 +230,7 @@ namespace PostCardCenter.form.postCard
                 if (nextTreeListNode.GetValue("status") == "已提交" || nextTreeListNode.GetValue("status") == "正在提交")
                 {
                     needProcess.Remove(nextTreeListNode);
+                    nextTreeListNode = null;
                     continue;
                 }
                 break;
@@ -238,11 +242,6 @@ namespace PostCardCenter.form.postCard
             else
             {
                 treeList1.FocusedNode = treeList1.FocusedNode.ParentNode;
-                //var nextVisibleNode = treeList1.FocusedNode.NextVisibleNode;
-                //if (nextVisibleNode != null)
-                //    treeList1.FocusedNode = nextVisibleNode;
-                //else if (treeList1.FocusedNode.ParentNode != null)
-                //    treeList1.FocusedNode = treeList1.FocusedNode.ParentNode;
             }
         }
 
@@ -252,26 +251,29 @@ namespace PostCardCenter.form.postCard
         }
 
         private void cropControllerCrop_Load(object sender, EventArgs e)
+        {            
+        }
+
+        private void cropControllerCrop_match(TreeListNode node, PostCardInfo postCardInfo)
+        {
+            if (barCheckItem1.Checked)
+            {
+                if (node.GetValue("status") == "未提交")
+                {
+                    timer1.Start();
+                }
+            }
+        }
+
+        private void barCheckItem1_CheckedChanged(object sender, ItemClickEventArgs e)
         {
 
         }
 
-        //private void PostCardCropController_Load(object sender, EventArgs e)
-        //{
-        //    cropControllerCrop.MouseWheel += CanvasMouseWheel;
-        //}
-
-        //private void CanvasMouseWheel(object sender, MouseEventArgs e)
-        //{
-        //    //如果是预览模式，直接返回，不响应操作
-        //    if (cropControllerCrop.IsPreview) return;
-        //    if (cropControllerCrop._image != null)
-        //    {
-        //        cropControllerCrop.CanvasResize(e.Location, 0.05, e.Delta, _scaleSlow, _allowOut);
-        //        pictureBox1.Refresh();
-        //    }
-        //}
-
-
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            cropControllerCrop.SubmitPostCard();
+        }
     }
 }

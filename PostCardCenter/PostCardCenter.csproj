@@ -116,10 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="devexpress\DataGridViewHelper.cs" />
-    <Compile Include="form\EnvelopeInfoForm.cs">
+    <Compile Include="form\envelope\EnvelopeInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\EnvelopeInfoForm.Designer.cs">
+    <Compile Include="form\envelope\EnvelopeInfoForm.Designer.cs">
       <DependentUpon>EnvelopeInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="form\envelope\XtraForm1.cs">
@@ -128,10 +128,10 @@
     <Compile Include="form\envelope\XtraForm1.Designer.cs">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\OrderBatchCreateForm.cs">
+    <Compile Include="form\order\OrderBatchCreateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\OrderBatchCreateForm.Designer.cs">
+    <Compile Include="form\order\OrderBatchCreateForm.Designer.cs">
       <DependentUpon>OrderBatchCreateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="form\OrderInfoForm.cs">
@@ -185,14 +185,14 @@
     <Compile Include="security\UserLogin.Designer.cs">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="form\EnvelopeInfoForm.resx">
+    <EmbeddedResource Include="form\envelope\EnvelopeInfoForm.resx">
       <DependentUpon>EnvelopeInfoForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="form\envelope\XtraForm1.resx">
       <DependentUpon>XtraForm1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\OrderBatchCreateForm.resx">
+    <EmbeddedResource Include="form\order\OrderBatchCreateForm.resx">
       <DependentUpon>OrderBatchCreateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\OrderInfoForm.resx">
@@ -248,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Spring.Rest.txt" />
+    <Content Include="if_BT_cut_905651.ico" />
     <Content Include="urlConfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

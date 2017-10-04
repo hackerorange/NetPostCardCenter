@@ -76,34 +76,6 @@ namespace postCardCenterSdk.request.order
         public int ProductHeight { get; set; }
 
 
-
-        /// <summary>
-        /// 纸张宽度
-        /// </summary>
-        [JsonProperty("paperWidth")]
-        public int PaperWidth { get; set; }
-
-        /// <summary>
-        /// 纸张高度
-        /// </summary>
-        [JsonProperty("paperHeight")]
-        public int PaperHeight { get; set; }
-
-        /// <summary>
-        /// 一张纸上排几列
-        /// </summary>
-        [JsonProperty("paperColumn")]
-        public int PaperColumn { get; set; }
-
-        /// <summary>
-        /// 一张纸上排几行
-        /// </summary>
-        [JsonProperty("paperRow")]
-        public int PaperRow { get; set; }
-
-        /// <summary>
-        /// 此明信片集合下的所有明信片信息
-        /// </summary>
         [JsonProperty("postCards")]
         public List<OrderSubmitPostCard> PostCards { get; set; }
     }
