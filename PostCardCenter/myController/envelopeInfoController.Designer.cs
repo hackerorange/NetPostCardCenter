@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             this.customerName = new DevExpress.XtraEditors.TextEdit();
             this.paperName = new DevExpress.XtraEditors.TextEdit();
             this.productWidth = new DevExpress.XtraEditors.TextEdit();
@@ -45,10 +46,10 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paperName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productWidth.Properties)).BeginInit();
@@ -63,7 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,15 +81,24 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(712, 337);
+            this.layoutControl1.Size = new System.Drawing.Size(216, 337);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // progressBarControl1
+            // 
+            this.progressBarControl1.Location = new System.Drawing.Point(12, 309);
+            this.progressBarControl1.Name = "progressBarControl1";
+            this.progressBarControl1.Properties.Step = 1;
+            this.progressBarControl1.Size = new System.Drawing.Size(192, 16);
+            this.progressBarControl1.StyleController = this.layoutControl1;
+            this.progressBarControl1.TabIndex = 11;
             // 
             // customerName
             // 
             this.customerName.Location = new System.Drawing.Point(63, 12);
             this.customerName.Name = "customerName";
-            this.customerName.Size = new System.Drawing.Size(637, 20);
+            this.customerName.Size = new System.Drawing.Size(141, 20);
             this.customerName.StyleController = this.layoutControl1;
             this.customerName.TabIndex = 4;
             // 
@@ -97,7 +106,7 @@
             // 
             this.paperName.Location = new System.Drawing.Point(63, 36);
             this.paperName.Name = "paperName";
-            this.paperName.Size = new System.Drawing.Size(637, 20);
+            this.paperName.Size = new System.Drawing.Size(141, 20);
             this.paperName.StyleController = this.layoutControl1;
             this.paperName.TabIndex = 5;
             // 
@@ -105,23 +114,23 @@
             // 
             this.productWidth.Location = new System.Drawing.Point(63, 60);
             this.productWidth.Name = "productWidth";
-            this.productWidth.Size = new System.Drawing.Size(291, 20);
+            this.productWidth.Size = new System.Drawing.Size(141, 20);
             this.productWidth.StyleController = this.layoutControl1;
             this.productWidth.TabIndex = 6;
             // 
             // processorName
             // 
-            this.processorName.Location = new System.Drawing.Point(63, 84);
+            this.processorName.Location = new System.Drawing.Point(63, 108);
             this.processorName.Name = "processorName";
-            this.processorName.Size = new System.Drawing.Size(637, 20);
+            this.processorName.Size = new System.Drawing.Size(141, 20);
             this.processorName.StyleController = this.layoutControl1;
             this.processorName.TabIndex = 7;
             // 
             // downloadProductFile
             // 
-            this.downloadProductFile.Location = new System.Drawing.Point(550, 303);
+            this.downloadProductFile.Location = new System.Drawing.Point(12, 283);
             this.downloadProductFile.Name = "downloadProductFile";
-            this.downloadProductFile.Size = new System.Drawing.Size(150, 22);
+            this.downloadProductFile.Size = new System.Drawing.Size(192, 22);
             this.downloadProductFile.StyleController = this.layoutControl1;
             this.downloadProductFile.TabIndex = 8;
             this.downloadProductFile.Text = "下载文件(&D)";
@@ -129,17 +138,17 @@
             // 
             // productHeight
             // 
-            this.productHeight.Location = new System.Drawing.Point(409, 60);
+            this.productHeight.Location = new System.Drawing.Point(63, 84);
             this.productHeight.Name = "productHeight";
-            this.productHeight.Size = new System.Drawing.Size(291, 20);
+            this.productHeight.Size = new System.Drawing.Size(141, 20);
             this.productHeight.StyleController = this.layoutControl1;
             this.productHeight.TabIndex = 9;
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(396, 303);
+            this.simpleButton2.Location = new System.Drawing.Point(12, 257);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(150, 22);
+            this.simpleButton2.Size = new System.Drawing.Size(192, 22);
             this.simpleButton2.StyleController = this.layoutControl1;
             this.simpleButton2.TabIndex = 10;
             this.simpleButton2.Text = "刷新信息(&R)";
@@ -155,13 +164,13 @@
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.emptySpaceItem1,
-            this.layoutControlItem5,
+            this.layoutControlItem8,
             this.layoutControlItem6,
             this.layoutControlItem7,
-            this.layoutControlItem8});
+            this.layoutControlItem5});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(712, 337);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(216, 337);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -169,7 +178,7 @@
             this.layoutControlItem1.Control = this.customerName;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(692, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(196, 24);
             this.layoutControlItem1.Text = "客户名称";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -178,7 +187,7 @@
             this.layoutControlItem2.Control = this.paperName;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(692, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(196, 24);
             this.layoutControlItem2.Text = "纸张名称";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -187,36 +196,33 @@
             this.layoutControlItem3.Control = this.productWidth;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(346, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(196, 24);
             this.layoutControlItem3.Text = "成品宽度";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.processorName;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(692, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(196, 24);
             this.layoutControlItem4.Text = "处理人";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(48, 14);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 96);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 120);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(692, 195);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(196, 125);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.downloadProductFile;
-            this.layoutControlItem5.Location = new System.Drawing.Point(538, 291);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(154, 26);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(154, 26);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 271);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(154, 26);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.Size = new System.Drawing.Size(196, 26);
             this.layoutControlItem5.Text = "下载文件";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -224,41 +230,30 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.productHeight;
-            this.layoutControlItem6.Location = new System.Drawing.Point(346, 48);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(346, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(196, 24);
             this.layoutControlItem6.Text = "成品高度";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.simpleButton2;
-            this.layoutControlItem7.Location = new System.Drawing.Point(384, 291);
-            this.layoutControlItem7.MaxSize = new System.Drawing.Size(154, 26);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(154, 26);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 245);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(154, 26);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.Size = new System.Drawing.Size(196, 26);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
-            // 
-            // progressBarControl1
-            // 
-            this.progressBarControl1.Location = new System.Drawing.Point(63, 303);
-            this.progressBarControl1.Name = "progressBarControl1";
-            this.progressBarControl1.Properties.Step = 1;
-            this.progressBarControl1.Size = new System.Drawing.Size(329, 18);
-            this.progressBarControl1.StyleController = this.layoutControl1;
-            this.progressBarControl1.TabIndex = 11;
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.progressBarControl1;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 291);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 297);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(384, 26);
+            this.layoutControlItem8.Size = new System.Drawing.Size(196, 20);
             this.layoutControlItem8.Text = "下载进度";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 14);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // EnvelopeInfoController
             // 
@@ -266,9 +261,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
             this.Name = "EnvelopeInfoController";
-            this.Size = new System.Drawing.Size(712, 337);
+            this.Size = new System.Drawing.Size(216, 337);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paperName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productWidth.Properties)).EndInit();
@@ -283,7 +279,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
 

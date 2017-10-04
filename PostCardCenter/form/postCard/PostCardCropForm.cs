@@ -53,7 +53,7 @@ namespace PostCardCenter.form.postCard
 
                             listNode.ImageIndex = listNode.SelectImageIndex = 1;
 
-
+                            needProcess.Add(listNode);
                             //var card = postCard;
                             listNode.SetValue("status", "下载中");
 
@@ -62,11 +62,14 @@ namespace PostCardCenter.form.postCard
                                 tmpPostCard.FileInfo = fileInfo;
                                 if (tmpPostCard.CropInfo == null)
                                 {
-                                    needProcess.Add(listNode);
+                                    
                                     tmpPostCard.ProcessStatus = "未提交";
                                 }
                                 else
                                 {
+                                    if (needProcess.Contains(listNode)){
+                                        needProcess.Remove(listNode);
+                                    }
                                     tmpPostCard.ProcessStatus = "已提交";
                                 }
                                 listNode.SetValue("status", tmpPostCard.ProcessStatus);

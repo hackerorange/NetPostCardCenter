@@ -9,6 +9,8 @@ using postCardCenterSdk.sdk;
 using soho.translator;
 using soho.translator.response;
 using soho.security;
+using DevExpress.XtraNavBar;
+using DevExpress.XtraGrid.Columns;
 
 namespace PostCardCenter.form.order
 {
@@ -65,6 +67,8 @@ namespace PostCardCenter.form.order
                                 return;
                             }
                             focusedRow.ProcessorName = order.ProcessorName;
+                            var xtraForm1 = new PostCardCropForm(focusedRow.Id);
+                            xtraForm1.Show();
                         },
                             failure: message => { XtraMessageBox.Show(message); });
                     }
@@ -199,6 +203,27 @@ namespace PostCardCenter.form.order
             {
 
                 WebServiceInvoker.ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
+            }
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle > -1)
+            {
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
+        }
+
+        private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            var ba = sender as NavBarItem;
+            if (ba.Tag != null)
+            {
+                orderProcessStatus.FilterInfo = new ColumnFilterInfo(orderProcessStatus,ba.Tag);                
+            }
+            else
+            {
+                orderProcessStatus.ClearFilter();
             }
         }
     }

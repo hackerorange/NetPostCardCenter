@@ -55,11 +55,7 @@ namespace soho.domain
         /// </summary>
         public bool CustomerBackStyle { get; set; }
 
-        /// <summary>
-        /// 明信片反面文件信息
-        /// </summary>
-        public FileInfo BackFileInfo { get; set; }
-      
+         
         /// <summary>
         /// 明信片反面文件ID
         /// </summary>

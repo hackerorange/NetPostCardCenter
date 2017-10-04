@@ -9,6 +9,7 @@ using PostCardCenter.form.order;
 using PostCardCenter.security;
 using soho.domain;
 using soho.security;
+using DevExpress.XtraEditors;
 
 namespace PostCardCenter
 {
@@ -36,6 +37,10 @@ namespace PostCardCenter
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (XtraMessageBox.Show("是否真的退出应用", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+            {
+                e.Cancel=true;
+            }
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)

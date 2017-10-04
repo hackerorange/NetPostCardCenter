@@ -503,7 +503,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbon);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(926, 819);
+            this.MaximumSize = new System.Drawing.Size(930, 821);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(904, 808);
             this.Name = "OrderInfoForm";

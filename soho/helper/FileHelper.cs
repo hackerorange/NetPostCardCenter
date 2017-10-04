@@ -22,21 +22,6 @@ namespace soho.translator
         public static void Upload(this FileInfo file, Success<string> success, Failure failure = null)
         {
             WebServiceInvoker.Upload(file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
-            //var md5 = file.GetMd5();
-            //IsFileExistInServer(md5, isFileExist =>
-            //{
-            //    if (isFileExist)
-            //    {
-            //        success(md5);
-            //    }
-            //    else
-            //    {
-            //        WebServiceInvoker.Upload(file, succ=> { success?.Invoke(succ.Id); }, message=> { failure?.Invoke(message); });                    
-            //    }
-            //}, failure: result =>
-            //{
-            //    WebServiceInvoker.Upload(file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
-            //});
         }
 
         /// <summary>

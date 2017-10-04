@@ -79,7 +79,7 @@
             this.ribbon.RibbonCaptionAlignment = DevExpress.XtraBars.Ribbon.RibbonCaptionAlignment.Center;
             this.ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbon.Size = new System.Drawing.Size(786, 129);
+            this.ribbon.Size = new System.Drawing.Size(985, 129);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // CreateOrderFromDesktopButtonItem
@@ -145,7 +145,7 @@
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 476);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(786, 23);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(985, 23);
             // 
             // layoutControl1
             // 
@@ -155,7 +155,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 129);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(786, 347);
+            this.layoutControl1.Size = new System.Drawing.Size(985, 347);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -168,7 +168,7 @@
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemProgressBar1});
-            this.gridControl1.Size = new System.Drawing.Size(738, 280);
+            this.gridControl1.Size = new System.Drawing.Size(937, 280);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -187,10 +187,12 @@
             this.gridColumn1});
             this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(1085, 615, 210, 179);
             this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.IndicatorWidth = 40;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
             this.gridView1.OptionsView.ShowDetailButtons = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // taobaiId
@@ -286,7 +288,7 @@
             this.layoutControlGroup2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(786, 347);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(985, 347);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -295,7 +297,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(766, 327);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(965, 327);
             this.layoutControlGroup2.Text = "待提交订单列表";
             // 
             // layoutControlItem1
@@ -303,7 +305,7 @@
             this.layoutControlItem1.Control = this.gridControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(742, 284);
+            this.layoutControlItem1.Size = new System.Drawing.Size(941, 284);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -312,7 +314,7 @@
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 499);
+            this.ClientSize = new System.Drawing.Size(985, 499);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);

@@ -73,34 +73,30 @@ namespace PostCardCenter.form
             {
                 case "待设置":
 
+                    List<DirectoryInfo> tmpDirectories = new List<DirectoryInfo>();
+                    //将根目录添加到集合中
                     if (orderInfo.Directory.GetFiles().Length > 0)
                     {
-                        var envelopeInfoForm = new EnvelopeInfoForm(orderInfo.Directory)
-                        {
-                            order = orderInfo
-                        };
-                        if (envelopeInfoForm.ShowDialog(this) == DialogResult.OK)
-                        {
-                            if (orderInfo.Envelopes == null)
-                            {
-                                orderInfo.Envelopes = new List<EnvelopeInfo>();
-                            }
-                            orderInfo.Envelopes.Add(envelopeInfoForm.envelope);
-                        }
+                        tmpDirectories.Add(orderInfo.Directory);                       
                     }
+                    //将第一层子文件夹中的所有文件添加到集合中
                     foreach (var info in orderInfo.Directory.GetDirectories())
                     {
-                        var envelopeInfoForm = new EnvelopeInfoForm(info)
-                        {
-                            order = orderInfo
-                        };
-                        if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
-                        if (orderInfo.Envelopes == null)
-                        {
-                            orderInfo.Envelopes = new List<EnvelopeInfo>();
-                        }
-                        orderInfo.Envelopes.Add(envelopeInfoForm.envelope);
+                        tmpDirectories.Add(info);
                     }
+                    //遍历目录
+                    foreach (var info in tmpDirectories)
+                    {                        
+                        EnvelopeInfo envelope = new EnvelopeInfo
+                        {
+                            OrderInfo = orderInfo,
+                            Directory = info
+                        };
+                        //显示此明信片集合详情页
+                        if (new EnvelopeInfoForm(envelope).ShowDialog(this) != DialogResult.OK) continue;                        
+                        orderInfo.Envelopes.Add(envelope);
+                    }
+                    //如果此订单中存在明信片集合
                     if (orderInfo.hasEnvelope())
                     {
                         if (XtraMessageBox.Show("明信片是否已经设置完成", "设置完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -126,7 +122,7 @@ namespace PostCardCenter.form
                     {
                         if (orderInfo.Envelopes.Count == 1)
                         {
-                            new EnvelopeInfoForm(orderInfo, orderInfo.Envelopes[0]).ShowDialog(this);
+                            new EnvelopeInfoForm(orderInfo.Envelopes[0]).ShowDialog(this);
                         }
                         else
                         {
@@ -142,8 +138,6 @@ namespace PostCardCenter.form
 
 
         private void uploadPostCard(PostCardInfo PostCardInfo,OrderInfo orderInfo) {
-
-
             //如果文件状态为非已上传
             if (PostCardInfo.FileUploadStat == PostCardFileUploadStatusEnum.BEFOREL_UPLOAD)
             {
@@ -154,8 +148,8 @@ namespace PostCardCenter.form
                     PostCardInfo.FileId = result;
                     PostCardInfo.FileName = PostCardInfo.FileInfo.Name;
                     PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.AFTER_UPLOAD;
-                                                //orderInfo.
-                                                gridControl1.RefreshDataSource();
+                    //orderInfo.
+                    gridControl1.RefreshDataSource();
                     if (orderInfo.FileUploadPercent == 100)
                     {
                         orderInfo.OrderStatus = "待提交";
@@ -183,77 +177,6 @@ namespace PostCardCenter.form
             gridControl1.RefreshDataSource();
         }
 
-        //private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
-        //{
-        //    var folderBrowserDialog = new FolderBrowserDialog
-        //    {
-        //        RootFolder = Environment.SpecialFolder.Desktop,
-        //        ShowNewFolderButton = false
-        //    };
-
-
-        //    if (folderBrowserDialog.ShowDialog() != DialogResult.OK) return;
-
-        //    var directoryInfo = new DirectoryInfo(folderBrowserDialog.SelectedPath);
-        //    foreach (var directory in directoryInfo.GetDirectories(@"*[订单]*"))
-        //    {
-        //        //如果订单列表中已经存在此订单，则跳过
-        //        if (OrderList != null && OrderList.Exists(order => order.Directory.FullName.Equals(directory.FullName)))
-        //            continue;
-        //        var match = new Regex(@"\[TID=.+]").Match(directoryInfo.FullName);
-        //        var customerTaobaoId = "";
-        //        if (match.Success)
-        //        {
-        //            customerTaobaoId = match.Result("$1");
-        //        }
-
-        //        var tmpOrder = new OrderInfo
-        //        {
-        //            Directory = directory,
-        //            Urgent = directory.FullName.Contains("[加急]"),
-        //            TaobaoId = customerTaobaoId
-        //        };
-        //        //如果此目录下存在文件，根据此目录下的文件，生成一个集合
-        //        if (directory.GetFiles().Length > 0)
-        //        {
-        //            var envelopeInfoForm = new EnvelopeInfoForm(directory)
-        //            {
-        //                order = tmpOrder
-        //            };
-        //            if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
-        //            if (tmpOrder.Envelopes == null)
-        //            {
-        //                tmpOrder.Envelopes = new List<EnvelopeInfo>();
-        //            }
-        //            tmpOrder.Envelopes.Add(envelopeInfoForm.envelope);
-        //        }
-        //        //遍历此目录下的子目录，生成一个集合
-        //        foreach (var info in directory.GetDirectories())
-        //        {
-        //            var envelopeInfoForm = new EnvelopeInfoForm(info)
-        //            {
-        //                order = tmpOrder
-        //            };
-        //            if (envelopeInfoForm.ShowDialog(this) != DialogResult.OK) continue;
-        //            if (tmpOrder.Envelopes == null)
-        //            {
-        //                tmpOrder.Envelopes = new List<EnvelopeInfo>();
-        //            }
-        //            tmpOrder.Envelopes.Add(envelopeInfoForm.envelope);
-        //        }
-        //        if (tmpOrder.hasEnvelope())
-        //        {
-        //            if (OrderList == null)
-        //            {
-        //                OrderList = new List<OrderInfo>();
-        //            }
-        //            OrderList.Add(tmpOrder);
-        //        }
-        //        gridControl1.DataSource = OrderList;
-        //        gridControl1.RefreshDataSource();
-        //    }
-        //}
-
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
             OrderList.ForEach(order =>
@@ -269,6 +192,7 @@ namespace PostCardCenter.form
                         //如果操作成功，移除此项目
                         //OrderList.Remove(order);
                         order.OrderStatus = "订单已提交";
+                        gridControl1.RefreshDataSource();
                         Application.DoEvents();
                         if (!OrderList.Exists(orderInfo => { return orderInfo.OrderStatus != "订单已提交"; }))
                         {
@@ -356,6 +280,14 @@ namespace PostCardCenter.form
                     });
                 }
             });
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle > -1)
+            {
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
         }
     }
 }

@@ -47,11 +47,9 @@ namespace PostCardCenter.myController
 
         public string PostCardId { get; set; }
 
-        public double WhiteSpacePercent
-        {
+        public double WhiteSpacePercent {
             get { return _whiteSpacePercent; }
-            set
-            {
+            set {
                 if (value >= 100) return;
                 _whiteSpacePercent = value;
             }
@@ -59,11 +57,9 @@ namespace PostCardCenter.myController
 
         public Size ProductSize { get; set; }
 
-        public Image Image
-        {
+        public Image Image {
             get { return _image; }
-            set
-            {
+            set {
                 //释放上一张图片占用的资源
                 if (_image != null)
                 {
@@ -78,7 +74,7 @@ namespace PostCardCenter.myController
                 _imageClone = value;
                 if (value != null)
                 {
-                    _imageClone = (Image) value.Clone();
+                    _imageClone = (Image)value.Clone();
                 }
                 //裁切信息初始化
                 _cropInfo = null;
@@ -93,14 +89,12 @@ namespace PostCardCenter.myController
 
         public double Scale { get; set; }
 
-        public CropInfo CropInfo
-        {
+        public CropInfo CropInfo {
             get { return _cropInfo; }
-            set
-            {
+            set {
                 if (value != null)
                 {
-                    _cropInfo = (CropInfo) value.CloneNew();
+                    _cropInfo = (CropInfo)value.CloneNew();
                     _pictureRectangle = Rectangle.Empty;
                     Angle = value.Rotation;
                 }
@@ -119,10 +113,8 @@ namespace PostCardCenter.myController
         }
 
 
-        public Rectangle PictureRectangle
-        {
-            get
-            {
+        public Rectangle PictureRectangle {
+            get {
                 if (!_pictureRectangle.Size.IsEmpty) return _pictureRectangle;
                 //如果没有图片，图片框为空
                 if (_image == null || ProductSize.IsEmpty)
@@ -143,10 +135,10 @@ namespace PostCardCenter.myController
                     else
                     {
                         var tmpCropBox = CropBox;
-                        _pictureRectangle.Width = (int) (tmpCropBox.Width / CropInfo.WidthScale);
-                        _pictureRectangle.Height = (int) (tmpCropBox.Height / CropInfo.HeightScale);
-                        _pictureRectangle.X = (int) (tmpCropBox.X - _pictureRectangle.Width * _cropInfo.LeftScale);
-                        _pictureRectangle.Y = (int) (tmpCropBox.Y - _pictureRectangle.Height * _cropInfo.TopScale);
+                        _pictureRectangle.Width = (int)(tmpCropBox.Width / CropInfo.WidthScale);
+                        _pictureRectangle.Height = (int)(tmpCropBox.Height / CropInfo.HeightScale);
+                        _pictureRectangle.X = (int)(tmpCropBox.X - _pictureRectangle.Width * _cropInfo.LeftScale);
+                        _pictureRectangle.Y = (int)(tmpCropBox.Y - _pictureRectangle.Height * _cropInfo.TopScale);
                     }
                 }
                 return _pictureRectangle;
@@ -159,63 +151,57 @@ namespace PostCardCenter.myController
             InitializeComponent();
         }
 
-        public Rectangle CropBox
-        {
-            get
-            {
+        public Rectangle CropBox {
+            get {
                 //如果设置有误，返回空矩形
                 if (ProductSize.Width - Margin.Horizontal <= 0.001) return Rectangle.Empty;
                 //如果纸张尺寸为空，返回空
                 var tmpPaperRectangle = PaperRectangle;
                 if (tmpPaperRectangle == Rectangle.Empty) return tmpPaperRectangle;
-                var tmpRatio = tmpPaperRectangle.Height / (double) ProductSize.Height;
+                var tmpRatio = tmpPaperRectangle.Height / (double)ProductSize.Height;
                 var tmpCropBox = new Rectangle
                 {
-                    Width = (int) ((ProductSize.Width - Margin.Horizontal) * tmpRatio)
+                    Width = (int)((ProductSize.Width - Margin.Horizontal) * tmpRatio)
                 };
-                tmpCropBox.Height = (int) (tmpCropBox.Width * PicturePrintAreaSize.Ratio());
+                tmpCropBox.Height = (int)(tmpCropBox.Width * PicturePrintAreaSize.Ratio());
 
                 var tmpPictureAreaHeight = (ProductSize.Height - Margin.Vertical) * tmpRatio;
                 if (tmpCropBox.Height > tmpPictureAreaHeight)
                 {
-                    tmpCropBox.Width = (int) (tmpCropBox.Width * tmpPictureAreaHeight / tmpCropBox.Height);
-                    tmpCropBox.Height = (int) tmpPictureAreaHeight;
+                    tmpCropBox.Width = (int)(tmpCropBox.Width * tmpPictureAreaHeight / tmpCropBox.Height);
+                    tmpCropBox.Height = (int)tmpPictureAreaHeight;
                 }
-                tmpCropBox.X = (int) (tmpPaperRectangle.X + (Margin.Left * tmpRatio));
-                tmpCropBox.Y = (int) (tmpPaperRectangle.Y + (Margin.Top * tmpRatio));
+                tmpCropBox.X = (int)(tmpPaperRectangle.X + (Margin.Left * tmpRatio));
+                tmpCropBox.Y = (int)(tmpPaperRectangle.Y + (Margin.Top * tmpRatio));
                 return tmpCropBox;
             }
         }
 
-        public Size PicturePrintAreaSize
-        {
-            get
-            {
-//                if (CropBox == Rectangle.Empty) return Size.Empty;
+        public Size PicturePrintAreaSize {
+            get {
+                //                if (CropBox == Rectangle.Empty) return Size.Empty;
                 if (ProductSize.Width - Margin.Horizontal <= 0 || ProductSize.Height - Margin.Vertical <= 0)
                     return System.Drawing.Size.Empty;
                 var tmpPicturePrintAreaSize = new System.Drawing.Size((int)(ProductSize.Width - Margin.Horizontal),
-(int)(ProductSize.Height - Margin.Vertical));
+                (int)(ProductSize.Height - Margin.Vertical));
                 if (Math.Abs(Scale) > 0.0001)
                 {
                     //如果按比例之前比较方，高度不变，宽度缩小
                     if (tmpPicturePrintAreaSize.Ratio() > Scale)
                     {
-                        tmpPicturePrintAreaSize.Width = (int) (tmpPicturePrintAreaSize.Height / Scale);
+                        tmpPicturePrintAreaSize.Width = (int)(tmpPicturePrintAreaSize.Height / Scale);
                     }
                     else
                     {
-                        tmpPicturePrintAreaSize.Height = (int) (tmpPicturePrintAreaSize.Width * Scale);
+                        tmpPicturePrintAreaSize.Height = (int)(tmpPicturePrintAreaSize.Width * Scale);
                     }
                 }
                 return tmpPicturePrintAreaSize;
             }
         }
 
-        private Rectangle PaperRectangle
-        {
-            get
-            {
+        private Rectangle PaperRectangle {
+            get {
                 //如果成品尺寸为空，返回空
                 if (ProductSize.Equals(Size.Empty))
                 {
@@ -225,13 +211,13 @@ namespace PostCardCenter.myController
                 //如果pictureBox1是正方形，上下有边空
                 if (pictureBox1.Size.Ratio() > ProductSize.Ratio())
                 {
-                    tmpRectangle.Width = (int) (pictureBox1.Width * WhiteSpacePercent);
-                    tmpRectangle.Height = (int) (tmpRectangle.Width * ProductSize.Ratio());
+                    tmpRectangle.Width = (int)(pictureBox1.Width * WhiteSpacePercent);
+                    tmpRectangle.Height = (int)(tmpRectangle.Width * ProductSize.Ratio());
                 }
                 else
                 {
-                    tmpRectangle.Height = (int) (pictureBox1.Height * WhiteSpacePercent);
-                    tmpRectangle.Width = (int) (tmpRectangle.Height / ProductSize.Ratio());
+                    tmpRectangle.Height = (int)(pictureBox1.Height * WhiteSpacePercent);
+                    tmpRectangle.Width = (int)(tmpRectangle.Height / ProductSize.Ratio());
                 }
                 tmpRectangle.Offset((pictureBox1.Width - tmpRectangle.Width) / 2,
                     (pictureBox1.Height - tmpRectangle.Height) / 2);
@@ -259,7 +245,7 @@ namespace PostCardCenter.myController
             //重新生成一个CropInfo
             angle = (angle / 90) * 90;
             Angle = Angle + angle;
-            CropInfo = new CropInfo(_imageClone.Size, PicturePrintAreaSize, false) {Rotation = Angle};
+            CropInfo = new CropInfo(_imageClone.Size, PicturePrintAreaSize, false) { Rotation = Angle };
             pictureBox1.Refresh();
         }
 
@@ -327,11 +313,9 @@ namespace PostCardCenter.myController
 
         private TreeListNode _treeListNode;
 
-        public TreeListNode Node
-        {
+        public TreeListNode Node {
             get { return _treeListNode; }
-            set
-            {
+            set {
                 _treeListNode = value;
                 reset();
                 if (value == null) return;
@@ -355,7 +339,7 @@ namespace PostCardCenter.myController
                     var tmpPostCard = focusedNodeTag as PostCardInfo;
                     //如果没有找到postCard对象，直接返回
                     if (tmpPostCard == null) return;
-                    PostCardId = tmpPostCard.PostCardId;                    
+                    PostCardId = tmpPostCard.PostCardId;
                     try
                     {
                         Image = Image.FromFile(tmpPostCard.FileInfo.FullName);
@@ -368,18 +352,22 @@ namespace PostCardCenter.myController
                             {
                                 tmpPostCard.FileInfo.Delete();
                                 XtraMessageBox.Show("发生异常，图片读取失败，正在重新获取图片");
-                                WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId,success:success=> {
+                                WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId, success: success =>
+                                {
                                     tmpPostCard.FileInfo = success;
                                     Image = Image.FromFile(tmpPostCard.FileInfo.FullName);
                                 });
                             }
-                        }catch(FileNotFoundException fileNotFoundException)
+                        }
+                        catch (FileNotFoundException fileNotFoundException)
                         {
                             XtraMessageBox.Show("文件未找到");
-                            WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId,success:result=>{
+                            WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId, success: result =>
+                            {
                                 tmpPostCard.FileInfo = result;
                                 Image = Image.FromFile(tmpPostCard.FileInfo.FullName);
-                            },failure:message=> {
+                            }, failure: message =>
+                            {
                                 XtraMessageBox.Show("尝试重新下载文件失败，请关闭重试");
                                 return;
                             });
@@ -411,7 +399,7 @@ namespace PostCardCenter.myController
                         Scale = 1;
                     }
 
-                    ProductSize =envelopeInfo.ProductSize.ToSize();
+                    ProductSize = envelopeInfo.ProductSize.ToSize();
                     CropInfo = tmpPostCard.CropInfo;
                     RefreshPostCard();
                     _treeListNode.SetValue("status", tmpPostCard.ProcessStatus);
@@ -445,10 +433,8 @@ namespace PostCardCenter.myController
             }
         }
 
-        private int Angle
-        {
-            set
-            {
+        private int Angle {
+            set {
                 //如果角度和原始角度相同，直接返回，不更新图片
                 if (_angle == value) return;
                 //旋转的角度
@@ -480,7 +466,7 @@ namespace PostCardCenter.myController
                 }
                 if (_image != null)
                 {
-                    _imageClone = (Image) _image.Clone();
+                    _imageClone = (Image)_image.Clone();
                     _imageClone.RotateFlip(rotateInfo);
                 }
                 _pictureRectangle = Rectangle.Empty;
@@ -506,10 +492,10 @@ namespace PostCardCenter.myController
                 eGraphics.DrawImage(
                     _imageClone,
                     CropBox,
-                    new Rectangle((int) (_imageClone.Width * _cropInfo.LeftScale),
-                        (int) (_imageClone.Height * _cropInfo.TopScale),
-                        (int) (_imageClone.Width * _cropInfo.WidthScale),
-                        (int) (_imageClone.Height * _cropInfo.HeightScale)
+                    new Rectangle((int)(_imageClone.Width * _cropInfo.LeftScale),
+                        (int)(_imageClone.Height * _cropInfo.TopScale),
+                        (int)(_imageClone.Width * _cropInfo.WidthScale),
+                        (int)(_imageClone.Height * _cropInfo.HeightScale)
                     ),
                     GraphicsUnit.Pixel);
             }
@@ -518,7 +504,7 @@ namespace PostCardCenter.myController
             {
                 eGraphics.FillRectangle(new SolidBrush(Color.White), CropBox);
                 eGraphics.DrawImage(_imageClone, tmpRectangle);
-                var tmpPictureBoxRectangle = new Rectangle {Size = pictureBox1.Size};
+                var tmpPictureBoxRectangle = new Rectangle { Size = pictureBox1.Size };
                 var region = new Region(tmpPictureBoxRectangle);
                 region.Xor(CropBox);
                 Brush tmpBrush = new SolidBrush(Color.FromArgb(100, 100, 200, 255));
@@ -611,13 +597,13 @@ namespace PostCardCenter.myController
             //如果高度比长度大，缩放高度
             if (_pictureRectangle.Size.Ratio() > 1)
             {
-                _pictureRectangle.Height += (int) (zoomDirect * wheelSpeed);
-                _pictureRectangle.Width = (int) (_pictureRectangle.Height / _imageClone.Size.Ratio());
+                _pictureRectangle.Height += (int)(zoomDirect * wheelSpeed);
+                _pictureRectangle.Width = (int)(_pictureRectangle.Height / _imageClone.Size.Ratio());
             }
             else
             {
-                _pictureRectangle.Width += (int) (zoomDirect * wheelSpeed);
-                _pictureRectangle.Height = (int) (_pictureRectangle.Width * _imageClone.Size.Ratio());
+                _pictureRectangle.Width += (int)(zoomDirect * wheelSpeed);
+                _pictureRectangle.Height = (int)(_pictureRectangle.Width * _imageClone.Size.Ratio());
             }
 
             #region 裁切框的长和宽都比图像框的要打，调整图像框的打下
@@ -628,12 +614,12 @@ namespace PostCardCenter.myController
                 if (tmpCropBox.Size.Ratio() < _pictureRectangle.Size.Ratio())
                 {
                     _pictureRectangle.Height = tmpCropBox.Height;
-                    _pictureRectangle.Width = (int) (tmpCropBox.Height / _imageClone.Size.Ratio());
+                    _pictureRectangle.Width = (int)(tmpCropBox.Height / _imageClone.Size.Ratio());
                 }
                 else
                 {
                     _pictureRectangle.Width = tmpCropBox.Width;
-                    _pictureRectangle.Height = (int) (tmpCropBox.Width * _imageClone.Size.Ratio());
+                    _pictureRectangle.Height = (int)(tmpCropBox.Width * _imageClone.Size.Ratio());
                 }
             }
 
@@ -643,12 +629,12 @@ namespace PostCardCenter.myController
                 if (tmpCropBox.Size.Ratio() < _imageClone.Size.Ratio())
                 {
                     _pictureRectangle.Width = tmpCropBox.Width;
-                    _pictureRectangle.Height = (int) (tmpCropBox.Width * _imageClone.Size.Ratio());
+                    _pictureRectangle.Height = (int)(tmpCropBox.Width * _imageClone.Size.Ratio());
                 }
                 else
                 {
                     _pictureRectangle.Height = tmpCropBox.Height;
-                    _pictureRectangle.Width = (int) (tmpCropBox.Height / _imageClone.Size.Ratio());
+                    _pictureRectangle.Width = (int)(tmpCropBox.Height / _imageClone.Size.Ratio());
                 }
             }
 
@@ -753,10 +739,10 @@ namespace PostCardCenter.myController
             }
             else
             {
-                _cropInfo.LeftScale = (tmpCropBox.Left - _pictureRectangle.Left) / (double) _pictureRectangle.Width;
-                _cropInfo.TopScale = (tmpCropBox.Top - _pictureRectangle.Top) / (double) _pictureRectangle.Height;
-                _cropInfo.WidthScale = (tmpCropBox.Width) / (double) _pictureRectangle.Width;
-                _cropInfo.HeightScale = (tmpCropBox.Height) / (double) _pictureRectangle.Height;
+                _cropInfo.LeftScale = (tmpCropBox.Left - _pictureRectangle.Left) / (double)_pictureRectangle.Width;
+                _cropInfo.TopScale = (tmpCropBox.Top - _pictureRectangle.Top) / (double)_pictureRectangle.Height;
+                _cropInfo.WidthScale = (tmpCropBox.Width) / (double)_pictureRectangle.Width;
+                _cropInfo.HeightScale = (tmpCropBox.Height) / (double)_pictureRectangle.Height;
                 if (CropInfoChanged != null)
                 {
                     var postCard = Node.Tag as PostCardInfo;

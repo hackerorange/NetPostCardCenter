@@ -20,7 +20,9 @@ namespace soho.translator.response
         public static EnvelopeInfo TranslateToEnvelope(this EnvelopeResponse envelopeResponse) => new EnvelopeInfo
         {
             Id = envelopeResponse.EnvelopeId,
-            BackStyle = envelopeResponse.BackStyle,
+            BackStyle = new BackStyleInfo {
+                Name=envelopeResponse.BackStyle
+            },
             DoubleSide = envelopeResponse.DoubleSide,
             FrontStyle = envelopeResponse.FrontStyle,
             PaperName = envelopeResponse.PaperName,

@@ -34,13 +34,18 @@ namespace soho.translator.request
         {
             OrderSubmitEnvelope orderSubmitEnvelope = new OrderSubmitEnvelope
             {
-                BackStyle = envelope.BackStyle,
+                            
                 FrontStyle = envelope.FrontStyle,
                 DoubleSide = envelope.DoubleSide,
                 PaperName = envelope.PaperName,
                 ProductHeight = envelope.ProductSize.Height,
                 ProductWidth = envelope.ProductSize.Width
             };
+            //如果反面样式不为null，返回将反面样式提交上去
+            if (envelope.BackStyle != null)
+            {
+                orderSubmitEnvelope.BackStyle = envelope.BackStyle.Name;                
+            }
             envelope.PostCards.ForEach(postCard =>
             {
                 orderSubmitEnvelope.PostCards.Add(postCard.PrepareSubmitPostCard());
@@ -58,8 +63,7 @@ namespace soho.translator.request
                 Copy = postCard.Copy,
                 FileId = postCard.FileId,
                 FileName = postCard.FileName,
-                FrontStyle = postCard.FrontStyle,
-                CustomerBackStyle = postCard.CustomerBackStyle
+                FrontStyle = postCard.FrontStyle,                
             };
             return orderSubmitPostCard;
         }

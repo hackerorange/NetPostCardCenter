@@ -10,6 +10,8 @@ using DevExpress.XtraEditors.DXErrorProvider;
 using DevExpress.XtraPrinting.Native;
 using PostCardCenter.helper;
 using soho.domain;
+using soho.translator;
+using PostCardCenter.constant;
 
 namespace PostCardCenter.form
 {
@@ -41,33 +43,78 @@ namespace PostCardCenter.form
 
         private void getEnvelopeFromOrderDictionary()
         {
+            
             if (order == null || order.Directory == null) return;
+
+            List<DirectoryInfo> tmpDirectories = new List<DirectoryInfo>();
             var directoryInfos = order.Directory.GetDirectories();
-
-            for (var index = 0; index < directoryInfos.Length; index++)
+            //将根目录添加到集合中
+            if (order.Directory.GetFiles().Length > 0)
             {
-                var directoryInfo = order.Directory.GetDirectories()[index];
-                if (order.Envelopes == null)
+                tmpDirectories.Add(order.Directory);
+            }
+            //将第一层子文件夹中的所有文件添加到集合中
+            foreach (var info in order.Directory.GetDirectories())
+            {
+                tmpDirectories.Add(info);
+            }
+            //遍历目录
+            foreach (var info in tmpDirectories)
+            {
+                EnvelopeInfo envelope = new EnvelopeInfo
                 {
-                    order.Envelopes = new List<EnvelopeInfo>();
-                } //如果此文件夹已经存在，则不再处理          
-                if (order.Envelopes.Exists(orderEnvelope => orderEnvelope.Directory.FullName == directoryInfo.FullName))
+                    OrderInfo = order,
+                    Directory = info
+                };
+                //显示此明信片集合详情页
+                if (new EnvelopeInfoForm(envelope).ShowDialog(this) != DialogResult.OK) continue;
+                order.Envelopes.Add(envelope);
+            }
+            if (order.hasEnvelope())
+            {
+                if (XtraMessageBox.Show("明信片是否已经设置完成", "设置完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    Console.WriteLine(@"此文件夹已经存在");
-                    continue;
+                    order.OrderStatus = "待上传";
+                    //上传此明信片订单下的所有明信片图像
+                    order.Envelopes.ForEach(EnvelopeInfo =>
+                    {
+                        if (EnvelopeInfo.PostCardCount > 0)
+                        {
+                            EnvelopeInfo.PostCards.ForEach(PostCardInfo =>
+                            {
+                                //上传图像
+                                uploadPostCard(PostCardInfo, order);
+                            });
+                        }
+                    });
                 }
+            }
+        }
 
-                var envelopeInfoForm = new EnvelopeInfoForm(directoryInfo);
-                //如果没有此目录下没有文件，跳到下一个循环
-                if (envelopeInfoForm.envelope == null) continue;
-                envelopeInfoForm.order = order;
-                //如果弹出的窗口返回结果不为OK，跳到下一个训话
-                if (envelopeInfoForm.ShowDialog() != DialogResult.OK) continue;
-                //向此集合中添加明信片集合
-                order.Envelopes.Add(envelopeInfoForm.envelope);
-                //向明信片集合中链接此订单
-                gridControl1.DataSource = order.Envelopes;
-                gridControl1.RefreshDataSource();
+        private void uploadPostCard(PostCardInfo PostCardInfo, OrderInfo order)
+        {
+            if (PostCardInfo.FileUploadStat == PostCardFileUploadStatusEnum.BEFOREL_UPLOAD)
+            {
+                PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.UPLOADING;
+                PostCardInfo.FileInfo.Upload(
+                success: result =>
+                {
+                    PostCardInfo.FileId = result;
+                    PostCardInfo.FileName = PostCardInfo.FileInfo.Name;
+                    PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.AFTER_UPLOAD;
+                    //orderInfo.
+                    gridControl1.RefreshDataSource();
+                    if (order.FileUploadPercent == 100)
+                    {
+                        order.OrderStatus = "待提交";
+                    }
+                    Application.DoEvents();
+                },
+                failure: message =>
+                {
+                    XtraMessageBox.Show("文件上传失败！" + message);
+                    PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.BEFOREL_UPLOAD;
+                });
             }
         }
 
@@ -122,7 +169,7 @@ namespace PostCardCenter.form
         {
             var envelope = advBandedGridView1.GetFocusedRow() as EnvelopeInfo;
             if (envelope == null) return;
-            new EnvelopeInfoForm(order, envelope).ShowDialog(this);
+            new EnvelopeInfoForm(envelope).ShowDialog(this);
         }
 
         private void saveButtonItem_ItemClick(object sender, ItemClickEventArgs e)

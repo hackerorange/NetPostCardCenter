@@ -17,8 +17,8 @@ namespace soho.translator.response
             CreateDate=orderResponse.CreateDate,
             PaperType=orderResponse.PaperType,
             ProcessorName=orderResponse.ProcessorName,
-            ProcessStatus=orderResponse.ProcessStatus,
-            TaobaoId=orderResponse.TaobaoId,
+            ProcessStatus=String.IsNullOrEmpty(orderResponse.ProcessStatus)?"未处理": orderResponse.ProcessStatus,
+            TaobaoId =orderResponse.TaobaoId,
             Urgent=orderResponse.Urgent
         };
 
