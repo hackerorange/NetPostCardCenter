@@ -101,13 +101,11 @@ namespace soho.domain
                 {
                     if (value != null)
                     {
-                        envelopePostCard.BackStyle = value.Name;
-                        envelopePostCard.BackFileId = value.FileId;
+                        envelopePostCard.BackStyle =value;                        
                     }
                     else
                     {
-                        envelopePostCard.BackStyle = "空白";
-                        envelopePostCard.BackFileId = null;
+                        envelopePostCard.BackStyle =new BackStyleInfo();                        
                     }
                 }
             }

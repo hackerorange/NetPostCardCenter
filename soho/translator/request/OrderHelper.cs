@@ -63,13 +63,16 @@ namespace soho.translator.request
         {
             OrderSubmitPostCard orderSubmitPostCard = new OrderSubmitPostCard()
             {
-                BackFileId = postCard.BackFileId,
-                BackStyle = postCard.BackStyle,
                 Copy = postCard.Copy,
                 FileId = postCard.FileId,
                 FileName = postCard.FileName,
                 FrontStyle = postCard.FrontStyle,                
             };
+            if (postCard.BackStyle != null)
+            {
+                orderSubmitPostCard.BackFileId = postCard.BackStyle.FileId;
+                orderSubmitPostCard.BackStyle = postCard.BackStyle.Name;
+            }
             return orderSubmitPostCard;
         }
 

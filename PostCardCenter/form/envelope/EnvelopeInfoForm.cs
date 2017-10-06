@@ -21,6 +21,8 @@ namespace PostCardCenter.form.envelope
     public partial class EnvelopeInfoForm : XtraForm
     {
         public ILog Logger = LogManager.GetLogger("");
+        private List<FrontStyleInfo> _frontStyles = new List<FrontStyleInfo>();
+
         /// <summary>
         /// 此订单的明信片信息
         /// </summary>
@@ -52,13 +54,17 @@ namespace PostCardCenter.form.envelope
             //异步获取正面样式
             WebServiceInvoker.GetFrontStyleTemplateList(success: response =>
             {
-                List<String> frontStyles = new List<String>();
+                comboBoxEdit1.Properties.Items.Clear();
                 //获取正面集合，暂时只是字符串
                 response.ForEach(frontStyle =>
                 {
-                    frontStyles.Add(frontStyle.Name);
+                    _frontStyles.Add(new FrontStyleInfo {
+                        Name = frontStyle.Name
+                    });
+                    comboBoxEdit1.Properties.Items.Add(frontStyle.Name);
+                    repositoryItemComboBox1.Properties.Items.Add(frontStyle.Name);
                 });
-                PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource = frontStyles;
+                //PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource = _frontStyles;
             });
             //异步获取反面样式列表
             WebServiceInvoker.GetBackStyleTemplateList(success =>
@@ -305,8 +311,13 @@ namespace PostCardCenter.form.envelope
             //上传文件
             backFileInfo.Upload("自定义反面样式", fileId =>
             {
+                focusedValue.BackStyle = new BackStyleInfo
+                {
+                    Name = "自定义",
+                    FileId = fileId
+                };
                 //focusedValue.BackFileInfo = backFileInfo;
-                focusedValue.BackFileId = fileId;
+                //focusedValue.BackFileId = fileId;
                 //focusedValue.CustomerBackStyle = true;
                 gridView1.RefreshData();
                 //问价
@@ -321,8 +332,7 @@ namespace PostCardCenter.form.envelope
             var styleInfo = b.GetSelectedDataRow() as BackStyleInfo;
             var focusedRow = gridView1.GetFocusedRow() as PostCardInfo;
             if (focusedRow == null) return;
-            //focusedRow.CustomerBackStyle = false;
-            if (styleInfo != null) focusedRow.BackFileId = styleInfo.FileId;
+            //focusedRow.CustomerBackStyle = false;            
             _envelope.BackStyle = styleInfo;
             //focusedRow.BackFileInfo = null;
             gridView1.RefreshData();
@@ -349,10 +359,7 @@ namespace PostCardCenter.form.envelope
                     };
                     foreach (var envelopePostCard in _envelope.PostCards)
                     {
-                        envelopePostCard.BackStyle = _envelope.BackStyle.Name;
-                        //envelopePostCard.BackFileInfo = backFileInfo;
-                        envelopePostCard.BackFileId = _envelope.BackStyle.FileId;
-                        //envelopePostCard.CustomerBackStyle = true;
+                        envelopePostCard.BackStyle = _envelope.BackStyle;
                     }
                     gridView1.RefreshData();
                 }, error => { XtraMessageBox.Show(error); });
@@ -490,6 +497,17 @@ namespace PostCardCenter.form.envelope
             gridView1.RefreshData();
             //更新打印信息
             updatePrintInfo();            
+        }
+
+        private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var com = sender as ComboBoxEdit;
+            _envelope.FrontStyle = _frontStyles[com.SelectedIndex].Name;
+            //if (envelopeFrontStyle.Focused)
+            //{
+            _envelope.PostCards.ForEach(postCard => postCard.FrontStyle = _envelope.FrontStyle);
+            //}
+            gridView1.RefreshData();
         }
     }
 }

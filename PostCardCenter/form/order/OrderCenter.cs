@@ -92,50 +92,17 @@ namespace PostCardCenter.form.order
 
         private void OrderCenter_Load(object sender, EventArgs e)
         {
-            IDictionary<string, TimeArea> oo = new Dictionary<string, TimeArea>();
             var now = DateTime.Now;
-            oo.Add(
-                "今天",
-                new TimeArea(
-                    now.Date,
-                    now.Date.AddDays(1).AddMilliseconds(-1)
-                )
-            );
-            oo.Add(
-                "昨天",
-                new TimeArea(
-                    now.Date.AddDays(-1),
-                    now.Date.AddMilliseconds(-1)
-                )
-            );
-            oo.Add("本月",
-                new TimeArea(
-                    new DateTime(now.Year, now.Month, now.Day),
-                    new DateTime(now.Year, now.Month, now.Day).AddMonths(1).AddMilliseconds(-1)));
-            oo.Add("上月",
-                new TimeArea(new DateTime(now.Year, now.Month, now.Day).AddMonths(-1),
-                    new DateTime(now.Year, now.Month, now.Day).AddMilliseconds(-1)));
-            oo.Add(
-                "10天内",
-                new TimeArea(
-                    now.Date.AddDays(-10),
-                    now.Date.AddDays(1).AddMilliseconds(-1)
-                )
-            );
-            oo.Add(
-                "30天内",
-                new TimeArea(
-                    now.Date.AddDays(-30),
-                    now.Date.AddDays(1).AddMilliseconds(-1)
-                )
-            );
-            oo.Add(
-                "全部",
-                new TimeArea(
-                    new DateTime(2000, 1, 1),
-                    new DateTime(2999, 1, 1)
-                )
-            );
+            IDictionary<string, TimeArea> oo = new Dictionary<string, TimeArea>();
+
+            oo.Add("今天", new TimeArea(now.Date, now.Date.AddDays(1).AddMilliseconds(-1)));
+            oo.Add("昨天", new TimeArea(now.Date.AddDays(-1), now.Date.AddMilliseconds(-1)));
+            oo.Add("本月", new TimeArea(new DateTime(now.Year, now.Month, 1), new DateTime(now.Year, now.Month, 1).AddMonths(1).AddMilliseconds(-1)));
+            oo.Add("上月", new TimeArea(new DateTime(now.Year, now.Month, 1).AddMonths(-1), new DateTime(now.Year, now.Month, 1).AddMilliseconds(-1)));
+            oo.Add("10天内", new TimeArea(now.Date.AddDays(-10), now.Date.AddDays(1).AddMilliseconds(-1)));
+            oo.Add("30天内", new TimeArea(now.Date.AddDays(-30), now.Date.AddDays(1).AddMilliseconds(-1)));
+            oo.Add("全部", new TimeArea(new DateTime(2000, 1, 1), new DateTime(2999, 1, 1)));
+
             radioGroup1.Tag = oo;
             radioGroup1.SelectedIndex = 0;
             //刷新列表

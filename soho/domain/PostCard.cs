@@ -37,7 +37,7 @@ namespace soho.domain
         /// <summary>
         /// 此张明信片的反面样式
         /// </summary>
-        public string BackStyle { get; set; }
+        public BackStyleInfo BackStyle { get; set; }
 
         /// <summary>
         /// 文件上传状态，分为：未上传，正在上传，已上传，
@@ -48,18 +48,11 @@ namespace soho.domain
         /// 文件是否是图片文件，根据Header请求获取文件信息
         /// </summary>
         public bool IsImage { get; set; }
-
-
-        /// <summary>
-        /// 明信片反面是否自定义
-        /// </summary>
-        public bool CustomerBackStyle { get; set; }
-
-         
+                
         /// <summary>
         /// 明信片反面文件ID
         /// </summary>
-        public string BackFileId { get; set; }
+        ///public string BackFileId { get; set; }
 
         /// <summary>
         /// 文件名称
@@ -85,5 +78,38 @@ namespace soho.domain
         /// 处理状态码
         /// </summary>
         public int ProcessStatusCode { get; set; }
+
+
+        public Image FrontImage {
+            get {
+                if (_frontImage == null)
+                {
+                    if (FileInfo != null && FileInfo.Exists)
+                    {
+                        try
+                        {
+                            _frontImage = Image.FromFile(FileInfo.FullName);
+                        }
+                        catch
+                        {
+                            return _frontImage = null;
+                        }
+                    }
+                }
+                return _frontImage;
+            }
+        }
+
+        private Image _frontImage;
+
+        ~PostCardInfo()
+        {
+            if (_frontImage != null)
+            {
+                _frontImage.Dispose();
+                _frontImage = null;
+            }
+        }
+
     }
 }

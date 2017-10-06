@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace soho.translator.response
 {
-   public static class PostCardHelper
+    public static class PostCardHelper
     {
 
         public static PostCardInfo TranlateToPostCard(this PostCardResponse postCardResponse)
@@ -18,8 +18,11 @@ namespace soho.translator.response
             {
                 FileId = postCardResponse.ThumbnailFileId,
                 FileName = postCardResponse.FileName,
-                BackFileId = postCardResponse.BackFileId,
-                BackStyle = postCardResponse.BackStyle,
+                BackStyle = new BackStyleInfo
+                {
+                    FileId = postCardResponse.BackFileId,
+                    Name = postCardResponse.BackStyle
+                },
                 Copy = postCardResponse.Copy,
                 FrontStyle = postCardResponse.FrontStyle,
                 PostCardId = postCardResponse.Id,
@@ -36,11 +39,11 @@ namespace soho.translator.response
 
         public static CropInfo TranlateToCropInfo(this CropInfoResponse postCardResponse) => new CropInfo
         {
-            HeightScale= postCardResponse.HeightScale,
-            WidthScale=postCardResponse.WidthScale,
-            LeftScale=postCardResponse.LeftScale,
-            Rotation=postCardResponse.Rotation,
-            TopScale=postCardResponse.TopScale
+            HeightScale = postCardResponse.HeightScale,
+            WidthScale = postCardResponse.WidthScale,
+            LeftScale = postCardResponse.LeftScale,
+            Rotation = postCardResponse.Rotation,
+            TopScale = postCardResponse.TopScale
         };
 
     }

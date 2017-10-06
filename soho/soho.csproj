@@ -59,6 +59,7 @@
     <Compile Include="domain\BackStyleInfo.cs" />
     <Compile Include="domain\CropInfo.cs" />
     <Compile Include="domain\EnvelopeInfo.cs" />
+    <Compile Include="domain\FrontStyleInfo.cs" />
     <Compile Include="domain\orderCenter\EnvelopeInfo.cs" />
     <Compile Include="domain\OrderInfo.cs" />
     <Compile Include="domain\PostCard.cs" />

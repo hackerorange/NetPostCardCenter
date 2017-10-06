@@ -8,6 +8,7 @@ using DevExpress.Skins;
 using PostCardCenter.form;
 using PostCardCenter.form.order;
 using PostCardCenter.form.postCard;
+using PostCardCenter.security;
 
 namespace PostCardCenter
 {
@@ -35,12 +36,11 @@ namespace PostCardCenter
 
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    MainForm = new OrangeForm();
-                    Application.Run(MainForm);
-//                    Application.Run(new OrderBatchCreateForm());
-//                    Application.Run(new PostCardCropForm());
-//                    Application.Run(new OrderCenter());
-
+                    var a = new UserLogin();
+                    if (a.ShowDialog() == DialogResult.OK)
+                    {
+                        Application.Run(new OrangeForm());
+                    }
                 }
                 else
                 {
@@ -51,6 +51,5 @@ namespace PostCardCenter
             }
         }
 
-        private static OrangeForm MainForm;
     }
 }

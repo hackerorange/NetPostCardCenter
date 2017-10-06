@@ -14,29 +14,30 @@ using DevExpress.XtraEditors;
 namespace PostCardCenter
 {
     public partial class OrangeForm : RibbonForm
-    {
+    {        
         public OrangeForm()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            var formUserLogin = new UserLogin();
-            while (Security.AccountSessionInfo == null)
+        {            
+            if (Security.AccountSessionInfo == null)
             {
-                if (formUserLogin.ShowDialog(this) != DialogResult.Cancel) continue;
                 Application.Exit();
-                break; //中断当前循环
+                return;
             }
-            if (Security.AccountSessionInfo != null)
-            {
-                barStaticItem1.Caption = Security.AccountSessionInfo.realName;
-            }
+            barStaticItem1.Caption = Security.AccountSessionInfo.realName;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+
+            if (Security.AccountSessionInfo == null)
+            {
+                return;
+            }
+
             if (XtraMessageBox.Show("是否真的退出应用", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
             {
                 e.Cancel=true;
