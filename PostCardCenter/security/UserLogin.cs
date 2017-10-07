@@ -33,11 +33,12 @@ namespace PostCardCenter.security
             WebServiceInvoker.UserLogin(textEdit1.Text, textEdit2.Text, success:result => {
                 Security.AccountSessionInfo = new AccountSessionInfo
                 {
-                    realName = result.RealName,
-                    accountName = result.AccountName
-                };                
+                    RealName = result.RealName,
+                    Token= result.Token
+                };
+                WebServiceInvoker.Token = result.Token;
                 DialogResult = DialogResult.OK;
-            }, failure:message=>
+            }, failure:message =>
             {
                 XtraMessageBox.Show(message);
             });

@@ -2,17 +2,9 @@
 {
     public class AccountSessionInfo
     {
-        public string tokenId { get; set; }
+        public string Token { get; set; }
 
-        public string accountName { get; set; }
+        public string RealName { get; set; }
 
-        public string realName { get; set; }
-
-
-//        public static string TokenId
-//        {
-//            get { return  _tokenId; }
-//            set { _tokenId = value; }
-//        }
     }
 }

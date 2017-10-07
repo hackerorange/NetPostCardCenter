@@ -27,7 +27,7 @@ namespace PostCardCenter
                 Application.Exit();
                 return;
             }
-            barStaticItem1.Caption = Security.AccountSessionInfo.realName;
+            barStaticItem1.Caption = Security.AccountSessionInfo.RealName;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

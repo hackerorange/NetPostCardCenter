@@ -12,15 +12,10 @@ namespace postCardCenterSdk.response.security
         /// <summary>
         /// TOKEN
         /// </summary>
-        [JsonProperty("tokenId")]
-        public string TokenId { get; set; }
+        [JsonProperty("token")]
+        public string Token { get; set; }
 
-        /// <summary>
-        /// 用户名称
-        /// </summary>
-        [JsonProperty("accountName")]
-        public string AccountName { get; set; }
-
+      
         /// <summary>
         /// 用户真实姓名
         /// </summary>

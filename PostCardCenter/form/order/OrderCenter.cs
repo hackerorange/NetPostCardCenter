@@ -61,7 +61,7 @@ namespace PostCardCenter.form.order
                     if (XtraMessageBox.Show("当前订单没有处理者，是否由我来处理此订单？", "我来处理", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         WebServiceInvoker.ChangeOrderProcessor(focusedRow.Id, success:order => {
-                            if (order.ProcessorName != Security.AccountSessionInfo.realName)
+                            if (order.ProcessorName != Security.AccountSessionInfo.RealName)
                             {
                                 XtraMessageBox.Show("很抱歉，你没有抢到此订单，此订单被["+ order .ProcessorName+ "]抢到了！");
                                 return;
@@ -78,7 +78,7 @@ namespace PostCardCenter.form.order
                     }
                     return;
                 }                
-                if (focusedRow.ProcessorName == Security.AccountSessionInfo.realName)
+                if (focusedRow.ProcessorName == Security.AccountSessionInfo.RealName)
                 {
                     var xtraForm1 = new PostCardCropForm(focusedRow.Id);
                     xtraForm1.Show();
@@ -149,7 +149,7 @@ namespace PostCardCenter.form.order
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
-            if (orderInfo.ProcessorName != Security.AccountSessionInfo.realName)
+            if (orderInfo.ProcessorName != Security.AccountSessionInfo.RealName)
             {
                 XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
@@ -161,7 +161,7 @@ namespace PostCardCenter.form.order
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
-            if (orderInfo.ProcessorName != Security.AccountSessionInfo.realName)
+            if (orderInfo.ProcessorName != Security.AccountSessionInfo.RealName)
             {
                 XtraMessageBox.Show("只有订单的负责人才能修改订单状态，订单负责人为[" + orderInfo.ProcessorName + "]");
                 return;

@@ -18,6 +18,7 @@ using postCardCenterSdk.response.security;
 using postCardCenterSdk.request.postCard;
 using postCardCenterSdk.response.file;
 using System.Text;
+using postCardCenterSdk.interceptor;
 
 namespace postCardCenterSdk.sdk
 {
@@ -54,8 +55,8 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">失败处理逻辑</param>
         public static void SubmitPostCardList(OrderSubmitRequest postCards, Success<String> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
+
             if (Token == null)
             {
                 failure?.Invoke("此操作需要登录，当前用户没有登录");
@@ -90,8 +91,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure"></param>
         public static void GetBackStyleTemplateList(Success<List<BackStyleResponse>> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
 
             restTemplate.GetForObjectAsync<BodyResponse<Page<BackStyleResponse>>>(Resources.backStyleListUrl, response =>
             {
@@ -133,7 +133,80 @@ namespace postCardCenterSdk.sdk
                     Name = "大尺寸",
                     Height = 105,
                     Width = 160
-                }
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "7寸",
+                    Height = 130,
+                    Width = 180
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "8寸",
+                    Height = 150,
+                    Width = 200
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "10寸",
+                    Height = 210,
+                    Width = 260
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "12寸",
+                    Height = 260,
+                    Width = 310
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "14寸",
+                    Height = 310,
+                    Width = 360
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "15寸",
+                    Height = 260,
+                    Width = 380
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "16寸",
+                    Height = 310,
+                    Width = 410
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "A3尺寸",
+                    Height = 310,
+                    Width = 440
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "A4尺寸",
+                    Height = 220,
+                    Width = 310
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "A5尺寸",
+                    Height = 150,
+                    Width = 220
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "方形",
+                    Height = 148,
+                    Width = 148
+                },
+                new PostCardSizeResponse
+                {
+                    Name = "长条形",
+                    Height = 100,
+                    Width = 220
+                },
+
             };
             success?.Invoke(list);
         }
@@ -174,6 +247,7 @@ namespace postCardCenterSdk.sdk
                 success?.Invoke(fileInfo);
             }
             var webClient = new WebClient();
+            webClient.Headers.Add("token", Token);
             //下载完成
             webClient.DownloadFileCompleted += (sender, e) =>
             {
@@ -246,8 +320,7 @@ namespace postCardCenterSdk.sdk
         /// <returns></returns>
         public static bool IsImageFile(string fileId)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
             var headForHeaders = restTemplate.HeadForHeaders(Resources.fileInfoUrl + "/" + fileId);
             var singleValue = headForHeaders.GetSingleValue("isImage");
             return !string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE");
@@ -262,8 +335,7 @@ namespace postCardCenterSdk.sdk
         /// <returns>文件是否已经存在</returns>
         public static void IsFileExistInServer(string fileId, Success<bool> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
             restTemplate.HeadForHeadersAsync(Resources.fileInfoUrl + "/" + fileId, resp =>
             {
                 if (resp.Error != null)
@@ -284,10 +356,9 @@ namespace postCardCenterSdk.sdk
         /// <param name="file">要上传的文件</param>
         /// <param name="success">上传成功的回调函数</param>
         /// <param name="failure">上传失败的回调函数</param>
-        public static void Upload(string category,FileInfo file, Success<FileUploadResponse> success, Failure failure)
+        public static void Upload(string category, FileInfo file, Success<FileUploadResponse> success, Failure failure)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
@@ -305,7 +376,7 @@ namespace postCardCenterSdk.sdk
                         success?.Invoke(resp.Response.Data);
                         return;
                     }
-                        failure?.Invoke(resp.Response.Message);
+                    failure?.Invoke(resp.Response.Message);
                 });
         }
 
@@ -317,9 +388,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">获取失败的响应结果</param>
         public static void GetAllEnvelopeByOrderId(string orderId, Success<List<EnvelopeResponse>> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-
+            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId}
@@ -354,8 +423,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">失败回调函数</param>
         public static void GetPostCardByEnvelopeId(string envelopeId, Success<List<PostCardResponse>> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
 
             var nameValueCollection = new Dictionary<string, object>
             {
@@ -388,8 +456,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">失败回调函数</param>
         public static void GetEnvelopeInfoById(string envelopeId, Success<EnvelopeResponse> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
 
             var nameValueCollection = new Dictionary<string, object>
             {
@@ -416,8 +483,7 @@ namespace postCardCenterSdk.sdk
 
         public static void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"startDate", startDate.ToString("yyyy-MM-dd HH:mm:ss")},
@@ -448,25 +514,16 @@ namespace postCardCenterSdk.sdk
         /// <param name="orderStatus">订单状态</param>
         /// <param name="success">成功回调</param>
         /// <param name="failure">失败回调</param>
-        public static void ChangeOrderStatus(string orderId, string orderStatus, Success<OrderResponse> success,
-            Failure failure = null)
+        public static void ChangeOrderStatus(string orderId, string orderStatus, Success<OrderResponse> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId},
                 {"orderStatus", orderStatus}
             };
 
-            var httpHeaders = new HttpHeaders { { "tokenId", Token } };
-            if (Token == null)
-            {
-                failure?.Invoke("当前没有登录！");
-                return;
-            }
-            var headers = new HttpEntity(nameValueCollection, httpHeaders);
-            restTemplate.PostForObjectAsync<BodyResponse<OrderResponse>>(Resources.changeOrderStatusUrl, headers, response =>
+            restTemplate.PostForObjectAsync<BodyResponse<OrderResponse>>(Resources.changeOrderStatusUrl, nameValueCollection, response =>
             {
                 if (response.Error != null)
                 {
@@ -487,22 +544,12 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">失败回调函数</param>
         public static void ChangeOrderProcessor(string orderId, Success<OrderResponse> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            if (Token == null)
-            {
-                failure?.Invoke("当前没有登录");
-                return;
-            }
-
+            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId}
             };
-
-            var httpHeaders = new HttpHeaders { { "tokenId", Token } };
-            var headers = new HttpEntity(nameValueCollection, httpHeaders);
-            restTemplate.PostForObjectAsync<BodyResponse<OrderResponse>>(Resources.changeOrderProcessorUrl, headers, response =>
+            restTemplate.PostForObjectAsync<BodyResponse<OrderResponse>>(Resources.changeOrderProcessorUrl, nameValueCollection, response =>
             {
                 if (response.Error != null)
                 {
@@ -520,8 +567,7 @@ namespace postCardCenterSdk.sdk
 
         public static void GetOrderInfo(string orderId, Success<OrderResponse> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId}
@@ -533,7 +579,7 @@ namespace postCardCenterSdk.sdk
                 {
                     failure?.Invoke(respon.Error.Message);
                 }
-                else if(respon.Response.Code>0)
+                else if (respon.Response.Code > 0)
                 {
                     success?.Invoke(respon.Response.Data);
                 }
@@ -545,12 +591,10 @@ namespace postCardCenterSdk.sdk
         }
 
 
-        public static void UserLogin(string userName,string password,Success<LoginResponse> success,Failure failure=null)
+        public static void UserLogin(string userName, string password, Success<LoginResponse> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
+            var restTemplate = PrepareRestTemplate();
 
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            
             var nameValueCollection = new NameValueCollection
             {
                 { "userName", userName },
@@ -571,7 +615,7 @@ namespace postCardCenterSdk.sdk
                     }
                     if (resp.Response.Code > 0)
                     {
-                        Token = resp.Response.Data.TokenId;
+                        Token = resp.Response.Data.Token;
                         success?.Invoke(resp.Response.Data);
                         return;
                     }
@@ -584,21 +628,10 @@ namespace postCardCenterSdk.sdk
 
         public static void SubmitPostCardCropInfo(CropSubmitRequest request, Success<PostCardResponse> success, Failure failure = null)
         {
-            var restTemplate = new RestTemplate();
+            var restTemplate = PrepareRestTemplate();
+
             restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            
-            
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            if (Token == null)
-            {
-                failure?.Invoke("此操作需要登录，当前用户没有登录");
-                return;
-            }
-            //添加请求头Token
-            var httpHeaders = new HttpHeaders { { "tokenId", Token } };
-            //
-            var headers = new HttpEntity(request, httpHeaders);
-            restTemplate.PostForObjectAsync<BodyResponse<PostCardResponse>>(Resources.cropInfoSubmitUrl, headers, res =>
+            restTemplate.PostForObjectAsync<BodyResponse<PostCardResponse>>(Resources.cropInfoSubmitUrl, request, res =>
             {
                 if (res.Error != null)
                 {
@@ -615,5 +648,14 @@ namespace postCardCenterSdk.sdk
                 }
             });
         }
+
+        private static RestTemplate PrepareRestTemplate()
+        {
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            restTemplate.RequestInterceptors.Add(new PerfRequestSyncInterceptor());
+            return restTemplate;
+        }
+
     }
 }

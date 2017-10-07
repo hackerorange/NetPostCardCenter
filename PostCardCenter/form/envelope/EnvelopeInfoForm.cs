@@ -21,7 +21,8 @@ namespace PostCardCenter.form.envelope
     public partial class EnvelopeInfoForm : XtraForm
     {
         public ILog Logger = LogManager.GetLogger("");
-        private List<FrontStyleInfo> _frontStyles = new List<FrontStyleInfo>();
+        private IDictionary<string, FrontStyleInfo> _frontStyles = new Dictionary<string,FrontStyleInfo>();
+        private IDictionary<string, BackStyleInfo> _backStyles = new Dictionary<string, BackStyleInfo>();
 
         /// <summary>
         /// 此订单的明信片信息
@@ -58,7 +59,8 @@ namespace PostCardCenter.form.envelope
                 //获取正面集合，暂时只是字符串
                 response.ForEach(frontStyle =>
                 {
-                    _frontStyles.Add(new FrontStyleInfo {
+                    
+                    _frontStyles.Add(frontStyle.Name,new FrontStyleInfo {
                         Name = frontStyle.Name
                     });
                     comboBoxEdit1.Properties.Items.Add(frontStyle.Name);
@@ -72,13 +74,13 @@ namespace PostCardCenter.form.envelope
                 List<BackStyleInfo> backStyleInfos = new List<BackStyleInfo>();
                 success.ForEach(ba =>
                 {
-                    backStyleInfos.Add(new BackStyleInfo()
+                    _backStyles.Add(ba.Name, new BackStyleInfo()
                     {
-                        Name=ba.Name,
-                        FileId=ba.FileId
+                        Name = ba.Name,
+                        FileId = ba.FileId
                     });
+                    comboBoxEdit2.Properties.Items.Add(ba.Name);
                 });
-                postCardBackStyleGridLookUpEdit.DataSource = envelopeBackStyle.Properties.DataSource = backStyleInfos;
             }, errorMessage => 
             {
                 XtraMessageBox.Show(errorMessage);
@@ -145,7 +147,7 @@ namespace PostCardCenter.form.envelope
             // envelopeFrontStyle.DataBindings.Add("EditValue", _envelope, "FrontStyle", false, DataSourceUpdateMode.OnPropertyChanged);
 
             //设置是否双面
-            envelopeDoubleSideCheckBox.Checked = _envelope.DoubleSide;
+            envelopeDoubleSide.Checked = _envelope.DoubleSide;
 
 
 
@@ -163,26 +165,6 @@ namespace PostCardCenter.form.envelope
                     ConditionOperator = ConditionOperator.IsNotBlank,
                     ErrorText = "请输入客户淘宝ID"
                 });
-        }
-
-        private void envelopeBackStyle_EditValueChanged(object sender, EventArgs e)
-        {
-            var backStyleInfo = envelopeBackStyle.EditValue as BackStyleInfo;
-            if (backStyleInfo == null) return;            
-            _envelope.BackStyle = backStyleInfo;                            
-            gridView1.RefreshData();
-        }
-
-        private void envelopeFrontStyle_EditValueChanged(object sender, EventArgs e)
-        {
-
-            if (envelopeFrontStyle.EditValue == null) return;
-            _envelope.FrontStyle = envelopeFrontStyle.EditValue as string;
-            if (envelopeFrontStyle.Focused)
-            {
-                _envelope.PostCards.ForEach(postCard => postCard.FrontStyle = _envelope.FrontStyle);
-            }
-            gridView1.RefreshData();
         }
 
         private void envelopePostCardCopyEdit_EditValueChanged(object sender, EventArgs e)
@@ -223,16 +205,16 @@ namespace PostCardCenter.form.envelope
 
         private void envelopeDoubleSideCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (envelopeDoubleSideCheckBox.Checked)
+            if (envelopeDoubleSide.Checked)
             {
-                layoutControlItem9.Visibility = layoutControlItem37.Visibility = LayoutVisibility.Always;
+                layoutControlItem17.Visibility = layoutControlItem37.Visibility = LayoutVisibility.Always;
                 _envelope.BackStyle = null;
             }
             else
             {
-                layoutControlItem9.Visibility = layoutControlItem37.Visibility = LayoutVisibility.Never;
+                layoutControlItem17.Visibility = layoutControlItem37.Visibility = LayoutVisibility.Never;
             }
-            postCardBackStyle.Visible = _envelope.DoubleSide = envelopeDoubleSideCheckBox.Checked;
+            postCardBackStyle.Visible = _envelope.DoubleSide = envelopeDoubleSide.Checked;
 
 
 
@@ -362,6 +344,7 @@ namespace PostCardCenter.form.envelope
                         envelopePostCard.BackStyle = _envelope.BackStyle;
                     }
                     gridView1.RefreshData();
+                    comboBoxEdit2.Text = _envelope.BackStyle.Name;
                 }, error => { XtraMessageBox.Show(error); });
             }
         }
@@ -444,11 +427,21 @@ namespace PostCardCenter.form.envelope
                 layoutControlGroup3.Enabled = false;
                 layoutControlGroup5.Enabled = false;
 
+                FileInfo tmpBackgroundFile = null;
+
                 foreach (var fileInfo in fileInfos)
                 {
                     if (Resources.notPostCardFileExtension.Contains(fileInfo.Extension.ToLower()))
                         continue;
 
+                    if (fileInfo.Name.Contains("backgroundPicture"))
+                    {
+                        if (XtraMessageBox.Show("检测到反面文件，请确认？", "反面文件", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            tmpBackgroundFile = fileInfo;
+                            continue;
+                        }
+                    }
                     _envelope.PostCards.Add(new PostCardInfo
                     {
                         Copy = 1,
@@ -459,6 +452,25 @@ namespace PostCardCenter.form.envelope
                     envelopeDetailGridView.RefreshDataSource();
                     updatePrintInfo();
                     Application.DoEvents();
+                }
+                if (tmpBackgroundFile != null)
+                {
+                    //上传反面样式
+                    tmpBackgroundFile.Upload("自定义反面样式", fileId =>
+                    {
+                        //上传成功后，返回此文件ID,同时，将所有明信片的反面ID设置为此文件ID
+                        _envelope.BackStyle = new BackStyleInfo
+                        {
+                            Name = "自定义",
+                            FileId = fileId
+                        };
+                        foreach (var envelopePostCard in _envelope.PostCards)
+                        {
+                            envelopePostCard.BackStyle = _envelope.BackStyle;
+                        }
+                        gridView1.RefreshData();
+                        comboBoxEdit2.Text = _envelope.BackStyle.Name;
+                    }, error => { XtraMessageBox.Show(error); });
                 }
                 layoutControlGroup2.Enabled = true;
                 layoutControlGroup3.Enabled = true;
@@ -502,12 +514,23 @@ namespace PostCardCenter.form.envelope
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var com = sender as ComboBoxEdit;
-            _envelope.FrontStyle = _frontStyles[com.SelectedIndex].Name;
-            //if (envelopeFrontStyle.Focused)
-            //{
-            _envelope.PostCards.ForEach(postCard => postCard.FrontStyle = _envelope.FrontStyle);
-            //}
-            gridView1.RefreshData();
+            if (_frontStyles.ContainsKey(com.Text))
+            {
+                _envelope.FrontStyle = _frontStyles[com.Text].Name;
+                _envelope.PostCards.ForEach(postCard => postCard.FrontStyle = _envelope.FrontStyle);
+                gridView1.RefreshData();
+            }
+        }
+
+        private void comboBoxEdit2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var com = sender as ComboBoxEdit;
+            if (_backStyles.ContainsKey(com.Text))
+            {
+                _envelope.BackStyle = _backStyles[com.Text];
+                _envelope.PostCards.ForEach(postCard => postCard.BackStyle = _envelope.BackStyle);
+                gridView1.RefreshData();
+            }
         }
     }
 }
