@@ -81,7 +81,16 @@ namespace PostCardCenter.myController
                 }
                 if (File.Exists(saveFileDialog.FileName))
                 {
-                    File.Delete(saveFileDialog.FileName);
+                    try
+                    {
+                        File.Delete(saveFileDialog.FileName);
+
+                    }
+                    catch
+                    {
+                        XtraMessageBox.Show("文件已经被占用，请关闭后重新下载!");
+                        return;
+                    }
                 }
                 FileInfo fileInfo= new FileInfo(saveFileDialog.FileName);
 

@@ -21,7 +21,7 @@ namespace PostCardCenter.form.envelope
     public partial class EnvelopeInfoForm : XtraForm
     {
         public ILog Logger = LogManager.GetLogger("");
-        private IDictionary<string, FrontStyleInfo> _frontStyles = new Dictionary<string,FrontStyleInfo>();
+        private IDictionary<string, FrontStyleInfo> _frontStyles = new Dictionary<string, FrontStyleInfo>();
         private IDictionary<string, BackStyleInfo> _backStyles = new Dictionary<string, BackStyleInfo>();
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace PostCardCenter.form.envelope
                     postSize.Add(new PostSize()
                     {
                         Name = postCard.Name,
-                        Height=postCard.Height,
-                        Width=postCard.Width
+                        Height = postCard.Height,
+                        Width = postCard.Width
                     });
                 });
 
@@ -59,8 +59,9 @@ namespace PostCardCenter.form.envelope
                 //获取正面集合，暂时只是字符串
                 response.ForEach(frontStyle =>
                 {
-                    
-                    _frontStyles.Add(frontStyle.Name,new FrontStyleInfo {
+
+                    _frontStyles.Add(frontStyle.Name, new FrontStyleInfo
+                    {
                         Name = frontStyle.Name
                     });
                     comboBoxEdit1.Properties.Items.Add(frontStyle.Name);
@@ -81,7 +82,7 @@ namespace PostCardCenter.form.envelope
                     });
                     comboBoxEdit2.Properties.Items.Add(ba.Name);
                 });
-            }, errorMessage => 
+            }, errorMessage =>
             {
                 XtraMessageBox.Show(errorMessage);
             });
@@ -90,16 +91,16 @@ namespace PostCardCenter.form.envelope
         /// 获取明信片详细信息，如果明信片集合为空，并且存在文件夹信息，从文件夹中获取所有文件
         /// </summary>
         /// <param name="envelope"></param>
-        public EnvelopeInfoForm(EnvelopeInfo envelope):this()
+        public EnvelopeInfoForm(EnvelopeInfo envelope) : this()
         {
             this._envelope = envelope;
-            resetColumnRowArray();            
+            resetColumnRowArray();
         }
 
-       
+
         private void EnvelopeInfoForm_Load(object sender, EventArgs e)
         {
-            if (_envelope == null )
+            if (_envelope == null)
             {
                 DialogResult = DialogResult.Abort;
                 Close();
@@ -110,7 +111,7 @@ namespace PostCardCenter.form.envelope
             tmpStrings.ForEach(String => { orderTaobaoIdTextEdit.Properties.Items.Add(String); });
 
             //绑定一张纸上放几列
-            arrayColumn.DataBindings.Add("EditValue", _envelope, "ArrayColumn" , false, DataSourceUpdateMode.OnPropertyChanged);
+            arrayColumn.DataBindings.Add("EditValue", _envelope, "ArrayColumn", false, DataSourceUpdateMode.OnPropertyChanged);
             //绑定一张纸上放几行
             arrayRow.DataBindings.Add("EditValue", _envelope, "ArrayRow", false, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -130,7 +131,7 @@ namespace PostCardCenter.form.envelope
             PostCardWaste.DataBindings.Add("EditValue", _envelope, "PostCardWaste", false, DataSourceUpdateMode.OnPropertyChanged);
             //绑定需要打印的张数
             paperPrint.DataBindings.Add("EditValue", _envelope, "PaperNeedPrint", false, DataSourceUpdateMode.OnPropertyChanged);
-           
+
             //绑定是否双面
             //envelopeDoubleSideCheckBox.DataBindings.Add("Checked", _envelope, "DoubleSide", false, DataSourceUpdateMode.OnPropertyChanged);
             //绑定订单是否加急
@@ -156,22 +157,22 @@ namespace PostCardCenter.form.envelope
             textEdit1.Text = _envelope.Directory.FullName;
             //订单信息完整性校验
             dxValidationProvider1.SetValidationRule(envelopePaperName, new ConditionValidationRule
-                {
-                    ConditionOperator = ConditionOperator.IsNotBlank,
-                    ErrorText = "请输入纸张名称"
-                });
+            {
+                ConditionOperator = ConditionOperator.IsNotBlank,
+                ErrorText = "请输入纸张名称"
+            });
             dxValidationProvider1.SetValidationRule(orderTaobaoIdTextEdit, new ConditionValidationRule
-                {
-                    ConditionOperator = ConditionOperator.IsNotBlank,
-                    ErrorText = "请输入客户淘宝ID"
-                });
+            {
+                ConditionOperator = ConditionOperator.IsNotBlank,
+                ErrorText = "请输入客户淘宝ID"
+            });
         }
 
         private void envelopePostCardCopyEdit_EditValueChanged(object sender, EventArgs e)
         {
-            
+
             //将每一张明信片的份数统一设置
-            _envelope.PostCards.ForEach(PostCardInfo => { PostCardInfo.Copy =(int)envelopePostCardCopyEdit.Value; });
+            _envelope.PostCards.ForEach(PostCardInfo => { PostCardInfo.Copy = (int)envelopePostCardCopyEdit.Value; });
             updatePrintInfo();
             gridView1.RefreshData();
             //envelope.PostCards.ForEach(postCard => postCard.Copy = (int)envelopePostCardCopyEdit.Value);
@@ -198,9 +199,9 @@ namespace PostCardCenter.form.envelope
                 }
                 _envelope.PostCards[i].Copy = copy;
             }
-        
+
             envelopeDetailGridView.RefreshDataSource();
-            updatePrintInfo();            
+            updatePrintInfo();
         }
 
         private void envelopeDoubleSideCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -259,7 +260,7 @@ namespace PostCardCenter.form.envelope
                 _envelope.PostCards.Remove(postCard);
             gridView1.RefreshData();
             updatePrintInfo();
-            
+
         }
 
         private void updatePrintInfo()
@@ -334,10 +335,10 @@ namespace PostCardCenter.form.envelope
                 //上传文件
                 backFileInfo.Upload("自定义反面样式", fileId =>
                 {
-                    _envelope.BackStyle =new BackStyleInfo
+                    _envelope.BackStyle = new BackStyleInfo
                     {
-                        Name="自定义",
-                        FileId= fileId
+                        Name = "自定义",
+                        FileId = fileId
                     };
                     foreach (var envelopePostCard in _envelope.PostCards)
                     {
@@ -407,7 +408,8 @@ namespace PostCardCenter.form.envelope
                     Width = int.Parse(values[0]),
                     Height = int.Parse(values[1])
                 };
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 XtraMessageBox.Show("格式错误");
             }
@@ -434,13 +436,20 @@ namespace PostCardCenter.form.envelope
                     if (Resources.notPostCardFileExtension.Contains(fileInfo.Extension.ToLower()))
                         continue;
 
-                    if (fileInfo.Name.Contains("backgroundPicture"))
+                    if (fileInfo.Name.ToUpper().Contains("backgroundPicture".ToUpper()))
                     {
-                        if (XtraMessageBox.Show("检测到反面文件，请确认？", "反面文件", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        if (tmpBackgroundFile == null)
                         {
                             tmpBackgroundFile = fileInfo;
-                            continue;
                         }
+                        else
+                        {
+                            if(XtraMessageBox.Show("检测多张反面文件，请确认？", "反面文件", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                            {
+                                tmpBackgroundFile = fileInfo;
+                            }
+                        }
+                        continue;
                     }
                     _envelope.PostCards.Add(new PostCardInfo
                     {
@@ -464,6 +473,8 @@ namespace PostCardCenter.form.envelope
                             Name = "自定义",
                             FileId = fileId
                         };
+                        //将此订单下的所有明信片设置为B板式
+                        comboBoxEdit1.Text = "B";
                         foreach (var envelopePostCard in _envelope.PostCards)
                         {
                             envelopePostCard.BackStyle = _envelope.BackStyle;
@@ -478,7 +489,7 @@ namespace PostCardCenter.form.envelope
             }
         }
 
-    
+
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             _envelope.PaperSize = new PostSize
@@ -495,8 +506,8 @@ namespace PostCardCenter.form.envelope
             //如果没有明信片，无法补齐
             if (_envelope.PostCards.Count == 0) return;
             //如果浪费的张数小于总数
-            int one= _envelope.PostCardWaste % _envelope.PostCards.Count;
-            for(int i = 0; i < one; i++)
+            int one = _envelope.PostCardWaste % _envelope.PostCards.Count;
+            for (int i = 0; i < one; i++)
             {
                 _envelope.PostCards[i].Copy++;
             }
@@ -508,7 +519,7 @@ namespace PostCardCenter.form.envelope
             }
             gridView1.RefreshData();
             //更新打印信息
-            updatePrintInfo();            
+            updatePrintInfo();
         }
 
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
