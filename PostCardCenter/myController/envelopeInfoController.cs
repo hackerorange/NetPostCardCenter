@@ -7,6 +7,7 @@ using soho.domain;
 using postCardCenterSdk.sdk;
 using soho.translator;
 using soho.translator.response;
+using DevExpress.XtraLayout.Utils;
 
 namespace PostCardCenter.myController
 {
@@ -95,10 +96,12 @@ namespace PostCardCenter.myController
                 FileInfo fileInfo= new FileInfo(saveFileDialog.FileName);
 
                 WebServiceInvoker.DownLoadFileByFileId(productFileId, fileInfo, success:downloadFileInfo =>
-                {                       
+                {
+                    layoutControlItem8.Visibility = LayoutVisibility.Never;
                     if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                     Process.Start("explorer.exe", downloadFileInfo.FullName);
                 },process:proce=> {
+                    layoutControlItem8.Visibility = LayoutVisibility.Always;
                     progressBarControl1.EditValue = proce;                    
                 });
             });

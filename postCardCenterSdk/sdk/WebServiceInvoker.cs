@@ -50,23 +50,14 @@ namespace postCardCenterSdk.sdk
         /// <summary>
         /// 提交订单
         /// </summary>
-        /// <param name="postCards">要提交的订单集合</param>
+        /// <param name="orderSubmit">要提交的订单集合</param>
         /// <param name="success">成功返回的结果</param>
         /// <param name="failure">失败处理逻辑</param>
-        public static void SubmitPostCardList(OrderSubmitRequest postCards, Success<String> success, Failure failure = null)
+        public static void SubmitOrderList(OrderSubmitRequest orderSubmit, Success<String> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
+            var restTemplate = PrepareRestTemplate();          
 
-            if (Token == null)
-            {
-                failure?.Invoke("此操作需要登录，当前用户没有登录");
-                return;
-            }
-            //添加请求头Token
-            var httpHeaders = new HttpHeaders { { "tokenId", Token } };
-            //
-            var headers = new HttpEntity(postCards, httpHeaders);
-            restTemplate.PostForObjectAsync<BodyResponse<Object>>(Resources.postCardSubmitUrl, headers, res =>
+            restTemplate.PostForObjectAsync<BodyResponse<Object>>(Resources.postCardSubmitUrl, orderSubmit, res =>
             {
                 if (res.Error != null)
                 {
@@ -245,6 +236,7 @@ namespace postCardCenterSdk.sdk
             {
                 Console.WriteLine(@"文件本地已经存在");
                 success?.Invoke(fileInfo);
+                return;
             }
             var webClient = new WebClient();
             webClient.Headers.Add("token", Token);
@@ -277,26 +269,9 @@ namespace postCardCenterSdk.sdk
         /// <param name="success">成功响应结果</param>
         /// <param name="process">进度条</param>
         /// <param name="failure">失败响应结果</param>
-        public static void DownLoadFileByFileId(string file, DirectoryInfo path, Success<FileInfo> success, Success<int> process, Failure failure)
+        public static void DownLoadFileByFileId(string file, DirectoryInfo path, Success<FileInfo> success, Success<int> process=null, Failure failure=null)
         {
             DownLoadFileByFileId(file, new FileInfo(path.FullName + "/" + file), success, process, failure);
-        }
-
-        /// <summary>
-        /// 根据文件ID，下载到默认路径
-        /// </summary>
-        /// <param name="fileId"></param>        
-        /// <param name="success">成功响应结果</param>
-        /// <param name="process">进度条</param>
-        /// <param name="failure">失败响应结果</param>
-        public static void DownLoadFileByFileId(string fileId, Success<FileInfo> success, Success<int> process = null, Failure failure = null)
-        {
-            DirectoryInfo path = new DirectoryInfo(Environment.CurrentDirectory + "/tmp");
-            if (!path.Exists)
-            {
-                path.Create();
-            }
-            DownLoadFileByFileId(fileId, path, success, process, failure);
         }
 
         /// <summary>
@@ -349,6 +324,42 @@ namespace postCardCenterSdk.sdk
                 }
             });
         }
+
+
+        /// <summary>
+        /// 根据文件ID生成文件缩略图
+        /// </summary>
+        /// <param name="fileId">要询问的文件信息</param>
+        /// <param name="success">成功回调函数</param>
+        /// <param name="failure">失败回调函数</param>
+        /// <returns>文件是否已经存在</returns>
+        public static void GetThumbnailFileId(string fileId, Success<FileUploadResponse> success, Failure failure = null)
+        {
+            var restTemplate = PrepareRestTemplate();
+            var nameValueCollection = new Dictionary<string, object>
+            {
+                {"fileId", fileId}
+            };
+            restTemplate.GetForObjectAsync< BodyResponse<FileUploadResponse>>(Resources.getFileThumbnailUrl, nameValueCollection, resp =>
+            {
+                if (resp.Error != null)
+                {
+                    failure?.Invoke(resp.Error.Message);
+                }
+                else
+                {
+                    if (resp.Response.Code < 0)
+                    {
+                        failure?.Invoke(resp.Response.Message);
+                    }
+                    else
+                    {
+                        success?.Invoke(resp.Response.Data);
+                    }                    
+                }
+            });
+        }
+
 
         /// <summary>
         /// 上传文件
@@ -648,6 +659,69 @@ namespace postCardCenterSdk.sdk
                 }
             });
         }
+
+        public static void ChangePostCardFrontStyle(PostCardInfoPatchRequest frontStyle, Success<PostCardResponse> success, Failure failure = null)
+        {
+            var restTemplate = PrepareRestTemplate();            
+            HttpEntity httpEntity = new HttpEntity(frontStyle);
+
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            
+            restTemplate.ExchangeAsync<BodyResponse<PostCardResponse>>(Resources.patchPostCardInfoUrl, new HttpMethod("PATCH"), httpEntity, res =>
+            {
+                if (res.Error != null)
+                {
+                    failure?.Invoke(res.Error.Message);
+                    return;
+                }
+                if (res.Response.Body.Code > 0)
+                {
+                    success?.Invoke(res.Response.Body.Data);
+                }
+                else
+                {
+                    failure?.Invoke(res.Response.Body.Message);
+                }
+            });
+        }
+        
+        /// <summary>
+        /// 获取明信片信息
+        /// </summary>
+        /// <param name="postCardId">明信片ID</param>
+        /// <param name="success">成功返回信息</param>
+        /// <param name="failure">失败返回信息</param>
+        public static void GetPostCardInfo(string postCardId,Success<PostCardResponse> success,Failure failure = null)
+        {
+
+            var restTemplate = PrepareRestTemplate();
+            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+
+            
+            var nameValueCollection = new Dictionary<string, object>
+            {
+                {"postCardId", postCardId}
+            };
+
+
+            restTemplate.GetForObjectAsync<BodyResponse<PostCardResponse>>(Resources.getPostCardInfoUrl, nameValueCollection, res =>
+            {
+                if (res.Error != null)
+                {
+                    failure?.Invoke(res.Error.Message);
+                    return;
+                }
+                if (res.Response.Code > 0)
+                {
+                    success?.Invoke(res.Response.Data);
+                }
+                else
+                {
+                    failure?.Invoke(res.Response.Message);
+                }
+            });
+        }
+        //frontStyle
 
         private static RestTemplate PrepareRestTemplate()
         {

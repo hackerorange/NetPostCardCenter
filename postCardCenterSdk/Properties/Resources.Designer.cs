@@ -61,7 +61,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/system/backStyle 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/system/backStyle 的本地化字符串。
         /// </summary>
         public static string backStyleListUrl {
             get {
@@ -70,7 +70,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/postCardOrder/changeProcessor 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/order/changeProcessor 的本地化字符串。
         /// </summary>
         public static string changeOrderProcessorUrl {
             get {
@@ -79,7 +79,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/postCardOrder/changeStatus 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/order/changeStatus 的本地化字符串。
         /// </summary>
         public static string changeOrderStatusUrl {
             get {
@@ -88,7 +88,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/PostCardController/submitPostCardCropInfo 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/postCard/submitPostCardCropInfo 的本地化字符串。
         /// </summary>
         public static string cropInfoSubmitUrl {
             get {
@@ -97,7 +97,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/EnvelopeController/info?envelopeId={envelopeId} 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/envelope/info?envelopeId={envelopeId} 的本地化字符串。
         /// </summary>
         public static string envelopeInfoUrl {
             get {
@@ -106,7 +106,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8089/file 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8089/file 的本地化字符串。
         /// </summary>
         public static string fileDownloadUrl {
             get {
@@ -115,7 +115,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8089/file 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8089/file 的本地化字符串。
         /// </summary>
         public static string fileInfoUrl {
             get {
@@ -124,7 +124,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8089/file/upload 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8089/file/upload 的本地化字符串。
         /// </summary>
         public static string fileUploadUrl {
             get {
@@ -133,7 +133,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/EnvelopeController/{orderId} 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/order/{orderId} 的本地化字符串。
         /// </summary>
         public static string getAllEnvelopeByOrderIdUrl {
             get {
@@ -142,7 +142,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/postCardOrder/all 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/order/all 的本地化字符串。
         /// </summary>
         public static string getAllOrderUrl {
             get {
@@ -151,7 +151,16 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/postCardOrder/info?orderId={orderId} 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8089/file/generateThumbnail/{fileId} 的本地化字符串。
+        /// </summary>
+        public static string getFileThumbnailUrl {
+            get {
+                return ResourceManager.GetString("getFileThumbnailUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/order/info?orderId={orderId} 的本地化字符串。
         /// </summary>
         public static string getOrderInfoUrl {
             get {
@@ -160,7 +169,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/PostCardController/{envelopeId} 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/envelope/{envelopeId} 的本地化字符串。
         /// </summary>
         public static string getPostCardByEnvelopeIdUrl {
             get {
@@ -169,7 +178,16 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/security/login 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/postCard/info/{postCardId} 的本地化字符串。
+        /// </summary>
+        public static string getPostCardInfoUrl {
+            get {
+                return ResourceManager.GetString("getPostCardInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/security/login 的本地化字符串。
         /// </summary>
         public static string loginUrl {
             get {
@@ -178,7 +196,16 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/postCardOrder/submit 的本地化字符串。
+        ///   查找类似 http://192.168.1.136:8083/rest/postCard/info 的本地化字符串。
+        /// </summary>
+        public static string patchPostCardInfoUrl {
+            get {
+                return ResourceManager.GetString("patchPostCardInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/order/submit 的本地化字符串。
         /// </summary>
         public static string postCardSubmitUrl {
             get {

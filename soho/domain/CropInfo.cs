@@ -7,7 +7,7 @@ using soho.translator;
 namespace soho.domain
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class CropInfo 
+    public class CropInfo :IEquatable<CropInfo>,ICloneable
     {
         /// <summary>
         /// 裁切框X坐标相对于图像尺寸的比例
@@ -71,8 +71,18 @@ namespace soho.domain
         {
             get { return Math.Abs(HeightScale * WidthScale) < 0.001; }
         }
+           
+        public bool Equals(CropInfo other)
+        {
+            if (LeftScale != other.LeftScale) return false;
+            if (WidthScale != other.WidthScale) return false;
+            if (LeftScale != other.LeftScale) return false;
+            if (TopScale != other.TopScale) return false;
+            if (Rotation != other.Rotation) return false;
+            return true;
+        }
 
-        public CropInfo CloneNew()
+        public object Clone()
         {
             return new CropInfo
             {

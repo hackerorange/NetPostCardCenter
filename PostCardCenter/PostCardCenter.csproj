@@ -171,6 +171,12 @@
     <Compile Include="myController\PostCardCropController.Designer.cs">
       <DependentUpon>PostCardCropController.cs</DependentUpon>
     </Compile>
+    <Compile Include="myController\PostCardInfoController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="myController\PostCardInfoController.Designer.cs">
+      <DependentUpon>PostCardInfoController.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrangeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="myController\PostCardCropController.resx">
       <DependentUpon>PostCardCropController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="myController\PostCardInfoController.resx">
+      <DependentUpon>PostCardInfoController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrangeForm.resx">
       <DependentUpon>OrangeForm.cs</DependentUpon>

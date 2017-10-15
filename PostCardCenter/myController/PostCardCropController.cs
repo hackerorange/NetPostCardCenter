@@ -9,15 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using DevExpress.XtraPrinting;
-using DevExpress.XtraTreeList.Native;
-using DevExpress.XtraTreeList.Nodes;
 using soho.domain;
 using soho.translator;
 using postCardCenterSdk.sdk;
 using soho.translator.request;
 using soho.translator.response;
+using soho.constant.postcard;
+using soho.constant.system;
 
 namespace PostCardCenter.myController
 {
@@ -27,15 +25,30 @@ namespace PostCardCenter.myController
     {
         public delegate void CropInfoChangeHandler(CropInfo newCropInfo);
 
-        public delegate void SubmitEventHandler(TreeListNode node, PostCardCropController sender);
-        public delegate void MatchHandler(TreeListNode node, PostCardInfo postCardInfo);
-        public delegate void SubmitResultHandler(TreeListNode node);
+        public delegate void SubmitEventHandler(PostCardInfo node, PostCardCropController sender);
+        public delegate void MatchHandler(PostCardInfo postCardInfo);
+        public delegate void SubmitResultHandler(PostCardInfo node);
+        public delegate void ErrorHandler(string message);
 
         public event CropInfoChangeHandler CropInfoChanged;
         public event SubmitResultHandler FailureSubmit;
         public event SubmitResultHandler SuccessSubmit;
-        public event SubmitEventHandler OnSubmit;
+        public event SubmitResultHandler OnSubmit;
+        public event ErrorHandler error;
         public event MatchHandler match;
+
+        private Rectangle _picturePrintArea;
+        private Image _image;
+        private Image _imageClone;
+        private CropInfo _cropInfo;
+        private Point _lastMousePoint;
+
+
+
+        private bool _scaleSlow = false;
+        private bool _allowOut = false;
+        private bool _allowMove = true;
+        private bool _allowIn = false;
 
 
         private Rectangle _paperBox;
@@ -45,7 +58,6 @@ namespace PostCardCenter.myController
 
 
         [Description("图像框四周留白的百分比"), Category("页面设置"), Browsable(true)]
-
         public string PostCardId { get; set; }
 
         public double WhiteSpacePercent {
@@ -95,7 +107,7 @@ namespace PostCardCenter.myController
             set {
                 if (value != null)
                 {
-                    _cropInfo = (CropInfo)value.CloneNew();
+                    _cropInfo = (CropInfo)value.Clone();
                     _pictureRectangle = Rectangle.Empty;
                     Angle = value.Rotation;
                 }
@@ -112,7 +124,6 @@ namespace PostCardCenter.myController
                 pictureBox1.Refresh();
             }
         }
-
 
         public Rectangle PictureRectangle {
             get {
@@ -145,7 +156,6 @@ namespace PostCardCenter.myController
                 return _pictureRectangle;
             }
         }
-
 
         public PostCardCropController()
         {
@@ -226,11 +236,6 @@ namespace PostCardCenter.myController
             }
         }
 
-        private Rectangle _picturePrintArea;
-        private Image _image;
-        private Image _imageClone;
-        private CropInfo _cropInfo;
-
         /// <summary>
         /// 图片矩形
         /// </summary>
@@ -249,7 +254,6 @@ namespace PostCardCenter.myController
             CropInfo = new CropInfo(_imageClone.Size, PicturePrintAreaSize, false) { Rotation = Angle };
             pictureBox1.Refresh();
         }
-
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -275,139 +279,131 @@ namespace PostCardCenter.myController
 
         public void SubmitPostCard()
         {
-            var tmpNode = Node;
-            if ("已提交".Equals(Node.GetValue("status")))
-            {
-                if (OnSubmit != null)
-                {
-                    OnSubmit(tmpNode, this);
-                }
-                return;
-            }
+            var tmpNode = _postCardInfo;
             if (CropInfo == null) return;
-            WebServiceInvoker.SubmitPostCardCropInfo(CropInfo.PrepareCropInfoRequest(PostCardId), postCard =>
-            {
-                tmpNode.SetValue("status", "提交成功");
-                var tmpPostCard = tmpNode.Tag as PostCardInfo;
-                if (tmpPostCard != null)
-                {
-                    tmpPostCard.CropInfo = postCard.CropInfo.TranlateToCropInfo();
-                    tmpPostCard.ProcessStatus = "已提交";
-                }
-                Application.DoEvents();
-                //提交之后
+            tmpNode.ProcessStatus= PostCardProcessStatusEnum.SUBMITING;
+            WebServiceInvoker.SubmitPostCardCropInfo(CropInfo.PrepareCropInfoRequest(_postCardInfo.PostCardId), postCard => {
+                var tmpPostCard = postCard.TranlateToPostCard();
+                tmpNode.ProcessStatus= tmpPostCard.ProcessStatus;
+                tmpNode.ProcessStatusText = tmpPostCard.ProcessStatusText;
+                tmpNode.CropInfo = tmpPostCard.CropInfo;
                 SuccessSubmit?.Invoke(tmpNode);
+                Application.DoEvents();
             }, failure =>
             {
-                    FailureSubmit?.Invoke(tmpNode);
+                FailureSubmit?.Invoke(tmpNode);
+                Application.DoEvents();
             });
-            tmpNode.SetValue("status", "正在提交");
-            //开始提交
-            OnSubmit?.Invoke(tmpNode, this);
+            OnSubmit?.Invoke(tmpNode);
         }
 
+        private PostCardInfo _postCardInfo;
 
-        private TreeListNode _treeListNode;
-
-        public TreeListNode Node {
-            get { return _treeListNode; }
+        public PostCardInfo Node {
+            get { return _postCardInfo; }
             set {
-                _treeListNode = value;
+                _postCardInfo = value;
                 reset();
-                if (value == null) return;
-
-                var focusedNodeTag = _treeListNode.Tag;
-                if (focusedNodeTag == null) return;
-
-                //如果是明信片集合
-                if (focusedNodeTag.GetType() == typeof(EnvelopeInfo))
+                if (value == null)
                 {
                     Image = null;
                     RefreshPostCard();
-                    PostCardId = null;
-                }
-
-                if (focusedNodeTag.GetType() == typeof(PostCardInfo))
+                    return;
+                };
+                _postCardInfo = value;
+                PostCardInfo tmpPostCardInfo = _postCardInfo;
+                try
                 {
-                    var envelopeInfo = _treeListNode.ParentNode.Tag as EnvelopeInfo;
-                    if (envelopeInfo == null) return;
-
-                    var tmpPostCard = focusedNodeTag as PostCardInfo;
-                    //如果没有找到postCard对象，直接返回
-                    if (tmpPostCard == null) return;
-                    PostCardId = tmpPostCard.PostCardId;
+                    Image = Image.FromFile(tmpPostCardInfo.FileInfo.FullName);
+                }
+                catch
+                {
                     try
                     {
-                        Image = Image.FromFile(tmpPostCard.FileInfo.FullName);
+                        if (tmpPostCardInfo.FileInfo != null)
+                        {
+                            tmpPostCardInfo.FileInfo.Delete();
+                            DirectoryInfo directoryInfo = new DirectoryInfo(SystemConstants.tmpFilePath);
+                            if (!directoryInfo.Exists)
+                            {
+                                directoryInfo.Create();
+                            }
+                            WebServiceInvoker.DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, success: success =>
+                            {
+                                tmpPostCardInfo.FileInfo = success;
+                                try
+                                {
+                                    Image = Image.FromFile(tmpPostCardInfo.FileInfo.FullName);
+                                }
+                                catch
+                                {
+                                    error?.Invoke("当前文件不是图像文件或者文件有问题，请重新上传");
+                                }
+                            });
+                        }
+                    }
+                    catch (FileNotFoundException fileNotFoundException)
+                    {
+                        DirectoryInfo directoryInfo = new DirectoryInfo(SystemConstants.tmpFilePath);
+                        if (!directoryInfo.Exists)
+                        {
+                            directoryInfo.Create();
+                        }
+                        WebServiceInvoker.DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, success: result =>
+                        {
+                            tmpPostCardInfo.FileInfo = result;
+                            Image = Image.FromFile(tmpPostCardInfo.FileInfo.FullName);
+                        }, failure: message =>
+                        {                            
+                            error?.Invoke("尝试重新下载文件失败，请关闭重试");
+                            return;
+                        });
                     }
                     catch
                     {
-                        try
-                        {
-                            if (tmpPostCard.FileInfo != null)
-                            {
-                                tmpPostCard.FileInfo.Delete();
-                                XtraMessageBox.Show("发生异常，图片读取失败，正在重新获取图片");
-                                WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId, success: success =>
-                                {
-                                    tmpPostCard.FileInfo = success;
-                                    Image = Image.FromFile(tmpPostCard.FileInfo.FullName);
-                                });
-                            }
-                        }
-                        catch (FileNotFoundException fileNotFoundException)
-                        {
-                            XtraMessageBox.Show("文件未找到");
-                            WebServiceInvoker.DownLoadFileByFileId(tmpPostCard.FileId, success: result =>
-                            {
-                                tmpPostCard.FileInfo = result;
-                                Image = Image.FromFile(tmpPostCard.FileInfo.FullName);
-                            }, failure: message =>
-                            {
-                                XtraMessageBox.Show("尝试重新下载文件失败，请关闭重试");
-                                return;
-                            });
-                        }
-
-                        catch
-                        {
-                            XtraMessageBox.Show("发生未知错误，请重新打开此订单");
-                            return;
-                        }
+                        error?.Invoke("发生未知错误，请重新打开此订单");
+                        return;
                     }
+                }
 
+                Margin = new Padding(5);
+                Scale = 0;
+
+                if (tmpPostCardInfo.FrontStyle.Equals("A", StringComparison.CurrentCultureIgnoreCase))
+                {
                     Margin = new Padding(5);
                     Scale = 0;
-
-                    if (tmpPostCard.FrontStyle.Equals("A", StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        Margin = new Padding(5);
-                        Scale = 0;
-                    }
-                    if (tmpPostCard.FrontStyle.Equals("B", StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        Margin = new Padding(0);
-                        Scale = 0;
-                    }
-                    if (tmpPostCard.FrontStyle.Equals("C", StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        Margin = new Padding(5);
-                        Scale = 1;
-                    }
-
-                    ProductSize = envelopeInfo.ProductSize.ToSize();
-                    CropInfo = tmpPostCard.CropInfo;
-                    if (CropInfo != null)
-                    {
-                        if (CropInfo.WidthScale > 0.995 && CropInfo.HeightScale > 0.995)
-                        {
-                            match?.Invoke(_treeListNode, tmpPostCard);
-                            return;
-                        }
-                    }
-                    RefreshPostCard();
-                    _treeListNode.SetValue("status", tmpPostCard.ProcessStatus);
                 }
+                if (tmpPostCardInfo.FrontStyle.Equals("B", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Margin = new Padding(0);
+                    Scale = 0;
+                }
+                if (tmpPostCardInfo.FrontStyle.Equals("C", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Margin = new Padding(5);
+                    Scale = 1;
+                }
+
+                //成品尺寸
+                ProductSize = new Size()
+                {
+                    Width = tmpPostCardInfo.ProductSize.Width,
+                    Height = tmpPostCardInfo.ProductSize.Height
+                };
+                //裁切信息
+                CropInfo = _postCardInfo.CropInfo;
+                //自动裁切
+                if (CropInfo != null)
+                {
+                    if (CropInfo.WidthScale > 0.995 && CropInfo.HeightScale > 0.995)
+                    {
+                        match?.Invoke(_postCardInfo);
+                        return;
+                    }
+                }
+                RefreshPostCard();
+
             }
         }
 
@@ -461,7 +457,7 @@ namespace PostCardCenter.myController
                         rotateInfo = RotateFlipType.Rotate270FlipNone;
                         break;
                     default:
-                        XtraMessageBox.Show("角度出现异常");
+                        error?.Invoke("角度出现异常");
                         break;
                 }
                 if (_imageClone != null)
@@ -477,7 +473,6 @@ namespace PostCardCenter.myController
             }
             get { return _angle; }
         }
-
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -561,10 +556,6 @@ namespace PostCardCenter.myController
             pictureBox1.Refresh();
         }
 
-
-        private Point _lastMousePoint;
-
-
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             _lastMousePoint = Point.Empty;
@@ -581,8 +572,7 @@ namespace PostCardCenter.myController
             }
         }
 
-        public void CanvasResize(Point mousePoint, double wheelSpeed, int delta, bool isSlow = false,
-            bool allowOut = false)
+        public void CanvasResize(Point mousePoint, double wheelSpeed, int delta, bool isSlow = false, bool allowOut = false)
         {
             if (delta == 0) return;
             var oldRectangle = _pictureRectangle;
@@ -660,6 +650,9 @@ namespace PostCardCenter.myController
             #endregion
         }
 
+        /// <summary>
+        /// 鼠标在移动的时候，检测是否超过边界，进行辩解检查
+        /// </summary>
         private void CheckPictureRectangleLocation()
         {
             var tmpCropBox = CropBox;
@@ -733,40 +726,27 @@ namespace PostCardCenter.myController
             if (_cropInfo == null)
             {
                 _cropInfo = new CropInfo(_image.Size, PicturePrintAreaSize);
-
-
-                if (CropInfoChanged != null)
-                {
-                    CropInfoChanged(_cropInfo);
-                }
+                CropInfoChanged?.Invoke(_cropInfo);                
                 Angle = _cropInfo.Rotation;
             }
             else
-            {
+            {               
                 _cropInfo.LeftScale = (tmpCropBox.Left - _pictureRectangle.Left) / (double)_pictureRectangle.Width;
                 _cropInfo.TopScale = (tmpCropBox.Top - _pictureRectangle.Top) / (double)_pictureRectangle.Height;
                 _cropInfo.WidthScale = (tmpCropBox.Width) / (double)_pictureRectangle.Width;
-                _cropInfo.HeightScale = (tmpCropBox.Height) / (double)_pictureRectangle.Height;
-                if (CropInfoChanged != null)
-                {
-                    var postCard = Node.Tag as PostCardInfo;
-                    if (postCard != null)
-                    {
-                        postCard.ProcessorName = "已修改";
-                        Node.SetValue("status", "已修改");
-                    }
-                    CropInfoChanged(_cropInfo);
-                }
+                _cropInfo.HeightScale = (tmpCropBox.Height) / (double)_pictureRectangle.Height;                
+                CropInfoChanged?.Invoke(_cropInfo);
                 Angle = _cropInfo.Rotation;
             }
 
             #endregion
         }
 
-        private bool _scaleSlow = false;
-        private bool _allowOut = false;
-        private bool _allowMove = true;
-
+        /// <summary>
+        /// 特殊按键按下后产生对应的按键逻辑
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PostCardCropController_KeyDown(object sender, KeyEventArgs e)
         {
             //按住Controll键，缓慢缩放
@@ -784,8 +764,18 @@ namespace PostCardCenter.myController
             {
                 _allowMove = false;
             }
+            //按住空格键后，停止移动响应
+            if (e.KeyCode == Keys.Alt)
+            {
+                _allowIn = true;
+            }
         }
 
+        /// <summary>
+        /// 特殊按键抬起后产生对应的按键逻辑
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PostCardCropController_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
@@ -799,6 +789,10 @@ namespace PostCardCenter.myController
             if (e.KeyCode == Keys.Space)
             {
                 _allowMove = true;
+            }
+            if (e.KeyCode == Keys.Alt)
+            {
+                _allowIn = false;
             }
         }
     }

@@ -18,6 +18,12 @@ namespace postCardCenterSdk.response.postCard
         /// <summary>
         /// 此文件在文件服务器的ID
         /// </summary>
+        [JsonProperty("fileId")]
+        public string FileId { get; set; }
+
+        /// <summary>
+        /// 此文件在文件服务器的缩略图ID
+        /// </summary>
         [JsonProperty("thumbnailFileId")]
         public string ThumbnailFileId { get; set; }
 
@@ -57,13 +63,13 @@ namespace postCardCenterSdk.response.postCard
         /// <summary>
         /// 明信片处理状态
         /// </summary>
-        [JsonProperty("processStatus")]
+        [JsonProperty("processStatusText")]
         public string ProcessStatusText { get; set; }
 
         /// <summary>
         /// 处理状态码
         /// </summary>
-        [JsonProperty("processStatusCode")]
+        [JsonProperty("processStatus")]
         public int ProcessStatus { get; set; }
 
         /// <summary>

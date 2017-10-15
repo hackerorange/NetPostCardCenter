@@ -64,7 +64,7 @@ namespace soho.translator.request
             OrderSubmitPostCard orderSubmitPostCard = new OrderSubmitPostCard()
             {
                 Copy = postCard.Copy,
-                FileId = postCard.FileId,
+                FileId = postCard.FileId,                
                 FileName = postCard.FileName,
                 FrontStyle = postCard.FrontStyle,                
             };

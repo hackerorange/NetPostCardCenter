@@ -1,5 +1,6 @@
 ﻿using postCardCenterSdk.response.postCard;
 using soho;
+using soho.constant.postcard;
 using soho.domain;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace soho.translator.response
         {
             var result = new PostCardInfo
             {
-                FileId = postCardResponse.ThumbnailFileId,
+                FileId= postCardResponse.FileId,
+                ThumbnailFileId = postCardResponse.ThumbnailFileId,
                 FileName = postCardResponse.FileName,
                 BackStyle = new BackStyleInfo
                 {
@@ -27,8 +29,8 @@ namespace soho.translator.response
                 FrontStyle = postCardResponse.FrontStyle,
                 PostCardId = postCardResponse.Id,
                 ProcessorName = postCardResponse.ProcessorName,
-                ProcessStatus = postCardResponse.ProcessStatusText,
-                ProcessStatusCode = postCardResponse.ProcessStatus
+                ProcessStatusText = postCardResponse.ProcessStatusText,
+                ProcessStatus = (PostCardProcessStatusEnum)postCardResponse.ProcessStatus
             };
             if (postCardResponse.CropInfo != null)
             {

@@ -3,6 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Drawing;
 using PostCardCenter.constant;
+using soho.constant.postcard;
 
 namespace soho.domain
 {
@@ -18,6 +19,11 @@ namespace soho.domain
         /// 此文件在文件服务器的ID
         /// </summary>
         public string FileId { get; set; }
+
+        /// <summary>
+        /// 此文件的缩略图文件ID
+        /// </summary>
+        public string ThumbnailFileId { get; set; }
 
         /// <summary>
         /// 明信片原始文件信息
@@ -70,15 +76,9 @@ namespace soho.domain
         public string ProcessorName { get; set; }
 
         /// <summary>
-        /// 处理状态
+        /// 处理状态显示文本
         /// </summary>
-        public string ProcessStatus { get; set; }
-
-        /// <summary>
-        /// 处理状态码
-        /// </summary>
-        public int ProcessStatusCode { get; set; }
-
+        public string ProcessStatusText { get; set; }
 
         public Image FrontImage {
             get {
@@ -99,6 +99,16 @@ namespace soho.domain
                 return _frontImage;
             }
         }
+
+        /// <summary>
+        /// 成品尺寸（裁切页面使用）
+        /// </summary>
+        public PostSize ProductSize { get; set; }
+
+        /// <summary>
+        /// 当前处理状态枚举
+        /// </summary>
+        public PostCardProcessStatusEnum ProcessStatus { get; set; }
 
         private Image _frontImage;
 

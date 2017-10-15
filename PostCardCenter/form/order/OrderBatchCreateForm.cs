@@ -91,7 +91,8 @@ namespace PostCardCenter.form.order
                         EnvelopeInfo envelope = new EnvelopeInfo
                         {
                             OrderInfo = orderInfo,
-                            Directory = info
+                            Directory = info,
+                            FrontStyle="B"
                         };
                         //显示此明信片集合详情页
                         if (new EnvelopeInfoForm(envelope).ShowDialog(this) != DialogResult.OK) continue;                        
@@ -102,7 +103,7 @@ namespace PostCardCenter.form.order
                     {
                         if (XtraMessageBox.Show("明信片是否已经设置完成", "设置完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                         {
-                            orderInfo.OrderStatus = "待上传";
+                            orderInfo.OrderStatus = "正在上传中";
                             //上传此明信片订单下的所有明信片图像
                             orderInfo.Envelopes.ForEach(EnvelopeInfo =>
                             {
@@ -148,8 +149,8 @@ namespace PostCardCenter.form.order
                 {
                     PostCardInfo.FileId = result;
                     PostCardInfo.FileName = PostCardInfo.FileInfo.Name;
-                    PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.AFTER_UPLOAD;
-                    //orderInfo.
+
+                    PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.AFTER_UPLOAD;                    
                     gridControl1.RefreshDataSource();
                     if (orderInfo.FileUploadPercent == 100)
                     {
@@ -163,11 +164,7 @@ namespace PostCardCenter.form.order
                     PostCardInfo.FileUploadStat = PostCardFileUploadStatusEnum.BEFOREL_UPLOAD;
                 });
             }
-        }
-
-
-
-    
+        }   
 
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
@@ -188,7 +185,10 @@ namespace PostCardCenter.form.order
                     order.OrderStatus = "正在提交";
                     gridControl1.RefreshDataSource();
                     Application.DoEvents();
-                    WebServiceInvoker.SubmitPostCardList(order.PrepareSubmitRequest(), response =>
+                    var orderRequest=order.PrepareSubmitRequest();
+                    //设置订单是否由当前人员处理
+                    orderRequest.SelfProcess = barCheckItem1.Checked;                    
+                    WebServiceInvoker.SubmitOrderList(orderRequest, response =>
                     {
                         //如果操作成功，移除此项目
                         //OrderList.Remove(order);
@@ -289,6 +289,11 @@ namespace PostCardCenter.form.order
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
+        }
+
+        private void ribbon_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

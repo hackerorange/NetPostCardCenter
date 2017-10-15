@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="constant\PostCardFileUploadStatusEnum.cs" />
+    <Compile Include="constant\postcard\PostCardProcessStatusEnum.cs" />
+    <Compile Include="constant\system\SystemConstants.cs" />
     <Compile Include="domain\BackStyleInfo.cs" />
     <Compile Include="domain\CropInfo.cs" />
     <Compile Include="domain\EnvelopeInfo.cs" />

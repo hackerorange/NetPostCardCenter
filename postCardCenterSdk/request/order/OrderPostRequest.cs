@@ -26,7 +26,10 @@ namespace postCardCenterSdk.request.order
         /// 此订单是否加急
         /// </summary>
         [JsonProperty("urgent")]
-        public int Urgent { get; set; }      
+        public int Urgent { get; set; }
+
+        [JsonProperty("selfProcess")]
+        public Boolean SelfProcess { get; set; }
 
     }
 
@@ -117,6 +120,7 @@ namespace postCardCenterSdk.request.order
         /// </summary>
         [JsonProperty("fileId")]
         public string FileId { get; set; }
+        
         /// <summary>
         /// 此张明信片打印的份数
         /// </summary>

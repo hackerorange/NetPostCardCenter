@@ -65,7 +65,8 @@ namespace PostCardCenter.form
                 EnvelopeInfo envelope = new EnvelopeInfo
                 {
                     OrderInfo = order,
-                    Directory = info
+                    Directory = info,
+                    FrontStyle = "B"
                 };
                 //显示此明信片集合详情页
                 if (new EnvelopeInfoForm(envelope).ShowDialog(this) != DialogResult.OK) continue;

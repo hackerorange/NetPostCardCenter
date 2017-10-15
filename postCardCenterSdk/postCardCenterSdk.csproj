@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="request\order\OrderPostRequest.cs" />
     <Compile Include="request\postCard\CropSubmitRequest.cs" />
+    <Compile Include="request\postCard\PostCardInfoPatchRequest.cs" />
     <Compile Include="response\BodyResponse.cs" />
     <Compile Include="response\envelope\EnvelopeResponse.cs" />
     <Compile Include="response\file\FileUploadResponse.cs" />

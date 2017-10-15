@@ -37,6 +37,7 @@ namespace PostCardCenter
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
                     var a = new UserLogin();
+
                     if (a.ShowDialog() == DialogResult.OK)
                     {
                         Application.Run(new OrangeForm());

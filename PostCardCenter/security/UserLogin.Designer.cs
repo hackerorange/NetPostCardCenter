@@ -93,6 +93,7 @@
             // 
             this.textEdit2.Location = new System.Drawing.Point(63, 36);
             this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.PasswordChar = '*';
             this.textEdit2.Size = new System.Drawing.Size(222, 20);
             this.textEdit2.StyleController = this.layoutControl1;
             this.textEdit2.TabIndex = 5;
