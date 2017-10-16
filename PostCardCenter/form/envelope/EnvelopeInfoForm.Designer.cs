@@ -30,75 +30,75 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnvelopeInfoForm));
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup9 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem103 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem104 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem105 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem106 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem107 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem108 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem109 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem110 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem111 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem112 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem113 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem114 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem115 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem116 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem117 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem118 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup10 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem119 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem120 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem121 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem122 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem123 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem124 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem125 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem126 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem127 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem128 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem129 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem130 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem131 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem132 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem133 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem134 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem135 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem136 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem137 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem138 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem139 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem140 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem141 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem142 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem143 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem144 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup11 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem145 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem146 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem147 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem148 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem149 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem150 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem151 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem152 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup12 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem153 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup13 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem154 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem155 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem156 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem157 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem158 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem159 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem160 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem161 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem162 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem163 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem164 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem165 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem166 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem167 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem168 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem169 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup14 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem170 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem171 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem172 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem173 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem174 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem175 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem176 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem177 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem178 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem179 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem180 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem181 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem182 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem183 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem184 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem185 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem186 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem187 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem188 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem189 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem190 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem191 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem192 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem193 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem194 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem195 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup15 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem196 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem197 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem198 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem199 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem200 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem201 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem202 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem203 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup16 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem204 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.postCardIsImage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.envelopePaperName2 = new DevExpress.XtraEditors.ListBoxControl();
-            this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.PostCardWaste = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.envelopeProductSize = new DevExpress.XtraEditors.PopupContainerEdit();
+            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemGridLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
@@ -130,12 +130,12 @@
             this.repositoryItemRadioGroup3 = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
             this.repositoryItemTextEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemRadioGroup4 = new DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup();
-            this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.envelopePaperName2 = new DevExpress.XtraEditors.ListBoxControl();
+            this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.PostCardWaste = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.envelopeProductSize = new DevExpress.XtraEditors.PopupContainerEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.envelopeSubmit = new DevExpress.XtraEditors.SimpleButton();
             this.orderUrgentCheckEdit = new DevExpress.XtraEditors.CheckEdit();
@@ -280,12 +280,15 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup8 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PostCardWaste.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductSize.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
+            this.popupContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
@@ -300,10 +303,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
-            this.popupContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PostCardWaste.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductSize.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderUrgentCheckEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.envelopePostCardCopyEdit.Properties)).BeginInit();
@@ -427,6 +430,8 @@
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // postCardIsImage
@@ -459,6 +464,7 @@
             // 
             this.layoutControl1.AllowCustomization = false;
             this.layoutControl1.Controls.Add(this.popupContainerControl1);
+            this.layoutControl1.Controls.Add(this.treeList1);
             this.layoutControl1.Controls.Add(this.envelopePaperName2);
             this.layoutControl1.Controls.Add(this.listBoxControl1);
             this.layoutControl1.Controls.Add(this.simpleButton4);
@@ -492,89 +498,109 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(885, 380, 450, 647);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(784, 661);
+            this.layoutControl1.Size = new System.Drawing.Size(984, 761);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // envelopePaperName2
+            // popupContainerControl1
             // 
-            this.envelopePaperName2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.envelopePaperName2.Items.AddRange(new object[] {
-            "年代白卡",
-            "时代白卡",
-            "经典白卡",
-            "荷兰白卡",
-            "晶钻亮卡",
-            "冰白（珠光）",
-            "牙粉",
-            "铜板"});
-            this.envelopePaperName2.Location = new System.Drawing.Point(75, 160);
-            this.envelopePaperName2.Name = "envelopePaperName2";
-            this.envelopePaperName2.Size = new System.Drawing.Size(200, 190);
-            this.envelopePaperName2.StyleController = this.layoutControl1;
-            this.envelopePaperName2.TabIndex = 51;
-            this.envelopePaperName2.SelectedIndexChanged += new System.EventHandler(this.envelopePaperName2_SelectedIndexChanged);
+            this.popupContainerControl1.Controls.Add(this.gridControl1);
+            this.popupContainerControl1.Location = new System.Drawing.Point(474, 452);
+            this.popupContainerControl1.Name = "popupContainerControl1";
+            this.popupContainerControl1.Size = new System.Drawing.Size(219, 298);
+            this.popupContainerControl1.TabIndex = 29;
             // 
-            // listBoxControl1
+            // gridControl1
             // 
-            this.listBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.listBoxControl1.Location = new System.Drawing.Point(354, 158);
-            this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(214, 99);
-            this.listBoxControl1.StyleController = this.layoutControl1;
-            this.listBoxControl1.TabIndex = 50;
-            this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView14;
+            this.gridControl1.MenuManager = this.ribbonControl1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(219, 298);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView14});
             // 
-            // simpleButton4
+            // gridView14
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(177, 134);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(98, 22);
-            this.simpleButton4.StyleController = this.layoutControl1;
-            this.simpleButton4.TabIndex = 43;
-            this.simpleButton4.Text = "旋转纸张";
-            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            this.gridView14.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn10,
+            this.gridColumn12,
+            this.gridColumn13});
+            this.gridView14.GridControl = this.gridControl1;
+            this.gridView14.Name = "gridView14";
+            this.gridView14.OptionsBehavior.ReadOnly = true;
+            this.gridView14.OptionsCustomization.AllowColumnMoving = false;
+            this.gridView14.OptionsCustomization.AllowColumnResizing = false;
+            this.gridView14.OptionsCustomization.AllowFilter = false;
+            this.gridView14.OptionsCustomization.AllowGroup = false;
+            this.gridView14.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gridView14.OptionsCustomization.AllowRowSizing = true;
+            this.gridView14.OptionsCustomization.AllowSort = false;
+            this.gridView14.OptionsEditForm.ActionOnModifiedRowChange = DevExpress.XtraGrid.Views.Grid.EditFormModifiedAction.Save;
+            this.gridView14.OptionsView.ShowColumnHeaders = false;
+            this.gridView14.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.gridView14.OptionsView.ShowGroupPanel = false;
+            this.gridView14.OptionsView.ShowIndicator = false;
+            this.gridView14.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView14_FocusedRowChanged);
             // 
-            // PostCardWaste
+            // gridColumn10
             // 
-            this.PostCardWaste.Location = new System.Drawing.Point(647, 256);
-            this.PostCardWaste.Name = "PostCardWaste";
-            this.PostCardWaste.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.PostCardWaste.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.PostCardWaste.Properties.Appearance.Options.UseFont = true;
-            this.PostCardWaste.Properties.Appearance.Options.UseForeColor = true;
-            this.PostCardWaste.Properties.Appearance.Options.UseTextOptions = true;
-            this.PostCardWaste.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.PostCardWaste.Properties.ReadOnly = true;
-            this.PostCardWaste.Size = new System.Drawing.Size(113, 20);
-            this.PostCardWaste.StyleController = this.layoutControl1;
-            this.PostCardWaste.TabIndex = 42;
+            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn10.Caption = "尺寸名称";
+            this.gridColumn10.FieldName = "Name";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.OptionsColumn.AllowEdit = false;
+            this.gridColumn10.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn10.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn10.OptionsColumn.AllowMove = false;
+            this.gridColumn10.OptionsColumn.AllowShowHide = false;
+            this.gridColumn10.OptionsColumn.AllowSize = false;
+            this.gridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            this.gridColumn10.Width = 117;
             // 
-            // labelControl1
+            // gridColumn12
             // 
-            this.labelControl1.Location = new System.Drawing.Point(740, 208);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(20, 14);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 41;
-            this.labelControl1.Text = "mm";
+            this.gridColumn12.Caption = "宽度";
+            this.gridColumn12.FieldName = "Width";
+            this.gridColumn12.MaxWidth = 50;
+            this.gridColumn12.MinWidth = 50;
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn12.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn12.OptionsColumn.AllowMove = false;
+            this.gridColumn12.OptionsColumn.AllowShowHide = false;
+            this.gridColumn12.OptionsColumn.AllowSize = false;
+            this.gridColumn12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 1;
+            this.gridColumn12.Width = 50;
             // 
-            // envelopeProductSize
+            // gridColumn13
             // 
-            this.envelopeProductSize.EditValue = "100×100";
-            this.envelopeProductSize.Location = new System.Drawing.Point(354, 134);
-            this.envelopeProductSize.MenuManager = this.ribbonControl1;
-            this.envelopeProductSize.Name = "envelopeProductSize";
-            this.envelopeProductSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.envelopeProductSize.Properties.Mask.EditMask = "\\d{1,3}×\\d{1,3}";
-            this.envelopeProductSize.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.envelopeProductSize.Properties.PopupControl = this.popupContainerControl1;
-            this.envelopeProductSize.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.envelopeProductSize.Size = new System.Drawing.Size(133, 20);
-            this.envelopeProductSize.StyleController = this.layoutControl1;
-            this.envelopeProductSize.TabIndex = 28;
-            this.envelopeProductSize.EditValueChanged += new System.EventHandler(this.popupContainerEdit1_EditValueChanged);
+            this.gridColumn13.Caption = "高度";
+            this.gridColumn13.FieldName = "Height";
+            this.gridColumn13.MaxWidth = 50;
+            this.gridColumn13.MinWidth = 50;
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowFocus = false;
+            this.gridColumn13.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn13.OptionsColumn.AllowIncrementalSearch = false;
+            this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn13.OptionsColumn.AllowMove = false;
+            this.gridColumn13.OptionsColumn.AllowShowHide = false;
+            this.gridColumn13.OptionsColumn.AllowSize = false;
+            this.gridColumn13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 2;
+            this.gridColumn13.Width = 50;
             // 
             // ribbonControl1
             // 
@@ -612,7 +638,7 @@
             this.repositoryItemRadioGroup4});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
             // 
             // barEditItem3
             // 
@@ -767,224 +793,224 @@
             this.skinRibbonGalleryBarItem2.Gallery.AllowHoverImages = true;
             this.skinRibbonGalleryBarItem2.Gallery.ColumnCount = 4;
             this.skinRibbonGalleryBarItem2.Gallery.FixedHoverImageSize = false;
-            galleryItemGroup9.Caption = "Standard Skins";
-            galleryItem103.Caption = "DevExpress Style";
-            galleryItem103.Hint = "DevExpress Style";
-            galleryItem103.Tag = "DevExpress Style";
-            galleryItem104.Caption = "DevExpress Dark Style";
-            galleryItem104.Hint = "DevExpress Dark Style";
-            galleryItem104.Tag = "DevExpress Dark Style";
-            galleryItem105.Caption = "Office 2016 Colorful";
-            galleryItem105.Hint = "Office 2016 Colorful";
-            galleryItem105.Tag = "Office 2016 Colorful";
-            galleryItem106.Caption = "Office 2016 Dark";
-            galleryItem106.Hint = "Office 2016 Dark";
-            galleryItem106.Tag = "Office 2016 Dark";
-            galleryItem107.Caption = "Office 2016 Black";
-            galleryItem107.Hint = "Office 2016 Black";
-            galleryItem107.Tag = "Office 2016 Black";
-            galleryItem108.Caption = "Office 2013 White";
-            galleryItem108.Hint = "Office 2013 White";
-            galleryItem108.Tag = "Office 2013";
-            galleryItem109.Caption = "Office 2013 Dark Gray";
-            galleryItem109.Hint = "Office 2013 Dark Gray";
-            galleryItem109.Tag = "Office 2013 Dark Gray";
-            galleryItem110.Caption = "Office 2013 Light Gray";
-            galleryItem110.Hint = "Office 2013 Light Gray";
-            galleryItem110.Tag = "Office 2013 Light Gray";
-            galleryItem111.Caption = "Office 2010 Blue";
-            galleryItem111.Hint = "Office 2010 Blue";
-            galleryItem111.Tag = "Office 2010 Blue";
-            galleryItem112.Caption = "Office 2010 Black";
-            galleryItem112.Hint = "Office 2010 Black";
-            galleryItem112.Tag = "Office 2010 Black";
-            galleryItem113.Caption = "Office 2010 Silver";
-            galleryItem113.Hint = "Office 2010 Silver";
-            galleryItem113.Tag = "Office 2010 Silver";
-            galleryItem114.Caption = "Visual Studio 2013 Blue";
-            galleryItem114.Checked = true;
-            galleryItem114.Hint = "Visual Studio 2013 Blue";
-            galleryItem114.Tag = "Visual Studio 2013 Blue";
-            galleryItem115.Caption = "Visual Studio 2013 Dark";
-            galleryItem115.Hint = "Visual Studio 2013 Dark";
-            galleryItem115.Tag = "Visual Studio 2013 Dark";
-            galleryItem116.Caption = "Visual Studio 2013 Light";
-            galleryItem116.Hint = "Visual Studio 2013 Light";
-            galleryItem116.Tag = "Visual Studio 2013 Light";
-            galleryItem117.Caption = "Seven Classic";
-            galleryItem117.Hint = "Seven Classic";
-            galleryItem117.Tag = "Seven Classic";
-            galleryItem118.Caption = "Visual Studio 2010";
-            galleryItem118.Hint = "Visual Studio 2010";
-            galleryItem118.Tag = "VS2010";
-            galleryItemGroup9.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem103,
-            galleryItem104,
-            galleryItem105,
-            galleryItem106,
-            galleryItem107,
-            galleryItem108,
-            galleryItem109,
-            galleryItem110,
-            galleryItem111,
-            galleryItem112,
-            galleryItem113,
-            galleryItem114,
-            galleryItem115,
-            galleryItem116,
-            galleryItem117,
-            galleryItem118});
-            galleryItemGroup10.Caption = "Bonus Skins";
-            galleryItem119.Caption = "Black";
-            galleryItem119.Hint = "Black";
-            galleryItem119.Tag = "Black";
-            galleryItem120.Caption = "Blue";
-            galleryItem120.Hint = "Blue";
-            galleryItem120.Tag = "Blue";
-            galleryItem121.Caption = "Caramel";
-            galleryItem121.Hint = "Caramel";
-            galleryItem121.Tag = "Caramel";
-            galleryItem122.Caption = "Coffee";
-            galleryItem122.Hint = "Coffee";
-            galleryItem122.Tag = "Coffee";
-            galleryItem123.Caption = "Dark Side";
-            galleryItem123.Hint = "Dark Side";
-            galleryItem123.Tag = "Dark Side";
-            galleryItem124.Caption = "Darkroom";
-            galleryItem124.Hint = "Darkroom";
-            galleryItem124.Tag = "Darkroom";
-            galleryItem125.Caption = "Foggy";
-            galleryItem125.Hint = "Foggy";
-            galleryItem125.Tag = "Foggy";
-            galleryItem126.Caption = "Glass Oceans";
-            galleryItem126.Hint = "Glass Oceans";
-            galleryItem126.Tag = "Glass Oceans";
-            galleryItem127.Caption = "High Contrast";
-            galleryItem127.Hint = "High Contrast";
-            galleryItem127.Tag = "High Contrast";
-            galleryItem128.Caption = "iMaginary";
-            galleryItem128.Hint = "iMaginary";
-            galleryItem128.Tag = "iMaginary";
-            galleryItem129.Caption = "Lilian";
-            galleryItem129.Hint = "Lilian";
-            galleryItem129.Tag = "Lilian";
-            galleryItem130.Caption = "Liquid Sky";
-            galleryItem130.Hint = "Liquid Sky";
-            galleryItem130.Tag = "Liquid Sky";
-            galleryItem131.Caption = "London Liquid Sky";
-            galleryItem131.Hint = "London Liquid Sky";
-            galleryItem131.Tag = "London Liquid Sky";
-            galleryItem132.Caption = "Metropolis";
-            galleryItem132.Hint = "Metropolis";
-            galleryItem132.Tag = "Metropolis";
-            galleryItem133.Caption = "Metropolis Dark";
-            galleryItem133.Hint = "Metropolis Dark";
-            galleryItem133.Tag = "Metropolis Dark";
-            galleryItem134.Caption = "Money Twins";
-            galleryItem134.Hint = "Money Twins";
-            galleryItem134.Tag = "Money Twins";
-            galleryItem135.Caption = "Office 2007 Black";
-            galleryItem135.Hint = "Office 2007 Black";
-            galleryItem135.Tag = "Office 2007 Black";
-            galleryItem136.Caption = "Office 2007 Blue";
-            galleryItem136.Hint = "Office 2007 Blue";
-            galleryItem136.Tag = "Office 2007 Blue";
-            galleryItem137.Caption = "Office 2007 Green";
-            galleryItem137.Hint = "Office 2007 Green";
-            galleryItem137.Tag = "Office 2007 Green";
-            galleryItem138.Caption = "Office 2007 Pink";
-            galleryItem138.Hint = "Office 2007 Pink";
-            galleryItem138.Tag = "Office 2007 Pink";
-            galleryItem139.Caption = "Office 2007 Silver";
-            galleryItem139.Hint = "Office 2007 Silver";
-            galleryItem139.Tag = "Office 2007 Silver";
-            galleryItem140.Caption = "Seven";
-            galleryItem140.Hint = "Seven";
-            galleryItem140.Tag = "Seven";
-            galleryItem141.Caption = "Sharp";
-            galleryItem141.Hint = "Sharp";
-            galleryItem141.Tag = "Sharp";
-            galleryItem142.Caption = "Sharp Plus";
-            galleryItem142.Hint = "Sharp Plus";
-            galleryItem142.Tag = "Sharp Plus";
-            galleryItem143.Caption = "Stardust";
-            galleryItem143.Hint = "Stardust";
-            galleryItem143.Tag = "Stardust";
-            galleryItem144.Caption = "The Asphalt World";
-            galleryItem144.Hint = "The Asphalt World";
-            galleryItem144.Tag = "The Asphalt World";
-            galleryItemGroup10.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem119,
-            galleryItem120,
-            galleryItem121,
-            galleryItem122,
-            galleryItem123,
-            galleryItem124,
-            galleryItem125,
-            galleryItem126,
-            galleryItem127,
-            galleryItem128,
-            galleryItem129,
-            galleryItem130,
-            galleryItem131,
-            galleryItem132,
-            galleryItem133,
-            galleryItem134,
-            galleryItem135,
-            galleryItem136,
-            galleryItem137,
-            galleryItem138,
-            galleryItem139,
-            galleryItem140,
-            galleryItem141,
-            galleryItem142,
-            galleryItem143,
-            galleryItem144});
-            galleryItemGroup11.Caption = "Theme Skins";
-            galleryItem145.Caption = "Pumpkin";
-            galleryItem145.Hint = "Pumpkin";
-            galleryItem145.Tag = "Pumpkin";
-            galleryItem146.Caption = "Springtime";
-            galleryItem146.Hint = "Springtime";
-            galleryItem146.Tag = "Springtime";
-            galleryItem147.Caption = "Summer";
-            galleryItem147.Hint = "Summer";
-            galleryItem147.Tag = "Summer 2008";
-            galleryItem148.Caption = "Valentine";
-            galleryItem148.Hint = "Valentine";
-            galleryItem148.Tag = "Valentine";
-            galleryItem149.Caption = "Xmas (Blue)";
-            galleryItem149.Hint = "Xmas (Blue)";
-            galleryItem149.Tag = "Xmas 2008 Blue";
-            galleryItem150.Caption = "McSkin";
-            galleryItem150.Hint = "McSkin";
-            galleryItem150.Tag = "McSkin";
-            galleryItem151.Caption = "Blueprint";
-            galleryItem151.Hint = "Blueprint";
-            galleryItem151.Tag = "Blueprint";
-            galleryItem152.Caption = "Whiteprint";
-            galleryItem152.Hint = "Whiteprint";
-            galleryItem152.Tag = "Whiteprint";
-            galleryItemGroup11.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem145,
-            galleryItem146,
-            galleryItem147,
-            galleryItem148,
-            galleryItem149,
-            galleryItem150,
-            galleryItem151,
-            galleryItem152});
-            galleryItemGroup12.Caption = "Custom Skins";
-            galleryItem153.Caption = "DevExpress Design";
-            galleryItem153.Hint = "DevExpress Design";
-            galleryItem153.Tag = "DevExpress Design";
-            galleryItemGroup12.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem153});
+            galleryItemGroup13.Caption = "Standard Skins";
+            galleryItem154.Caption = "DevExpress Style";
+            galleryItem154.Hint = "DevExpress Style";
+            galleryItem154.Tag = "DevExpress Style";
+            galleryItem155.Caption = "DevExpress Dark Style";
+            galleryItem155.Hint = "DevExpress Dark Style";
+            galleryItem155.Tag = "DevExpress Dark Style";
+            galleryItem156.Caption = "Office 2016 Colorful";
+            galleryItem156.Hint = "Office 2016 Colorful";
+            galleryItem156.Tag = "Office 2016 Colorful";
+            galleryItem157.Caption = "Office 2016 Dark";
+            galleryItem157.Hint = "Office 2016 Dark";
+            galleryItem157.Tag = "Office 2016 Dark";
+            galleryItem158.Caption = "Office 2016 Black";
+            galleryItem158.Hint = "Office 2016 Black";
+            galleryItem158.Tag = "Office 2016 Black";
+            galleryItem159.Caption = "Office 2013 White";
+            galleryItem159.Hint = "Office 2013 White";
+            galleryItem159.Tag = "Office 2013";
+            galleryItem160.Caption = "Office 2013 Dark Gray";
+            galleryItem160.Hint = "Office 2013 Dark Gray";
+            galleryItem160.Tag = "Office 2013 Dark Gray";
+            galleryItem161.Caption = "Office 2013 Light Gray";
+            galleryItem161.Hint = "Office 2013 Light Gray";
+            galleryItem161.Tag = "Office 2013 Light Gray";
+            galleryItem162.Caption = "Office 2010 Blue";
+            galleryItem162.Hint = "Office 2010 Blue";
+            galleryItem162.Tag = "Office 2010 Blue";
+            galleryItem163.Caption = "Office 2010 Black";
+            galleryItem163.Hint = "Office 2010 Black";
+            galleryItem163.Tag = "Office 2010 Black";
+            galleryItem164.Caption = "Office 2010 Silver";
+            galleryItem164.Hint = "Office 2010 Silver";
+            galleryItem164.Tag = "Office 2010 Silver";
+            galleryItem165.Caption = "Visual Studio 2013 Blue";
+            galleryItem165.Checked = true;
+            galleryItem165.Hint = "Visual Studio 2013 Blue";
+            galleryItem165.Tag = "Visual Studio 2013 Blue";
+            galleryItem166.Caption = "Visual Studio 2013 Dark";
+            galleryItem166.Hint = "Visual Studio 2013 Dark";
+            galleryItem166.Tag = "Visual Studio 2013 Dark";
+            galleryItem167.Caption = "Visual Studio 2013 Light";
+            galleryItem167.Hint = "Visual Studio 2013 Light";
+            galleryItem167.Tag = "Visual Studio 2013 Light";
+            galleryItem168.Caption = "Seven Classic";
+            galleryItem168.Hint = "Seven Classic";
+            galleryItem168.Tag = "Seven Classic";
+            galleryItem169.Caption = "Visual Studio 2010";
+            galleryItem169.Hint = "Visual Studio 2010";
+            galleryItem169.Tag = "VS2010";
+            galleryItemGroup13.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem154,
+            galleryItem155,
+            galleryItem156,
+            galleryItem157,
+            galleryItem158,
+            galleryItem159,
+            galleryItem160,
+            galleryItem161,
+            galleryItem162,
+            galleryItem163,
+            galleryItem164,
+            galleryItem165,
+            galleryItem166,
+            galleryItem167,
+            galleryItem168,
+            galleryItem169});
+            galleryItemGroup14.Caption = "Bonus Skins";
+            galleryItem170.Caption = "Black";
+            galleryItem170.Hint = "Black";
+            galleryItem170.Tag = "Black";
+            galleryItem171.Caption = "Blue";
+            galleryItem171.Hint = "Blue";
+            galleryItem171.Tag = "Blue";
+            galleryItem172.Caption = "Caramel";
+            galleryItem172.Hint = "Caramel";
+            galleryItem172.Tag = "Caramel";
+            galleryItem173.Caption = "Coffee";
+            galleryItem173.Hint = "Coffee";
+            galleryItem173.Tag = "Coffee";
+            galleryItem174.Caption = "Dark Side";
+            galleryItem174.Hint = "Dark Side";
+            galleryItem174.Tag = "Dark Side";
+            galleryItem175.Caption = "Darkroom";
+            galleryItem175.Hint = "Darkroom";
+            galleryItem175.Tag = "Darkroom";
+            galleryItem176.Caption = "Foggy";
+            galleryItem176.Hint = "Foggy";
+            galleryItem176.Tag = "Foggy";
+            galleryItem177.Caption = "Glass Oceans";
+            galleryItem177.Hint = "Glass Oceans";
+            galleryItem177.Tag = "Glass Oceans";
+            galleryItem178.Caption = "High Contrast";
+            galleryItem178.Hint = "High Contrast";
+            galleryItem178.Tag = "High Contrast";
+            galleryItem179.Caption = "iMaginary";
+            galleryItem179.Hint = "iMaginary";
+            galleryItem179.Tag = "iMaginary";
+            galleryItem180.Caption = "Lilian";
+            galleryItem180.Hint = "Lilian";
+            galleryItem180.Tag = "Lilian";
+            galleryItem181.Caption = "Liquid Sky";
+            galleryItem181.Hint = "Liquid Sky";
+            galleryItem181.Tag = "Liquid Sky";
+            galleryItem182.Caption = "London Liquid Sky";
+            galleryItem182.Hint = "London Liquid Sky";
+            galleryItem182.Tag = "London Liquid Sky";
+            galleryItem183.Caption = "Metropolis";
+            galleryItem183.Hint = "Metropolis";
+            galleryItem183.Tag = "Metropolis";
+            galleryItem184.Caption = "Metropolis Dark";
+            galleryItem184.Hint = "Metropolis Dark";
+            galleryItem184.Tag = "Metropolis Dark";
+            galleryItem185.Caption = "Money Twins";
+            galleryItem185.Hint = "Money Twins";
+            galleryItem185.Tag = "Money Twins";
+            galleryItem186.Caption = "Office 2007 Black";
+            galleryItem186.Hint = "Office 2007 Black";
+            galleryItem186.Tag = "Office 2007 Black";
+            galleryItem187.Caption = "Office 2007 Blue";
+            galleryItem187.Hint = "Office 2007 Blue";
+            galleryItem187.Tag = "Office 2007 Blue";
+            galleryItem188.Caption = "Office 2007 Green";
+            galleryItem188.Hint = "Office 2007 Green";
+            galleryItem188.Tag = "Office 2007 Green";
+            galleryItem189.Caption = "Office 2007 Pink";
+            galleryItem189.Hint = "Office 2007 Pink";
+            galleryItem189.Tag = "Office 2007 Pink";
+            galleryItem190.Caption = "Office 2007 Silver";
+            galleryItem190.Hint = "Office 2007 Silver";
+            galleryItem190.Tag = "Office 2007 Silver";
+            galleryItem191.Caption = "Seven";
+            galleryItem191.Hint = "Seven";
+            galleryItem191.Tag = "Seven";
+            galleryItem192.Caption = "Sharp";
+            galleryItem192.Hint = "Sharp";
+            galleryItem192.Tag = "Sharp";
+            galleryItem193.Caption = "Sharp Plus";
+            galleryItem193.Hint = "Sharp Plus";
+            galleryItem193.Tag = "Sharp Plus";
+            galleryItem194.Caption = "Stardust";
+            galleryItem194.Hint = "Stardust";
+            galleryItem194.Tag = "Stardust";
+            galleryItem195.Caption = "The Asphalt World";
+            galleryItem195.Hint = "The Asphalt World";
+            galleryItem195.Tag = "The Asphalt World";
+            galleryItemGroup14.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem170,
+            galleryItem171,
+            galleryItem172,
+            galleryItem173,
+            galleryItem174,
+            galleryItem175,
+            galleryItem176,
+            galleryItem177,
+            galleryItem178,
+            galleryItem179,
+            galleryItem180,
+            galleryItem181,
+            galleryItem182,
+            galleryItem183,
+            galleryItem184,
+            galleryItem185,
+            galleryItem186,
+            galleryItem187,
+            galleryItem188,
+            galleryItem189,
+            galleryItem190,
+            galleryItem191,
+            galleryItem192,
+            galleryItem193,
+            galleryItem194,
+            galleryItem195});
+            galleryItemGroup15.Caption = "Theme Skins";
+            galleryItem196.Caption = "Pumpkin";
+            galleryItem196.Hint = "Pumpkin";
+            galleryItem196.Tag = "Pumpkin";
+            galleryItem197.Caption = "Springtime";
+            galleryItem197.Hint = "Springtime";
+            galleryItem197.Tag = "Springtime";
+            galleryItem198.Caption = "Summer";
+            galleryItem198.Hint = "Summer";
+            galleryItem198.Tag = "Summer 2008";
+            galleryItem199.Caption = "Valentine";
+            galleryItem199.Hint = "Valentine";
+            galleryItem199.Tag = "Valentine";
+            galleryItem200.Caption = "Xmas (Blue)";
+            galleryItem200.Hint = "Xmas (Blue)";
+            galleryItem200.Tag = "Xmas 2008 Blue";
+            galleryItem201.Caption = "McSkin";
+            galleryItem201.Hint = "McSkin";
+            galleryItem201.Tag = "McSkin";
+            galleryItem202.Caption = "Blueprint";
+            galleryItem202.Hint = "Blueprint";
+            galleryItem202.Tag = "Blueprint";
+            galleryItem203.Caption = "Whiteprint";
+            galleryItem203.Hint = "Whiteprint";
+            galleryItem203.Tag = "Whiteprint";
+            galleryItemGroup15.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem196,
+            galleryItem197,
+            galleryItem198,
+            galleryItem199,
+            galleryItem200,
+            galleryItem201,
+            galleryItem202,
+            galleryItem203});
+            galleryItemGroup16.Caption = "Custom Skins";
+            galleryItem204.Caption = "DevExpress Design";
+            galleryItem204.Hint = "DevExpress Design";
+            galleryItem204.Tag = "DevExpress Design";
+            galleryItemGroup16.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem204});
             this.skinRibbonGalleryBarItem2.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup9,
-            galleryItemGroup10,
-            galleryItemGroup11,
-            galleryItemGroup12});
+            galleryItemGroup13,
+            galleryItemGroup14,
+            galleryItemGroup15,
+            galleryItemGroup16});
             this.skinRibbonGalleryBarItem2.Gallery.ImageSize = new System.Drawing.Size(32, 16);
             this.skinRibbonGalleryBarItem2.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.skinRibbonGalleryBarItem2.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.Squeeze;
@@ -1072,120 +1098,100 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "双面打印")});
             this.repositoryItemRadioGroup4.Name = "repositoryItemRadioGroup4";
             // 
-            // popupContainerControl1
+            // envelopePaperName2
             // 
-            this.popupContainerControl1.Controls.Add(this.gridControl1);
-            this.popupContainerControl1.Location = new System.Drawing.Point(116, 284);
-            this.popupContainerControl1.Name = "popupContainerControl1";
-            this.popupContainerControl1.Size = new System.Drawing.Size(219, 298);
-            this.popupContainerControl1.TabIndex = 29;
+            this.envelopePaperName2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.envelopePaperName2.Items.AddRange(new object[] {
+            "年代白卡",
+            "时代白卡",
+            "经典白卡",
+            "荷兰白卡",
+            "晶钻亮卡",
+            "冰白（珠光）",
+            "牙粉",
+            "铜板"});
+            this.envelopePaperName2.Location = new System.Drawing.Point(279, 160);
+            this.envelopePaperName2.Name = "envelopePaperName2";
+            this.envelopePaperName2.Size = new System.Drawing.Size(229, 190);
+            this.envelopePaperName2.StyleController = this.layoutControl1;
+            this.envelopePaperName2.TabIndex = 51;
+            this.envelopePaperName2.SelectedIndexChanged += new System.EventHandler(this.envelopePaperName2_SelectedIndexChanged);
             // 
-            // gridControl1
+            // listBoxControl1
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView14;
-            this.gridControl1.MenuManager = this.ribbonControl1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(219, 298);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView14});
+            this.listBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.listBoxControl1.Location = new System.Drawing.Point(587, 158);
+            this.listBoxControl1.Name = "listBoxControl1";
+            this.listBoxControl1.Size = new System.Drawing.Size(181, 75);
+            this.listBoxControl1.StyleController = this.layoutControl1;
+            this.listBoxControl1.TabIndex = 50;
+            this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
             // 
-            // gridView14
+            // simpleButton4
             // 
-            this.gridView14.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn10,
-            this.gridColumn12,
-            this.gridColumn13});
-            this.gridView14.GridControl = this.gridControl1;
-            this.gridView14.Name = "gridView14";
-            this.gridView14.OptionsBehavior.ReadOnly = true;
-            this.gridView14.OptionsCustomization.AllowColumnMoving = false;
-            this.gridView14.OptionsCustomization.AllowColumnResizing = false;
-            this.gridView14.OptionsCustomization.AllowFilter = false;
-            this.gridView14.OptionsCustomization.AllowGroup = false;
-            this.gridView14.OptionsCustomization.AllowQuickHideColumns = false;
-            this.gridView14.OptionsCustomization.AllowRowSizing = true;
-            this.gridView14.OptionsCustomization.AllowSort = false;
-            this.gridView14.OptionsEditForm.ActionOnModifiedRowChange = DevExpress.XtraGrid.Views.Grid.EditFormModifiedAction.Save;
-            this.gridView14.OptionsView.ShowColumnHeaders = false;
-            this.gridView14.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
-            this.gridView14.OptionsView.ShowGroupPanel = false;
-            this.gridView14.OptionsView.ShowIndicator = false;
-            this.gridView14.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView14_FocusedRowChanged);
+            this.simpleButton4.Location = new System.Drawing.Point(449, 134);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(59, 22);
+            this.simpleButton4.StyleController = this.layoutControl1;
+            this.simpleButton4.TabIndex = 43;
+            this.simpleButton4.Text = "旋转纸张";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
-            // gridColumn10
+            // PostCardWaste
             // 
-            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn10.Caption = "尺寸名称";
-            this.gridColumn10.FieldName = "Name";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn10.OptionsColumn.AllowIncrementalSearch = false;
-            this.gridColumn10.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn10.OptionsColumn.AllowMove = false;
-            this.gridColumn10.OptionsColumn.AllowShowHide = false;
-            this.gridColumn10.OptionsColumn.AllowSize = false;
-            this.gridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 0;
-            this.gridColumn10.Width = 117;
+            this.PostCardWaste.Location = new System.Drawing.Point(847, 256);
+            this.PostCardWaste.Name = "PostCardWaste";
+            this.PostCardWaste.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.PostCardWaste.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.PostCardWaste.Properties.Appearance.Options.UseFont = true;
+            this.PostCardWaste.Properties.Appearance.Options.UseForeColor = true;
+            this.PostCardWaste.Properties.Appearance.Options.UseTextOptions = true;
+            this.PostCardWaste.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.PostCardWaste.Properties.ReadOnly = true;
+            this.PostCardWaste.Size = new System.Drawing.Size(113, 20);
+            this.PostCardWaste.StyleController = this.layoutControl1;
+            this.PostCardWaste.TabIndex = 42;
             // 
-            // gridColumn12
+            // labelControl1
             // 
-            this.gridColumn12.Caption = "宽度";
-            this.gridColumn12.FieldName = "Width";
-            this.gridColumn12.MaxWidth = 50;
-            this.gridColumn12.MinWidth = 50;
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.OptionsColumn.AllowEdit = false;
-            this.gridColumn12.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn12.OptionsColumn.AllowIncrementalSearch = false;
-            this.gridColumn12.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn12.OptionsColumn.AllowMove = false;
-            this.gridColumn12.OptionsColumn.AllowShowHide = false;
-            this.gridColumn12.OptionsColumn.AllowSize = false;
-            this.gridColumn12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 1;
-            this.gridColumn12.Width = 50;
+            this.labelControl1.Location = new System.Drawing.Point(940, 208);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(20, 14);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 41;
+            this.labelControl1.Text = "mm";
             // 
-            // gridColumn13
+            // envelopeProductSize
             // 
-            this.gridColumn13.Caption = "高度";
-            this.gridColumn13.FieldName = "Height";
-            this.gridColumn13.MaxWidth = 50;
-            this.gridColumn13.MinWidth = 50;
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.OptionsColumn.AllowFocus = false;
-            this.gridColumn13.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn13.OptionsColumn.AllowIncrementalSearch = false;
-            this.gridColumn13.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn13.OptionsColumn.AllowMove = false;
-            this.gridColumn13.OptionsColumn.AllowShowHide = false;
-            this.gridColumn13.OptionsColumn.AllowSize = false;
-            this.gridColumn13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 2;
-            this.gridColumn13.Width = 50;
+            this.envelopeProductSize.EditValue = "100×100";
+            this.envelopeProductSize.Location = new System.Drawing.Point(587, 134);
+            this.envelopeProductSize.MenuManager = this.ribbonControl1;
+            this.envelopeProductSize.Name = "envelopeProductSize";
+            this.envelopeProductSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.envelopeProductSize.Properties.Mask.EditMask = "\\d{1,3}×\\d{1,3}";
+            this.envelopeProductSize.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.envelopeProductSize.Properties.PopupControl = this.popupContainerControl1;
+            this.envelopeProductSize.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.envelopeProductSize.Size = new System.Drawing.Size(127, 20);
+            this.envelopeProductSize.StyleController = this.layoutControl1;
+            this.envelopeProductSize.TabIndex = 28;
+            this.envelopeProductSize.EditValueChanged += new System.EventHandler(this.popupContainerEdit1_EditValueChanged);
             // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(63, 12);
+            this.textEdit1.Location = new System.Drawing.Point(267, 12);
             this.textEdit1.MenuManager = this.ribbonControl1;
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.ReadOnly = true;
-            this.textEdit1.Size = new System.Drawing.Size(709, 20);
+            this.textEdit1.Size = new System.Drawing.Size(705, 20);
             this.textEdit1.StyleController = this.layoutControl1;
             this.textEdit1.TabIndex = 23;
             // 
             // envelopeSubmit
             // 
             this.envelopeSubmit.Image = ((System.Drawing.Image)(resources.GetObject("envelopeSubmit.Image")));
-            this.envelopeSubmit.Location = new System.Drawing.Point(616, 615);
+            this.envelopeSubmit.Location = new System.Drawing.Point(816, 715);
             this.envelopeSubmit.Name = "envelopeSubmit";
             this.envelopeSubmit.Size = new System.Drawing.Size(144, 22);
             this.envelopeSubmit.StyleController = this.layoutControl1;
@@ -1195,7 +1201,7 @@
             // 
             // orderUrgentCheckEdit
             // 
-            this.orderUrgentCheckEdit.Location = new System.Drawing.Point(586, 67);
+            this.orderUrgentCheckEdit.Location = new System.Drawing.Point(786, 67);
             this.orderUrgentCheckEdit.Name = "orderUrgentCheckEdit";
             this.orderUrgentCheckEdit.Properties.Caption = "加急(&U)";
             this.orderUrgentCheckEdit.Size = new System.Drawing.Size(174, 19);
@@ -1209,7 +1215,7 @@
             0,
             0,
             0});
-            this.envelopePostCardCopyEdit.Location = new System.Drawing.Point(354, 330);
+            this.envelopePostCardCopyEdit.Location = new System.Drawing.Point(587, 330);
             this.envelopePostCardCopyEdit.Name = "envelopePostCardCopyEdit";
             this.envelopePostCardCopyEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1223,7 +1229,7 @@
             0,
             0,
             0});
-            this.envelopePostCardCopyEdit.Size = new System.Drawing.Size(79, 20);
+            this.envelopePostCardCopyEdit.Size = new System.Drawing.Size(63, 20);
             this.envelopePostCardCopyEdit.StyleController = this.layoutControl1;
             this.envelopePostCardCopyEdit.TabIndex = 10;
             this.envelopePostCardCopyEdit.EditValueChanged += new System.EventHandler(this.envelopePostCardCopyEdit_EditValueChanged);
@@ -1231,9 +1237,9 @@
             // simpleButton1
             // 
             this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(24, 615);
+            this.simpleButton1.Location = new System.Drawing.Point(228, 715);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(144, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(143, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 19;
             this.simpleButton1.Text = "手动添加(&A)";
@@ -1241,16 +1247,16 @@
             // removeSelectedPostCard
             // 
             this.removeSelectedPostCard.Image = ((System.Drawing.Image)(resources.GetObject("removeSelectedPostCard.Image")));
-            this.removeSelectedPostCard.Location = new System.Drawing.Point(172, 615);
+            this.removeSelectedPostCard.Location = new System.Drawing.Point(375, 715);
             this.removeSelectedPostCard.Name = "removeSelectedPostCard";
-            this.removeSelectedPostCard.Size = new System.Drawing.Size(144, 22);
+            this.removeSelectedPostCard.Size = new System.Drawing.Size(143, 22);
             this.removeSelectedPostCard.StyleController = this.layoutControl1;
             this.removeSelectedPostCard.TabIndex = 21;
             this.removeSelectedPostCard.Text = "移除明信片(&D)";
             // 
             // envelopeDetailGridView
             // 
-            this.envelopeDetailGridView.Location = new System.Drawing.Point(24, 397);
+            this.envelopeDetailGridView.Location = new System.Drawing.Point(228, 397);
             this.envelopeDetailGridView.MainView = this.gridView1;
             this.envelopeDetailGridView.Name = "envelopeDetailGridView";
             this.envelopeDetailGridView.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -1261,7 +1267,7 @@
             this.repositoryItemButtonEdit3,
             this.repositoryItemPictureEdit1,
             this.repositoryItemComboBox1});
-            this.envelopeDetailGridView.Size = new System.Drawing.Size(736, 214);
+            this.envelopeDetailGridView.Size = new System.Drawing.Size(732, 314);
             this.envelopeDetailGridView.TabIndex = 16;
             this.envelopeDetailGridView.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1277,20 +1283,20 @@
             this.postCardBackStyle,
             this.gridColumn7,
             this.gridColumn9});
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Column = this.postCardIsImage;
-            gridFormatRule2.Name = "Format0";
-            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.Red;
-            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.White;
-            formatConditionRuleValue2.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue2.Appearance.Options.UseFont = true;
-            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue2.Value1 = false;
-            gridFormatRule2.Rule = formatConditionRuleValue2;
-            this.gridView1.FormatRules.Add(gridFormatRule2);
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Column = this.postCardIsImage;
+            gridFormatRule1.Name = "Format0";
+            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Red;
+            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.White;
+            formatConditionRuleValue1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue1.Appearance.Options.UseFont = true;
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue1.Value1 = false;
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
             this.gridView1.GridControl = this.envelopeDetailGridView;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowFooter = true;
@@ -1385,7 +1391,7 @@
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
             this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject3, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject4, "", null, null, true)});
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
             this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit2.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.removeSelectedPostCardButton_Click);
@@ -1481,21 +1487,21 @@
             0,
             0,
             0});
-            this.postCardCountEdit.Location = new System.Drawing.Point(488, 330);
+            this.postCardCountEdit.Location = new System.Drawing.Point(705, 330);
             this.postCardCountEdit.MenuManager = this.ribbonControl1;
             this.postCardCountEdit.Name = "postCardCountEdit";
             this.postCardCountEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.postCardCountEdit.Size = new System.Drawing.Size(80, 20);
+            this.postCardCountEdit.Size = new System.Drawing.Size(63, 20);
             this.postCardCountEdit.StyleController = this.layoutControl1;
             this.postCardCountEdit.TabIndex = 33;
             this.postCardCountEdit.EditValueChanged += new System.EventHandler(this.postCardCountEdit_EditValueChanged);
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(491, 261);
+            this.simpleButton2.Location = new System.Drawing.Point(536, 261);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(77, 22);
+            this.simpleButton2.Size = new System.Drawing.Size(232, 22);
             this.simpleButton2.StyleController = this.layoutControl1;
             this.simpleButton2.TabIndex = 34;
             this.simpleButton2.Text = "自定义";
@@ -1503,7 +1509,7 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(596, 134);
+            this.simpleButton3.Location = new System.Drawing.Point(796, 134);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(164, 22);
             this.simpleButton3.StyleController = this.layoutControl1;
@@ -1518,7 +1524,7 @@
             0,
             0,
             0});
-            this.arrayColumn.Location = new System.Drawing.Point(647, 160);
+            this.arrayColumn.Location = new System.Drawing.Point(847, 160);
             this.arrayColumn.MenuManager = this.ribbonControl1;
             this.arrayColumn.Name = "arrayColumn";
             this.arrayColumn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1534,7 +1540,7 @@
             0,
             0,
             0});
-            this.arrayRow.Location = new System.Drawing.Point(647, 184);
+            this.arrayRow.Location = new System.Drawing.Point(847, 184);
             this.arrayRow.MenuManager = this.ribbonControl1;
             this.arrayRow.Name = "arrayRow";
             this.arrayRow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1545,7 +1551,7 @@
             // 
             // horizontalWhite
             // 
-            this.horizontalWhite.Location = new System.Drawing.Point(647, 208);
+            this.horizontalWhite.Location = new System.Drawing.Point(847, 208);
             this.horizontalWhite.MenuManager = this.ribbonControl1;
             this.horizontalWhite.Name = "horizontalWhite";
             this.horizontalWhite.Properties.Appearance.Options.UseTextOptions = true;
@@ -1558,7 +1564,7 @@
             // 
             // verticalWhite
             // 
-            this.verticalWhite.Location = new System.Drawing.Point(647, 232);
+            this.verticalWhite.Location = new System.Drawing.Point(847, 232);
             this.verticalWhite.MenuManager = this.ribbonControl1;
             this.verticalWhite.Name = "verticalWhite";
             this.verticalWhite.Properties.Appearance.Options.UseTextOptions = true;
@@ -1572,19 +1578,19 @@
             // buttonEdit1
             // 
             this.buttonEdit1.EditValue = "464×320";
-            this.buttonEdit1.Location = new System.Drawing.Point(75, 134);
+            this.buttonEdit1.Location = new System.Drawing.Point(279, 134);
             this.buttonEdit1.MenuManager = this.ribbonControl1;
             this.buttonEdit1.Name = "buttonEdit1";
             this.buttonEdit1.Properties.Mask.EditMask = "[1-9]\\d{1,2}×[1-9]\\d{1,2}";
             this.buttonEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.buttonEdit1.Size = new System.Drawing.Size(98, 20);
+            this.buttonEdit1.Size = new System.Drawing.Size(166, 20);
             this.buttonEdit1.StyleController = this.layoutControl1;
             this.buttonEdit1.TabIndex = 40;
             this.buttonEdit1.EditValueChanged += new System.EventHandler(this.buttonEdit1_EditValueChanged);
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(740, 232);
+            this.labelControl2.Location = new System.Drawing.Point(940, 232);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(20, 14);
             this.labelControl2.StyleController = this.layoutControl1;
@@ -1593,7 +1599,7 @@
             // 
             // paperPrint
             // 
-            this.paperPrint.Location = new System.Drawing.Point(647, 304);
+            this.paperPrint.Location = new System.Drawing.Point(847, 304);
             this.paperPrint.MenuManager = this.ribbonControl1;
             this.paperPrint.Name = "paperPrint";
             this.paperPrint.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
@@ -1609,7 +1615,7 @@
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(596, 328);
+            this.simpleButton5.Location = new System.Drawing.Point(796, 328);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(164, 22);
             this.simpleButton5.StyleController = this.layoutControl1;
@@ -1619,7 +1625,7 @@
             // 
             // postCardCount
             // 
-            this.postCardCount.Location = new System.Drawing.Point(647, 280);
+            this.postCardCount.Location = new System.Drawing.Point(847, 280);
             this.postCardCount.MenuManager = this.ribbonControl1;
             this.postCardCount.Name = "postCardCount";
             this.postCardCount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1636,23 +1642,23 @@
             // orderTaobaoIdTextEdit
             // 
             this.orderTaobaoIdTextEdit.EditValue = "";
-            this.orderTaobaoIdTextEdit.Location = new System.Drawing.Point(75, 67);
+            this.orderTaobaoIdTextEdit.Location = new System.Drawing.Point(279, 67);
             this.orderTaobaoIdTextEdit.Name = "orderTaobaoIdTextEdit";
             this.orderTaobaoIdTextEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.orderTaobaoIdTextEdit.Size = new System.Drawing.Size(507, 20);
+            this.orderTaobaoIdTextEdit.Size = new System.Drawing.Size(503, 20);
             this.orderTaobaoIdTextEdit.StyleController = this.layoutControl1;
             this.orderTaobaoIdTextEdit.TabIndex = 2;
             // 
             // envelopeDoubleSide
             // 
             this.envelopeDoubleSide.EditValue = true;
-            this.envelopeDoubleSide.Location = new System.Drawing.Point(491, 134);
+            this.envelopeDoubleSide.Location = new System.Drawing.Point(718, 134);
             this.envelopeDoubleSide.MenuManager = this.ribbonControl1;
             this.envelopeDoubleSide.Name = "envelopeDoubleSide";
             this.envelopeDoubleSide.Properties.Caption = "双面";
             this.envelopeDoubleSide.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.envelopeDoubleSide.Size = new System.Drawing.Size(77, 19);
+            this.envelopeDoubleSide.Size = new System.Drawing.Size(50, 19);
             this.envelopeDoubleSide.StyleController = this.layoutControl1;
             this.envelopeDoubleSide.TabIndex = 48;
             this.envelopeDoubleSide.CheckedChanged += new System.EventHandler(this.envelopeDoubleSideCheckBox_CheckedChanged);
@@ -1660,7 +1666,7 @@
             // comboBoxEdit2
             // 
             this.comboBoxEdit2.EditValue = "[请选择反面]";
-            this.comboBoxEdit2.Location = new System.Drawing.Point(354, 261);
+            this.comboBoxEdit2.Location = new System.Drawing.Point(587, 237);
             this.comboBoxEdit2.MenuManager = this.ribbonControl1;
             this.comboBoxEdit2.Name = "comboBoxEdit2";
             this.comboBoxEdit2.Properties.Appearance.BackColor = System.Drawing.Color.White;
@@ -1669,7 +1675,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.comboBoxEdit2.Properties.NullText = "[请选择反面样式]";
             this.comboBoxEdit2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.comboBoxEdit2.Size = new System.Drawing.Size(133, 20);
+            this.comboBoxEdit2.Size = new System.Drawing.Size(181, 20);
             this.comboBoxEdit2.StyleController = this.layoutControl1;
             this.comboBoxEdit2.TabIndex = 49;
             this.comboBoxEdit2.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit2_SelectedIndexChanged);
@@ -1685,10 +1691,11 @@
             this.layoutControlGroup2,
             this.layoutControlGroup7,
             this.layoutControlItem2,
-            this.layoutControlGroup5});
+            this.layoutControlGroup5,
+            this.layoutControlItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(784, 661);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(984, 761);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup4
@@ -1700,9 +1707,9 @@
             this.layoutControlItem36,
             this.layoutControlItem38,
             this.layoutControlItem4});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 354);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(204, 354);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(764, 287);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(760, 387);
             this.layoutControlGroup4.Text = "明信片图片详情";
             // 
             // layoutControlItem1
@@ -1710,14 +1717,14 @@
             this.layoutControlItem1.Control = this.envelopeDetailGridView;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(740, 218);
+            this.layoutControlItem1.Size = new System.Drawing.Size(736, 318);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(296, 218);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(294, 318);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(148, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -1725,33 +1732,33 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(444, 218);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(442, 318);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(148, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(146, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem36
             // 
             this.layoutControlItem36.Control = this.simpleButton1;
-            this.layoutControlItem36.Location = new System.Drawing.Point(0, 218);
+            this.layoutControlItem36.Location = new System.Drawing.Point(0, 318);
             this.layoutControlItem36.Name = "layoutControlItem36";
-            this.layoutControlItem36.Size = new System.Drawing.Size(148, 26);
+            this.layoutControlItem36.Size = new System.Drawing.Size(147, 26);
             this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem36.TextVisible = false;
             // 
             // layoutControlItem38
             // 
             this.layoutControlItem38.Control = this.removeSelectedPostCard;
-            this.layoutControlItem38.Location = new System.Drawing.Point(148, 218);
+            this.layoutControlItem38.Location = new System.Drawing.Point(147, 318);
             this.layoutControlItem38.Name = "layoutControlItem38";
-            this.layoutControlItem38.Size = new System.Drawing.Size(148, 26);
+            this.layoutControlItem38.Size = new System.Drawing.Size(147, 26);
             this.layoutControlItem38.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem38.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.envelopeSubmit;
-            this.layoutControlItem4.Location = new System.Drawing.Point(592, 218);
+            this.layoutControlItem4.Location = new System.Drawing.Point(588, 318);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(148, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -1763,9 +1770,9 @@
             this.layoutControlItem35,
             this.layoutControlItem41,
             this.layoutControlItem44});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 91);
+            this.layoutControlGroup6.Location = new System.Drawing.Point(204, 91);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(279, 263);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(308, 263);
             this.layoutControlGroup6.Text = "纸张设置";
             // 
             // layoutControlItem35
@@ -1773,7 +1780,7 @@
             this.layoutControlItem35.Control = this.envelopePaperName2;
             this.layoutControlItem35.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(255, 194);
+            this.layoutControlItem35.Size = new System.Drawing.Size(284, 194);
             this.layoutControlItem35.Text = "纸张名称";
             this.layoutControlItem35.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -1781,11 +1788,8 @@
             // 
             this.layoutControlItem41.Control = this.buttonEdit1;
             this.layoutControlItem41.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem41.MaxSize = new System.Drawing.Size(153, 24);
-            this.layoutControlItem41.MinSize = new System.Drawing.Size(153, 24);
             this.layoutControlItem41.Name = "layoutControlItem41";
-            this.layoutControlItem41.Size = new System.Drawing.Size(153, 26);
-            this.layoutControlItem41.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem41.Size = new System.Drawing.Size(221, 26);
             this.layoutControlItem41.Text = "纸张尺寸";
             this.layoutControlItem41.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem41.TextSize = new System.Drawing.Size(48, 14);
@@ -1793,11 +1797,11 @@
             // layoutControlItem44
             // 
             this.layoutControlItem44.Control = this.simpleButton4;
-            this.layoutControlItem44.Location = new System.Drawing.Point(153, 0);
-            this.layoutControlItem44.MaxSize = new System.Drawing.Size(102, 26);
-            this.layoutControlItem44.MinSize = new System.Drawing.Size(102, 26);
+            this.layoutControlItem44.Location = new System.Drawing.Point(221, 0);
+            this.layoutControlItem44.MaxSize = new System.Drawing.Size(63, 26);
+            this.layoutControlItem44.MinSize = new System.Drawing.Size(63, 26);
             this.layoutControlItem44.Name = "layoutControlItem44";
-            this.layoutControlItem44.Size = new System.Drawing.Size(102, 26);
+            this.layoutControlItem44.Size = new System.Drawing.Size(63, 26);
             this.layoutControlItem44.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem44.Text = "旋转纸张";
             this.layoutControlItem44.TextSize = new System.Drawing.Size(0, 0);
@@ -1817,7 +1821,7 @@
             this.layoutControlItem45,
             this.layoutControlItem46,
             this.layoutControlItem47});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(572, 91);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(772, 91);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(192, 263);
             this.layoutControlGroup3.Text = "排版信息";
@@ -1931,20 +1935,20 @@
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem17,
             this.layoutControlItem9,
-            this.layoutControlItem37,
             this.layoutControlItem40,
-            this.layoutControlItem8});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(279, 91);
+            this.layoutControlItem8,
+            this.layoutControlItem37});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(512, 91);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(293, 196);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(260, 196);
             this.layoutControlGroup2.Text = "成品设置";
             // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.comboBoxEdit2;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 127);
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 103);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(188, 26);
+            this.layoutControlItem17.Size = new System.Drawing.Size(236, 24);
             this.layoutControlItem17.Text = "反面样式";
             this.layoutControlItem17.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem17.TextSize = new System.Drawing.Size(48, 14);
@@ -1953,20 +1957,20 @@
             // 
             this.layoutControlItem9.Control = this.listBoxControl1;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(236, 0);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(236, 4);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(269, 103);
+            this.layoutControlItem9.Size = new System.Drawing.Size(236, 79);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.Text = "正面样式";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem37
             // 
             this.layoutControlItem37.Control = this.simpleButton2;
-            this.layoutControlItem37.Location = new System.Drawing.Point(188, 127);
-            this.layoutControlItem37.MaxSize = new System.Drawing.Size(81, 26);
-            this.layoutControlItem37.MinSize = new System.Drawing.Size(81, 26);
+            this.layoutControlItem37.Location = new System.Drawing.Point(0, 127);
             this.layoutControlItem37.Name = "layoutControlItem37";
-            this.layoutControlItem37.Size = new System.Drawing.Size(81, 26);
-            this.layoutControlItem37.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem37.Size = new System.Drawing.Size(236, 26);
             this.layoutControlItem37.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem37.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem37.TextVisible = false;
@@ -1976,7 +1980,7 @@
             this.layoutControlItem40.Control = this.envelopeProductSize;
             this.layoutControlItem40.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem40.Name = "layoutControlItem40";
-            this.layoutControlItem40.Size = new System.Drawing.Size(188, 24);
+            this.layoutControlItem40.Size = new System.Drawing.Size(182, 24);
             this.layoutControlItem40.Text = "成品尺寸";
             this.layoutControlItem40.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem40.TextSize = new System.Drawing.Size(48, 14);
@@ -1984,11 +1988,11 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.envelopeDoubleSide;
-            this.layoutControlItem8.Location = new System.Drawing.Point(188, 0);
-            this.layoutControlItem8.MaxSize = new System.Drawing.Size(81, 23);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(81, 23);
+            this.layoutControlItem8.Location = new System.Drawing.Point(182, 0);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(54, 23);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(54, 23);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(81, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(54, 24);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
@@ -1999,9 +2003,9 @@
             this.layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem14,
             this.layoutControlItem15});
-            this.layoutControlGroup7.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlGroup7.Location = new System.Drawing.Point(204, 24);
             this.layoutControlGroup7.Name = "layoutControlGroup7";
-            this.layoutControlGroup7.Size = new System.Drawing.Size(764, 67);
+            this.layoutControlGroup7.Size = new System.Drawing.Size(760, 67);
             this.layoutControlGroup7.Text = "订单信息";
             // 
             // layoutControlItem14
@@ -2009,7 +2013,7 @@
             this.layoutControlItem14.Control = this.orderTaobaoIdTextEdit;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(562, 24);
+            this.layoutControlItem14.Size = new System.Drawing.Size(558, 24);
             this.layoutControlItem14.Text = "客户名称";
             this.layoutControlItem14.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(48, 14);
@@ -2017,7 +2021,7 @@
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.orderUrgentCheckEdit;
-            this.layoutControlItem15.Location = new System.Drawing.Point(562, 0);
+            this.layoutControlItem15.Location = new System.Drawing.Point(558, 0);
             this.layoutControlItem15.MaxSize = new System.Drawing.Size(178, 23);
             this.layoutControlItem15.MinSize = new System.Drawing.Size(178, 23);
             this.layoutControlItem15.Name = "layoutControlItem15";
@@ -2030,9 +2034,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.textEdit1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(204, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(764, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(760, 24);
             this.layoutControlItem2.Text = "文件夹";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -2041,9 +2045,9 @@
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem10,
             this.layoutControlItem11});
-            this.layoutControlGroup5.Location = new System.Drawing.Point(279, 287);
+            this.layoutControlGroup5.Location = new System.Drawing.Point(512, 287);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(293, 67);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(260, 67);
             this.layoutControlGroup5.Text = "张数设置";
             // 
             // layoutControlItem10
@@ -2051,16 +2055,16 @@
             this.layoutControlItem10.Control = this.envelopePostCardCopyEdit;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(134, 24);
+            this.layoutControlItem10.Size = new System.Drawing.Size(118, 24);
             this.layoutControlItem10.Text = "每张份数";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.postCardCountEdit;
-            this.layoutControlItem11.Location = new System.Drawing.Point(134, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(118, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(135, 24);
+            this.layoutControlItem11.Size = new System.Drawing.Size(118, 24);
             this.layoutControlItem11.Text = "固定总数";
             this.layoutControlItem11.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -2232,20 +2236,20 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5});
-            gridFormatRule3.ApplyToRow = true;
-            gridFormatRule3.Column = this.gridColumn4;
-            gridFormatRule3.Name = "Format0";
-            formatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.Red;
-            formatConditionRuleValue3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.Transparent;
-            formatConditionRuleValue3.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue3.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue3.Appearance.Options.UseFont = true;
-            formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue3.Value1 = false;
-            gridFormatRule3.Rule = formatConditionRuleValue3;
-            this.gridView8.FormatRules.Add(gridFormatRule3);
+            gridFormatRule2.ApplyToRow = true;
+            gridFormatRule2.Column = this.gridColumn4;
+            gridFormatRule2.Name = "Format0";
+            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.Red;
+            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.Transparent;
+            formatConditionRuleValue2.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue2.Appearance.Options.UseFont = true;
+            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue2.Value1 = false;
+            gridFormatRule2.Rule = formatConditionRuleValue2;
+            this.gridView8.FormatRules.Add(gridFormatRule2);
             this.gridView8.GridControl = this.gridControl2;
             this.gridView8.Name = "gridView8";
             this.gridView8.OptionsView.ShowFooter = true;
@@ -2812,7 +2816,7 @@
             this.tabFormContentContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabFormContentContainer1.Location = new System.Drawing.Point(0, 0);
             this.tabFormContentContainer1.Name = "tabFormContentContainer1";
-            this.tabFormContentContainer1.Size = new System.Drawing.Size(294, 281);
+            this.tabFormContentContainer1.Size = new System.Drawing.Size(298, 282);
             this.tabFormContentContainer1.TabIndex = 4;
             // 
             // xtraTabControl1
@@ -2829,7 +2833,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.tabFormContentContainer1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(294, 281);
+            this.xtraTabPage1.Size = new System.Drawing.Size(298, 282);
             // 
             // gridColumn11
             // 
@@ -2867,12 +2871,42 @@
             this.layoutControlGroup8.Size = new System.Drawing.Size(147, 43);
             this.layoutControlGroup8.Text = "布局设置";
             // 
+            // treeList1
+            // 
+            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn1});
+            this.treeList1.Location = new System.Drawing.Point(12, 12);
+            this.treeList1.Name = "treeList1";
+            this.treeList1.Size = new System.Drawing.Size(200, 737);
+            this.treeList1.TabIndex = 52;
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.Caption = "文件夹";
+            this.treeListColumn1.FieldName = "Text";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 0;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.treeList1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(204, 0);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(204, 24);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(204, 741);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
             // EnvelopeInfoForm
             // 
             this.AcceptButton = this.envelopeSubmit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 661);
+            this.ClientSize = new System.Drawing.Size(984, 761);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.MinimizeBox = false;
@@ -2884,10 +2918,10 @@
             this.Shown += new System.EventHandler(this.EnvelopeInfoForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PostCardWaste.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductSize.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
+            this.popupContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
@@ -2902,10 +2936,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemRadioGroup4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
-            this.popupContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopePaperName2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PostCardWaste.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envelopeProductSize.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderUrgentCheckEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.envelopePostCardCopyEdit.Properties)).EndInit();
@@ -3029,6 +3063,8 @@
             this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3225,5 +3261,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup7;
+        private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }

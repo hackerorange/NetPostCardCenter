@@ -94,30 +94,35 @@ namespace PostCardCenter.form.order
                             Directory = info,
                             FrontStyle="B"
                         };
+                        orderInfo.Envelopes.Add(envelope);
                         //显示此明信片集合详情页
-                        if (new EnvelopeInfoForm(envelope).ShowDialog(this) != DialogResult.OK) continue;                        
+                        //if (new EnvelopeInfoForm(envelope).ShowDialog(this) != DialogResult.OK) continue;                        
                         orderInfo.Envelopes.Add(envelope);
                     }
+                    List<OrderInfo> orderInfoList = new List<OrderInfo>();
+                    orderInfoList.Add(orderInfo);
+
+                    new EnvelopeInfoForm(orderInfoList).ShowDialog(this);
                     //如果此订单中存在明信片集合
-                    if (orderInfo.hasEnvelope())
-                    {
-                        if (XtraMessageBox.Show("明信片是否已经设置完成", "设置完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                        {
-                            orderInfo.OrderStatus = "正在上传中";
-                            //上传此明信片订单下的所有明信片图像
-                            orderInfo.Envelopes.ForEach(EnvelopeInfo =>
-                            {
-                                if (EnvelopeInfo.PostCardCount > 0)
-                                {
-                                    EnvelopeInfo.PostCards.ForEach(PostCardInfo =>
-                                    {
-                                        //上传图像
-                                        uploadPostCard(PostCardInfo, orderInfo);
-                                    });
-                                }
-                            });
-                        }
-                    }
+                    //if (orderInfo.hasEnvelope())
+                    //{
+                    //    if (XtraMessageBox.Show("明信片是否已经设置完成", "设置完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    //    {
+                    //        orderInfo.OrderStatus = "正在上传中";
+                    //        //上传此明信片订单下的所有明信片图像
+                    //        orderInfo.Envelopes.ForEach(EnvelopeInfo =>
+                    //        {
+                    //            if (EnvelopeInfo.PostCardCount > 0)
+                    //            {
+                    //                EnvelopeInfo.PostCards.ForEach(PostCardInfo =>
+                    //                {
+                    //                    //上传图像
+                    //                    uploadPostCard(PostCardInfo, orderInfo);
+                    //                });
+                    //            }
+                    //        });
+                    //    }
+                    //}
                     break;
                 case "待提交":
                     if (orderInfo.hasEnvelope())
