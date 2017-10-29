@@ -145,7 +145,7 @@
             this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer1.Controls.Add(this.layoutControl2);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(242, 203);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(242, 200);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl2
@@ -158,7 +158,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(242, 203);
+            this.layoutControl2.Size = new System.Drawing.Size(242, 200);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -177,7 +177,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("30天内", "30天内"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("全部", "全部"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("自定义", "自定义")});
-            this.radioGroup1.Size = new System.Drawing.Size(167, 105);
+            this.radioGroup1.Size = new System.Drawing.Size(167, 102);
             this.radioGroup1.StyleController = this.layoutControl2;
             this.radioGroup1.TabIndex = 7;
             this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged);
@@ -299,7 +299,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(12, 169);
+            this.simpleButton1.Location = new System.Drawing.Point(12, 166);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(218, 22);
             this.simpleButton1.StyleController = this.layoutControl2;
@@ -318,7 +318,7 @@
             this.layoutControlItem6});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(242, 203);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(242, 200);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem3
@@ -342,7 +342,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 157);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 154);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(222, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -353,7 +353,7 @@
             this.layoutControlItem6.Control = this.radioGroup1;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(222, 109);
+            this.layoutControlItem6.Size = new System.Drawing.Size(222, 106);
             this.layoutControlItem6.Text = "日期选择";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 

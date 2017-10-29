@@ -48,44 +48,28 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="constant\PostCardFileUploadStatusEnum.cs" />
     <Compile Include="constant\postcard\PostCardProcessStatusEnum.cs" />
     <Compile Include="constant\system\SystemConstants.cs" />
     <Compile Include="domain\BackStyleInfo.cs" />
-    <Compile Include="domain\CropInfo.cs" />
-    <Compile Include="domain\EnvelopeInfo.cs" />
     <Compile Include="domain\FrontStyleInfo.cs" />
     <Compile Include="domain\orderCenter\EnvelopeInfo.cs" />
-    <Compile Include="domain\OrderInfo.cs" />
-    <Compile Include="domain\PostCard.cs" />
     <Compile Include="domain\PostCardStyle.cs" />
-    <Compile Include="domain\ProductSize.cs" />
+    <Compile Include="domain\system\SystemConstant.cs" />
     <Compile Include="helper\EnvelopeHelper.cs" />
     <Compile Include="helper\OrderInfoHelper.cs" />
     <Compile Include="security\AccountSessionInfo.cs" />
-    <Compile Include="translator\request\CropInfoTranslator.cs" />
-    <Compile Include="translator\response\EnvelopeHelper.cs" />
     <Compile Include="helper\FileHelper.cs" />
     <Compile Include="helper\ImageHelper.cs" />
     <Compile Include="helper\Md5Helper.cs" />
-    <Compile Include="translator\request\OrderHelper.cs" />
-    <Compile Include="translator\response\PostCardHelper.cs" />
-    <Compile Include="helper\RequestUtils.cs" />
-    <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="security\Security.cs" />
-    <Compile Include="translator\response\OrderInfoTranslator.cs" />
     <Compile Include="web\webServicePath.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

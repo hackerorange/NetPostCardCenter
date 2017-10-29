@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
-using PostCardCenter.form.postCard;
-using soho.domain;
-using soho.domain.orderCenter;
-using postCardCenterSdk.sdk;
-using soho.translator;
-using soho.translator.response;
-using soho.security;
-using DevExpress.XtraNavBar;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraNavBar;
+using postCardCenterSdk.sdk;
+using PostCardCrop.form;
+using PostCardCrop.model;
+using PostCardCrop.translator.response;
+using soho.security;
 
 namespace PostCardCenter.form.order
 {
@@ -41,10 +42,7 @@ namespace PostCardCenter.form.order
             WebServiceInvoker.GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
             {
                 var orderInfoList = new List<OrderInfo>();
-                orders.ForEach(orderResponse =>
-                {
-                    orderInfoList.Add(orderResponse.TranslateToOrderInfo());
-                });
+                orders.ForEach(orderResponse => { orderInfoList.Add(orderResponse.TranslateToOrderInfo()); });
                 orderDetailGridController.DataSource = orderInfoList;
                 orderDetailGridController.RefreshDataSource();
             }, message => { XtraMessageBox.Show(message); });
@@ -56,28 +54,25 @@ namespace PostCardCenter.form.order
             var focusedRow = gridView1.GetFocusedRow() as OrderInfo;
             if (focusedRow != null)
             {
-                if (String.IsNullOrEmpty(focusedRow.ProcessorName))
+                if (string.IsNullOrEmpty(focusedRow.ProcessorName))
                 {
                     if (XtraMessageBox.Show("当前订单没有处理者，是否由我来处理此订单？", "我来处理", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                    {
-                        WebServiceInvoker.ChangeOrderProcessor(focusedRow.Id, success:order => {
-                            if (order.ProcessorName != Security.AccountSessionInfo.RealName)
+                        WebServiceInvoker.ChangeOrderProcessor(focusedRow.Id, order =>
                             {
-                                XtraMessageBox.Show("很抱歉，你没有抢到此订单，此订单被["+ order .ProcessorName+ "]抢到了！");
-                                return;
-                            }
-                            focusedRow.ProcessorName = order.ProcessorName;
-                            var xtraForm1 = new PostCardCropForm(focusedRow.Id);
-                            xtraForm1.Show();
-                        },
-                            failure: message => { XtraMessageBox.Show(message); });
-                    }
+                                if (order.ProcessorName != Security.AccountSessionInfo.RealName)
+                                {
+                                    XtraMessageBox.Show("很抱歉，你没有抢到此订单，此订单被[" + order.ProcessorName + "]抢到了！");
+                                    return;
+                                }
+                                focusedRow.ProcessorName = order.ProcessorName;
+                                var xtraForm1 = new PostCardCropForm(focusedRow.Id);
+                                xtraForm1.Show();
+                            },
+                            message => { XtraMessageBox.Show(message); });
                     else
-                    {
                         XtraMessageBox.Show("要想查看订单，必须处理此订单");
-                    }
                     return;
-                }                
+                }
                 if (focusedRow.ProcessorName == Security.AccountSessionInfo.RealName)
                 {
                     var xtraForm1 = new PostCardCropForm(focusedRow.Id);
@@ -134,18 +129,14 @@ namespace PostCardCenter.form.order
         }
 
         private void gridView1_FocusedRowChanged(object sender,
-            DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+            FocusedRowChangedEventArgs e)
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo != null)
-            {
-                //如果当前没有处理人，我来处理可用
-                //barButtonItem1.Enabled = string.IsNullOrEmpty(orderInfo.ProcessorName);
                 barButtonItem4.Enabled = !"已完成".Equals(orderInfo.ProcessStatus);
-            }
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
@@ -154,10 +145,10 @@ namespace PostCardCenter.form.order
                 XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
             }
-            WebServiceInvoker.ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); }, message => { XtraMessageBox.Show(message); });            
+            WebServiceInvoker.ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); }, message => { XtraMessageBox.Show(message); });
         }
 
-        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
             if (orderInfo == null) return;
@@ -167,31 +158,22 @@ namespace PostCardCenter.form.order
                 return;
             }
             if (XtraMessageBox.Show("是否真的将订单状态修改为已处理？", "订单状态修改", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            {
-
                 WebServiceInvoker.ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
-            }
         }
 
-        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle > -1)
-            {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
         }
 
-        private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void navBarItem1_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             var ba = sender as NavBarItem;
             if (ba.Tag != null)
-            {
-                orderProcessStatus.FilterInfo = new ColumnFilterInfo(orderProcessStatus,ba.Tag);                
-            }
+                orderProcessStatus.FilterInfo = new ColumnFilterInfo(orderProcessStatus, ba.Tag);
             else
-            {
                 orderProcessStatus.ClearFilter();
-            }
         }
     }
 

@@ -151,6 +151,15 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/size/{category} 的本地化字符串。
+        /// </summary>
+        public static string getAllProductSizeUrl {
+            get {
+                return ResourceManager.GetString("getAllProductSizeUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 http://192.168.1.136:8089/file/generateThumbnail/{fileId} 的本地化字符串。
         /// </summary>
         public static string getFileThumbnailUrl {
@@ -183,6 +192,15 @@ namespace postCardCenterSdk.Properties {
         public static string getPostCardInfoUrl {
             get {
                 return ResourceManager.GetString("getPostCardInfoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://192.168.1.136:8083/rest/size/{category} 的本地化字符串。
+        /// </summary>
+        public static string insertSizeUrl {
+            get {
+                return ResourceManager.GetString("insertSizeUrl", resourceCulture);
             }
         }
         

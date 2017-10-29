@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F093C784-F735-4817-8826-AC5D35C1C70A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OrderBatchCreate</RootNamespace>
+    <AssemblyName>OrderBatchCreate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v16.2" />
+    <Reference Include="DevExpress.Images.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.Images.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.Images.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v16.2" />
+    <Reference Include="DevExpress.XtraBars.v16.2" />
+    <Reference Include="DevExpress.XtraEditors.v16.2" />
+    <Reference Include="DevExpress.Printing.v16.2.Core" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.XtraGrid.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.XtraGrid.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.XtraLayout.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.XtraLayout.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.XtraTreeList.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="control\envelope\EnvelopePrintInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="control\envelope\EnvelopePrintInfo.Designer.cs">
+      <DependentUpon>EnvelopePrintInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\CustomerProductSizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\CustomerProductSizeForm.Designer.cs">
+      <DependentUpon>CustomerProductSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="helper\EnvelopeHelper.cs" />
+    <Compile Include="helper\PostCardHelper.cs" />
+    <Compile Include="helper\PostCardUploadQueue.cs" />
+    <Compile Include="model\BatchStatus.cs" />
+    <Compile Include="model\EnvelopeInfo.cs" />
+    <Compile Include="model\OrderInfo.cs" />
+    <Compile Include="model\PostCardBasic.cs" />
+    <Compile Include="model\PostCardInfo.cs" />
+    <Compile Include="form\OrderBasicInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\OrderBasicInfoForm.Designer.cs">
+      <DependentUpon>OrderBasicInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\OrderBatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\OrderBatch.Designer.cs">
+      <DependentUpon>OrderBatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\PostCardCopySet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\PostCardCopySet.Designer.cs">
+      <DependentUpon>PostCardCopySet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="translator\request\OrderHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="control\envelope\EnvelopePrintInfo.resx">
+      <DependentUpon>EnvelopePrintInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\CustomerProductSizeForm.resx">
+      <DependentUpon>CustomerProductSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\OrderBasicInfoForm.resx">
+      <DependentUpon>OrderBasicInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\OrderBatch.resx">
+      <DependentUpon>OrderBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\PostCardCopySet.resx">
+      <DependentUpon>PostCardCopySet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
+      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
+      <Name>postCardCenterSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\soho\soho.csproj">
+      <Project>{1f086fc8-76bf-4345-b62a-5f90d381eb6a}</Project>
+      <Name>soho</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemSetting\SystemSetting.csproj">
+      <Project>{2F888264-1FA2-4F7C-A9BB-4AE388B816E6}</Project>
+      <Name>SystemSetting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

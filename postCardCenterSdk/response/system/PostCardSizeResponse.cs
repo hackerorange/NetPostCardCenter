@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace postCardCenterSdk.response.system
 {
     public class PostCardSizeResponse
     {
-        /// <summary>
-        /// 成品尺寸名称
-        /// </summary>
+        [JsonProperty("name")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 成品尺寸宽度
-        /// </summary>
+        [JsonProperty("width")]
         public int Width { get; set; }
 
-        /// <summary>
-        /// 成品尺寸高度
-        /// </summary>
+        [JsonProperty("height")]
         public int Height { get; set; }
     }
 }

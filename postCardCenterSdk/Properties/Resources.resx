@@ -151,6 +151,9 @@
   <data name="getAllOrderUrl" xml:space="preserve">
     <value>http://192.168.1.136:8083/rest/order/all</value>
   </data>
+  <data name="getAllProductSizeUrl" xml:space="preserve">
+    <value>http://192.168.1.136:8083/rest/size/{category}</value>
+  </data>
   <data name="getFileThumbnailUrl" xml:space="preserve">
     <value>http://192.168.1.136:8089/file/generateThumbnail/{fileId}</value>
     <comment>fileThumbnailGenerateUrl</comment>
@@ -163,6 +166,9 @@
   </data>
   <data name="getPostCardInfoUrl" xml:space="preserve">
     <value>http://192.168.1.136:8083/rest/postCard/info/{postCardId}</value>
+  </data>
+  <data name="insertSizeUrl" xml:space="preserve">
+    <value>http://192.168.1.136:8083/rest/size/{category}</value>
   </data>
   <data name="loginUrl" xml:space="preserve">
     <value>http://192.168.1.136:8083/rest/security/login</value>

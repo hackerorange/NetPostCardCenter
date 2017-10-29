@@ -64,25 +64,15 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accessibility" />
-    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DevExpress.BonusSkins.v16.2" />
     <Reference Include="DevExpress.Data.v16.2" />
     <Reference Include="DevExpress.Images.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v16.2.Core" />
     <Reference Include="DevExpress.Utils.v16.2" />
     <Reference Include="DevExpress.XtraBars.v16.2" />
-    <Reference Include="DevExpress.Sparkline.v16.2.Core" />
     <Reference Include="DevExpress.XtraEditors.v16.2" />
     <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -96,134 +86,37 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="devexpress\DataGridViewHelper.cs" />
-    <Compile Include="form\envelope\EnvelopeInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\envelope\EnvelopeInfoForm.Designer.cs">
-      <DependentUpon>EnvelopeInfoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\envelope\XtraForm1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\envelope\XtraForm1.Designer.cs">
-      <DependentUpon>XtraForm1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\order\OrderBatchCreateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\order\OrderBatchCreateForm.Designer.cs">
-      <DependentUpon>OrderBatchCreateForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\OrderInfoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\OrderInfoForm.Designer.cs">
-      <DependentUpon>OrderInfoForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="form\order\OrderCenter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\order\OrderCenter.Designer.cs">
+    <Compile Include="form\order\orderCenter.Designer.cs">
       <DependentUpon>OrderCenter.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\postCard\PostCardCropForm.cs">
+    <Compile Include="form\PostCardCenterMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\postCard\PostCardCropForm.Designer.cs">
-      <DependentUpon>PostCardCropForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\postCard\SubmitWaitForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\postCard\SubmitWaitForm.Designer.cs">
-      <DependentUpon>SubmitWaitForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="helper\Helper.cs" />
-    <Compile Include="myController\EnvelopeInfoController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="myController\EnvelopeInfoController.Designer.cs">
-      <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="myController\PostCardCropController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="myController\PostCardCropController.Designer.cs">
-      <DependentUpon>PostCardCropController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="myController\PostCardInfoController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="myController\PostCardInfoController.Designer.cs">
-      <DependentUpon>PostCardInfoController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrangeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrangeForm.Designer.cs">
-      <DependentUpon>OrangeForm.cs</DependentUpon>
+    <Compile Include="form\PostCardCenterMainForm.Designer.cs">
+      <DependentUpon>PostCardCenterMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="security\UserLogin.cs">
+    <Compile Include="form\security\UserLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="security\UserLogin.Designer.cs">
+    <Compile Include="form\security\UserLogin.Designer.cs">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="form\envelope\EnvelopeInfoForm.resx">
-      <DependentUpon>EnvelopeInfoForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\envelope\XtraForm1.resx">
-      <DependentUpon>XtraForm1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\order\OrderBatchCreateForm.resx">
-      <DependentUpon>OrderBatchCreateForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\OrderInfoForm.resx">
-      <DependentUpon>OrderInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="form\order\OrderCenter.resx">
       <DependentUpon>OrderCenter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\postCard\PostCardCropForm.resx">
-      <DependentUpon>PostCardCropForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\postCard\SubmitWaitForm.resx">
-      <DependentUpon>SubmitWaitForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="myController\EnvelopeInfoController.resx">
-      <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="myController\PostCardCropController.resx">
-      <DependentUpon>PostCardCropController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="myController\PostCardInfoController.resx">
-      <DependentUpon>PostCardInfoController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OrangeForm.resx">
-      <DependentUpon>OrangeForm.cs</DependentUpon>
+    <EmbeddedResource Include="form\PostCardCenterMainForm.resx">
+      <DependentUpon>PostCardCenterMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -236,15 +129,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="security\UserLogin.resx">
+    <EmbeddedResource Include="form\security\UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\DataSources\PostCardCenter.form.EnvelopeInfoForm.datasource" />
     <None Include="Properties\DataSources\soho.domain.EnvelopeInfo.datasource" />
+    <None Include="Properties\DataSources\soho.domain.system.SystemConstant.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -258,21 +151,43 @@
   <ItemGroup>
     <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="if_BT_cut_905651.ico" />
+    <None Include="Resources\D.png" />
+    <None Include="Resources\C.png" />
+    <None Include="Resources\B.png" />
+    <None Include="Resources\A.png" />
+    <Content Include="res\A.png" />
+    <Content Include="res\B.png" />
+    <Content Include="res\C.png" />
+    <Content Include="res\D.png" />
     <Content Include="urlConfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OrderBatchCreate\OrderBatchCreate.csproj">
+      <Project>{F093C784-F735-4817-8826-AC5D35C1C70A}</Project>
+      <Name>OrderBatchCreate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
       <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
       <Name>postCardCenterSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostCardCrop\PostCardCrop.csproj">
+      <Project>{AD3764F1-FE61-4CC0-8A5C-C830CB32FE14}</Project>
+      <Name>PostCardCrop</Name>
     </ProjectReference>
     <ProjectReference Include="..\soho\soho.csproj">
       <Project>{1f086fc8-76bf-4345-b62a-5f90d381eb6a}</Project>
       <Name>soho</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SystemSetting\SystemSetting.csproj">
+      <Project>{2f888264-1fa2-4f7c-a9bb-4ae388b816e6}</Project>
+      <Name>SystemSetting</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="form\postCard\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
@@ -341,27 +256,7 @@
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
-    <PublishFile Include="DevExpress.Printing.v16.2.Core">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
     <PublishFile Include="DevExpress.RichEdit.v16.2.Core">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-    <PublishFile Include="DevExpress.Sparkline.v16.2.Core">
       <Visible>False</Visible>
       <Group>
       </Group>
@@ -422,36 +317,6 @@
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraNavBar.v16.2">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-    <PublishFile Include="DevExpress.XtraPrinting.v16.2">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-    <PublishFile Include="DevExpress.XtraTreeList.v16.2">
-      <Visible>False</Visible>
-      <Group>
-      </Group>
-      <TargetPath>
-      </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
-    </PublishFile>
-    <PublishFile Include="DevExpress.XtraVerticalGrid.v16.2">
       <Visible>False</Visible>
       <Group>
       </Group>

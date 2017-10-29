@@ -1,31 +1,39 @@
-﻿using postCardCenterSdk.sdk;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static postCardCenterSdk.sdk.WebServiceInvoker;
+using postCardCenterSdk.sdk;
 
-namespace soho.translator
+namespace soho.helper
 {
     public static class FileHelper
     {
         /// <summary>
-        /// 向服务器上传文件
+        ///     向服务器上传文件
         /// </summary>
         /// <param name="file">要上传到服务器的文件</param>
+        /// <param name="category">分类</param>
+        /// <param name="synchronize">是否同步，同步为True</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
         /// <returns>服务器返回的文件ID</returns>
-        public static void Upload(this FileInfo file, string category, Success<string> success, Failure failure = null)
+        public static void Upload(this FileInfo file, string category, bool synchronize, WebServiceInvoker.Success<string> success, WebServiceInvoker.Failure failure = null)
         {
-            WebServiceInvoker.Upload(category, file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
+            if (synchronize)
+                try
+                {
+                    var fileUploadResponse = WebServiceInvoker.Upload(category, file);
+                    success(fileUploadResponse.Id);
+                }
+                catch (Exception e)
+                {
+                    failure?.Invoke(e.Message);
+                }
+            else
+                WebServiceInvoker.Upload(category, file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
         }
 
         /// <summary>
-        /// 检测文件是否为图像
+        ///     检测文件是否为图像
         /// </summary>
         /// <param name="file">要检测的文件</param>
         /// <returns></returns>
@@ -34,11 +42,11 @@ namespace soho.translator
             //如果文件不存在，返回false;
             if (!file.Exists) return false;
             //创建文件流
-            FileStream fileStream = new FileStream(file.FullName,FileMode.Open,FileAccess.Read);
+            var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read);
             try
             {
                 //根据流创建图像
-                Image iamge = Image.FromStream(fileStream);
+                var iamge = Image.FromStream(fileStream);
                 //创建成功，返回true;
                 return true;
             }

@@ -1,29 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using DevExpress.LookAndFeel;
-using DevExpress.UserSkins;
 using DevExpress.Skins;
+using DevExpress.UserSkins;
 using PostCardCenter.form;
-using PostCardCenter.form.order;
-using PostCardCenter.form.postCard;
-using PostCardCenter.security;
+using PostCardCenter.form.security;
+using soho.domain.system;
 
 namespace PostCardCenter
 {
     internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        ///     The main entry point for the application.
         /// </summary>
         [STAThread]
         // ReSharper disable once InconsistentNaming
         // ReSharper disable once ArrangeTypeMemberModifiers
         static void Main()
         {
-            bool createNew;
-            using (new System.Threading.Mutex(true, Application.ProductName, out createNew))
+            using (new Mutex(true, Application.ProductName, out var createNew))
             {
                 if (createNew)
                 {
@@ -37,20 +34,18 @@ namespace PostCardCenter
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
                     var a = new UserLogin();
+                    if (a.ShowDialog() != DialogResult.OK) return;
 
-                    if (a.ShowDialog() == DialogResult.OK)
-                    {
-                        Application.Run(new OrangeForm());
-                    }
+                    SystemConstant.InitConstant();
+                    Application.Run(new PostCardCenterMainForm());
                 }
                 else
                 {
                     MessageBox.Show(@"应用程序已经在运行中...");
-                    System.Threading.Thread.Sleep(1000);
+                    Thread.Sleep(1000);
                     Environment.Exit(1);
                 }
             }
         }
-
     }
 }

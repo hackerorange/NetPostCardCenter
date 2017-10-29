@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AD3764F1-FE61-4CC0-8A5C-C830CB32FE14}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PostCardCrop</RootNamespace>
+    <AssemblyName>PostCardCrop</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.Images.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.Images.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="control\EnvelopeInfoController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="control\envelopeInfoController.Designer.cs">
+      <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="control\PostCardCropController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="control\PostCardCropController.Designer.cs">
+      <DependentUpon>PostCardCropController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="control\PostCardInfoController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="control\PostCardInfoController.Designer.cs">
+      <DependentUpon>PostCardInfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\PostCardCropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\PostCardCropForm.Designer.cs">
+      <DependentUpon>PostCardCropForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\SubmitWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SubmitWaitForm.Designer.cs">
+      <DependentUpon>SubmitWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="helper\SizeHelper.cs" />
+    <Compile Include="model\CropInfo.cs" />
+    <Compile Include="model\EnvelopeInfo.cs" />
+    <Compile Include="model\OrderInfo.cs" />
+    <Compile Include="model\PostCard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RibbonForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RibbonForm1.Designer.cs">
+      <DependentUpon>RibbonForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="translator\request\CropInfoTranslator.cs" />
+    <Compile Include="translator\request\OrderHelper.cs" />
+    <Compile Include="translator\response\EnvelopeHelper.cs" />
+    <Compile Include="translator\response\OrderInfoTranslator.cs" />
+    <Compile Include="translator\response\PostCardHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="control\envelopeInfoController.resx">
+      <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="control\PostCardCropController.resx">
+      <DependentUpon>PostCardCropController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="control\PostCardInfoController.resx">
+      <DependentUpon>PostCardInfoController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\postCardCropForm.resx">
+      <DependentUpon>PostCardCropForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SubmitWaitForm.resx">
+      <DependentUpon>SubmitWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RibbonForm1.resx">
+      <DependentUpon>RibbonForm1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
+      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
+      <Name>postCardCenterSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\soho\soho.csproj">
+      <Project>{1F086FC8-76BF-4345-B62A-5F90D381EB6A}</Project>
+      <Name>soho</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemSetting\SystemSetting.csproj">
+      <Project>{2F888264-1FA2-4F7C-A9BB-4AE388B816E6}</Project>
+      <Name>SystemSetting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

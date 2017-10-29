@@ -1,29 +1,30 @@
 ﻿using postCardCenterSdk.sdk;
-using Spring.Http.Client;
 using Spring.Http.Client.Interceptor;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static System.String;
 
 namespace postCardCenterSdk.interceptor
 {
-    public class PerfRequestSyncInterceptor : IClientHttpRequestAsyncInterceptor
+    public class PerfRequestSyncInterceptor : IClientHttpRequestBeforeInterceptor
     {
-      
-        public void ExecuteAsync(IClientHttpRequestAsyncExecution execution)
-        {
-            string token = WebServiceInvoker.Token;
-            if (!String.IsNullOrEmpty(token))
-            {
-                execution.Headers.Add("token", token);
-            }
+//        public void ExecuteAsync(IClientHttpRequestAsyncExecution execution)
+//        {
+//            var token = WebServiceInvoker.Token;
+//            if (!IsNullOrEmpty(token))
+//            {
+//                execution.Headers.Add("token", token);
+//            }
+//
+//            execution.ExecuteAsync(comparer => {
+//                Console.WriteLine(@"请求结束！");
+//            });
+//        }
 
-            execution.ExecuteAsync(Comparer => {
-                Console.WriteLine("请求结束！");
-            });
+        public void BeforeExecute(IClientHttpRequestContext request)
+        {
+            var token = WebServiceInvoker.Token;
+            var requestHeader = request.Headers["token"];
+            if (IsNullOrEmpty(requestHeader))
+                request.Headers.Add("token", token);
         }
     }
 }
