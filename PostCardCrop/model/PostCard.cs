@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.IO;
+using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
 using soho.constant;
 using soho.constant.postcard;
@@ -12,6 +13,15 @@ namespace PostCardCrop.model
     public class PostCardInfo
     {
         private Image _frontImage;
+
+        private int _thumbnailGenerateTime;
+
+
+        public bool RetryGenerateThumbnail()
+        {
+            _thumbnailGenerateTime++;
+            return _thumbnailGenerateTime <= 3;
+        }
 
 
         public PostCardInfo()

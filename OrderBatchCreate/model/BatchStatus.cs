@@ -38,6 +38,11 @@ namespace OrderBatchCreate.model
         public static BatchStatus OrderAlready = new BatchStatus("待提交", Color.Blue);
 
         /// <summary>
+        ///     已设置完成
+        /// </summary>
+        public static BatchStatus OrderEmpty = new BatchStatus("空订单", Color.DarkOliveGreen);
+
+        /// <summary>
         ///     已提交
         /// </summary>
         public static BatchStatus OrderHaveSubmit = new BatchStatus("已提交", Color.Green);
@@ -66,12 +71,13 @@ namespace OrderBatchCreate.model
         /// <summary>
         ///     明信片上传失败
         /// </summary>
-        public static BatchStatus PostCardNotImage = new BatchStatus("不是图片", Color.DeepPink);
+        public static BatchStatus PostCardTypeError = new BatchStatus("图片格式错误", Color.DeepPink);
 
 
         public static List<BatchStatus> StatusList = new List<BatchStatus>
         {
             OrderNotSet,
+            OrderEmpty,
             OrderNotReady,
             EnvelopeNotReady,
             OrderAlready,
@@ -82,7 +88,7 @@ namespace OrderBatchCreate.model
             PostCardUploadSuccess,
             PostCardUploading,
             PostCardUploadFailure,
-            PostCardNotImage
+            PostCardTypeError
         };
 
         private readonly Color _backColor = Color.Transparent;

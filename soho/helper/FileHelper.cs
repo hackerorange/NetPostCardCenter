@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using postCardCenterSdk.sdk;
+using soho.model;
 
 namespace soho.helper
 {
@@ -13,23 +14,43 @@ namespace soho.helper
         /// <param name="file">要上传到服务器的文件</param>
         /// <param name="category">分类</param>
         /// <param name="synchronize">是否同步，同步为True</param>
+        /// <param name="cropHeight"></param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
+        /// <param name="rotation"></param>
+        /// <param name="cropLeft"></param>
+        /// <param name="cropTop"></param>
+        /// <param name="cropWidth"></param>
         /// <returns>服务器返回的文件ID</returns>
-        public static void Upload(this FileInfo file, string category, bool synchronize, WebServiceInvoker.Success<string> success, WebServiceInvoker.Failure failure = null)
+        public static void Upload(this FileInfo file, bool synchronize, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, WebServiceInvoker.Success<ImageFileUploadModel> success = null,
+            WebServiceInvoker.Failure failure = null)
         {
             if (synchronize)
                 try
                 {
-                    var fileUploadResponse = WebServiceInvoker.Upload(category, file);
-                    success(fileUploadResponse.Id);
+                    var fileUploadResponse = WebServiceInvoker.Upload(file, category, rotation, cropLeft, cropTop, cropWidth, cropHeight);
+
+                    success?.Invoke(new ImageFileUploadModel
+                    {
+                        FileId = fileUploadResponse.Id,
+                        ThumbnailFileId = fileUploadResponse.ThumbnailFileId,
+                        ImageAvailable = fileUploadResponse.ImageAvailable
+                    });
                 }
                 catch (Exception e)
                 {
                     failure?.Invoke(e.Message);
                 }
             else
-                WebServiceInvoker.Upload(category, file, succ => { success?.Invoke(succ.Id); }, message => { failure?.Invoke(message); });
+                WebServiceInvoker.Upload(file, category, rotation, cropLeft, cropTop, cropWidth, cropHeight, succ =>
+                {
+                    success?.Invoke(new ImageFileUploadModel
+                    {
+                        FileId = succ.Id,
+                        ThumbnailFileId = succ.ThumbnailFileId,
+                        ImageAvailable = succ.ImageAvailable
+                    });
+                }, message => { failure?.Invoke(message); });
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using SystemSetting.backStyle.model;
 using SystemSetting.size.constant;
 using SystemSetting.size.form;
 using SystemSetting.size.model;
@@ -9,6 +10,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraLayout;
 using DevExpress.XtraPrinting.Native;
@@ -37,7 +39,8 @@ namespace OrderBatchCreate.form
             //envelopeSizeGridControl.DataSource = soho.domain.system.SystemConstant.ProductSizeList;
             //异步获取尺寸信息
             ProductSizeFactory.GetProductSizeListFromServer(success => { repositoryItemComboBox4.Items.AddRange(success); });
-            repositoryItemComboBox3.Items.AddRange(SystemConstant.BackStyleList);
+            BackStyleFactory.GetBackStyleFromServer(success => success.ForEach(backStyle => repositoryItemComboBox3.Items.Add(backStyle)));
+//            repositoryItemComboBox3.Items.AddRange(SystemConstant.BackStyleList);
             //repositoryItemComboBox3.Items.Add()
             gridControl1.DataSource = OrderInfos;
             BatchStatus.StatusList.ForEach(createStatus =>
@@ -48,11 +51,15 @@ namespace OrderBatchCreate.form
                     Column = statusColumn,
                     Rule = createStatus.GenerateRuleFormat()
                 });
+                gridView2.FormatRules.Add(new GridFormatRule()
+                {
+                    ApplyToRow = true,
+                    Column = orderStatusColumn,
+                    Rule = createStatus.GenerateRuleFormat()
+                });
             });
             orderDetailListView.KeyFieldName = "Key";
             orderDetailListView.ParentFieldName = "Parent";
-
-            new PostCardUploadWorker(4);
         }
 
 
@@ -111,6 +118,7 @@ namespace OrderBatchCreate.form
             Application.DoEvents();
             gridControl1.RefreshDataSource();
             AddNewEnvelope(tmpOrderInfo, tmpOrderInfo.DirectoryInfo);
+            RefreshSubmitEnvelopeList();
         }
 
         private void AddNewEnvelope(OrderInfo orderInfo, DirectoryInfo directoryInfo, EnvelopeInfo parentEnvelopeInfo = null)
@@ -118,7 +126,8 @@ namespace OrderBatchCreate.form
             var orderFolderFile = directoryInfo.GetFiles();
             var tmpEnvelopeInfo = new EnvelopeInfo(orderInfo, parentEnvelopeInfo)
             {
-                DirectoryInfo = directoryInfo
+                DirectoryInfo = directoryInfo,
+                DoubleSide = !directoryInfo.FullName.Contains("单面")
             };
             orderInfo.EnvelopeInfoList.Add(tmpEnvelopeInfo);
 
@@ -134,19 +143,18 @@ namespace OrderBatchCreate.form
 
                 if (fileInfo.Name.ToUpper().Contains("backgroundPicture".ToUpper()))
                 {
-                    tmpEnvelopeInfo.BackStyle = new BackStyleInfo
+                    if (tmpEnvelopeInfo.DoubleSide)
                     {
-                        Name = "自定义"
-                    };
-                    tmpEnvelopeInfo.FrontStyle = "D";
-                    //此集合下的所有明信片都设置为D;
-                    tmpEnvelopeInfo.PostCards.ForEach(postCard =>
-                    {
-                        postCard.FrontStyle = "D";
-                        postCard.BackStyle = tmpEnvelopeInfo.BackStyle;
-                    });
-
-                    fileInfo.Upload("自定义反面样式", false, fileId => { tmpEnvelopeInfo.BackStyle.FileId = fileId; }, message => { XtraMessageBox.Show("反面文件上传失败！"); });
+                        tmpEnvelopeInfo.BackStyle = new CustomerBackStyleInfo(fileInfo);
+                        tmpEnvelopeInfo.FrontStyle = "D";
+                        //此集合下的所有明信片都设置为D;
+                        tmpEnvelopeInfo.PostCards.ForEach(postCard =>
+                        {
+                            postCard.FrontStyle = "D";
+                            postCard.BackStyle = tmpEnvelopeInfo.BackStyle;
+                        });
+//                        fileInfo.Upload("自定义反面样式", false, fileId => { tmpEnvelopeInfo.BackStyle.FileId = fileId; }, message => { XtraMessageBox.Show("反面文件上传失败！"); });
+                    }
                     continue;
                 }
 
@@ -156,13 +164,7 @@ namespace OrderBatchCreate.form
                 };
                 Application.DoEvents();
                 //上传文件信息
-                tmpPostCardInfo.UploadFile(success =>
-                {
-//                    if (success.Parent is EnvelopeInfo en && gridView2.GetFocusedRow() == en.OrderInfo)
-//                    {
-//                        orderDetailListView.Refresh();
-//                    }
-                }, failure => { });
+                tmpPostCardInfo.UploadFile(success => { timer1.Start(); });
 
                 tmpEnvelopeInfo.PostCards.Add(tmpPostCardInfo);
                 orderInfo.EnvelopeInfoList.Add(tmpPostCardInfo);
@@ -203,22 +205,31 @@ namespace OrderBatchCreate.form
 //            var nodes = e.PostCardInfo.ParentNode == null ? orderDetailListView.Nodes : e.PostCardInfo.ParentNode.Nodes;
             if (!(e.Node.GetValue("Key") is PostCardBasic postCardBasic)) return;
 
-            if (postCardBasic is PostCardInfo)
+            switch (postCardBasic)
             {
-                paperNameColumn.OptionsColumn.AllowEdit = false;
-                paperNameColumn.OptionsColumn.ReadOnly = true;
-                productSizeColumn.OptionsColumn.AllowEdit = false;
-                //productSizeColumn.OptionsColumn.ReadOnly = true;
+                case PostCardInfo tmpPostCardInfo:
+                    paperNameColumn.OptionsColumn.AllowEdit = false;
+                    paperNameColumn.OptionsColumn.ReadOnly = true;
+                    productSizeColumn.OptionsColumn.AllowEdit = false;
+                    if (tmpPostCardInfo.Parent is EnvelopeInfo tmpEnvelopeInfo)
+                    {
+                        envelopeSettingControl2.EnvelopeInfo = tmpEnvelopeInfo;
+                        backStyleColumn.OptionsColumn.AllowEdit = tmpEnvelopeInfo.DoubleSide;
+                    }
+                    break;
+                case EnvelopeInfo envelopeInfo:
+                    //纸张名称只能是集合上设置
+                    paperNameColumn.OptionsColumn.AllowEdit = true;
+                    paperNameColumn.OptionsColumn.ReadOnly = false;
+                    //成品尺寸只能是集合上设置
+                    productSizeColumn.OptionsColumn.AllowEdit = true;
+                    //paperNameColumn.OptionsColumn.ReadOnly = false;
+                    envelopeSettingControl2.EnvelopeInfo = envelopeInfo;
+                    backStyleColumn.OptionsColumn.AllowEdit = envelopeInfo.DoubleSide;
+                    break;
             }
-            else if (postCardBasic is EnvelopeInfo envelopeInfo)
-            {
-                //纸张名称只能是集合上设置
-                paperNameColumn.OptionsColumn.AllowEdit = true;
-                paperNameColumn.OptionsColumn.ReadOnly = false;
-                //成品尺寸只能是集合上设置
-                productSizeColumn.OptionsColumn.AllowEdit = true;
-                //paperNameColumn.OptionsColumn.ReadOnly = false;
-            }
+            //刷新订单数据
+            gridView2.RefreshData();
         }
 
         /// <summary>
@@ -242,8 +253,7 @@ namespace OrderBatchCreate.form
         /// </summary>
         /// <param name="tl">TreeList组件</param>
         /// <param name="node">当前结点，从根结构递归时此值必须=null</param>
-        /// <param name="nodeIndex">根结点图标(无子结点)</param>
-        /// <param name="parentIndex">有子结点的图标</param>
+        /// <param name="list">明信片列表</param>
         public static void SetImageIndex(List<PostCardBasic> list, TreeList tl, TreeListNode node)
         {
             if (node == null)
@@ -266,6 +276,27 @@ namespace OrderBatchCreate.form
         private void OrderDetailListView_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             orderDetailListView.RefreshDataSource();
+            RefreshSubmitEnvelopeList();
+            gridView2.RefreshData();
+        }
+
+        /// <summary>
+        /// 刷新明信片提交列表
+        /// </summary>
+        private void RefreshSubmitEnvelopeList()
+        {
+            if ((gridView2.GetFocusedRow() is OrderInfo orderInfo))
+            {
+                gridControl2.DataSource = orderInfo.SubmitEnvelopeList;
+                gridControl2.RefreshDataSource();
+
+                envelopePrintInfoListView.FocusedRowHandle = 0;
+
+                if (envelopePrintInfoListView.GetFocusedRow() is EnvelopeInfo envelopeInfo)
+                {
+                    envelopePrintInfo2.EnvelopeInfo = envelopeInfo;
+                }
+            }
         }
 
         private void RepositoryItemPopupContainerEdit1_QueryResultValue(object sender, QueryResultValueEventArgs e)
@@ -282,8 +313,11 @@ namespace OrderBatchCreate.form
             if (!(gridView2.GetFocusedRow() is OrderInfo orderInfo)) return;
 
             orderDetailListView.DataSource = orderInfo.EnvelopeInfoList;
+            //更新集合数据源
             gridControl2.DataSource = orderInfo.SubmitEnvelopeList;
-
+            //更新打印
+            if (envelopePrintInfoListView.GetFocusedRow() is EnvelopeInfo envelopeInfo)
+                envelopePrintInfo2.EnvelopeInfo = envelopeInfo;
 
             orderDetailListView.ExpandAll();
             SetImageIndex(orderDetailListView.DataSource as List<PostCardBasic>, orderDetailListView, null);
@@ -305,20 +339,27 @@ namespace OrderBatchCreate.form
                 if (openFileDialog.ShowDialog() != DialogResult.OK) return;
                 var fileInfo = new FileInfo(openFileDialog.FileName);
 
-                fileInfo.Upload("自定义反面样式", false, fileId =>
+                fileInfo.Upload(false, "自定义反面样式", success: imageUploadInfo =>
                 {
-                    var backStyleInfo = new BackStyleInfo
+                    if (imageUploadInfo.ImageAvailable)
                     {
-                        Name = "自定义",
-                        FileId = fileId
-                    };
-                    postCardBasic.BackStyle = backStyleInfo;
-                    if (postCardBasic is EnvelopeInfo envelopeInfo)
-                    {
-                        envelopeInfo.PostCards.ForEach(postCard => postCard.BackStyle = backStyleInfo);
+                        var backStyleInfo = new BackStyleInfo
+                        {
+                            Name = "自定义",
+                            FileId = imageUploadInfo.FileId
+                        };
+                        postCardBasic.BackStyle = backStyleInfo;
+                        if (postCardBasic is EnvelopeInfo envelopeInfo)
+                        {
+                            envelopeInfo.PostCards.ForEach(postCard => postCard.BackStyle = backStyleInfo);
+                        }
+                        orderDetailListView.RefreshDataSource();
                     }
-                    orderDetailListView.RefreshDataSource();
-                }, msg => { XtraMessageBox.Show(msg); });
+                    else
+                    {
+                        XtraMessageBox.Show("图像格式不正确，可能图像有损坏，建议使用Photoshop重新保存后再次上传");
+                    }
+                }, failure: msg => { XtraMessageBox.Show(msg); });
             }
         }
 
@@ -331,15 +372,32 @@ namespace OrderBatchCreate.form
 
             if (e.Column == paperNameColumn) postCardBasic.PaperName = e.Value as string;
             if (e.Column == doubleSideColumn)
+            {
                 if ((bool) e.Value)
                 {
                     postCardBasic.DoubleSide = true;
+                    //如果为明信片集合，更新明信片集合中的所有明信片
+                    if (postCardBasic is EnvelopeInfo tmpEnvelopeInfo)
+                    {
+                        tmpEnvelopeInfo.PostCards.ForEach(postCard => postCard.DoubleSide = true);
+                    }
                 }
                 else
                 {
                     postCardBasic.DoubleSide = false;
                     postCardBasic.BackStyle = null;
+                    //如果为明信片集合，更新明信片集合中的所有明信片
+                    if (postCardBasic is EnvelopeInfo tmpEnvelopeInfo)
+                    {
+                        tmpEnvelopeInfo.PostCards.ForEach(postCard =>
+                        {
+                            postCard.DoubleSide = false;
+                            postCard.BackStyle = null;
+                        });
+                    }
                 }
+            }
+
             if (e.Column == backStyleColumn) postCardBasic.BackStyle = e.Value as BackStyleInfo;
             if (e.Column == productSizeColumn) postCardBasic.ProductSize = e.Value as PostSize;
             if (e.Column == frontStyleColumn)
@@ -358,10 +416,6 @@ namespace OrderBatchCreate.form
             orderDetailListView.RefreshDataSource();
         }
 
-        private void BarButtonItem13_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            orderDetailListView.RefreshDataSource();
-        }
 
         private void RepositoryItemComboBox4_ButtonClick(object sender, ButtonPressedEventArgs e)
         {
@@ -384,27 +438,14 @@ namespace OrderBatchCreate.form
             }
         }
 
-
-        private void TabbedControlGroup1_SelectedPageChanged(object sender, LayoutTabPageChangedEventArgs e)
-        {
-            if (!(gridView2.GetFocusedRow() is OrderInfo orderInfo)) return;
-
-            if (e.Page == orderDetailControlGroup)
-            {
-                gridControl2.DataSource = orderInfo.SubmitEnvelopeList;
-                if (gridView9.GetFocusedRow() is EnvelopeInfo envelopeInfo)
-                    envelopePrintInfo1.EnvelopeInfo = envelopeInfo;
-            }
-        }
-
         private void GridControl2_Click(object sender, EventArgs e)
         {
         }
 
         private void GridView9_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            if (gridView9.GetFocusedRow() is EnvelopeInfo envelopeInfo)
-                envelopePrintInfo1.EnvelopeInfo = envelopeInfo;
+            if (envelopePrintInfoListView.GetFocusedRow() is EnvelopeInfo envelopeInfo)
+                envelopePrintInfo2.EnvelopeInfo = envelopeInfo;
         }
 
         private void BarButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
@@ -435,18 +476,12 @@ namespace OrderBatchCreate.form
                         tmpPostCardInfo.DirectoryInfo = new FileInfo(fileDialog.FileName);
                         tmpPostCardInfo.FileId = null;
                         tmpPostCardInfo.IsImage = ((FileInfo) tmpPostCardInfo.DirectoryInfo).IsImage();
-                        tmpPostCardInfo.UploadFile(success =>
-                        {
-//                            if (success.Parent is EnvelopeInfo en && gridView2.GetFocusedRow() == en.OrderInfo)
-//                            {
-//                                orderDetailListView.Refresh();
-//                            }
-                        }, failure => { });
+                        tmpPostCardInfo.UploadFile(success => { timer1.Start(); });
                     }
                     break;
                 //删除按钮
                 case 1:
-                    if (XtraMessageBox.Show("是否删除当前文件？", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+                    if (XtraMessageBox.Show("是否删除当前文件？", "文件删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
                     if (tmpPostCardInfo.Parent is EnvelopeInfo tmpEnvelopeInfo)
                     {
                         //tmpEnvelopeInfo.Status
@@ -457,6 +492,9 @@ namespace OrderBatchCreate.form
                         tmpEnvelopeInfo.OrderInfo.EnvelopeInfoList.Remove(tmpPostCardInfo);
                     }
                     break;
+                default:
+                    XtraMessageBox.Show("此按钮暂未实现");
+                    break;
             }
             orderDetailListView.RefreshDataSource();
         }
@@ -464,11 +502,12 @@ namespace OrderBatchCreate.form
         private void BarButtonItem13_ItemClick_1(object sender, ItemClickEventArgs e)
         {
             var tmpNode = orderDetailListView.FocusedNode;
+            if (tmpNode == null) return;
 
-            if (XtraMessageBox.Show("是否删除当前文件？", "文件删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
             var nodeValue = tmpNode.GetValue("Key");
             if (!(nodeValue is PostCardInfo tmpPostCardInfo)) return;
 
+            if (XtraMessageBox.Show("是否删除当前文件？", "文件删除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
             if (tmpPostCardInfo.Parent is EnvelopeInfo tmpEnvelopeInfo)
             {
                 //tmpEnvelopeInfo.Status
@@ -482,15 +521,7 @@ namespace OrderBatchCreate.form
 
         private void BarButtonItem14_ItemClick_1(object sender, ItemClickEventArgs e)
         {
-            var tmpNode = orderDetailListView.FocusedNode;
-            var nodeValue = tmpNode.GetValue("Key");
-            EnvelopeInfo tmpEnvelopeInfo = null;
-            //如果当前选择的是明信片的话，集合设置为此明信片的明信片集合
-            if (nodeValue is PostCardInfo tmpPostCardInfo01)
-                tmpEnvelopeInfo = tmpPostCardInfo01.Parent as EnvelopeInfo;
-            //如果当前选择的是明信片集合的话，集合设置为此明信片集合
-            if (nodeValue is EnvelopeInfo tmpEnvelopeInfo02)
-                tmpEnvelopeInfo = tmpEnvelopeInfo02;
+            var tmpEnvelopeInfo = CurrentEnvelopeInfo;
             if (tmpEnvelopeInfo == null) return;
 
             var fileDialog = new OpenFileDialog
@@ -505,7 +536,7 @@ namespace OrderBatchCreate.form
                         var tmpPostCardInfo = new PostCardInfo(new FileInfo(filePath), tmpEnvelopeInfo);
                         tmpEnvelopeInfo.PostCards.Add(tmpPostCardInfo);
                         tmpEnvelopeInfo.OrderInfo.EnvelopeInfoList.Add(tmpPostCardInfo);
-                        tmpPostCardInfo.UploadFile(success => { }, failure => { });
+                        tmpPostCardInfo.UploadFile(success => { timer1.Start(); });
                         //添加完成后，刷新列表
                         orderDetailListView.RefreshDataSource();
                     }
@@ -516,11 +547,12 @@ namespace OrderBatchCreate.form
         {
             var tmpNode = orderDetailListView.FocusedNode;
 
-            if (XtraMessageBox.Show("是否替换当前图片？", "文件替换", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
             var nodeValue = tmpNode.GetValue("Key");
             if (!(nodeValue is PostCardInfo tmpPostCardInfo)) return;
-            var fileDialog = new OpenFileDialog();
 
+            if (XtraMessageBox.Show("是否替换当前图片？", "文件替换", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+
+            var fileDialog = new OpenFileDialog();
             var directoryInfo = (tmpPostCardInfo.DirectoryInfo as FileInfo)?.Directory;
             if (directoryInfo != null) fileDialog.InitialDirectory = directoryInfo?.FullName;
 
@@ -529,27 +561,32 @@ namespace OrderBatchCreate.form
                 tmpPostCardInfo.DirectoryInfo = new FileInfo(fileDialog.FileName);
                 tmpPostCardInfo.FileId = null;
                 tmpPostCardInfo.IsImage = ((FileInfo) tmpPostCardInfo.DirectoryInfo).IsImage();
-                tmpPostCardInfo.UploadFile(success =>
+                tmpPostCardInfo.UploadFile(success => { timer1.Start(); });
+            }
+        }
+
+
+        private EnvelopeInfo CurrentEnvelopeInfo
+        {
+            get
+            {
+                var tmpNode = orderDetailListView.FocusedNode;
+                var nodeValue = tmpNode.GetValue("Key");
+                switch (nodeValue)
                 {
-//                    if (success.Parent is EnvelopeInfo en && gridView2.GetFocusedRow() == en.OrderInfo)
-//                    {
-//                        orderDetailListView.Refresh();
-//                    }
-                }, failure => { });
+                    case EnvelopeInfo tmpEnvelopeInfo:
+                        return tmpEnvelopeInfo;
+                    case PostCardInfo tmPostCardInfo:
+                        return tmPostCardInfo.Parent as EnvelopeInfo;
+                }
+                return null;
             }
         }
 
         private void BarButtonItem12_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var tmpNode = orderDetailListView.FocusedNode;
-            var nodeValue = tmpNode.GetValue("Key");
-            EnvelopeInfo tmpEnvelopeInfo = null;
-            //如果当前选择的是明信片的话，集合设置为此明信片的明信片集合
-            if (nodeValue is PostCardInfo tmpPostCardInfo01)
-                tmpEnvelopeInfo = tmpPostCardInfo01.Parent as EnvelopeInfo;
-            //如果当前选择的是明信片集合的话，集合设置为此明信片集合
-            if (nodeValue is EnvelopeInfo tmpEnvelopeInfo02)
-                tmpEnvelopeInfo = tmpEnvelopeInfo02;
+            //获取当前明信片集合
+            var tmpEnvelopeInfo = CurrentEnvelopeInfo;
             if (tmpEnvelopeInfo == null) return;
 
             var postCardList = tmpEnvelopeInfo.PostCards;
@@ -590,105 +627,122 @@ namespace OrderBatchCreate.form
             {
                 orderDetailListView.DataSource = null;
                 gridControl2.DataSource = null;
-                envelopePrintInfo1.EnvelopeInfo = null;
-                envelopePrintInfo1.EnvelopeInfo = null;
+                envelopePrintInfo2.EnvelopeInfo = null;
+                envelopePrintInfo2.EnvelopeInfo = null;
+                envelopeSettingControl2.EnvelopeInfo = null;
             }
             else
             {
                 orderDetailListView.DataSource = tmpOrderInfo.EnvelopeInfoList;
                 gridControl2.DataSource = tmpOrderInfo.SubmitEnvelopeList;
-                if (gridView9.GetFocusedRow() is EnvelopeInfo envelopeInfo)
-                    envelopePrintInfo1.EnvelopeInfo = envelopeInfo;
+                orderPathTextEdit.Text = tmpOrderInfo.DirectoryInfo.FullName;
+                if (orderDetailListView.FocusedNode?.GetValue("key") is EnvelopeInfo envelopeInfo)
+                {
+                    envelopePrintInfo2.EnvelopeInfo = envelopeInfo;
+                    envelopeSettingControl2.EnvelopeInfo = envelopeInfo;
+                }
             }
         }
 
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
-            if (!(gridView2.GetFocusedRow() is OrderInfo orderInfo)) return;
+//            if (!(gridView2.GetFocusedRow() is OrderInfo orderInfo)) return;
+//
+//            var a = orderInfo.DirectoryInfo;
+//
+//            if (string.IsNullOrEmpty(orderInfo.TaobaoId))
+//            {
+//                XtraMessageBox.Show("还没有设置用户淘宝ID,请在左侧订单列表上设置！");
+//                return;
+//            }
+//
+//            var orderInfoSubmitEnvelopeList = orderInfo.SubmitEnvelopeList;
+//            if (orderInfoSubmitEnvelopeList.Exists(envelopeInfo => envelopeInfo.Status == Status.EnvelopeNotReady))
+//            {
+//                XtraMessageBox.Show("当前订单存在没有设置完成的集合信息，请查看详情！");
+//                tabbedControlGroup1.SelectedTabPage = orderDetailControlGroup;
+//                return;
+//            }
+//
+//            if (orderInfoSubmitEnvelopeList.Exists(envelopeInfo => envelopeInfo.PostCardWaste > 0))
+//            {
+//                XtraMessageBox.Show("当前订单存在浪费明信片的集合，请在详情页面右侧补齐张数！");
+//                tabbedControlGroup1.SelectedTabPage = orderDetailControlGroup;
+//                return;
+//            }
 
-            var a = orderInfo.DirectoryInfo;
-
-            if (string.IsNullOrEmpty(orderInfo.TaobaoId))
+            OrderInfos.FindAll(orderInfo => orderInfo.Status == BatchStatus.OrderAlready).ForEach(orderInfo =>
             {
-                XtraMessageBox.Show("还没有设置用户淘宝ID,请在左侧订单列表上设置！");
-                return;
-            }
-
-            var orderInfoSubmitEnvelopeList = orderInfo.SubmitEnvelopeList;
-            if (orderInfoSubmitEnvelopeList.Exists(envelopeInfo => envelopeInfo.Status == BatchStatus.EnvelopeNotReady))
-            {
-                XtraMessageBox.Show("当前订单存在没有设置完成的集合信息，请查看详情！");
-                tabbedControlGroup1.SelectedTabPage = orderDetailControlGroup;
-                return;
-            }
-
-            if (orderInfoSubmitEnvelopeList.Exists(envelopeInfo => envelopeInfo.PostCardWaste > 0))
-            {
-                XtraMessageBox.Show("当前订单存在浪费明信片的集合，请在详情页面右侧补齐张数！");
-                tabbedControlGroup1.SelectedTabPage = orderDetailControlGroup;
-                return;
-            }
-
-
-            var prepareSubmitRequest = orderInfo.PrepareSubmitRequest();
-            WebServiceInvoker.SubmitOrderList(prepareSubmitRequest, succ =>
-            {
-                XtraMessageBox.Show("订单提交成功！");
-                var fileInfo = new FileInfo(a.FullName + "/hasSubmit.ini");
-                fileInfo.Create();
-                if (!(gridView2.DataSource is List<OrderInfo> orderInfos)) return;
-                orderInfos.Remove(orderInfo);
-                gridView2.RefreshData();
-
-                //如果焦点值不是订单信息，直接返回
-                if (!(gridView2.GetFocusedRow() is OrderInfo tmpOrderInfo))
+                if (orderInfo.EnvelopeInfoList == null) return;
+                var flag = false;
+                orderInfo.EnvelopeInfoList.ForEach(postCardBasic =>
                 {
-                    orderDetailListView.DataSource = null;
-                    gridControl2.DataSource = null;
-                    envelopePrintInfo1.EnvelopeInfo = null;
-                }
-                else
+                    if (flag) return;
+                    if (postCardBasic is EnvelopeInfo envelopeInfo && envelopeInfo.BackStyle is CustomerBackStyleInfo customerBackStyleInfo)
+                    {
+                        var tmpBackStyleCropForm = new BackStyleCropForm(envelopeInfo);
+                        if (tmpBackStyleCropForm.ShowDialog() != DialogResult.OK)
+                        {
+                            flag = true;
+                        }
+                    }
+                });
+                if (flag) return;
+
+                var prepareSubmitRequest = orderInfo.PrepareSubmitRequest();
+                prepareSubmitRequest.SelfProcess = checkEdit1.Checked;
+
+                WebServiceInvoker.SubmitOrderList(prepareSubmitRequest, succ =>
                 {
-                    orderDetailListView.DataSource = tmpOrderInfo.EnvelopeInfoList;
-                    gridControl2.DataSource = tmpOrderInfo.SubmitEnvelopeList;
-                    if (gridView9.GetFocusedRow() is EnvelopeInfo envelopeInfo)
-                        envelopePrintInfo1.EnvelopeInfo = envelopeInfo;
-                }
+                    var fileInfo = new FileInfo(orderInfo.DirectoryInfo.FullName + "/hasSubmit.ini");
+                    fileInfo.Create();
+                    if (!(gridView2.DataSource is List<OrderInfo> orderInfos)) return;
+                    orderInfos.Remove(orderInfo);
+                    gridView2.RefreshData();
+
+                    if (!(gridView2.GetFocusedRow() is OrderInfo tmpOrderInfo))
+                    {
+                        orderDetailListView.DataSource = null;
+                        gridControl2.DataSource = null;
+                        envelopePrintInfo2.EnvelopeInfo = null;
+                        envelopeSettingControl2.EnvelopeInfo = null;
+                    }
+                    else
+                    {
+                        orderDetailListView.DataSource = tmpOrderInfo.EnvelopeInfoList;
+                        gridControl2.DataSource = tmpOrderInfo.SubmitEnvelopeList;
+                        orderPathTextEdit.Text = tmpOrderInfo.DirectoryInfo.FullName;
+                        var tmpNode = orderDetailListView.FocusedNode;
+                        var nodeValue = tmpNode.GetValue("Key");
+                        if (nodeValue is EnvelopeInfo tmpEnvelopeInfo)
+                        {
+                            envelopePrintInfo2.EnvelopeInfo = null;
+                            envelopePrintInfo2.EnvelopeInfo = tmpEnvelopeInfo;
+                            envelopeSettingControl2.EnvelopeInfo = tmpEnvelopeInfo;
+                        }
+                    }
+                });
             });
         }
 
         private void BarButtonItem8_ItemClick_1(object sender, ItemClickEventArgs e)
         {
-            var tmpNode = orderDetailListView.FocusedNode;
-            var nodeValue = tmpNode.GetValue("Key");
-            EnvelopeInfo tmpEnvelopeInfo = null;
-            //如果当前选择的是明信片的话，集合设置为此明信片的明信片集合
-            if (nodeValue is PostCardInfo tmpPostCardInfo01)
-                tmpEnvelopeInfo = tmpPostCardInfo01.Parent as EnvelopeInfo;
-            //如果当前选择的是明信片集合的话，集合设置为此明信片集合
-            if (nodeValue is EnvelopeInfo tmpEnvelopeInfo02)
-                tmpEnvelopeInfo = tmpEnvelopeInfo02;
+            var tmpEnvelopeInfo = CurrentEnvelopeInfo;
             if (tmpEnvelopeInfo == null) return;
             var postCardInfos = tmpEnvelopeInfo.PostCards.FindAll(postCard => !postCard.IsUpload);
             postCardInfos.ForEach(postCard =>
             {
                 postCard.RetruTime = 0;
-                postCard.UploadFile(success =>
-                {
-//                    if (success.Parent is EnvelopeInfo en && gridView2.GetFocusedRow() == en.OrderInfo)
-//                    {
-//                        orderDetailListView.Refresh();
-//                    }
-                }, success => { });
+                postCard.UploadFile(success => { timer1.Start(); });
             });
         }
 
-        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
         {
             orderDetailListView.RefreshDataSource();
         }
 
-        private void barButtonItem20_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem20_ItemClick(object sender, ItemClickEventArgs e)
         {
             new SizeManageForm().ShowDialog(this);
 
@@ -697,6 +751,50 @@ namespace OrderBatchCreate.form
                 repositoryItemComboBox4.Items.Clear();
                 repositoryItemComboBox4.Items.AddRange(success);
             });
+        }
+
+        private void EnvelopeSettingControl1_envelopeChanged(EnvelopeInfo envelopeInfo)
+        {
+            orderDetailListView.Refresh();
+            gridView2.RefreshData();
+            if (envelopePrintInfoListView.FocusedValue is EnvelopeInfo tmpEnvelopeInfo)
+            {
+                envelopePrintInfo2.EnvelopeInfo = tmpEnvelopeInfo;
+            }
+            RefreshSubmitEnvelopeList();
+        }
+
+        private void EnvelopeSettingControl2_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void EnvelopePrintInfo2_EnvelopeChanged(EnvelopeInfo envelopeInfo)
+        {
+            orderDetailListView.Refresh();
+            gridView2.RefreshData();
+            envelopePrintInfoListView.RefreshData();
+        }
+
+        private void BarButtonItem23_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (envelopeSettingControl2.EnvelopeInfo?.DirectoryInfo is DirectoryInfo directoryInfo)
+            {
+                System.Diagnostics.Process.Start(directoryInfo.FullName);
+            }
+        }
+
+        private void BarButtonItem24_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (envelopeSettingControl2.EnvelopeInfo is EnvelopeInfo envelopeInfo)
+            {
+                envelopeInfo.PostCards.ForEach(postCardInfo => { postCardInfo.UploadFile(success => { timer1.Start(); }); });
+            }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            orderDetailListView.RefreshDataSource();
         }
     }
 }

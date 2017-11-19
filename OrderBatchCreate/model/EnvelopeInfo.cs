@@ -9,6 +9,9 @@ using soho.domain;
 
 namespace OrderBatchCreate.model
 {
+
+    public delegate void EnvelopeEvent(EnvelopeInfo envelopeInfo);
+
     public sealed class EnvelopeInfo : PostCardBasic, INotifyPropertyChanged, ICloneable
     {
         private int _arrayColumn;

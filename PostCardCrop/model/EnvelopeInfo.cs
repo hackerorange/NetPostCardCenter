@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
+using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
 using soho.domain;
 

@@ -303,7 +303,7 @@ namespace PostCardCrop.control
                 {
                     Margin = new Padding(5);
                     PictureCropScale = 0;
-                    Fit = true;
+                    Fit = false;
                 }
                 if (tmpPostCardInfo.FrontStyle.Equals("B", StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -371,8 +371,7 @@ namespace PostCardCrop.control
                         Error?.Invoke("角度出现异常");
                         break;
                 }
-                if (_imageClone != null)
-                    _imageClone.Dispose();
+                _imageClone?.Dispose();
                 if (_image != null)
                 {
                     _imageClone = (Image) _image.Clone();

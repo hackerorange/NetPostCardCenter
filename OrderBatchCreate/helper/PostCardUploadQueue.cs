@@ -69,13 +69,16 @@ namespace OrderBatchCreate.helper
                     postCardUploadContext = _contexts.Dequeue();
                 }
                 var tmpDirectoryInfo = postCardUploadContext.PostCardInfo.DirectoryInfo as FileInfo;
-                tmpDirectoryInfo.Upload("明信片原始文件", true, resp =>
+                tmpDirectoryInfo.Upload(true, "明信片原始文件", success: resp =>
                 {
                     var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
-                    tmpPostCardInfo.FileId = resp;
+                    tmpPostCardInfo.FileId = resp.FileId;
+                    tmpPostCardInfo.ThumbnailFileId = resp.ThumbnailFileId;
                     tmpPostCardInfo.IsUpload = true;
+                    //判断图片是否是图片
+                    tmpPostCardInfo.IsImage = resp.ImageAvailable && !string.IsNullOrEmpty(resp.ThumbnailFileId);
                     postCardUploadContext.Success?.Invoke(tmpPostCardInfo);
-                }, message =>
+                }, failure: message =>
                 {
                     var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
                     tmpPostCardInfo.IsUpload = false;

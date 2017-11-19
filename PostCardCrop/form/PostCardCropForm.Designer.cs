@@ -30,7 +30,6 @@ namespace PostCardCrop.form
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule2 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
@@ -43,14 +42,14 @@ namespace PostCardCrop.form
             this.ProcessStatus = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.postCardStateColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.postCardInfoController1 = new PostCardInfoController();
-            this.envelopeInfoController1 = new EnvelopeInfoController();
-            this.cropControllerCrop = new PostCardCropController();
-            this.cropControllerPreview = new PostCardCropController();
+            this.postCardInfoController1 = new PostCardCrop.control.PostCardInfoController();
+            this.envelopeInfoController1 = new PostCardCrop.control.EnvelopeInfoController();
+            this.cropControllerCrop = new PostCardCrop.control.PostCardCropController();
+            this.cropControllerPreview = new PostCardCrop.control.PostCardCropController();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.postCardNameColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.postCardThumbnailDownloadStatus = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -82,7 +81,7 @@ namespace PostCardCrop.form
             this.PostCardCropFormlayoutControl2ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -151,7 +150,7 @@ namespace PostCardCrop.form
             this.postCardInfoController1.PostCardInfo = null;
             this.postCardInfoController1.Size = new System.Drawing.Size(272, 20);
             this.postCardInfoController1.TabIndex = 28;
-            this.postCardInfoController1.FileChanged += new PostCardInfoController.PostCardModifiedHandler(this.PostCardInfoController1_FileChanged);
+            this.postCardInfoController1.FileChanged += new PostCardCrop.control.PostCardInfoController.PostCardModifiedHandler(this.PostCardInfoController1_FileChanged);
             // 
             // envelopeInfoController1
             // 
@@ -170,19 +169,19 @@ namespace PostCardCrop.form
             this.cropControllerCrop.IsPreview = false;
             this.cropControllerCrop.Location = new System.Drawing.Point(359, 12);
             this.cropControllerCrop.Name = "cropControllerCrop";
+            this.cropControllerCrop.PictureCropScale = 0D;
             this.cropControllerCrop.PostCardId = null;
             this.cropControllerCrop.PostCardInfo = null;
             this.cropControllerCrop.ProductSize = new System.Drawing.Size(148, 100);
-            this.cropControllerCrop.PictureCropScale = 0D;
             this.cropControllerCrop.Size = new System.Drawing.Size(586, 649);
             this.cropControllerCrop.TabIndex = 25;
             this.cropControllerCrop.WhiteSpacePercent = 0.8D;
-            this.cropControllerCrop.CropInfoChanged += new PostCardCropController.CropInfoChangeHandler(this.CropControllerCrop_CropInfoChanged);
-            this.cropControllerCrop.FailureSubmit += new PostCardCropController.SubmitResultHandler(this.CropControllerCrop_FailureSubmit);
-            this.cropControllerCrop.SuccessSubmit += new PostCardCropController.SubmitResultHandler(this.CropControllerCrop_SuccessSubmit);
-            this.cropControllerCrop.OnSubmit += new PostCardCropController.SubmitResultHandler(this.CropControllerCrop_OnSubmit);
-            this.cropControllerCrop.Error += new PostCardCropController.ErrorHandler(this.CropControllerCrop_error);
-            this.cropControllerCrop.Match += new PostCardCropController.MatchHandler(this.CropControllerCrop_match);
+            this.cropControllerCrop.CropInfoChanged += new PostCardCrop.control.PostCardCropController.CropInfoChangeHandler(this.CropControllerCrop_CropInfoChanged);
+            this.cropControllerCrop.FailureSubmit += new PostCardCrop.control.PostCardCropController.SubmitResultHandler(this.CropControllerCrop_FailureSubmit);
+            this.cropControllerCrop.SuccessSubmit += new PostCardCrop.control.PostCardCropController.SubmitResultHandler(this.CropControllerCrop_SuccessSubmit);
+            this.cropControllerCrop.OnSubmit += new PostCardCrop.control.PostCardCropController.SubmitResultHandler(this.CropControllerCrop_OnSubmit);
+            this.cropControllerCrop.Error += new PostCardCrop.control.PostCardCropController.ErrorHandler(this.CropControllerCrop_error);
+            this.cropControllerCrop.Match += new PostCardCrop.control.PostCardCropController.MatchHandler(this.CropControllerCrop_match);
             this.cropControllerCrop.Load += new System.EventHandler(this.CropControllerCrop_Load);
             // 
             // cropControllerPreview
@@ -193,10 +192,10 @@ namespace PostCardCrop.form
             this.cropControllerPreview.IsPreview = true;
             this.cropControllerPreview.Location = new System.Drawing.Point(961, 329);
             this.cropControllerPreview.Name = "cropControllerPreview";
+            this.cropControllerPreview.PictureCropScale = 0D;
             this.cropControllerPreview.PostCardId = null;
             this.cropControllerPreview.PostCardInfo = null;
             this.cropControllerPreview.ProductSize = new System.Drawing.Size(148, 100);
-            this.cropControllerPreview.PictureCropScale = 0D;
             this.cropControllerPreview.Size = new System.Drawing.Size(272, 253);
             this.cropControllerPreview.TabIndex = 16;
             this.cropControllerPreview.WhiteSpacePercent = 0.8D;

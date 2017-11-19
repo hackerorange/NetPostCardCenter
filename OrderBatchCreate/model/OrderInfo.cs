@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using SystemSetting.backStyle.model;
+using SystemSetting.size.model;
 using soho.domain;
 
 namespace OrderBatchCreate.model
@@ -25,7 +27,8 @@ namespace OrderBatchCreate.model
                 var envelopeList = new List<EnvelopeInfo>();
                 EnvelopeInfoList.ForEach(postCardBasic =>
                 {
-                    if (!(postCardBasic is EnvelopeInfo envelopeInfo)) return;
+                    if (!(postCardBasic is EnvelopeInfo envelopeInfo) || envelopeInfo.Status == BatchStatus.EnvelopeEmptyPath) return;
+
                     var find = envelopeList.Find(tmpEnvelope =>
                     {
                         if (tmpEnvelope.DoubleSide != envelopeInfo.DoubleSide) return false;
@@ -63,5 +66,26 @@ namespace OrderBatchCreate.model
         ///     订单是否加急
         /// </summary>
         public bool Urgent { get; set; }
+
+        public BatchStatus Status
+        {
+            get
+            {
+                var tmpEnvelopeList = SubmitEnvelopeList;
+                if (tmpEnvelopeList.Exists(envelopeInfo =>
+                    envelopeInfo.PostCardWaste != 0 || envelopeInfo.Status == BatchStatus.EnvelopeNotReady
+                ))
+                {
+                    return BatchStatus.OrderNotReady;
+                }
+                ;
+                if (string.IsNullOrEmpty(TaobaoId))
+                {
+                    return BatchStatus.OrderNotReady;
+                }
+                ;
+                return tmpEnvelopeList.Exists(envelopeInfo => envelopeInfo.PostCards.Count > 0) ? BatchStatus.OrderAlready : BatchStatus.OrderEmpty;
+            }
+        }
     }
 }

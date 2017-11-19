@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
+using OrderBatchCreate.form;
+using postCardCenterSdk.sdk;
 using PostCardCenter.form;
 using PostCardCenter.form.security;
 using soho.domain.system;
@@ -35,9 +37,10 @@ namespace PostCardCenter
                     SkinManager.EnableFormSkins();
                     var a = new UserLogin();
                     if (a.ShowDialog() != DialogResult.OK) return;
-
+//                    WebServiceInvoker.Token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJlYWxOYW1lIjoi5Luy5bSH5ruUIn0.OetJnklm4_kM0AF3d7Lmgh5ukJ1UclwRkqgZhDIWtSA";
                     SystemConstant.InitConstant();
                     Application.Run(new PostCardCenterMainForm());
+//                    Application.Run(new OrderBatch());
                 }
                 else
                 {

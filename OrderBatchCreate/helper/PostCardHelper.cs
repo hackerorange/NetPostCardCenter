@@ -4,10 +4,11 @@ namespace OrderBatchCreate.helper
 {
     public static class PostCardHelper
     {
-        private static readonly PostCardUploadWorker postCardUploadWorker = new PostCardUploadWorker(3);
+        private static readonly PostCardUploadWorker PostCardUploadWorker = new PostCardUploadWorker(3);
 
         public static bool Already(this PostCardInfo postCardInfo)
         {
+            if (!postCardInfo.IsImage) return false;
             //如果是双面的，并且明信片没有设置反面样式,返回False
             if (postCardInfo.Parent.DoubleSide && postCardInfo.BackStyle == null) return false;
             //如果正面样式没有设置，返回False
@@ -15,8 +16,9 @@ namespace OrderBatchCreate.helper
             //如果没有设置张数，返回False
             // ReSharper disable once ConvertIfStatementToReturnStatement
             if (postCardInfo.Copy <= 0) return false;
-            //否则返回true
+
             return true;
+            //否则返回true
         }
 
 
@@ -27,18 +29,18 @@ namespace OrderBatchCreate.helper
             return true;
         }
 
-        public static void UploadFile(this PostCardInfo postCardInfo, PostCardUploadHandler success, PostCardUploadHandler failure)
+        public static void UploadFile(this PostCardInfo postCardInfo, PostCardUploadHandler success = null, PostCardUploadHandler failure = null)
         {
-            postCardUploadWorker.Upload(postCardInfo, successPostCard =>
+            PostCardUploadWorker.Upload(postCardInfo, successPostCard =>
             {
-                successPostCard.Status = successPostCard.IsImage ? BatchStatus.PostCardUploadSuccess : BatchStatus.PostCardNotImage;
+                successPostCard.Status = successPostCard.IsImage ? BatchStatus.PostCardUploadSuccess : BatchStatus.PostCardTypeError;
                 success?.Invoke(successPostCard);
             }, failurePostCard =>
             {
                 if (++failurePostCard.RetruTime > 3)
                 {
                     failurePostCard.RetruTime = 0;
-                    failurePostCard.Status = failurePostCard.IsImage ? BatchStatus.PostCardUploadFailure : BatchStatus.PostCardNotImage;
+                    failurePostCard.Status = failurePostCard.IsImage ? BatchStatus.PostCardUploadFailure : BatchStatus.PostCardTypeError;
                     failure?.Invoke(failurePostCard);
                 }
                 else
@@ -56,15 +58,15 @@ namespace OrderBatchCreate.helper
         //
         //            if (tmpPostCardInfo.DirectoryInfo != null && tmpPostCardInfo.DirectoryInfo is FileInfo fileInfo)
         //            {
-        //                tmpPostCardInfo.Status = BatchStatus.PostCardUploading;
+        //                tmpPostCardInfo.Status = Status.PostCardUploading;
         //                // ReSharper disable once ImplicitlyCapturedClosure
         //                fileInfo.Upload("明信片原始文件", false, fileId =>
         //                    {
         //                        tmpPostCardInfo.FileId = fileId;
-        //                        tmpPostCardInfo.Status = BatchStatus.PostCardUploadSuccess;
+        //                        tmpPostCardInfo.Status = Status.PostCardUploadSuccess;
         //                        if (!tmpPostCardInfo.IsImage)
         //                        {
-        //                            tmpPostCardInfo.Status = BatchStatus.PostCardNotImage;
+        //                            tmpPostCardInfo.Status = Status.PostCardTypeError;
         //                        }
         //                        Application.DoEvents();
         //                    }, message =>
@@ -72,7 +74,7 @@ namespace OrderBatchCreate.helper
         //                        tmpPostCardInfo.RetruTime++;
         //                        if (tmpPostCardInfo.RetruTime >= 3)
         //                        {
-        //                            tmpPostCardInfo.Status = BatchStatus.PostCardUploadFailure;
+        //                            tmpPostCardInfo.Status = Status.PostCardUploadFailure;
         //                            //重置文件上传次数
         //                            tmpPostCardInfo.RetruTime = 0;
         //                        }

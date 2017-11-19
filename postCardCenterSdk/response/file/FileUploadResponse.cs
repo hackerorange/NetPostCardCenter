@@ -6,5 +6,11 @@ namespace postCardCenterSdk.response.file
     {
         [JsonProperty("id")]
         public string Id { get; set; }
+
+        [JsonProperty("thumbnailFileId")]
+        public string ThumbnailFileId { get; set; }
+
+        [JsonProperty("imageAvailable")]
+        public bool ImageAvailable { get; set; }
     }
 }

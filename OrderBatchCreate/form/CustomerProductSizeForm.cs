@@ -41,8 +41,8 @@ namespace OrderBatchCreate.form
         /// <param name="e"></param>
         private void CustomerProductSizeForm_Load(object sender, EventArgs e)
         {
-            productHeightSpinEdit.EditValue = 100;
-            productWidthSpinEdit.EditValue = 148;
+            productHeightSpinEdit.Value = 100;
+            productWidthSpinEdit.Value = 148;
         }
     }
 }

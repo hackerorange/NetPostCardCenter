@@ -35,12 +35,34 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevExpress.Data.v16.2" />
     <Reference Include="DevExpress.Images.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.Images.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.Images.v16.2.dll</HintPath>
+      <Private>False</Private>
     </Reference>
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v16.2" />
     <Reference Include="DevExpress.XtraBars.v16.2" />
     <Reference Include="DevExpress.XtraEditors.v16.2" />
@@ -53,14 +75,35 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.XtraLayout.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.XtraLayout.v16.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\DevExpress.XtraTreeList.v16.2\v4.0_16.2.4.0__b88d1754d700e49a\DevExpress.XtraTreeList.v16.2.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Http.Converters.NJson, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net40-client\Spring.Http.Converters.NJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="control\envelope\EnvelopePrintInfo.cs">
@@ -68,6 +111,24 @@
     </Compile>
     <Compile Include="control\envelope\EnvelopePrintInfo.Designer.cs">
       <DependentUpon>EnvelopePrintInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="control\envelope\EnvelopeSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="control\envelope\EnvelopeSettingControl.Designer.cs">
+      <DependentUpon>EnvelopeSettingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\BackStyleCropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\BackStyleCropForm.Designer.cs">
+      <DependentUpon>BackStyleCropForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\CustomerBackStyleCropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\CustomerBackStyleCropForm.Designer.cs">
+      <DependentUpon>CustomerBackStyleCropForm.cs</DependentUpon>
     </Compile>
     <Compile Include="form\CustomerProductSizeForm.cs">
       <SubType>Form</SubType>
@@ -106,6 +167,15 @@
     <EmbeddedResource Include="control\envelope\EnvelopePrintInfo.resx">
       <DependentUpon>EnvelopePrintInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="control\envelope\EnvelopeSettingControl.resx">
+      <DependentUpon>EnvelopeSettingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\BackStyleCropForm.resx">
+      <DependentUpon>BackStyleCropForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\CustomerBackStyleCropForm.resx">
+      <DependentUpon>CustomerBackStyleCropForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\CustomerProductSizeForm.resx">
       <DependentUpon>CustomerProductSizeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,6 +199,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -140,9 +211,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\pictureCroper\pictureCroper.csproj">
+      <Project>{89667af6-aebb-4ff8-b9e2-f4964353eefd}</Project>
+      <Name>pictureCroper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
       <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
       <Name>postCardCenterSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostCardCrop\PostCardCrop.csproj">
+      <Project>{AD3764F1-FE61-4CC0-8A5C-C830CB32FE14}</Project>
+      <Name>PostCardCrop</Name>
     </ProjectReference>
     <ProjectReference Include="..\soho\soho.csproj">
       <Project>{1f086fc8-76bf-4345-b62a-5f90d381eb6a}</Project>
@@ -152,6 +231,9 @@
       <Project>{2F888264-1FA2-4F7C-A9BB-4AE388B816E6}</Project>
       <Name>SystemSetting</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Readme\Spring.Rest.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
