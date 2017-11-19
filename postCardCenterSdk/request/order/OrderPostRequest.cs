@@ -120,6 +120,13 @@ namespace postCardCenterSdk.request.order
         public string FileId { get; set; }
 
         /// <summary>
+        ///     此文件在文件服务器的ID
+        /// </summary>
+        [JsonProperty("thumbnailFileId")]
+        public string ThumbnailFileId { get; set; }
+
+
+        /// <summary>
         ///     此张明信片打印的份数
         /// </summary>
         [JsonProperty("copy")]

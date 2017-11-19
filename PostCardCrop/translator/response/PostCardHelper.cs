@@ -1,4 +1,6 @@
-﻿using postCardCenterSdk.response.postCard;
+﻿using SystemSetting.backStyle.model;
+using SystemSetting.size.model;
+using postCardCenterSdk.response.postCard;
 using PostCardCrop.model;
 using soho.constant.postcard;
 using soho.domain;

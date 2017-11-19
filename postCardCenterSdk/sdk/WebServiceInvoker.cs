@@ -290,14 +290,24 @@ namespace postCardCenterSdk.sdk
         /// </summary>
         /// <param name="category">分类</param>
         /// <param name="file">要上传的文件</param>
+        /// <param name="cropHeight"></param>
         /// <param name="success">上传成功的回调函数</param>
         /// <param name="failure">上传失败的回调函数</param>
-        public static void Upload(string category, FileInfo file, Success<FileUploadResponse> success, Failure failure)
+        /// <param name="rotation"></param>
+        /// <param name="cropLeft"></param>
+        /// <param name="cropTop"></param>
+        /// <param name="cropWidth"></param>
+        public static void Upload(FileInfo file, string category,  double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, Success<FileUploadResponse> success=null, Failure failure=null)
         {
             var restTemplate = PrepareRestTemplate();
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
+            dictionary.Add("rotation", rotation);
+            dictionary.Add("cropLeft", cropLeft);
+            dictionary.Add("cropTop", cropTop);
+            dictionary.Add("cropWidth", cropWidth);
+            dictionary.Add("cropHeight", cropHeight);
             dictionary.Add("category", Encoding.UTF8.GetBytes(category));
             restTemplate.PostForObjectAsync<BodyResponse<FileUploadResponse>>(Resources.fileUploadUrl, dictionary,
                 resp =>
@@ -322,12 +332,22 @@ namespace postCardCenterSdk.sdk
         /// </summary>
         /// <param name="category">分类</param>
         /// <param name="file">要上传的文件</param>
-        public static FileUploadResponse Upload(string category, FileInfo file)
+        /// <param name="rotation"></param>
+        /// <param name="cropLeft"></param>
+        /// <param name="cropTop"></param>
+        /// <param name="cropWidth"></param>
+        /// <param name="cropHeight"></param>
+        public static FileUploadResponse Upload(FileInfo file, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1)
         {
             var restTemplate = PrepareRestTemplate();
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
+            dictionary.Add("rotation", rotation.ToString());
+            dictionary.Add("cropLeft", cropLeft.ToString());
+            dictionary.Add("cropTop", cropTop.ToString());
+            dictionary.Add("cropWidth", cropWidth.ToString());
+            dictionary.Add("cropHeight", cropHeight.ToString());
             dictionary.Add("category", Encoding.UTF8.GetBytes(category));
             var postForObject = restTemplate.PostForObject<BodyResponse<FileUploadResponse>>(Resources.fileUploadUrl, dictionary);
             if (postForObject.Code > 0)

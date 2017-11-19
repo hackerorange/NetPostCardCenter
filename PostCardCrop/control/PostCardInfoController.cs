@@ -97,34 +97,42 @@ namespace PostCardCrop.control
             var fileInfo = new FileInfo(saveFileDialog.FileName);
 
 
-            fileInfo.Upload("明信片原始文件", true,
-                result =>
+            fileInfo.Upload(true, "明信片原始文件",
+                success: result =>
                 {
-                    tmpPostCardInfo.FileId = result;
-                    tmpPostCardInfo.FileName = tmpPostCardInfo.FileInfo.Name;
-
-                    var request = new PostCardInfoPatchRequest
+                    if (result.ImageAvailable)
                     {
-                        PostCardId = tmpPostCardInfo.PostCardId,
-                        FileId = result,
-                        FileName = fileInfo.Name
-                    };
+                        tmpPostCardInfo.FileId = result.FileId;
+                        tmpPostCardInfo.ThumbnailFileId = result.ThumbnailFileId;
+                        tmpPostCardInfo.FileName = tmpPostCardInfo.FileInfo.Name;
 
-                    WebServiceInvoker.ChangePostCardFrontStyle(request, resp =>
+                        var request = new PostCardInfoPatchRequest
+                        {
+                            PostCardId = tmpPostCardInfo.PostCardId,
+                            FileId = result.FileId,
+                            FileName = fileInfo.Name
+                        };
+
+                        WebServiceInvoker.ChangePostCardFrontStyle(request, resp =>
+                        {
+                            var postCardInfo = resp.TranlateToPostCard();
+                            if (tmpPostCardInfo.FileInfo != null)
+                                tmpPostCardInfo.FileInfo = null;
+                            tmpPostCardInfo.FileId = postCardInfo.FileId;
+                            tmpPostCardInfo.CropInfo = null;
+                            tmpPostCardInfo.FileName = postCardInfo.FileName;
+                            tmpPostCardInfo.ProcessStatus = postCardInfo.ProcessStatus;
+                            tmpPostCardInfo.ProcessStatusText = postCardInfo.ProcessStatusText;
+                            FileChanged?.Invoke(tmpPostCardInfo);
+                        }, message => { XtraMessageBox.Show(message); });
+                        Application.DoEvents();
+                    }
+                    else
                     {
-                        var postCardInfo = resp.TranlateToPostCard();
-                        if (tmpPostCardInfo.FileInfo != null)
-                            tmpPostCardInfo.FileInfo = null;
-                        tmpPostCardInfo.FileId = postCardInfo.FileId;
-                        tmpPostCardInfo.CropInfo = null;
-                        tmpPostCardInfo.FileName = postCardInfo.FileName;
-                        tmpPostCardInfo.ProcessStatus = postCardInfo.ProcessStatus;
-                        tmpPostCardInfo.ProcessStatusText = postCardInfo.ProcessStatusText;
-                        FileChanged?.Invoke(tmpPostCardInfo);
-                    }, message => { XtraMessageBox.Show(message); });
-                    Application.DoEvents();
+                        XtraMessageBox.Show("上传的文件不是图像文件，请重新另存！");
+                    }
                 },
-                message => { XtraMessageBox.Show("文件上传失败！" + message); });
+                failure: message => { XtraMessageBox.Show("文件上传失败！" + message); });
         }
     }
 }

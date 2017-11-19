@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
 using postCardCenterSdk.response.envelope;
 using PostCardCrop.model;

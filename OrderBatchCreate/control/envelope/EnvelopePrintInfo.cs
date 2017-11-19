@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using SystemSetting.size.model;
+using OrderBatchCreate.model;
 using soho.domain;
 using EnvelopeInfo = OrderBatchCreate.model.EnvelopeInfo;
 
@@ -8,6 +9,8 @@ namespace OrderBatchCreate.control.envelope
 {
     public partial class EnvelopePrintInfo : UserControl
     {
+        public event EnvelopeEvent EnvelopeChanged;
+
         private EnvelopeInfo _envelopeInfo;
 
         public EnvelopePrintInfo()
@@ -49,6 +52,11 @@ namespace OrderBatchCreate.control.envelope
 
                     paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
                     paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
+
+//                    arrayRow.Properties.MinValue = 1;
+//                    arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
+//                    arrayColumn.Properties.MinValue = 1;
+//                    arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
                 }
                 else
                 {
@@ -72,37 +80,21 @@ namespace OrderBatchCreate.control.envelope
             var all = _envelopeInfo.PostCardWaste / _envelopeInfo.PostCards.Count;
             _envelopeInfo.PostCards.ForEach(postCard => postCard.Copy += all + (one-- > 0 ? 1 : 0));
             gridView1.RefreshData();
-            //更新打印信息
 
             _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PaperNeedPrint);
             _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardWaste);
             _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardCount);
-        }
 
-        private void PaperHeight_EditValueChanged(object sender, EventArgs e)
-        {
-            _envelopeInfo.PaperSize = new PostSize
-            {
-                Width = _envelopeInfo.PaperSize.Width,
-                Height = (int) paperHeight.EditValue
-            };
-        }
-
-        private void PaperWidth_EditValueChanged(object sender, EventArgs e)
-        {
-            _envelopeInfo.PaperSize = new PostSize
-            {
-                Height = _envelopeInfo.PaperSize.Height,
-                Width = (int) paperWidth.EditValue
-            };
+            //更新打印信息
+            EnvelopeChanged?.Invoke(_envelopeInfo);
         }
 
         /// <summary>
-        ///     旋转纸张
+        /// 旋转纸张
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SimpleButton4_Click(object sender, EventArgs e)
+        private void PaperSizeRotate_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
         {
             _envelopeInfo.PaperSize = new PostSize
             {
@@ -111,6 +103,38 @@ namespace OrderBatchCreate.control.envelope
             };
             paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
             paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
+
+            _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PaperNeedPrint);
+            _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardWaste);
+            _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardCount);
+
+//            arrayRow.Properties.MinValue = 1;
+//            arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
+//            arrayColumn.Properties.MinValue = 1;
+//            arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
+
+            EnvelopeChanged?.Invoke(_envelopeInfo);
+        }
+
+        private void ArrayColumn_EditValueChanged(object sender, EventArgs e)
+        {
+            EnvelopeChanged?.Invoke(_envelopeInfo);
+        }
+
+        private void ArrayRow_EditValueChanged(object sender, EventArgs e)
+        {
+            EnvelopeChanged?.Invoke(_envelopeInfo);
+        }
+
+        private void layoutControlGroup5_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
+        {
+            //重新刷新一下尺寸；
+            _envelopeInfo.PaperSize = _envelopeInfo.PaperSize;
+
+//            arrayRow.Properties.MinValue = 1;
+//            arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
+//            arrayColumn.Properties.MinValue = 1;
+//            arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
         }
     }
 }

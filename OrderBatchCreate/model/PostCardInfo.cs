@@ -11,6 +11,8 @@ namespace OrderBatchCreate.model
     {
         private Image _frontImage;
 
+        public string ThumbnailFileId { get; set; }
+
 
         public PostCardInfo(FileSystemInfo fileInfo)
         {
@@ -19,7 +21,7 @@ namespace OrderBatchCreate.model
             {
                 IsImage = tmpFileInfo.CheckIsImage();
                 if (!IsImage)
-                    Status = BatchStatus.PostCardNotImage;
+                    Status = BatchStatus.PostCardTypeError;
             }
         }
 

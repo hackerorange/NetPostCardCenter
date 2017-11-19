@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace soho.domain
+namespace SystemSetting.backStyle.model
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class BackStyleInfo

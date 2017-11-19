@@ -111,8 +111,16 @@ namespace PostCardCrop.form
                 }, message =>
                 {
                     tmpPostCard.FileId = tmpPostCard.FileId;
-                    //重新生成缩略图
-                    GeneratePostCardThumbnailImage(tmpPostCard);
+
+                    if (tmpPostCard.RetryGenerateThumbnail())
+                    {
+                        //重新生成缩略图
+                        GeneratePostCardThumbnailImage(tmpPostCard);
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("图像有问题，无法生成缩略图！");
+                    }
                 });
                 return;
             }

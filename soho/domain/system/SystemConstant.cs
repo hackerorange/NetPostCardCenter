@@ -12,7 +12,7 @@ namespace soho.domain.system
         /// <summary>
         ///     反面样式列表
         /// </summary>
-        public static List<BackStyleInfo> BackStyleList { get; } = new List<BackStyleInfo>();
+//        public static List<BackStyleInfo> BackStyleList { get; } = new List<BackStyleInfo>();
 
         /// <summary>
         ///     正面样式列表
@@ -53,18 +53,7 @@ namespace soho.domain.system
                 });
                 //PostCardFrontStyleGridLookUpEdit.DataSource = envelopeFrontStyle.Properties.DataSource = _frontStyles;
             });
-            //异步获取反面样式列表
-            WebServiceInvoker.GetBackStyleTemplateList(success =>
-            {
-                success.ForEach(ba =>
-                {
-                    BackStyleList.Add(new BackStyleInfo
-                    {
-                        Name = ba.Name,
-                        FileId = ba.FileId
-                    });
-                });
-            });
+            
         }
     }
 }
