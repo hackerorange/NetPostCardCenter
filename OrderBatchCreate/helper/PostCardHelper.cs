@@ -16,7 +16,11 @@ namespace OrderBatchCreate.helper
             //如果没有设置张数，返回False
             // ReSharper disable once ConvertIfStatementToReturnStatement
             if (postCardInfo.Copy <= 0) return false;
-
+            //如果没有图片ID返回失败
+            if (string.IsNullOrEmpty(postCardInfo.FileId)) return false;
+            //如果没有缩略图，返回失败
+            if (string.IsNullOrEmpty(postCardInfo.ThumbnailFileId)) return false;
+            //都校验通过，返回成功
             return true;
             //否则返回true
         }
