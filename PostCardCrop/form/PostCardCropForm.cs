@@ -19,12 +19,14 @@ namespace PostCardCrop.form
 {
     public partial class PostCardCropForm : RibbonForm
     {
-        private readonly string orderId;
+        private readonly string _orderId;
+
+        public bool NeedRefresh { get; set; } = false;
 
         //明信片集合
-        private readonly List<PostCardInfo> postCardList = new List<PostCardInfo>();
+        private readonly List<PostCardInfo> _postCardList = new List<PostCardInfo>();
 
-        private readonly Dictionary<string, TreeListNode> postCardNodeMap = new Dictionary<string, TreeListNode>();
+        private readonly Dictionary<string, TreeListNode> _postCardNodeMap = new Dictionary<string, TreeListNode>();
 
 
         public PostCardCropForm(string focusedRowOrderId)
@@ -32,16 +34,15 @@ namespace PostCardCrop.form
             InitializeComponent();
             //绑定鼠标滑轮事件
             cropControllerCrop.MouseWheel += cropControllerCrop.CanvasMouseWheel;
-            orderId = focusedRowOrderId;
+            _orderId = focusedRowOrderId;
             layoutControlGroup5.Visibility = layoutControlGroup6.Visibility = LayoutVisibility.Never;
         }
 
         private void PostCardCropForm_Load(object sender, EventArgs e)
         {
-            WebServiceInvoker.GetAllEnvelopeByOrderId(orderId, envelopeList =>
+            var dataSources = new List<EnvelopeInfo>();
+            WebServiceInvoker.GetAllEnvelopeByOrderId(_orderId, envelopeList =>
             {
-                var dataSources = new List<EnvelopeInfo>();
-
                 envelopeList.ForEach(tmpEnvelope =>
                 {
                     var envelope = tmpEnvelope.TranslateToEnvelope();
@@ -64,9 +65,9 @@ namespace PostCardCrop.form
                             tmpPostCard.ProductSize = envelope.ProductSize;
                             var listNode = treeListNode.Nodes.Add();
                             //明信片ID到节点的映射
-                            postCardNodeMap.Add(tmpPostCard.PostCardId, listNode);
+                            _postCardNodeMap.Add(tmpPostCard.PostCardId, listNode);
                             //明信片添加到明信片集合中去
-                            postCardList.Add(tmpPostCard);
+                            _postCardList.Add(tmpPostCard);
                             //此明信片的名字显示在上面
                             listNode.SetValue("name", tmpPostCard.FileName);
                             listNode.SetValue("ProcessStatus", (int) tmpPostCard.ProcessStatus);
@@ -93,7 +94,7 @@ namespace PostCardCrop.form
         /// <param name="tmpPostCard">此明信片信息</param>
         private void GeneratePostCardThumbnailImage(PostCardInfo tmpPostCard)
         {
-            var listNode = postCardNodeMap[tmpPostCard.PostCardId];
+            var listNode = _postCardNodeMap[tmpPostCard.PostCardId];
             listNode.ImageIndex = listNode.SelectImageIndex = 1;
             listNode.SetValue("thumbnailDownloadStatus", "未下载");
             //var card = postCard;
@@ -275,7 +276,7 @@ namespace PostCardCrop.form
 
         private void CropControllerCrop_SuccessSubmit(PostCardInfo postCardInfo)
         {
-            var tmpNode = postCardNodeMap[postCardInfo.PostCardId];
+            var tmpNode = _postCardNodeMap[postCardInfo.PostCardId];
             tmpNode.SetValue("ProcessStatusText", postCardInfo.ProcessStatusText);
             tmpNode.SetValue("ProcessStatus", (int) postCardInfo.ProcessStatus);
 
@@ -292,14 +293,14 @@ namespace PostCardCrop.form
 
         private void CropControllerCrop_OnSubmit(PostCardInfo node)
         {
-            var tmpNode = postCardNodeMap[node.PostCardId];
+            var tmpNode = _postCardNodeMap[node.PostCardId];
             tmpNode.SetValue("ProcessStatus", (int) node.ProcessStatus);
             tmpNode.SetValue("ProcessStatusText", "提交中");
 
-            foreach (var postCardInfo in postCardList)
+            foreach (var postCardInfo in _postCardList)
                 if (postCardInfo.ProcessStatus == PostCardProcessStatusEnum.BEFORE_SUBMIT)
                 {
-                    treeList1.FocusedNode = postCardNodeMap[postCardInfo.PostCardId];
+                    treeList1.FocusedNode = _postCardNodeMap[postCardInfo.PostCardId];
                     return;
                 }
             var parentNode = treeList1.FocusedNode.ParentNode;
@@ -342,14 +343,14 @@ namespace PostCardCrop.form
 
         private void BarButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
-            postCardList.ForEach(postCard =>
+            _postCardList.ForEach(postCard =>
             {
                 WebServiceInvoker.GetPostCardInfo(postCard.PostCardId, resp =>
                 {
                     var postCardResp = resp.TranlateToPostCard();
                     postCard.ProcessStatus = postCardResp.ProcessStatus;
                     postCard.ProcessStatusText = postCardResp.ProcessStatusText;
-                    var tmpNode = postCardNodeMap[postCardResp.PostCardId];
+                    var tmpNode = _postCardNodeMap[postCardResp.PostCardId];
                     tmpNode.SetValue("ProcessStatusText", postCard.ProcessStatusText);
                     tmpNode.SetValue("ProcessStatus", (int) postCard.ProcessStatus);
                     Application.DoEvents();
@@ -359,16 +360,16 @@ namespace PostCardCrop.form
 
         private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            postCardList.ForEach(postCard =>
+            _postCardList.ForEach(postCard =>
             {
-                var tmpNode = postCardNodeMap[postCard.PostCardId];
+                var tmpNode = _postCardNodeMap[postCard.PostCardId];
                 postCard.ProcessStatus = PostCardProcessStatusEnum.BEFORE_SUBMIT;
                 postCard.CropInfo = null;
                 postCard.ProcessStatusText = "未提交";
                 tmpNode.SetValue("ProcessStatus", (int) PostCardProcessStatusEnum.BEFORE_SUBMIT);
                 tmpNode.SetValue("ProcessStatusText", "未提交");
             });
-            var a = postCardNodeMap.Values;
+            var a = _postCardNodeMap.Values;
         }
 
         private void BarButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
@@ -390,8 +391,8 @@ namespace PostCardCrop.form
                 cropControllerCrop.PostCardInfo = postCard;
                 cropControllerPreview.PostCardInfo = postCard;
                 var postCardInfo = resp.TranlateToPostCard();
-                postCardNodeMap[postCardInfo.PostCardId].SetValue("ProcessStatusText", postCardInfo.ProcessStatusText);
-                postCardNodeMap[postCardInfo.PostCardId].SetValue("ProcessStatus", (int) postCardInfo.ProcessStatus);
+                _postCardNodeMap[postCardInfo.PostCardId].SetValue("ProcessStatusText", postCardInfo.ProcessStatusText);
+                _postCardNodeMap[postCardInfo.PostCardId].SetValue("ProcessStatus", (int) postCardInfo.ProcessStatus);
                 postCard.ProcessStatus = postCardInfo.ProcessStatus;
                 postCard.ProcessStatusText = postCardInfo.ProcessStatusText;
             }, message => { XtraMessageBox.Show(message); });
@@ -400,9 +401,9 @@ namespace PostCardCrop.form
         private void PostCardInfoController1_FileChanged(PostCardInfo node)
         {
             if (node == null) return;
-            if (postCardNodeMap.ContainsKey(node.PostCardId))
+            if (_postCardNodeMap.ContainsKey(node.PostCardId))
             {
-                var tmpNode = postCardNodeMap[node.PostCardId];
+                var tmpNode = _postCardNodeMap[node.PostCardId];
                 if (treeList1.FocusedNode == tmpNode)
                     cropControllerCrop.PostCardInfo = null;
                 tmpNode.SetValue("name", node.FileName);
@@ -422,6 +423,18 @@ namespace PostCardCrop.form
             cropControllerCrop.CropInfo.TopScale = 0;
             cropControllerCrop.CropInfo = cropControllerCrop.CropInfo;
             cropControllerCrop.SubmitPostCard();
+        }
+
+        private void BarButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            WebServiceInvoker.ChangeOrderStatus(_orderId, "4", re =>
+            {
+                NeedRefresh = true;
+                if (XtraMessageBox.Show("操作成功,是否关闭当前裁切窗口？", "订单完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+            });
         }
     }
 }

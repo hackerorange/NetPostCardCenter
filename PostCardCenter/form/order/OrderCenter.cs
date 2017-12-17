@@ -51,8 +51,7 @@ namespace PostCardCenter.form.order
 
         private void orderDetailGridController_DoubleClick(object sender, EventArgs e)
         {
-            var focusedRow = gridView1.GetFocusedRow() as OrderInfo;
-            if (focusedRow != null)
+            if (gridView1.GetFocusedRow() is OrderInfo focusedRow)
             {
                 if (string.IsNullOrEmpty(focusedRow.ProcessorName))
                 {
@@ -66,7 +65,11 @@ namespace PostCardCenter.form.order
                                 }
                                 focusedRow.ProcessorName = order.ProcessorName;
                                 var xtraForm1 = new PostCardCropForm(focusedRow.Id);
-                                xtraForm1.Show();
+                                xtraForm1.ShowDialog(this);
+                                if (xtraForm1.NeedRefresh)
+                                {
+                                    RefreshOrderList();
+                                }
                             },
                             message => { XtraMessageBox.Show(message); });
                     else

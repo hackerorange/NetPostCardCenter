@@ -4,7 +4,7 @@ namespace OrderBatchCreate.helper
 {
     public static class PostCardHelper
     {
-        private static readonly PostCardUploadWorker PostCardUploadWorker = new PostCardUploadWorker(3);
+        private static readonly PostCardUploadWorker PostCardUploadWorker = new PostCardUploadWorker(40);
 
         public static bool Already(this PostCardInfo postCardInfo)
         {

@@ -93,7 +93,7 @@ namespace OrderBatchCreate.form
                     {
                         XtraMessageBox.Show("反面文件格式不正确，请用Photoshop重新保存后再次上传！");
                     }
-                }, msg => { XtraMessageBox.Show("上传反面文件时发生异常！"); });
+                }, msg => { XtraMessageBox.Show(msg); });
         }
 
         private void SimpleButton4_Click(object sender, EventArgs e)

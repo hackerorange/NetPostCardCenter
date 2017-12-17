@@ -646,31 +646,6 @@ namespace OrderBatchCreate.form
 
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
-//            if (!(gridView2.GetFocusedRow() is OrderInfo orderInfo)) return;
-//
-//            var a = orderInfo.DirectoryInfo;
-//
-//            if (string.IsNullOrEmpty(orderInfo.TaobaoId))
-//            {
-//                XtraMessageBox.Show("还没有设置用户淘宝ID,请在左侧订单列表上设置！");
-//                return;
-//            }
-//
-//            var orderInfoSubmitEnvelopeList = orderInfo.SubmitEnvelopeList;
-//            if (orderInfoSubmitEnvelopeList.Exists(envelopeInfo => envelopeInfo.Status == Status.EnvelopeNotReady))
-//            {
-//                XtraMessageBox.Show("当前订单存在没有设置完成的集合信息，请查看详情！");
-//                tabbedControlGroup1.SelectedTabPage = orderDetailControlGroup;
-//                return;
-//            }
-//
-//            if (orderInfoSubmitEnvelopeList.Exists(envelopeInfo => envelopeInfo.PostCardWaste > 0))
-//            {
-//                XtraMessageBox.Show("当前订单存在浪费明信片的集合，请在详情页面右侧补齐张数！");
-//                tabbedControlGroup1.SelectedTabPage = orderDetailControlGroup;
-//                return;
-//            }
-
             OrderInfos.FindAll(orderInfo => orderInfo.Status == BatchStatus.OrderAlready).ForEach(orderInfo =>
             {
                 if (orderInfo.EnvelopeInfoList == null) return;
