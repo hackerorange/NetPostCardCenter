@@ -1,2 +1,0 @@
-﻿loginUrl=http://www.hackerorange.com:8083/rest/security/login
-cropInfoSubmitUrl=http://www.hackerorange.com:8083/rest/PostCardController/submitPostCardCropInfo
