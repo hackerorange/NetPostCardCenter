@@ -15,6 +15,7 @@ namespace soho.domain.system
                 //获取正面集合，暂时只是字符串
                 response.ForEach(frontStyle =>
                 {
+
                     FrontStyleList.Add(new FrontStyleInfo
                     {
                         Name = frontStyle.Name
