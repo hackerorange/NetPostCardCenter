@@ -30,7 +30,7 @@ namespace SystemSetting.size.form
             var width = (int) spinEdit1.Value;
             var height = (int) spinEdit2.Value;
 
-            ProductSizeFactory.InsertNewPostSize(textEdit1.Text, width, height, success =>
+            ProductSizeFactory.GetInstance().InsertNewPostSize(textEdit1.Text, width, height, success =>
             {
                 XtraMessageBox.Show("尺寸插入成功！");
                 DialogResult = DialogResult.OK;

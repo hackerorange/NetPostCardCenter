@@ -3,20 +3,29 @@ using SystemSetting.Properties;
 using SystemSetting.size.model;
 using SystemSetting.size.response;
 using DevExpress.XtraEditors;
+using postCardCenterSdk;
 using postCardCenterSdk.request.system;
 using postCardCenterSdk.response;
-using postCardCenterSdk.sdk;
+using WebServiceInvoker = postCardCenterSdk.sdk.WebServiceInvoker;
 
 
 namespace SystemSetting.size.constant
 {
-    public static class ProductSizeFactory
+    public class ProductSizeFactory
     {
-        public delegate void PostSizeGetSuccess(List<PostSize> sizeList);
+        
 
-        public static void GetProductSizeListFromServer(WebServiceInvoker.Success<List<PostSize>> success, WebServiceInvoker.Failure failure = null)
+        private static ProductSizeFactory _productSizeFactory = null;
+
+        public static ProductSizeFactory GetInstance()
         {
-            WebServiceInvoker.GetSizeInfoFromServer("postCardProductSize", response =>
+            return _productSizeFactory ?? (_productSizeFactory = new ProductSizeFactory());
+        }
+
+
+        public void GetProductSizeListFromServer(Success<List<PostSize>> success, Failure failure = null)
+        {
+            WebServiceInvoker.GetInstance().GetSizeInfoFromServer("postCardProductSize", response =>
             {
                 var productSizeList = new List<PostSize>();
                 response.ForEach(postCard =>
@@ -32,7 +41,7 @@ namespace SystemSetting.size.constant
             });
         }
 
-        public static void InsertNewPostSize(string name, int width, int height, WebServiceInvoker.Success<PostSize> success)
+        public void InsertNewPostSize(string name, int width, int height, Success<PostSize> success)
         {
             var sizeRequest = new SizeRequest()
             {
@@ -41,7 +50,7 @@ namespace SystemSetting.size.constant
                 Height = height
             };
 
-            WebServiceInvoker.InsertProductSizeToServer("postCardProductSize", sizeRequest, response =>
+            WebServiceInvoker.GetInstance().InsertProductSizeToServer("postCardProductSize", sizeRequest, response =>
             {
                 success(new PostSize()
                 {

@@ -20,7 +20,7 @@ namespace PostCardCenter.form.security
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            WebServiceInvoker.UserLogin(textEdit1.Text, textEdit2.Text, result =>
+            WebServiceInvoker.GetInstance().UserLogin(textEdit1.Text, textEdit2.Text, result =>
             {
                 Security.AccountSessionInfo = new AccountSessionInfo
                 {

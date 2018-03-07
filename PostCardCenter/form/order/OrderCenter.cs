@@ -39,7 +39,7 @@ namespace PostCardCenter.form.order
 
         public void RefreshOrderList()
         {
-            WebServiceInvoker.GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
+            WebServiceInvoker.GetInstance().GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
             {
                 var orderInfoList = new List<OrderInfo>();
                 orders.ForEach(orderResponse => { orderInfoList.Add(orderResponse.TranslateToOrderInfo()); });
@@ -56,7 +56,7 @@ namespace PostCardCenter.form.order
                 if (string.IsNullOrEmpty(focusedRow.ProcessorName))
                 {
                     if (XtraMessageBox.Show("当前订单没有处理者，是否由我来处理此订单？", "我来处理", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                        WebServiceInvoker.ChangeOrderProcessor(focusedRow.Id, order =>
+                        WebServiceInvoker.GetInstance().ChangeOrderProcessor(focusedRow.Id, order =>
                             {
                                 if (order.ProcessorName != Security.AccountSessionInfo.RealName)
                                 {
@@ -148,7 +148,7 @@ namespace PostCardCenter.form.order
                 XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
             }
-            WebServiceInvoker.ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); }, message => { XtraMessageBox.Show(message); });
+            WebServiceInvoker.GetInstance().ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); }, message => { XtraMessageBox.Show(message); });
         }
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
@@ -161,7 +161,7 @@ namespace PostCardCenter.form.order
                 return;
             }
             if (XtraMessageBox.Show("是否真的将订单状态修改为已处理？", "订单状态修改", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                WebServiceInvoker.ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
+                WebServiceInvoker.GetInstance().ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
         }
 
         private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)

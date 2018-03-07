@@ -29,81 +29,81 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnvelopeSettingControl));
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup17 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem135 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem136 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem137 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem138 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem139 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem140 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem141 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem142 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem143 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem144 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem145 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem146 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem147 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem148 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem149 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem150 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup18 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup19 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup20 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup21 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem151 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem152 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem153 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem154 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem155 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem156 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem157 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem158 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem159 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem160 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem161 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem162 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem163 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem164 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem165 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem166 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup22 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem167 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem168 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem169 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem170 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem171 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem172 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem173 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem174 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem175 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem176 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem177 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem178 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem179 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem180 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem181 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem182 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem183 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem184 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem185 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem186 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem187 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem188 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem189 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem190 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem191 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem192 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup23 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem193 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem194 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem195 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem196 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem197 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem198 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem199 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem200 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup24 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem201 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem1 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem2 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem3 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem4 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem5 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem6 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem7 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem8 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem9 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem10 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem11 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem12 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem13 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem14 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem15 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem16 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup4 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup5 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem17 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem18 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem19 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem20 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem21 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem22 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem23 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem24 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem25 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem26 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem27 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem28 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem29 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem30 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem31 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem32 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup6 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem33 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem34 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem35 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem36 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem37 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem38 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem39 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem40 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem41 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem42 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem43 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem44 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem45 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem46 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem47 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem48 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem49 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem50 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem51 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem52 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem53 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem54 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem55 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem56 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem57 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem58 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup7 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem59 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem60 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem61 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem62 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem63 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem64 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem65 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem66 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup8 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem67 = new DevExpress.XtraBars.Ribbon.GalleryItem();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.backStyleList = new DevExpress.XtraEditors.ListBoxControl();
             this.productSizeList = new DevExpress.XtraEditors.ListBoxControl();
@@ -721,84 +721,84 @@
             this.skinRibbonGalleryBarItem1.Gallery.AllowHoverImages = true;
             this.skinRibbonGalleryBarItem1.Gallery.ColumnCount = 4;
             this.skinRibbonGalleryBarItem1.Gallery.FixedHoverImageSize = false;
-            galleryItemGroup17.Caption = "Standard Skins";
-            galleryItem135.Caption = "DevExpress Style";
-            galleryItem135.Hint = "DevExpress Style";
-            galleryItem135.Tag = "DevExpress Style";
-            galleryItem136.Caption = "DevExpress Dark Style";
-            galleryItem136.Hint = "DevExpress Dark Style";
-            galleryItem136.Tag = "DevExpress Dark Style";
-            galleryItem137.Caption = "Office 2016 Colorful";
-            galleryItem137.Hint = "Office 2016 Colorful";
-            galleryItem137.Tag = "Office 2016 Colorful";
-            galleryItem138.Caption = "Office 2016 Dark";
-            galleryItem138.Hint = "Office 2016 Dark";
-            galleryItem138.Tag = "Office 2016 Dark";
-            galleryItem139.Caption = "Office 2016 Black";
-            galleryItem139.Hint = "Office 2016 Black";
-            galleryItem139.Tag = "Office 2016 Black";
-            galleryItem140.Caption = "Office 2013 White";
-            galleryItem140.Hint = "Office 2013 White";
-            galleryItem140.Tag = "Office 2013";
-            galleryItem141.Caption = "Office 2013 Dark Gray";
-            galleryItem141.Hint = "Office 2013 Dark Gray";
-            galleryItem141.Tag = "Office 2013 Dark Gray";
-            galleryItem142.Caption = "Office 2013 Light Gray";
-            galleryItem142.Hint = "Office 2013 Light Gray";
-            galleryItem142.Tag = "Office 2013 Light Gray";
-            galleryItem143.Caption = "Office 2010 Blue";
-            galleryItem143.Hint = "Office 2010 Blue";
-            galleryItem143.Tag = "Office 2010 Blue";
-            galleryItem144.Caption = "Office 2010 Black";
-            galleryItem144.Hint = "Office 2010 Black";
-            galleryItem144.Tag = "Office 2010 Black";
-            galleryItem145.Caption = "Office 2010 Silver";
-            galleryItem145.Hint = "Office 2010 Silver";
-            galleryItem145.Tag = "Office 2010 Silver";
-            galleryItem146.Caption = "Visual Studio 2013 Blue";
-            galleryItem146.Checked = true;
-            galleryItem146.Hint = "Visual Studio 2013 Blue";
-            galleryItem146.Tag = "Visual Studio 2013 Blue";
-            galleryItem147.Caption = "Visual Studio 2013 Dark";
-            galleryItem147.Hint = "Visual Studio 2013 Dark";
-            galleryItem147.Tag = "Visual Studio 2013 Dark";
-            galleryItem148.Caption = "Seven Classic";
-            galleryItem148.Hint = "Seven Classic";
-            galleryItem148.Tag = "Seven Classic";
-            galleryItem149.Caption = "Visual Studio 2013 Light";
-            galleryItem149.Hint = "Visual Studio 2013 Light";
-            galleryItem149.Tag = "Visual Studio 2013 Light";
-            galleryItem150.Caption = "Visual Studio 2010";
-            galleryItem150.Hint = "Visual Studio 2010";
-            galleryItem150.Tag = "VS2010";
-            galleryItemGroup17.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem135,
-            galleryItem136,
-            galleryItem137,
-            galleryItem138,
-            galleryItem139,
-            galleryItem140,
-            galleryItem141,
-            galleryItem142,
-            galleryItem143,
-            galleryItem144,
-            galleryItem145,
-            galleryItem146,
-            galleryItem147,
-            galleryItem148,
-            galleryItem149,
-            galleryItem150});
-            galleryItemGroup18.Caption = "Bonus Skins";
-            galleryItemGroup18.Visible = false;
-            galleryItemGroup19.Caption = "Theme Skins";
-            galleryItemGroup19.Visible = false;
-            galleryItemGroup20.Caption = "Custom Skins";
-            galleryItemGroup20.Visible = false;
+            galleryItemGroup1.Caption = "Standard Skins";
+            galleryItem1.Caption = "DevExpress Style";
+            galleryItem1.Hint = "DevExpress Style";
+            galleryItem1.Tag = "DevExpress Style";
+            galleryItem2.Caption = "DevExpress Dark Style";
+            galleryItem2.Hint = "DevExpress Dark Style";
+            galleryItem2.Tag = "DevExpress Dark Style";
+            galleryItem3.Caption = "Office 2016 Colorful";
+            galleryItem3.Hint = "Office 2016 Colorful";
+            galleryItem3.Tag = "Office 2016 Colorful";
+            galleryItem4.Caption = "Office 2016 Dark";
+            galleryItem4.Hint = "Office 2016 Dark";
+            galleryItem4.Tag = "Office 2016 Dark";
+            galleryItem5.Caption = "Office 2016 Black";
+            galleryItem5.Hint = "Office 2016 Black";
+            galleryItem5.Tag = "Office 2016 Black";
+            galleryItem6.Caption = "Office 2013 White";
+            galleryItem6.Hint = "Office 2013 White";
+            galleryItem6.Tag = "Office 2013";
+            galleryItem7.Caption = "Office 2013 Dark Gray";
+            galleryItem7.Hint = "Office 2013 Dark Gray";
+            galleryItem7.Tag = "Office 2013 Dark Gray";
+            galleryItem8.Caption = "Office 2013 Light Gray";
+            galleryItem8.Hint = "Office 2013 Light Gray";
+            galleryItem8.Tag = "Office 2013 Light Gray";
+            galleryItem9.Caption = "Office 2010 Blue";
+            galleryItem9.Hint = "Office 2010 Blue";
+            galleryItem9.Tag = "Office 2010 Blue";
+            galleryItem10.Caption = "Office 2010 Black";
+            galleryItem10.Hint = "Office 2010 Black";
+            galleryItem10.Tag = "Office 2010 Black";
+            galleryItem11.Caption = "Office 2010 Silver";
+            galleryItem11.Hint = "Office 2010 Silver";
+            galleryItem11.Tag = "Office 2010 Silver";
+            galleryItem12.Caption = "Visual Studio 2013 Blue";
+            galleryItem12.Checked = true;
+            galleryItem12.Hint = "Visual Studio 2013 Blue";
+            galleryItem12.Tag = "Visual Studio 2013 Blue";
+            galleryItem13.Caption = "Visual Studio 2013 Dark";
+            galleryItem13.Hint = "Visual Studio 2013 Dark";
+            galleryItem13.Tag = "Visual Studio 2013 Dark";
+            galleryItem14.Caption = "Seven Classic";
+            galleryItem14.Hint = "Seven Classic";
+            galleryItem14.Tag = "Seven Classic";
+            galleryItem15.Caption = "Visual Studio 2013 Light";
+            galleryItem15.Hint = "Visual Studio 2013 Light";
+            galleryItem15.Tag = "Visual Studio 2013 Light";
+            galleryItem16.Caption = "Visual Studio 2010";
+            galleryItem16.Hint = "Visual Studio 2010";
+            galleryItem16.Tag = "VS2010";
+            galleryItemGroup1.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem1,
+            galleryItem2,
+            galleryItem3,
+            galleryItem4,
+            galleryItem5,
+            galleryItem6,
+            galleryItem7,
+            galleryItem8,
+            galleryItem9,
+            galleryItem10,
+            galleryItem11,
+            galleryItem12,
+            galleryItem13,
+            galleryItem14,
+            galleryItem15,
+            galleryItem16});
+            galleryItemGroup2.Caption = "Bonus Skins";
+            galleryItemGroup2.Visible = false;
+            galleryItemGroup3.Caption = "Theme Skins";
+            galleryItemGroup3.Visible = false;
+            galleryItemGroup4.Caption = "Custom Skins";
+            galleryItemGroup4.Visible = false;
             this.skinRibbonGalleryBarItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup17,
-            galleryItemGroup18,
-            galleryItemGroup19,
-            galleryItemGroup20});
+            galleryItemGroup1,
+            galleryItemGroup2,
+            galleryItemGroup3,
+            galleryItemGroup4});
             this.skinRibbonGalleryBarItem1.Gallery.ImageSize = new System.Drawing.Size(32, 16);
             this.skinRibbonGalleryBarItem1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.skinRibbonGalleryBarItem1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.Squeeze;
@@ -1268,224 +1268,224 @@
             this.skinRibbonGalleryBarItem2.Gallery.AllowHoverImages = true;
             this.skinRibbonGalleryBarItem2.Gallery.ColumnCount = 4;
             this.skinRibbonGalleryBarItem2.Gallery.FixedHoverImageSize = false;
-            galleryItemGroup21.Caption = "Standard Skins";
-            galleryItem151.Caption = "DevExpress Style";
-            galleryItem151.Hint = "DevExpress Style";
-            galleryItem151.Tag = "DevExpress Style";
-            galleryItem152.Caption = "DevExpress Dark Style";
-            galleryItem152.Hint = "DevExpress Dark Style";
-            galleryItem152.Tag = "DevExpress Dark Style";
-            galleryItem153.Caption = "Office 2016 Colorful";
-            galleryItem153.Hint = "Office 2016 Colorful";
-            galleryItem153.Tag = "Office 2016 Colorful";
-            galleryItem154.Caption = "Office 2016 Dark";
-            galleryItem154.Hint = "Office 2016 Dark";
-            galleryItem154.Tag = "Office 2016 Dark";
-            galleryItem155.Caption = "Office 2016 Black";
-            galleryItem155.Hint = "Office 2016 Black";
-            galleryItem155.Tag = "Office 2016 Black";
-            galleryItem156.Caption = "Office 2013 White";
-            galleryItem156.Hint = "Office 2013 White";
-            galleryItem156.Tag = "Office 2013";
-            galleryItem157.Caption = "Office 2013 Dark Gray";
-            galleryItem157.Hint = "Office 2013 Dark Gray";
-            galleryItem157.Tag = "Office 2013 Dark Gray";
-            galleryItem158.Caption = "Office 2013 Light Gray";
-            galleryItem158.Hint = "Office 2013 Light Gray";
-            galleryItem158.Tag = "Office 2013 Light Gray";
-            galleryItem159.Caption = "Office 2010 Blue";
-            galleryItem159.Hint = "Office 2010 Blue";
-            galleryItem159.Tag = "Office 2010 Blue";
-            galleryItem160.Caption = "Office 2010 Black";
-            galleryItem160.Hint = "Office 2010 Black";
-            galleryItem160.Tag = "Office 2010 Black";
-            galleryItem161.Caption = "Office 2010 Silver";
-            galleryItem161.Hint = "Office 2010 Silver";
-            galleryItem161.Tag = "Office 2010 Silver";
-            galleryItem162.Caption = "Visual Studio 2013 Blue";
-            galleryItem162.Checked = true;
-            galleryItem162.Hint = "Visual Studio 2013 Blue";
-            galleryItem162.Tag = "Visual Studio 2013 Blue";
-            galleryItem163.Caption = "Visual Studio 2013 Dark";
-            galleryItem163.Hint = "Visual Studio 2013 Dark";
-            galleryItem163.Tag = "Visual Studio 2013 Dark";
-            galleryItem164.Caption = "Visual Studio 2013 Light";
-            galleryItem164.Hint = "Visual Studio 2013 Light";
-            galleryItem164.Tag = "Visual Studio 2013 Light";
-            galleryItem165.Caption = "Seven Classic";
-            galleryItem165.Hint = "Seven Classic";
-            galleryItem165.Tag = "Seven Classic";
-            galleryItem166.Caption = "Visual Studio 2010";
-            galleryItem166.Hint = "Visual Studio 2010";
-            galleryItem166.Tag = "VS2010";
-            galleryItemGroup21.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem151,
-            galleryItem152,
-            galleryItem153,
-            galleryItem154,
-            galleryItem155,
-            galleryItem156,
-            galleryItem157,
-            galleryItem158,
-            galleryItem159,
-            galleryItem160,
-            galleryItem161,
-            galleryItem162,
-            galleryItem163,
-            galleryItem164,
-            galleryItem165,
-            galleryItem166});
-            galleryItemGroup22.Caption = "Bonus Skins";
-            galleryItem167.Caption = "Black";
-            galleryItem167.Hint = "Black";
-            galleryItem167.Tag = "Black";
-            galleryItem168.Caption = "Blue";
-            galleryItem168.Hint = "Blue";
-            galleryItem168.Tag = "Blue";
-            galleryItem169.Caption = "Caramel";
-            galleryItem169.Hint = "Caramel";
-            galleryItem169.Tag = "Caramel";
-            galleryItem170.Caption = "Coffee";
-            galleryItem170.Hint = "Coffee";
-            galleryItem170.Tag = "Coffee";
-            galleryItem171.Caption = "Dark Side";
-            galleryItem171.Hint = "Dark Side";
-            galleryItem171.Tag = "Dark Side";
-            galleryItem172.Caption = "Darkroom";
-            galleryItem172.Hint = "Darkroom";
-            galleryItem172.Tag = "Darkroom";
-            galleryItem173.Caption = "Foggy";
-            galleryItem173.Hint = "Foggy";
-            galleryItem173.Tag = "Foggy";
-            galleryItem174.Caption = "Glass Oceans";
-            galleryItem174.Hint = "Glass Oceans";
-            galleryItem174.Tag = "Glass Oceans";
-            galleryItem175.Caption = "High Contrast";
-            galleryItem175.Hint = "High Contrast";
-            galleryItem175.Tag = "High Contrast";
-            galleryItem176.Caption = "iMaginary";
-            galleryItem176.Hint = "iMaginary";
-            galleryItem176.Tag = "iMaginary";
-            galleryItem177.Caption = "Lilian";
-            galleryItem177.Hint = "Lilian";
-            galleryItem177.Tag = "Lilian";
-            galleryItem178.Caption = "Liquid Sky";
-            galleryItem178.Hint = "Liquid Sky";
-            galleryItem178.Tag = "Liquid Sky";
-            galleryItem179.Caption = "London Liquid Sky";
-            galleryItem179.Hint = "London Liquid Sky";
-            galleryItem179.Tag = "London Liquid Sky";
-            galleryItem180.Caption = "Metropolis";
-            galleryItem180.Hint = "Metropolis";
-            galleryItem180.Tag = "Metropolis";
-            galleryItem181.Caption = "Metropolis Dark";
-            galleryItem181.Hint = "Metropolis Dark";
-            galleryItem181.Tag = "Metropolis Dark";
-            galleryItem182.Caption = "Money Twins";
-            galleryItem182.Hint = "Money Twins";
-            galleryItem182.Tag = "Money Twins";
-            galleryItem183.Caption = "Office 2007 Black";
-            galleryItem183.Hint = "Office 2007 Black";
-            galleryItem183.Tag = "Office 2007 Black";
-            galleryItem184.Caption = "Office 2007 Blue";
-            galleryItem184.Hint = "Office 2007 Blue";
-            galleryItem184.Tag = "Office 2007 Blue";
-            galleryItem185.Caption = "Office 2007 Green";
-            galleryItem185.Hint = "Office 2007 Green";
-            galleryItem185.Tag = "Office 2007 Green";
-            galleryItem186.Caption = "Office 2007 Pink";
-            galleryItem186.Hint = "Office 2007 Pink";
-            galleryItem186.Tag = "Office 2007 Pink";
-            galleryItem187.Caption = "Office 2007 Silver";
-            galleryItem187.Hint = "Office 2007 Silver";
-            galleryItem187.Tag = "Office 2007 Silver";
-            galleryItem188.Caption = "Seven";
-            galleryItem188.Hint = "Seven";
-            galleryItem188.Tag = "Seven";
-            galleryItem189.Caption = "Sharp";
-            galleryItem189.Hint = "Sharp";
-            galleryItem189.Tag = "Sharp";
-            galleryItem190.Caption = "Sharp Plus";
-            galleryItem190.Hint = "Sharp Plus";
-            galleryItem190.Tag = "Sharp Plus";
-            galleryItem191.Caption = "Stardust";
-            galleryItem191.Hint = "Stardust";
-            galleryItem191.Tag = "Stardust";
-            galleryItem192.Caption = "The Asphalt World";
-            galleryItem192.Hint = "The Asphalt World";
-            galleryItem192.Tag = "The Asphalt World";
-            galleryItemGroup22.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem167,
-            galleryItem168,
-            galleryItem169,
-            galleryItem170,
-            galleryItem171,
-            galleryItem172,
-            galleryItem173,
-            galleryItem174,
-            galleryItem175,
-            galleryItem176,
-            galleryItem177,
-            galleryItem178,
-            galleryItem179,
-            galleryItem180,
-            galleryItem181,
-            galleryItem182,
-            galleryItem183,
-            galleryItem184,
-            galleryItem185,
-            galleryItem186,
-            galleryItem187,
-            galleryItem188,
-            galleryItem189,
-            galleryItem190,
-            galleryItem191,
-            galleryItem192});
-            galleryItemGroup23.Caption = "Theme Skins";
-            galleryItem193.Caption = "Pumpkin";
-            galleryItem193.Hint = "Pumpkin";
-            galleryItem193.Tag = "Pumpkin";
-            galleryItem194.Caption = "Springtime";
-            galleryItem194.Hint = "Springtime";
-            galleryItem194.Tag = "Springtime";
-            galleryItem195.Caption = "Summer";
-            galleryItem195.Hint = "Summer";
-            galleryItem195.Tag = "Summer 2008";
-            galleryItem196.Caption = "Valentine";
-            galleryItem196.Hint = "Valentine";
-            galleryItem196.Tag = "Valentine";
-            galleryItem197.Caption = "Xmas (Blue)";
-            galleryItem197.Hint = "Xmas (Blue)";
-            galleryItem197.Tag = "Xmas 2008 Blue";
-            galleryItem198.Caption = "McSkin";
-            galleryItem198.Hint = "McSkin";
-            galleryItem198.Tag = "McSkin";
-            galleryItem199.Caption = "Blueprint";
-            galleryItem199.Hint = "Blueprint";
-            galleryItem199.Tag = "Blueprint";
-            galleryItem200.Caption = "Whiteprint";
-            galleryItem200.Hint = "Whiteprint";
-            galleryItem200.Tag = "Whiteprint";
-            galleryItemGroup23.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem193,
-            galleryItem194,
-            galleryItem195,
-            galleryItem196,
-            galleryItem197,
-            galleryItem198,
-            galleryItem199,
-            galleryItem200});
-            galleryItemGroup24.Caption = "Custom Skins";
-            galleryItem201.Caption = "DevExpress Design";
-            galleryItem201.Hint = "DevExpress Design";
-            galleryItem201.Tag = "DevExpress Design";
-            galleryItemGroup24.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem201});
+            galleryItemGroup5.Caption = "Standard Skins";
+            galleryItem17.Caption = "DevExpress Style";
+            galleryItem17.Hint = "DevExpress Style";
+            galleryItem17.Tag = "DevExpress Style";
+            galleryItem18.Caption = "DevExpress Dark Style";
+            galleryItem18.Hint = "DevExpress Dark Style";
+            galleryItem18.Tag = "DevExpress Dark Style";
+            galleryItem19.Caption = "Office 2016 Colorful";
+            galleryItem19.Hint = "Office 2016 Colorful";
+            galleryItem19.Tag = "Office 2016 Colorful";
+            galleryItem20.Caption = "Office 2016 Dark";
+            galleryItem20.Hint = "Office 2016 Dark";
+            galleryItem20.Tag = "Office 2016 Dark";
+            galleryItem21.Caption = "Office 2016 Black";
+            galleryItem21.Hint = "Office 2016 Black";
+            galleryItem21.Tag = "Office 2016 Black";
+            galleryItem22.Caption = "Office 2013 White";
+            galleryItem22.Hint = "Office 2013 White";
+            galleryItem22.Tag = "Office 2013";
+            galleryItem23.Caption = "Office 2013 Dark Gray";
+            galleryItem23.Hint = "Office 2013 Dark Gray";
+            galleryItem23.Tag = "Office 2013 Dark Gray";
+            galleryItem24.Caption = "Office 2013 Light Gray";
+            galleryItem24.Hint = "Office 2013 Light Gray";
+            galleryItem24.Tag = "Office 2013 Light Gray";
+            galleryItem25.Caption = "Office 2010 Blue";
+            galleryItem25.Hint = "Office 2010 Blue";
+            galleryItem25.Tag = "Office 2010 Blue";
+            galleryItem26.Caption = "Office 2010 Black";
+            galleryItem26.Hint = "Office 2010 Black";
+            galleryItem26.Tag = "Office 2010 Black";
+            galleryItem27.Caption = "Office 2010 Silver";
+            galleryItem27.Hint = "Office 2010 Silver";
+            galleryItem27.Tag = "Office 2010 Silver";
+            galleryItem28.Caption = "Visual Studio 2013 Blue";
+            galleryItem28.Checked = true;
+            galleryItem28.Hint = "Visual Studio 2013 Blue";
+            galleryItem28.Tag = "Visual Studio 2013 Blue";
+            galleryItem29.Caption = "Visual Studio 2013 Dark";
+            galleryItem29.Hint = "Visual Studio 2013 Dark";
+            galleryItem29.Tag = "Visual Studio 2013 Dark";
+            galleryItem30.Caption = "Visual Studio 2013 Light";
+            galleryItem30.Hint = "Visual Studio 2013 Light";
+            galleryItem30.Tag = "Visual Studio 2013 Light";
+            galleryItem31.Caption = "Seven Classic";
+            galleryItem31.Hint = "Seven Classic";
+            galleryItem31.Tag = "Seven Classic";
+            galleryItem32.Caption = "Visual Studio 2010";
+            galleryItem32.Hint = "Visual Studio 2010";
+            galleryItem32.Tag = "VS2010";
+            galleryItemGroup5.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem17,
+            galleryItem18,
+            galleryItem19,
+            galleryItem20,
+            galleryItem21,
+            galleryItem22,
+            galleryItem23,
+            galleryItem24,
+            galleryItem25,
+            galleryItem26,
+            galleryItem27,
+            galleryItem28,
+            galleryItem29,
+            galleryItem30,
+            galleryItem31,
+            galleryItem32});
+            galleryItemGroup6.Caption = "Bonus Skins";
+            galleryItem33.Caption = "Black";
+            galleryItem33.Hint = "Black";
+            galleryItem33.Tag = "Black";
+            galleryItem34.Caption = "Blue";
+            galleryItem34.Hint = "Blue";
+            galleryItem34.Tag = "Blue";
+            galleryItem35.Caption = "Caramel";
+            galleryItem35.Hint = "Caramel";
+            galleryItem35.Tag = "Caramel";
+            galleryItem36.Caption = "Coffee";
+            galleryItem36.Hint = "Coffee";
+            galleryItem36.Tag = "Coffee";
+            galleryItem37.Caption = "Dark Side";
+            galleryItem37.Hint = "Dark Side";
+            galleryItem37.Tag = "Dark Side";
+            galleryItem38.Caption = "Darkroom";
+            galleryItem38.Hint = "Darkroom";
+            galleryItem38.Tag = "Darkroom";
+            galleryItem39.Caption = "Foggy";
+            galleryItem39.Hint = "Foggy";
+            galleryItem39.Tag = "Foggy";
+            galleryItem40.Caption = "Glass Oceans";
+            galleryItem40.Hint = "Glass Oceans";
+            galleryItem40.Tag = "Glass Oceans";
+            galleryItem41.Caption = "High Contrast";
+            galleryItem41.Hint = "High Contrast";
+            galleryItem41.Tag = "High Contrast";
+            galleryItem42.Caption = "iMaginary";
+            galleryItem42.Hint = "iMaginary";
+            galleryItem42.Tag = "iMaginary";
+            galleryItem43.Caption = "Lilian";
+            galleryItem43.Hint = "Lilian";
+            galleryItem43.Tag = "Lilian";
+            galleryItem44.Caption = "Liquid Sky";
+            galleryItem44.Hint = "Liquid Sky";
+            galleryItem44.Tag = "Liquid Sky";
+            galleryItem45.Caption = "London Liquid Sky";
+            galleryItem45.Hint = "London Liquid Sky";
+            galleryItem45.Tag = "London Liquid Sky";
+            galleryItem46.Caption = "Metropolis";
+            galleryItem46.Hint = "Metropolis";
+            galleryItem46.Tag = "Metropolis";
+            galleryItem47.Caption = "Metropolis Dark";
+            galleryItem47.Hint = "Metropolis Dark";
+            galleryItem47.Tag = "Metropolis Dark";
+            galleryItem48.Caption = "Money Twins";
+            galleryItem48.Hint = "Money Twins";
+            galleryItem48.Tag = "Money Twins";
+            galleryItem49.Caption = "Office 2007 Black";
+            galleryItem49.Hint = "Office 2007 Black";
+            galleryItem49.Tag = "Office 2007 Black";
+            galleryItem50.Caption = "Office 2007 Blue";
+            galleryItem50.Hint = "Office 2007 Blue";
+            galleryItem50.Tag = "Office 2007 Blue";
+            galleryItem51.Caption = "Office 2007 Green";
+            galleryItem51.Hint = "Office 2007 Green";
+            galleryItem51.Tag = "Office 2007 Green";
+            galleryItem52.Caption = "Office 2007 Pink";
+            galleryItem52.Hint = "Office 2007 Pink";
+            galleryItem52.Tag = "Office 2007 Pink";
+            galleryItem53.Caption = "Office 2007 Silver";
+            galleryItem53.Hint = "Office 2007 Silver";
+            galleryItem53.Tag = "Office 2007 Silver";
+            galleryItem54.Caption = "Seven";
+            galleryItem54.Hint = "Seven";
+            galleryItem54.Tag = "Seven";
+            galleryItem55.Caption = "Sharp";
+            galleryItem55.Hint = "Sharp";
+            galleryItem55.Tag = "Sharp";
+            galleryItem56.Caption = "Sharp Plus";
+            galleryItem56.Hint = "Sharp Plus";
+            galleryItem56.Tag = "Sharp Plus";
+            galleryItem57.Caption = "Stardust";
+            galleryItem57.Hint = "Stardust";
+            galleryItem57.Tag = "Stardust";
+            galleryItem58.Caption = "The Asphalt World";
+            galleryItem58.Hint = "The Asphalt World";
+            galleryItem58.Tag = "The Asphalt World";
+            galleryItemGroup6.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem33,
+            galleryItem34,
+            galleryItem35,
+            galleryItem36,
+            galleryItem37,
+            galleryItem38,
+            galleryItem39,
+            galleryItem40,
+            galleryItem41,
+            galleryItem42,
+            galleryItem43,
+            galleryItem44,
+            galleryItem45,
+            galleryItem46,
+            galleryItem47,
+            galleryItem48,
+            galleryItem49,
+            galleryItem50,
+            galleryItem51,
+            galleryItem52,
+            galleryItem53,
+            galleryItem54,
+            galleryItem55,
+            galleryItem56,
+            galleryItem57,
+            galleryItem58});
+            galleryItemGroup7.Caption = "Theme Skins";
+            galleryItem59.Caption = "Pumpkin";
+            galleryItem59.Hint = "Pumpkin";
+            galleryItem59.Tag = "Pumpkin";
+            galleryItem60.Caption = "Springtime";
+            galleryItem60.Hint = "Springtime";
+            galleryItem60.Tag = "Springtime";
+            galleryItem61.Caption = "Summer";
+            galleryItem61.Hint = "Summer";
+            galleryItem61.Tag = "Summer 2008";
+            galleryItem62.Caption = "Valentine";
+            galleryItem62.Hint = "Valentine";
+            galleryItem62.Tag = "Valentine";
+            galleryItem63.Caption = "Xmas (Blue)";
+            galleryItem63.Hint = "Xmas (Blue)";
+            galleryItem63.Tag = "Xmas 2008 Blue";
+            galleryItem64.Caption = "McSkin";
+            galleryItem64.Hint = "McSkin";
+            galleryItem64.Tag = "McSkin";
+            galleryItem65.Caption = "Blueprint";
+            galleryItem65.Hint = "Blueprint";
+            galleryItem65.Tag = "Blueprint";
+            galleryItem66.Caption = "Whiteprint";
+            galleryItem66.Hint = "Whiteprint";
+            galleryItem66.Tag = "Whiteprint";
+            galleryItemGroup7.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem59,
+            galleryItem60,
+            galleryItem61,
+            galleryItem62,
+            galleryItem63,
+            galleryItem64,
+            galleryItem65,
+            galleryItem66});
+            galleryItemGroup8.Caption = "Custom Skins";
+            galleryItem67.Caption = "DevExpress Design";
+            galleryItem67.Hint = "DevExpress Design";
+            galleryItem67.Tag = "DevExpress Design";
+            galleryItemGroup8.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem67});
             this.skinRibbonGalleryBarItem2.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup21,
-            galleryItemGroup22,
-            galleryItemGroup23,
-            galleryItemGroup24});
+            galleryItemGroup5,
+            galleryItemGroup6,
+            galleryItemGroup7,
+            galleryItemGroup8});
             this.skinRibbonGalleryBarItem2.Gallery.ImageSize = new System.Drawing.Size(32, 16);
             this.skinRibbonGalleryBarItem2.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.skinRibbonGalleryBarItem2.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.Squeeze;

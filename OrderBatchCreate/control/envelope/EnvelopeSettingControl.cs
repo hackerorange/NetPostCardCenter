@@ -25,7 +25,7 @@ namespace OrderBatchCreate.control.envelope
         public EnvelopeSettingControl()
         {
             InitializeComponent();
-            ProductSizeFactory.GetProductSizeListFromServer(success => success.ForEach(postSize => productSizeList.Items.Add(postSize)));
+            ProductSizeFactory.GetInstance().GetProductSizeListFromServer(success => success.ForEach(postSize => productSizeList.Items.Add(postSize)));
             BackStyleFactory.GetBackStyleFromServer(success => success.ForEach(backStyle => backStyleList.Items.Add(backStyle)));
         }
 

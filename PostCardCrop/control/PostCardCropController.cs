@@ -146,6 +146,7 @@ namespace PostCardCrop.control
                         _cropInfo = new CropInfo(_image.Size, PicturePrintAreaSize, fit: Fit);
                         Angle = _cropInfo.Rotation;
                     }
+
                     if (_cropInfo.IsEmpty)
                     {
                         _pictureRectangle = Rectangle.Empty;
@@ -159,6 +160,7 @@ namespace PostCardCrop.control
                         _pictureRectangle.Y = (int) (tmpCropBox.Y - _pictureRectangle.Height * _cropInfo.TopScale);
                     }
                 }
+
                 return _pictureRectangle;
             }
         }
@@ -185,6 +187,7 @@ namespace PostCardCrop.control
                     tmpCropBox.Width = (int) (tmpCropBox.Width * tmpPictureAreaHeight / tmpCropBox.Height);
                     tmpCropBox.Height = (int) tmpPictureAreaHeight;
                 }
+
                 tmpCropBox.X = (int) (tmpPaperRectangle.X + Margin.Left * tmpRatio);
                 tmpCropBox.Y = (int) (tmpPaperRectangle.Y + Margin.Top * tmpRatio);
                 return tmpCropBox;
@@ -228,6 +231,7 @@ namespace PostCardCrop.control
                     tmpRectangle.Height = (int) (pictureBox1.Height * WhiteSpacePercent);
                     tmpRectangle.Width = (int) (tmpRectangle.Height / ProductSize.Ratio());
                 }
+
                 tmpRectangle.Offset((pictureBox1.Width - tmpRectangle.Width) / 2,
                     (pictureBox1.Height - tmpRectangle.Height) / 2);
                 return tmpRectangle;
@@ -247,6 +251,7 @@ namespace PostCardCrop.control
                     RefreshPostCard();
                     return;
                 }
+
                 ;
                 _postCardInfo = value;
                 var tmpPostCardInfo = _postCardInfo;
@@ -264,7 +269,7 @@ namespace PostCardCrop.control
                             var directoryInfo = new DirectoryInfo(SystemConstants.tmpFilePath);
                             if (!directoryInfo.Exists)
                                 directoryInfo.Create();
-                            WebServiceInvoker.DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, success =>
+                            WebServiceInvoker.GetFileServerInstance().DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, success =>
                             {
                                 tmpPostCardInfo.FileInfo = success;
                                 try
@@ -283,7 +288,7 @@ namespace PostCardCrop.control
                         var directoryInfo = new DirectoryInfo(SystemConstants.tmpFilePath);
                         if (!directoryInfo.Exists)
                             directoryInfo.Create();
-                        WebServiceInvoker.DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, result =>
+                        WebServiceInvoker.GetFileServerInstance().DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, result =>
                         {
                             tmpPostCardInfo.FileInfo = result;
                             Image = Image.FromFile(tmpPostCardInfo.FileInfo.FullName);
@@ -305,18 +310,21 @@ namespace PostCardCrop.control
                     PictureCropScale = 0;
                     Fit = false;
                 }
+
                 if (tmpPostCardInfo.FrontStyle.Equals("B", StringComparison.CurrentCultureIgnoreCase))
                 {
                     Margin = new Padding(0);
                     PictureCropScale = 0;
                     Fit = false;
                 }
+
                 if (tmpPostCardInfo.FrontStyle.Equals("C", StringComparison.CurrentCultureIgnoreCase))
                 {
                     Margin = new Padding(5);
                     PictureCropScale = 1;
                     Fit = false;
                 }
+
                 if (tmpPostCardInfo.FrontStyle.Equals("D", StringComparison.CurrentCultureIgnoreCase))
                 {
                     Margin = new Padding(0);
@@ -338,6 +346,7 @@ namespace PostCardCrop.control
                     Match?.Invoke(_postCardInfo);
                     return;
                 }
+
                 RefreshPostCard();
             }
         }
@@ -371,12 +380,14 @@ namespace PostCardCrop.control
                         Error?.Invoke("角度出现异常");
                         break;
                 }
+
                 _imageClone?.Dispose();
                 if (_image != null)
                 {
                     _imageClone = (Image) _image.Clone();
                     _imageClone.RotateFlip(rotateInfo);
                 }
+
                 _pictureRectangle = Rectangle.Empty;
             }
             get => _angle;
@@ -417,13 +428,12 @@ namespace PostCardCrop.control
                 SubmitPostCard();
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
         public void SubmitPostCard()
         {
             var tmpNode = _postCardInfo;
             if (CropInfo == null) return;
             tmpNode.ProcessStatus = PostCardProcessStatusEnum.SUBMITING;
-            WebServiceInvoker.SubmitPostCardCropInfo(CropInfo.PrepareCropInfoRequest(_postCardInfo.PostCardId), postCard =>
+            WebServiceInvoker.GetInstance().SubmitPostCardCropInfo(_postCardInfo.PostCardId, CropInfo.LeftScale, CropInfo.TopScale, CropInfo.WidthScale, CropInfo.HeightScale, CropInfo.Rotation, postCard =>
             {
                 var tmpPostCard = postCard.TranlateToPostCard();
                 tmpNode.ProcessStatus = tmpPostCard.ProcessStatus;
@@ -456,6 +466,7 @@ namespace PostCardCrop.control
                 _image.Dispose();
                 _image = null;
             }
+
             if (_imageClone != null)
             {
                 _imageClone.Dispose();
@@ -537,6 +548,7 @@ namespace PostCardCrop.control
                 //检验图像的位置
                 CheckPictureRectangleLocation();
             }
+
             _lastMousePoint.X = _pictureRectangle.X - e.X;
             _lastMousePoint.Y = _pictureRectangle.Y - e.Y;
 
@@ -717,6 +729,7 @@ namespace PostCardCrop.control
                     _allowIn = true;
                     break;
             }
+
             //按住Shift键，允许裁切一部分
             //按住空格键后，停止移动响应
             //按住空格键后，停止移动响应

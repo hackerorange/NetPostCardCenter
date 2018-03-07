@@ -1,4 +1,5 @@
-﻿using postCardCenterSdk.sdk;
+﻿using System;
+using postCardCenterSdk.sdk;
 using Spring.Http.Client.Interceptor;
 using static System.String;
 
@@ -15,6 +16,7 @@ namespace postCardCenterSdk.interceptor
 //            }
 //
 //            execution.ExecuteAsync(comparer => {
+//                comparer.Response.Body.Write
 //                Console.WriteLine(@"请求结束！");
 //            });
 //        }

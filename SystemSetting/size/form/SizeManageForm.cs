@@ -11,7 +11,7 @@ namespace SystemSetting.size.form
         {
             InitializeComponent();
 
-            ProductSizeFactory.GetProductSizeListFromServer(postSizeList => { gridControl1.DataSource = postSizeList; });
+            ProductSizeFactory.GetInstance().GetProductSizeListFromServer(postSizeList => { gridControl1.DataSource = postSizeList; });
         }
 
         private void SizeManageForm_Load(object sender, System.EventArgs e)
@@ -21,7 +21,7 @@ namespace SystemSetting.size.form
         private void BarButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             new NewPostCardSizeForm().ShowDialog(this);
-            ProductSizeFactory.GetProductSizeListFromServer(postSizeList =>
+            ProductSizeFactory.GetInstance().GetProductSizeListFromServer(postSizeList =>
             {
                 gridControl1.DataSource = postSizeList;
                 gridView1.RefreshData();

@@ -49,14 +49,14 @@ namespace soho.helper
             try
             {
                 var image = Image.FromFile(fileInfo.FullName);
-                if (image != null)
-                    return true;
+                image.Dispose();
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return false;
             }
-            return WebServiceInvoker.IsImageFile(fileInfo.GetMd5());
         }
     }
 }

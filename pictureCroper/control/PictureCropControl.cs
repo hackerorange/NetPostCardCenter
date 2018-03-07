@@ -71,6 +71,7 @@ namespace pictureCroper.control
                     tmpCropBox.Width = (int) (tmpCropBox.Width * tmpPictureAreaHeight / tmpCropBox.Height);
                     tmpCropBox.Height = (int) tmpPictureAreaHeight;
                 }
+
                 tmpCropBox.X = (int) (tmpPaperRectangle.X + CropContext.StyleInfo.MarginLeft * tmpRatio);
                 tmpCropBox.Y = (int) (tmpPaperRectangle.Y + CropContext.StyleInfo.MarginTop * tmpRatio);
                 return tmpCropBox;
@@ -106,6 +107,7 @@ namespace pictureCroper.control
                     tmpRectangle.Height = (int) (pictureEdit1.Size.Height * 0.8);
                     tmpRectangle.Width = (int) (tmpRectangle.Height / CropContext.ProductSize.Ratio());
                 }
+
                 tmpRectangle.Offset((pictureEdit1.Size.Width - tmpRectangle.Width) / 2, (pictureEdit1.Size.Height - tmpRectangle.Height) / 2);
                 return tmpRectangle;
             }
@@ -116,14 +118,16 @@ namespace pictureCroper.control
             get
             {
                 //如果没有图片，图片框为空
-                if (CropContext.Image == null || CropContext.ProductSize.IsEmpty)
+                if (CropContext?.Image == null || CropContext.ProductSize.IsEmpty)
                 {
                     return Rectangle.Empty;
                 }
+
                 if (CropContext.CropInfo == null || CropContext.CropInfo.IsEmpty)
                 {
                     return Rectangle.Empty;
                 }
+
                 var tmpCropBox = CropBox;
 
 
@@ -204,15 +208,18 @@ namespace pictureCroper.control
             {
                 Focus();
             }
+
             if (LastPoint == Point.Empty)
             {
                 LastPoint = e.Location;
                 return;
             }
+
             if (e.Button == MouseButtons.Left)
             {
                 CropContext.CropInfo?.CropMove(pictureRectangleSize, LastPoint.X - e.Location.X, LastPoint.Y - e.Location.Y);
             }
+
             LastPoint = e.Location;
             CropInfoChanged?.Invoke(CropContext.CropInfo);
             pictureEdit1.Refresh();
@@ -256,6 +263,7 @@ namespace pictureCroper.control
                     Height = tmpSize.Width
                 };
             }
+
             CropContext.CropInfo = new CropInfo(tmpSize, CropContext.PicturePrintAreaSize, angle, CropContext.StyleInfo.Fit);
             CropInfoChanged?.Invoke(CropContext.CropInfo);
             pictureEdit1.Refresh();
@@ -337,6 +345,7 @@ namespace pictureCroper.control
                 cropInfo.CropMove(newRectangle.Size);
                 CropContext.CropInfo = cropInfo;
             }
+
             pictureEdit1.Refresh();
             CropInfoChanged?.Invoke(CropContext.CropInfo);
             LastPoint = mousePoint;
@@ -367,6 +376,7 @@ namespace pictureCroper.control
                     _allowIn = true;
                     break;
             }
+
             //按住Shift键，允许裁切一部分
             //按住空格键后，停止移动响应
             //按住空格键后，停止移动响应

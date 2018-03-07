@@ -17,8 +17,6 @@ namespace OrderBatchCreate.model
         private int _arrayColumn;
         private int _arrayRow;
 
-        private PostSize _paperSize;
-
 //        private PostSize _productSize;
 
         public EnvelopeInfo()
@@ -80,16 +78,7 @@ namespace OrderBatchCreate.model
         /// <summary>
         ///     打印时使用的纸张尺寸
         /// </summary>
-        public PostSize PaperSize
-        {
-            get => _paperSize;
-            set
-            {
-                if (_paperSize == value) return;
-                _paperSize = value;
-                ResetRowAndColumn();
-            }
-        }
+        public PostSize PaperSize { get; set; }
 
         /// <summary>
         ///     一张纸上排列的列数
@@ -102,6 +91,7 @@ namespace OrderBatchCreate.model
                 if (_arrayColumn == value) return;
                 _arrayColumn = value;
                 NotifyPropertyChanged(() => HorizontalWhite);
+                NotifyPropertyChanged(() => ArrayColumn);
             }
         }
 
@@ -117,18 +107,19 @@ namespace OrderBatchCreate.model
                 if (_arrayRow == value) return;
                 _arrayRow = value;
                 NotifyPropertyChanged(() => VerticalWhite);
+                NotifyPropertyChanged(() => ArrayRow);
             }
         }
 
         /// <summary>
         ///     水平方向白边（只读属性）
         /// </summary>
-        public int HorizontalWhite => _paperSize.Width - ProductSize.Width * _arrayColumn;
+        public int HorizontalWhite => PaperSize.Width - ProductSize.Width * _arrayColumn;
 
         /// <summary>
         ///     竖直方向白边(只读属性)
         /// </summary>
-        public int VerticalWhite => _paperSize.Height - ProductSize.Height * _arrayRow;
+        public int VerticalWhite => PaperSize.Height - ProductSize.Height * _arrayRow;
 
         /// <summary>
         ///     此订单下的所有订单列表
@@ -176,24 +167,26 @@ namespace OrderBatchCreate.model
                 PaperSize = PaperSize,
                 DoubleSide = DoubleSide,
                 FrontStyle = FrontStyle,
-                BackStyle = BackStyle
+                BackStyle = BackStyle,
+                ArrayColumn = ArrayColumn,
+                ArrayRow = ArrayRow
             };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void ResetRowAndColumn()
+        public void ResetRowAndColumn()
         {
             if (ProductSize == null) return;
             if (ProductSize.Width != 0)
             {
-                _arrayColumn = _paperSize.Width / ProductSize.Width;
+                _arrayColumn = PaperSize.Width / ProductSize.Width;
                 NotifyPropertyChanged(() => ArrayColumn);
                 NotifyPropertyChanged(() => HorizontalWhite);
             }
             if (ProductSize.Height != 0)
             {
-                _arrayRow = _paperSize.Height / ProductSize.Height;
+                _arrayRow = PaperSize.Height / ProductSize.Height;
                 NotifyPropertyChanged(() => ArrayRow);
                 NotifyPropertyChanged(() => VerticalWhite);
             }

@@ -34,7 +34,7 @@ namespace PostCardCrop.control
         {
             if (_envelopeInfo == null) return;
             var tmpEnvelope = _envelopeInfo;
-            WebServiceInvoker.GetEnvelopeInfoById(tmpEnvelope.Id, result =>
+            WebServiceInvoker.GetInstance().GetEnvelopeInfoById(tmpEnvelope.Id, result =>
             {
                 var envelopeInfo = result.TranslateToEnvelope();
                 //更新成品ID
@@ -50,7 +50,7 @@ namespace PostCardCrop.control
                     downloadProductFile.Tag = null;
                     downloadProductFile.Enabled = false;
                 }
-                WebServiceInvoker.GetOrderInfo(tmpEnvelope.OrderId,
+                WebServiceInvoker.GetInstance().GetOrderInfo(tmpEnvelope.OrderId,
                     orderInfo => { customerName.Text = orderInfo.TaobaoId; },
                     message => { XtraMessageBox.Show(message); });
                 paperName.Text = tmpEnvelope.PaperName;
@@ -82,7 +82,7 @@ namespace PostCardCrop.control
 
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
-            WebServiceInvoker.GetEnvelopeInfoById(tmpEnvelope.Id, tmpresult =>
+            WebServiceInvoker.GetInstance().GetEnvelopeInfoById(tmpEnvelope.Id, tmpresult =>
             {
                 var result = tmpresult.TranslateToEnvelope();
                 var productFileId = result.ProductFileId;
@@ -103,7 +103,7 @@ namespace PostCardCrop.control
                     }
                 var fileInfo = new FileInfo(saveFileDialog.FileName);
 
-                WebServiceInvoker.DownLoadFileByFileId(productFileId, fileInfo, downloadFileInfo =>
+                WebServiceInvoker.GetFileServerInstance().DownLoadFileByFileId(productFileId, fileInfo, downloadFileInfo =>
                 {
                     layoutControlItem8.Visibility = LayoutVisibility.Never;
                     if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;

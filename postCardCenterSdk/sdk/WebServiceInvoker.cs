@@ -21,20 +21,23 @@ using Spring.Rest.Client;
 
 namespace postCardCenterSdk.sdk
 {
-    public class WebServiceInvoker
+    public class WebServiceInvoker : BaseApi
     {
-        /// <summary>
-        ///     请求失败
-        /// </summary>
-        /// <param name="message">失败返回的消息</param>
-        public delegate void Failure(string message);
+        private static WebServiceInvoker _webServiceInvoker;
+        private static WebServiceInvoker _fileServiceInvoker;
 
-        /// <summary>
-        ///     请求成功
-        /// </summary>
-        /// <typeparam name="T">成功返回的结果类型</typeparam>
-        /// <param name="backStyleInfos">成功返回的结果</param>
-        public delegate void Success<in T>(T backStyleInfos);
+        public static WebServiceInvoker GetInstance()
+        {
+            return _webServiceInvoker ?? (_webServiceInvoker = new WebServiceInvoker("http://localhost:8083"));
+        }
+
+        public static WebServiceInvoker GetFileServerInstance()
+        {
+            return _fileServiceInvoker ?? (_fileServiceInvoker = new WebServiceInvoker("http://localhost:8089"));
+        }
+        public WebServiceInvoker(string baseUrL) : base(baseUrL)
+        {
+        }
 
         /// <summary>
         ///     请求成功
@@ -50,22 +53,9 @@ namespace postCardCenterSdk.sdk
         /// <param name="orderSubmit">要提交的订单集合</param>
         /// <param name="success">成功返回的结果</param>
         /// <param name="failure">失败处理逻辑</param>
-        public static void SubmitOrderList(OrderSubmitRequest orderSubmit, Success<string> success, Failure failure = null)
+        public void SubmitOrderList(OrderSubmitRequest orderSubmit, Success<string> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
-            restTemplate.PostForObjectAsync<BodyResponse<object>>(Resources.postCardSubmitUrl, orderSubmit, res =>
-            {
-                if (res.Error != null)
-                {
-                    failure?.Invoke(res.Error.Message);
-                    return;
-                }
-                if (res.Response.Code > 0)
-                    success?.Invoke(res.Response.Message);
-                else
-                    failure?.Invoke(res.Response.Message);
-            });
+            PostForObjectAsync(Resources.postCardSubmitUrl, orderSubmit, success, failure);
         }
 
         /// <summary>
@@ -73,24 +63,9 @@ namespace postCardCenterSdk.sdk
         /// </summary>
         /// <param name="success"></param>
         /// <param name="failure"></param>
-        public static void GetBackStyleTemplateList(Success<List<BackStyleResponse>> success, Failure failure = null)
+        public void GetBackStyleTemplateList(Success<List<BackStyleResponse>> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
-            restTemplate.GetForObjectAsync<BodyResponse<Page<BackStyleResponse>>>(Resources.backStyleListUrl, response =>
-            {
-                if (response.Error != null)
-                {
-                    failure?.Invoke(response.Error.Message);
-                }
-                else
-                {
-                    if (response.Response.Code > 0)
-                        success?.Invoke(response.Response.Data.Detail);
-                    else
-                        failure?.Invoke(response.Response.Message);
-                }
-            });
+            GetForObjectAsync(Resources.backStyleListUrl, null, success, failure);
         }
 
         /// <summary>
@@ -99,44 +74,21 @@ namespace postCardCenterSdk.sdk
         /// <param name="category">尺寸所属分类</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public static void GetSizeInfoFromServer(string category, Success<List<PostCardSizeResponse>> success, Failure failure = null)
+        public void GetSizeInfoFromServer(string category, Success<List<PostCardSizeResponse>> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
-            restTemplate.GetForObjectAsync<BodyResponse<Page<PostCardSizeResponse>>>(Resources.getAllProductSizeUrl, response =>
-            {
-                if (response.Error != null)
-                {
-                    failure?.Invoke(response.Error.Message);
-                }
-                else
-                {
-                    if (response.Response.Code > 0)
-                        success?.Invoke(response.Response.Data.Detail);
-                    else
-                        failure?.Invoke(response.Response.Message);
-                }
-            }, category);
+            GetForObjectAsync<Page<PostCardSizeResponse>>(Resources.getAllProductSizeUrl, null, result => { success(result.Detail); }, failure);
         }
 
-        public static void InsertProductSizeToServer(string category, SizeRequest sizeRequest, Success<PostCardSizeResponse> success, Failure failure = null)
+        /// <summary>
+        /// 向服务器插入成品尺寸信息
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="sizeRequest"></param>
+        /// <param name="success"></param>
+        /// <param name="failure"></param>
+        public void InsertProductSizeToServer(string category, SizeRequest sizeRequest, Success<PostCardSizeResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
-            restTemplate.PostForObjectAsync<BodyResponse<PostCardSizeResponse>>(Resources.insertSizeUrl, sizeRequest, response =>
-            {
-                if (response.Error != null)
-                {
-                    failure?.Invoke(response.Error.Message);
-                }
-                else
-                {
-                    if (response.Response.Code > 0)
-                        success?.Invoke(response.Response.Data);
-                    else
-                        failure?.Invoke(response.Response.Message);
-                }
-            }, category);
+            PostForObjectAsync(Resources.insertSizeUrl, sizeRequest, success, failure);
         }
 
         /// <summary>
@@ -144,7 +96,7 @@ namespace postCardCenterSdk.sdk
         /// </summary>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public static void GetFrontStyleTemplateList(Success<List<FrontStyleResponse>> success, Failure failure = null)
+        public void GetFrontStyleTemplateList(Success<List<FrontStyleResponse>> success, Failure failure = null)
         {
             var a = new List<FrontStyleResponse>
             {
@@ -163,17 +115,17 @@ namespace postCardCenterSdk.sdk
         /// <param name="success">下载成功响应结果</param>
         /// <param name="process">进度条</param>
         /// <param name="failure">下载失败响应信息</param>
-        public static void DownLoadFile(string url, FileInfo fileInfo, Success<FileInfo> success, Success<int> process, Failure failure = null)
+        public void DownLoadFile(string url, FileInfo fileInfo, Success<FileInfo> success, Success<int> process, Failure failure = null)
         {
             if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
                 fileInfo.Directory.Create();
-            ;
             if (fileInfo.Exists)
             {
                 Console.WriteLine(@"文件本地已经存在");
                 success?.Invoke(fileInfo);
                 return;
             }
+
             var webClient = new WebClient();
             webClient.Headers.Add("token", Token);
             //下载完成
@@ -184,10 +136,29 @@ namespace postCardCenterSdk.sdk
                 else
                     success?.Invoke(fileInfo);
             };
+
             // 进度条
             webClient.DownloadProgressChanged += (sender, e) => { process?.Invoke(e.ProgressPercentage); };
             // 异步下载文件
             webClient.DownloadFileAsync(new Uri(url), fileInfo.FullName, fileInfo.Name);
+        }
+
+        public void DownLoadBytesAsync(string url, Success<byte[]> success, Success<int> process, Failure failure = null)
+        {
+            var webClient = new WebClient();
+            webClient.Headers.Add("token", Token);
+            //下载完成
+            webClient.DownloadDataCompleted += (sender, e) =>
+            {
+                if (e.Error != null)
+                    failure?.Invoke(e.Error.Message);
+                else
+                    success?.Invoke(e.Result);
+            };
+            // 进度条
+            webClient.DownloadProgressChanged += (sender, e) => { process?.Invoke(e.ProgressPercentage); };
+            // 异步下载文件
+            webClient.DownloadDataAsync(new Uri(url));
         }
 
         /// <summary>
@@ -198,7 +169,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="success">成功响应结果</param>
         /// <param name="process">进度条</param>
         /// <param name="failure">失败响应结果</param>
-        public static void DownLoadFileByFileId(string file, DirectoryInfo path, Success<FileInfo> success, Success<int> process = null, Failure failure = null)
+        public void DownLoadFileByFileId(string file, DirectoryInfo path, Success<FileInfo> success, Success<int> process = null, Failure failure = null)
         {
             DownLoadFileByFileId(file, new FileInfo(path.FullName + "/" + file), success, process, failure);
         }
@@ -211,48 +182,10 @@ namespace postCardCenterSdk.sdk
         /// <param name="success">成功响应结果</param>
         /// <param name="process">进度条</param>
         /// <param name="failure">失败响应结果</param>
-        public static void DownLoadFileByFileId(string fileId, FileInfo fileInfo, Success<FileInfo> success, Success<int> process = null, Failure failure = null)
+        public void DownLoadFileByFileId(string fileId, FileInfo fileInfo, Success<FileInfo> success, Success<int> process = null, Failure failure = null)
         {
             DownLoadFile(Resources.fileDownloadUrl + "/" + fileId, fileInfo, success, process, failure);
         }
-
-        /// <summary>
-        ///     询问服务器，判断文件是否为图片文件
-        /// </summary>
-        /// <param name="fileId"></param>
-        /// <returns></returns>
-        public static bool IsImageFile(string fileId)
-        {
-            var restTemplate = PrepareRestTemplate();
-            var headForHeaders = restTemplate.HeadForHeaders(Resources.fileInfoUrl + "/" + fileId);
-            var singleValue = headForHeaders.GetSingleValue("isImage");
-            return !string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE");
-        }
-
-        /// <summary>
-        ///     询问服务器，文件是否存在
-        /// </summary>
-        /// <param name="fileId">要询问的文件信息</param>
-        /// <param name="success">成功回调函数</param>
-        /// <param name="failure">失败回调函数</param>
-        /// <returns>文件是否已经存在</returns>
-        public static void IsFileExistInServer(string fileId, Success<bool> success, Failure failure = null)
-        {
-            var restTemplate = PrepareRestTemplate();
-            restTemplate.HeadForHeadersAsync(Resources.fileInfoUrl + "/" + fileId, resp =>
-            {
-                if (resp.Error != null)
-                {
-                    failure?.Invoke(resp.Error.Message);
-                }
-                else
-                {
-                    var singleValue = resp.Response.GetSingleValue("isExist");
-                    success?.Invoke(!string.IsNullOrWhiteSpace(singleValue) && singleValue.ToUpper().Equals("TRUE"));
-                }
-            });
-        }
-
 
         /// <summary>
         ///     根据文件ID生成文件缩略图
@@ -261,27 +194,13 @@ namespace postCardCenterSdk.sdk
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
         /// <returns>文件是否已经存在</returns>
-        public static void GetThumbnailFileId(string fileId, Success<FileUploadResponse> success, Failure failure = null)
+        public void GetThumbnailFileId(string fileId, Success<FileUploadResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"fileId", fileId}
             };
-            restTemplate.GetForObjectAsync<BodyResponse<FileUploadResponse>>(Resources.getFileThumbnailUrl, nameValueCollection, resp =>
-            {
-                if (resp.Error != null)
-                {
-                    failure?.Invoke(resp.Error.Message);
-                }
-                else
-                {
-                    if (resp.Response.Code < 0)
-                        failure?.Invoke(resp.Response.Message);
-                    else
-                        success?.Invoke(resp.Response.Data);
-                }
-            });
+            GetForObjectAsync<FileUploadResponse>(Resources.getFileThumbnailUrl, nameValueCollection, result => { success?.Invoke(result); }, failure);
         }
 
 
@@ -297,9 +216,8 @@ namespace postCardCenterSdk.sdk
         /// <param name="cropLeft"></param>
         /// <param name="cropTop"></param>
         /// <param name="cropWidth"></param>
-        public static void Upload(FileInfo file, string category,  double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, Success<FileUploadResponse> success=null, Failure failure=null)
+        public void Upload(FileInfo file, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, Success<FileUploadResponse> success = null, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
@@ -309,21 +227,7 @@ namespace postCardCenterSdk.sdk
             dictionary.Add("cropWidth", cropWidth);
             dictionary.Add("cropHeight", cropHeight);
             dictionary.Add("category", Encoding.UTF8.GetBytes(category));
-            restTemplate.PostForObjectAsync<BodyResponse<FileUploadResponse>>(Resources.fileUploadUrl, dictionary,
-                resp =>
-                {
-                    if (resp.Error != null)
-                    {
-                        failure?.Invoke(resp.Error.Message);
-                        return;
-                    }
-                    if (resp.Response.Code > 0)
-                    {
-                        success?.Invoke(resp.Response.Data);
-                        return;
-                    }
-                    failure?.Invoke(resp.Response.Message);
-                });
+            PostForObjectAsync<FileUploadResponse>(Resources.fileUploadUrl, dictionary, result => { success?.Invoke(result); }, failure);
         }
 
 
@@ -337,22 +241,20 @@ namespace postCardCenterSdk.sdk
         /// <param name="cropTop"></param>
         /// <param name="cropWidth"></param>
         /// <param name="cropHeight"></param>
-        public static FileUploadResponse Upload(FileInfo file, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1)
+        public FileUploadResponse Upload(FileInfo file, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1)
         {
-            var restTemplate = PrepareRestTemplate();
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
-            dictionary.Add("rotation", rotation.ToString());
-            dictionary.Add("cropLeft", cropLeft.ToString());
-            dictionary.Add("cropTop", cropTop.ToString());
-            dictionary.Add("cropWidth", cropWidth.ToString());
-            dictionary.Add("cropHeight", cropHeight.ToString());
+            dictionary.Add("rotation", rotation);
+            dictionary.Add("cropLeft", cropLeft);
+            dictionary.Add("cropTop", cropTop);
+            dictionary.Add("cropWidth", cropWidth);
+            dictionary.Add("cropHeight", cropHeight);
             dictionary.Add("category", Encoding.UTF8.GetBytes(category));
-            var postForObject = restTemplate.PostForObject<BodyResponse<FileUploadResponse>>(Resources.fileUploadUrl, dictionary);
-            if (postForObject.Code > 0)
-                return postForObject.Data;
-            throw new Exception(postForObject.Message);
+            FileUploadResponse tmpResult = null;
+            PostForObject<FileUploadResponse>(Resources.fileUploadUrl, dictionary, result => { tmpResult = result; }, message => throw new Exception(message));
+            return tmpResult;
         }
 
 
@@ -362,29 +264,13 @@ namespace postCardCenterSdk.sdk
         /// <param name="orderId">订单ID</param>
         /// <param name="success">获取成功的响应结果</param>
         /// <param name="failure">获取失败的响应结果</param>
-        public static void GetAllEnvelopeByOrderId(string orderId, Success<List<EnvelopeResponse>> success, Failure failure = null)
+        public void GetAllEnvelopeByOrderId(string orderId, Success<List<EnvelopeResponse>> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId}
             };
-
-            restTemplate.GetForObjectAsync<BodyResponse<Page<EnvelopeResponse>>>(Resources.getAllEnvelopeByOrderIdUrl, nameValueCollection,
-                resp =>
-                {
-                    if (resp.Error != null)
-                    {
-                        failure?.Invoke(resp.Error.Message);
-                    }
-                    else
-                    {
-                        if (resp.Response.Code > 0)
-                            success?.Invoke(resp.Response.Data.Detail);
-                        else
-                            failure?.Invoke(resp.Response.Message);
-                    }
-                });
+            GetForObjectAsync<Page<EnvelopeResponse>>(Resources.getAllEnvelopeByOrderIdUrl, nameValueCollection, result => { success?.Invoke(result.Detail); }, failure);
         }
 
         /// <summary>
@@ -393,31 +279,13 @@ namespace postCardCenterSdk.sdk
         /// <param name="envelopeId">明信片集合ID</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public static void GetPostCardByEnvelopeId(string envelopeId, Success<List<PostCardResponse>> success, Failure failure = null)
+        public void GetPostCardByEnvelopeId(string envelopeId, Success<List<PostCardResponse>> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"envelopeId", envelopeId}
             };
-
-            restTemplate.GetForObjectAsync<BodyResponse<Page<PostCardResponse>>>(
-                Resources.getPostCardByEnvelopeIdUrl, nameValueCollection,
-                resp =>
-                {
-                    if (resp.Error != null)
-                    {
-                        failure?.Invoke(resp.Error.Message);
-                        return;
-                    }
-                    if (resp.Response.Code < 0)
-                    {
-                        failure?.Invoke(resp.Response.Message);
-                        return;
-                    }
-                    success?.Invoke(resp.Response.Data.Detail);
-                });
+            GetForObjectAsync<Page<PostCardResponse>>(Resources.getPostCardByEnvelopeIdUrl, nameValueCollection, resp => { success?.Invoke(resp.Detail); }, failure);
         }
 
         /// <summary>
@@ -426,54 +294,24 @@ namespace postCardCenterSdk.sdk
         /// <param name="envelopeId">明信片集合ID</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public static void GetEnvelopeInfoById(string envelopeId, Success<EnvelopeResponse> success, Failure failure = null)
+        public void GetEnvelopeInfoById(string envelopeId, Success<EnvelopeResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"envelopeId", envelopeId}
             };
-            restTemplate.GetForObjectAsync<BodyResponse<EnvelopeResponse>>(
-                Resources.envelopeInfoUrl, nameValueCollection, headCompleted =>
-                {
-                    if (headCompleted.Error != null)
-                    {
-                        failure?.Invoke(headCompleted.Error.Message);
-                    }
-                    else
-                    {
-                        if (headCompleted.Response.Code < 0)
-                        {
-                            failure?.Invoke(headCompleted.Response.Message);
-                            return;
-                        }
-                        success?.Invoke(headCompleted.Response.Data);
-                    }
-                });
+            GetForObjectAsync<EnvelopeResponse>(Resources.envelopeInfoUrl, nameValueCollection, headCompleted => { success?.Invoke(headCompleted); }, failure);
         }
 
-        public static void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
+        public void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"startDate", startDate.ToString("yyyy-MM-dd HH:mm:ss")},
                 {"endDate", endDate.ToString("yyyy-MM-dd HH:mm:ss")}
             };
 
-            restTemplate.PostForObjectAsync<BodyResponse<Page<OrderResponse>>>(Resources.getAllOrderUrl, nameValueCollection, respon =>
-            {
-                if (respon.Error != null)
-                {
-                    failure?.Invoke(respon.Error.Message);
-                    return;
-                }
-                if (respon.Response.Code > 0)
-                    success?.Invoke(respon.Response.Data.Detail);
-                else
-                    failure?.Invoke(respon.Response.Message);
-            });
+            PostForObjectAsync<Page<OrderResponse>>(Resources.getAllOrderUrl, nameValueCollection, respon => { success?.Invoke(respon.Detail); }, failure);
         }
 
         /// <summary>
@@ -483,22 +321,15 @@ namespace postCardCenterSdk.sdk
         /// <param name="orderStatus">订单状态</param>
         /// <param name="success">成功回调</param>
         /// <param name="failure">失败回调</param>
-        public static void ChangeOrderStatus(string orderId, string orderStatus, Success<OrderResponse> success, Failure failure = null)
+        public void ChangeOrderStatus(string orderId, string orderStatus, Success<OrderResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId},
                 {"orderStatus", orderStatus}
             };
 
-            restTemplate.PostForObjectAsync<BodyResponse<OrderResponse>>(Resources.changeOrderStatusUrl, nameValueCollection, response =>
-            {
-                if (response.Error != null)
-                    failure?.Invoke(response.Error.Message);
-                else
-                    success?.Invoke(response.Response.Data);
-            });
+            PostForObjectAsync<OrderResponse>(Resources.changeOrderStatusUrl, nameValueCollection, response => { success?.Invoke(response); }, failure);
         }
 
         /// <summary>
@@ -507,53 +338,27 @@ namespace postCardCenterSdk.sdk
         /// <param name="orderId">订单ID</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public static void ChangeOrderProcessor(string orderId, Success<OrderResponse> success, Failure failure = null)
+        public void ChangeOrderProcessor(string orderId, Success<OrderResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId}
             };
-            restTemplate.PostForObjectAsync<BodyResponse<OrderResponse>>(Resources.changeOrderProcessorUrl, nameValueCollection, response =>
-            {
-                if (response.Error != null)
-                {
-                    failure?.Invoke(response.Error.Message);
-                    return;
-                }
-                if (response.Response.Code > 0)
-                {
-                    success?.Invoke(response.Response.Data);
-                    return;
-                }
-                failure?.Invoke(response.Response.Message);
-            });
+            PostForObjectAsync<OrderResponse>(Resources.changeOrderProcessorUrl, nameValueCollection, response => { success?.Invoke(response); }, failure);
         }
 
-        public static void GetOrderInfo(string orderId, Success<OrderResponse> success, Failure failure = null)
+        public void GetOrderInfo(string orderId, Success<OrderResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"orderId", orderId}
             };
-
-            restTemplate.GetForObjectAsync<BodyResponse<OrderResponse>>(Resources.getOrderInfoUrl, nameValueCollection, respon =>
-            {
-                if (respon.Error != null)
-                    failure?.Invoke(respon.Error.Message);
-                else if (respon.Response.Code > 0)
-                    success?.Invoke(respon.Response.Data);
-                else
-                    failure?.Invoke(respon.Response.Message);
-            });
+            GetForObjectAsync<OrderResponse>(Resources.getOrderInfoUrl, nameValueCollection, respon => { success?.Invoke(respon); }, failure);
         }
 
 
-        public static void UserLogin(string userName, string password, Success<LoginResponse> success, Failure failure = null)
+        public void UserLogin(string userName, string password, Success<LoginResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
             var nameValueCollection = new NameValueCollection
             {
                 {"userName", userName},
@@ -564,63 +369,39 @@ namespace postCardCenterSdk.sdk
 
             var headers = new HttpEntity(nameValueCollection, httpHeaders);
 
-
-            restTemplate.PostForObjectAsync<BodyResponse<LoginResponse>>(Resources.loginUrl, headers, resp =>
-            {
-                if (resp.Error != null)
-                {
-                    failure?.Invoke(resp.Error.Message);
-                    return;
-                }
-                if (resp.Response.Code > 0)
-                {
-                    Token = resp.Response.Data.Token;
-                    success?.Invoke(resp.Response.Data);
-                    return;
-                }
-                failure?.Invoke(resp.Response.Message);
-            });
+            PostForObjectAsync<LoginResponse>(Resources.loginUrl, headers, resp => { success?.Invoke(resp); }, failure);
         }
 
-
-        public static void SubmitPostCardCropInfo(CropSubmitRequest request, Success<PostCardResponse> success, Failure failure = null)
+        /// <summary>
+        /// 提交裁切结果
+        /// </summary>
+        /// <param name="postCardId"></param>
+        /// <param name="cropLeft"></param>
+        /// <param name="cropTop"></param>
+        /// <param name="cropWidth"></param>
+        /// <param name="cropHeight"></param>
+        /// <param name="rotation"></param>
+        /// <param name="success"></param>
+        /// <param name="failure"></param>
+        public void SubmitPostCardCropInfo(string postCardId, double cropLeft, double cropTop, double cropWidth, double cropHeight, int rotation, Success<PostCardResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            restTemplate.PostForObjectAsync<BodyResponse<PostCardResponse>>(Resources.cropInfoSubmitUrl, request, res =>
+            var request = new CropSubmitRequest
             {
-                if (res.Error != null)
-                {
-                    failure?.Invoke(res.Error.Message);
-                    return;
-                }
-                if (res.Response.Code > 0)
-                    success?.Invoke(res.Response.Data);
-                else
-                    failure?.Invoke(res.Response.Message);
-            });
+                CropHeight = cropHeight,
+                CropTop = cropTop,
+                CropLeft = cropLeft,
+                CropWidth = cropWidth,
+                Rotation = rotation,
+                PostCardId = postCardId
+            };
+
+            PostForObjectAsync<PostCardResponse>(Resources.cropInfoSubmitUrl, request, resp => { success?.Invoke(resp); }, failure);
         }
 
-        public static void ChangePostCardFrontStyle(PostCardInfoPatchRequest frontStyle, Success<PostCardResponse> success, Failure failure = null)
+        public void ChangePostCardFrontStyle(PostCardInfoPatchRequest frontStyle, Success<PostCardResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
             var httpEntity = new HttpEntity(frontStyle);
-
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-
-            restTemplate.ExchangeAsync<BodyResponse<PostCardResponse>>(Resources.patchPostCardInfoUrl, new HttpMethod("PATCH"), httpEntity, res =>
-            {
-                if (res.Error != null)
-                {
-                    failure?.Invoke(res.Error.Message);
-                    return;
-                }
-                if (res.Response.Body.Code > 0)
-                    success?.Invoke(res.Response.Body.Data);
-                else
-                    failure?.Invoke(res.Response.Body.Message);
-            });
+            ExchangeAsync<PostCardResponse>(Resources.patchPostCardInfoUrl, new HttpMethod("PATCH"), httpEntity, res => { success?.Invoke(res); }, failure);
         }
 
         /// <summary>
@@ -629,39 +410,15 @@ namespace postCardCenterSdk.sdk
         /// <param name="postCardId">明信片ID</param>
         /// <param name="success">成功返回信息</param>
         /// <param name="failure">失败返回信息</param>
-        public static void GetPostCardInfo(string postCardId, Success<PostCardResponse> success, Failure failure = null)
+        public void GetPostCardInfo(string postCardId, Success<PostCardResponse> success, Failure failure = null)
         {
-            var restTemplate = PrepareRestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-
-
             var nameValueCollection = new Dictionary<string, object>
             {
                 {"postCardId", postCardId}
             };
-
-
-            restTemplate.GetForObjectAsync<BodyResponse<PostCardResponse>>(Resources.getPostCardInfoUrl, nameValueCollection, res =>
-            {
-                if (res.Error != null)
-                {
-                    failure?.Invoke(res.Error.Message);
-                    return;
-                }
-                if (res.Response.Code > 0)
-                    success?.Invoke(res.Response.Data);
-                else
-                    failure?.Invoke(res.Response.Message);
-            });
+            GetForObjectAsync<PostCardResponse>(Resources.getPostCardInfoUrl, nameValueCollection, res => { success?.Invoke(res); }, failure);
         }
+
         //frontStyle
-
-        public static RestTemplate PrepareRestTemplate()
-        {
-            var restTemplate = new RestTemplate();
-            restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
-            restTemplate.RequestInterceptors.Add(new PerfRequestSyncInterceptor());
-            return restTemplate;
-        }
     }
 }

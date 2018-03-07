@@ -928,7 +928,6 @@
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(142, 91);
             this.layoutControlGroup5.Text = "排列设置";
-            this.layoutControlGroup5.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.layoutControlGroup5_CustomButtonClick);
             // 
             // layoutControlItem6
             // 

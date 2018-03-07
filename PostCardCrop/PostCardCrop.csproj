@@ -11,6 +11,7 @@
     <AssemblyName>PostCardCrop</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -116,12 +117,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RibbonForm1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RibbonForm1.Designer.cs">
-      <DependentUpon>RibbonForm1.cs</DependentUpon>
-    </Compile>
     <Compile Include="translator\request\CropInfoTranslator.cs" />
     <Compile Include="translator\request\OrderHelper.cs" />
     <Compile Include="translator\response\EnvelopeHelper.cs" />
@@ -149,11 +144,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RibbonForm1.resx">
-      <DependentUpon>RibbonForm1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\pictureCroper\pictureCroper.csproj">
+      <Project>{89667af6-aebb-4ff8-b9e2-f4964353eefd}</Project>
+      <Name>pictureCroper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
       <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
       <Name>postCardCenterSdk</Name>
@@ -169,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\PostCardCrop.model.PostCardInfo.datasource" />
     <None Include="Resources\A.png" />
   </ItemGroup>
   <ItemGroup>

@@ -30,8 +30,6 @@ namespace OrderBatchCreate.model
             Parent = envelopeInfo ?? throw new ArgumentNullException(nameof(envelopeInfo));
         }
 
-        public int RetruTime { get; set; } = 0;
-
         public override BatchStatus Status { get; set; } = BatchStatus.PostCardBeforeUpload;
 
         public override PostSize ProductSize => Parent.ProductSize;

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<objects xmlns="http://www.springframework.net"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
+  <!--  ======================================================================================================-->
+  <!--  服务restTemplate-->
+  <!--  ======================================================================================================-->
+  <object name="serviceRestTemplate" type="Spring.Rest.Client.RestTemplate,Spring.Rest">
+    <constructor-arg value="http://127.0.0.1:8083" />
+    <property name="MessageConverters">
+      <list element-type="Spring.Http.Converters.IHttpMessageConverter,Spring.Rest">
+        <ref object="jsonConverter" />
+      </list>
+    </property>
+    <property name="RequestInterceptors">
+      <list element-type="Spring.Http.Client.Interceptor.IClientHttpRequestInterceptor,Spring.Rest">
+        <ref object="tokenInterceptor" />
+      </list>
+    </property>
+  </object>
+
+  <!--  ======================================================================================================-->
+  <!--  文件restTemplate-->
+  <!--  ======================================================================================================-->
+  <object name="fileRestTemplate" type="Spring.Rest.Client.RestTemplate,Spring.Rest">
+    <constructor-arg value="http://127.0.0.1:8089" />
+    <property name="MessageConverters">
+      <list element-type="Spring.Http.Converters.IHttpMessageConverter,Spring.Rest">
+        <ref object="formConverter" />
+        <ref object="jsonConverter" />
+      </list>
+    </property>
+    <property name="RequestInterceptors">
+      <list element-type="Spring.Http.Client.Interceptor.IClientHttpRequestInterceptor,Spring.Rest">
+        <ref object="tokenInterceptor" />
+      </list>
+    </property>
+  </object>
+
+  <!--  ======================================================================================================-->
+  <!--  JSON转化器-->
+  <!--  ======================================================================================================-->
+  <object name="jsonConverter" type="Spring.Http.Converters.Json.NJsonHttpMessageConverter,Spring.Http.Converters.NJson" />
+
+  <!--  ======================================================================================================-->
+  <!--  表单转化器-->
+  <!--  ======================================================================================================-->
+  <object name="formConverter" type="Spring.Http.Converters.FormHttpMessageConverter,Spring.Rest" />
+
+
+
+  
+
+  <!--  ======================================================================================================-->
+  <!--  TOKEN注入拦截器-->
+  <!--  ======================================================================================================-->
+  <object name="tokenInterceptor" type="postCardCenterSdk.interceptor.PerfRequestSyncInterceptor,postCardCenterSdk" />
+
+</objects>

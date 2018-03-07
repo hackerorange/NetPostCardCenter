@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using postCardCenterSdk.sdk;
+using postCardCenterSdk;
 using soho.model;
+using WebServiceInvoker = postCardCenterSdk.sdk.WebServiceInvoker;
 
 namespace soho.helper
 {
     public static class FileHelper
     {
+        public static WebServiceInvoker WebServiceInvoker = new WebServiceInvoker("http://localhost:8089");
+
         /// <summary>
         ///     向服务器上传文件
         /// </summary>
@@ -22,8 +25,8 @@ namespace soho.helper
         /// <param name="cropTop"></param>
         /// <param name="cropWidth"></param>
         /// <returns>服务器返回的文件ID</returns>
-        public static void Upload(this FileInfo file, bool synchronize, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, WebServiceInvoker.Success<ImageFileUploadModel> success = null,
-            WebServiceInvoker.Failure failure = null)
+        public static void Upload(this FileInfo file, bool synchronize, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, Success<ImageFileUploadModel> success = null,
+            Failure failure = null)
         {
             if (synchronize)
                 try

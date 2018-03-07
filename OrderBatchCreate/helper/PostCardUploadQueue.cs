@@ -13,6 +13,7 @@ namespace OrderBatchCreate.helper
         public PostCardInfo PostCardInfo { get; set; }
         public PostCardUploadHandler Success { get; set; }
         public PostCardUploadHandler Failure { get; set; }
+        public int RetryTime { get; set; } = 0;
     }
 
     public class PostCardUploadWorker
@@ -44,19 +45,34 @@ namespace OrderBatchCreate.helper
             _flag = false;
         }
 
-        public void Upload(PostCardInfo postCardInfo, PostCardUploadHandler success, PostCardUploadHandler failure = null)
+        public void Upload(PostCardInfo postCardInfo, PostCardUploadHandler success,
+            PostCardUploadHandler failure = null)
         {
-            lock (_contexts)
+            Upload(new PostCardUploadContext
             {
-                _contexts.Enqueue(new PostCardUploadContext
-                {
-                    PostCardInfo = postCardInfo,
-                    Success = success,
-                    Failure = failure
-                });
-            }
-            _taskSemaphore.Release(1);
+                PostCardInfo = postCardInfo,
+                Success = success,
+                Failure = failure
+            });
         }
+
+        private void Upload(PostCardUploadContext postCardUploadContext)
+        {
+            if (postCardUploadContext.RetryTime++ <= 3)
+            {
+                lock (_contexts)
+                {
+                    _contexts.Enqueue(postCardUploadContext);
+                }
+
+                _taskSemaphore.Release(1);
+            }
+            else
+            {
+                postCardUploadContext.Failure?.Invoke(postCardUploadContext.PostCardInfo);
+            }
+        }
+
 
         private void Consumer()
         {
@@ -68,22 +84,22 @@ namespace OrderBatchCreate.helper
                 {
                     postCardUploadContext = _contexts.Dequeue();
                 }
+
                 var tmpDirectoryInfo = postCardUploadContext.PostCardInfo.DirectoryInfo as FileInfo;
                 tmpDirectoryInfo.Upload(true, "明信片原始文件", success: resp =>
-                {
-                    var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
-                    tmpPostCardInfo.FileId = resp.FileId;
-                    tmpPostCardInfo.ThumbnailFileId = resp.ThumbnailFileId;
-                    tmpPostCardInfo.IsUpload = true;
-                    //判断图片是否是图片
-                    tmpPostCardInfo.IsImage = resp.ImageAvailable && !string.IsNullOrEmpty(resp.ThumbnailFileId);
-                    postCardUploadContext.Success?.Invoke(tmpPostCardInfo);
-                }, failure: message =>
-                {
-                    var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
-                    tmpPostCardInfo.IsUpload = false;
-                    postCardUploadContext.Failure?.Invoke(tmpPostCardInfo);
-                });
+                    {
+                        var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
+                        tmpPostCardInfo.FileId = resp.FileId;
+                        tmpPostCardInfo.ThumbnailFileId = resp.ThumbnailFileId;
+                        tmpPostCardInfo.IsUpload = true;
+                        //判断图片是否是图片
+                        tmpPostCardInfo.IsImage = resp.ImageAvailable && !string.IsNullOrEmpty(resp.ThumbnailFileId);
+                        tmpPostCardInfo.Status = tmpPostCardInfo.IsImage
+                            ? BatchStatus.PostCardUploadSuccess
+                            : BatchStatus.PostCardTypeError;
+                        postCardUploadContext.Success?.Invoke(tmpPostCardInfo);
+                    }, failure: message => Upload(postCardUploadContext)
+                );
             }
         }
     }

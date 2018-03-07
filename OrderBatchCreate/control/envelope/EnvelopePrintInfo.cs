@@ -53,10 +53,10 @@ namespace OrderBatchCreate.control.envelope
                     paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
                     paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
 
-//                    arrayRow.Properties.MinValue = 1;
-//                    arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
-//                    arrayColumn.Properties.MinValue = 1;
-//                    arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
+                    arrayRow.Properties.MinValue = 1;
+                    arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
+                    arrayColumn.Properties.MinValue = 1;
+                    arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
                 }
                 else
                 {
@@ -101,6 +101,8 @@ namespace OrderBatchCreate.control.envelope
                 Width = _envelopeInfo.PaperSize.Height,
                 Height = _envelopeInfo.PaperSize.Width
             };
+            //重置宽和高
+            _envelopeInfo.ResetRowAndColumn();
             paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
             paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
 
@@ -126,15 +128,9 @@ namespace OrderBatchCreate.control.envelope
             EnvelopeChanged?.Invoke(_envelopeInfo);
         }
 
-        private void layoutControlGroup5_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
+        private void LayoutControlGroup5_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
         {
-            //重新刷新一下尺寸；
-            _envelopeInfo.PaperSize = _envelopeInfo.PaperSize;
-
-//            arrayRow.Properties.MinValue = 1;
-//            arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
-//            arrayColumn.Properties.MinValue = 1;
-//            arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
+            _envelopeInfo.ResetRowAndColumn();
         }
     }
 }

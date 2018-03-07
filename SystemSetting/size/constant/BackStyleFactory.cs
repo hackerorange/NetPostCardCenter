@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
-using postCardCenterSdk.sdk;
+using postCardCenterSdk;
+using WebServiceInvoker = postCardCenterSdk.sdk.WebServiceInvoker;
 
 namespace SystemSetting.size.constant
 {
@@ -13,10 +14,10 @@ namespace SystemSetting.size.constant
     {
         public delegate void PostSizeGetSuccess(List<BackStyleInfo> sizeList);
 
-        public static void GetBackStyleFromServer(WebServiceInvoker.Success<List<BackStyleInfo>> success, WebServiceInvoker.Failure failure = null)
+        public static void GetBackStyleFromServer(Success<List<BackStyleInfo>> success, Failure failure = null)
         {
             //异步获取反面样式列表
-            WebServiceInvoker.GetBackStyleTemplateList(response =>
+            WebServiceInvoker.GetInstance().GetBackStyleTemplateList(response =>
             {
                 var productSizeList = new List<BackStyleInfo>();
 

@@ -118,66 +118,66 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="backStyleListUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/system/backStyle</value>
+    <value>/rest/system/backStyle</value>
     <comment>WW</comment>
   </data>
   <data name="changeOrderProcessorUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/order/changeProcessor</value>
+    <value>/rest/order/changeProcessor</value>
   </data>
   <data name="changeOrderStatusUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/order/changeStatus</value>
+    <value>/rest/order/changeStatus</value>
   </data>
   <data name="cropInfoSubmitUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/postCard/submitPostCardCropInfo</value>
+    <value>/rest/postCard/submitPostCardCropInfo</value>
   </data>
   <data name="envelopeInfoUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/envelope/info?envelopeId={envelopeId}</value>
+    <value>/rest/envelope/info?envelopeId={envelopeId}</value>
   </data>
   <data name="fileDownloadUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8089/file</value>
+    <value>/file</value>
     <comment>fileDownloadUrl</comment>
   </data>
   <data name="fileInfoUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8089/file</value>
+    <value>/file</value>
     <comment>fileInfoUrl</comment>
   </data>
   <data name="fileUploadUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8089/file/upload</value>
+    <value>/file/upload</value>
     <comment>fileUploadUrl</comment>
   </data>
   <data name="getAllEnvelopeByOrderIdUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/order/{orderId}</value>
+    <value>/rest/order/{orderId}</value>
   </data>
   <data name="getAllOrderUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/order/all</value>
+    <value>/rest/order/all</value>
   </data>
   <data name="getAllProductSizeUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/size/{category}</value>
+    <value>/rest/size/{category}</value>
   </data>
   <data name="getFileThumbnailUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8089/file/generateThumbnail/{fileId}</value>
+    <value>/file/generateThumbnail/{fileId}</value>
     <comment>fileThumbnailGenerateUrl</comment>
   </data>
   <data name="getOrderInfoUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/order/info?orderId={orderId}</value>
+    <value>/rest/order/info?orderId={orderId}</value>
   </data>
   <data name="getPostCardByEnvelopeIdUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/envelope/{envelopeId}</value>
+    <value>/rest/envelope/{envelopeId}</value>
   </data>
   <data name="getPostCardInfoUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/postCard/info/{postCardId}</value>
+    <value>/rest/postCard/info/{postCardId}</value>
   </data>
   <data name="insertSizeUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/size/{category}</value>
+    <value>/rest/size/{category}</value>
   </data>
   <data name="loginUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/security/login</value>
+    <value>/rest/security/login</value>
   </data>
   <data name="patchPostCardInfoUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/postCard/info</value>
+    <value>/rest/postCard/info</value>
   </data>
   <data name="postCardSubmitUrl" xml:space="preserve">
-    <value>http://192.168.1.136:8083/rest/order/submit</value>
+    <value>/rest/order/submit</value>
     <comment>orderSubmitUrl</comment>
   </data>
 </root>
