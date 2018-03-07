@@ -6,6 +6,7 @@ namespace pictureCroper.model
 {
     public class CropContext
     {
+
         private Image _imageClone;
         private CropInfo _cropInfo;
 
