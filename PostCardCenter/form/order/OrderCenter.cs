@@ -39,53 +39,43 @@ namespace PostCardCenter.form.order
 
         public void RefreshOrderList()
         {
+            simpleButton1.Enabled = false;
             WebServiceInvoker.GetInstance().GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
             {
                 var orderInfoList = new List<OrderInfo>();
                 orders.ForEach(orderResponse => { orderInfoList.Add(orderResponse.TranslateToOrderInfo()); });
                 orderDetailGridController.DataSource = orderInfoList;
                 orderDetailGridController.RefreshDataSource();
-            }, message => { XtraMessageBox.Show(message); });
+                simpleButton1.Enabled = true;
+            }, message =>
+            {
+                XtraMessageBox.Show(message);
+                simpleButton1.Enabled = true;
+            });
         }
 
 
         private void orderDetailGridController_DoubleClick(object sender, EventArgs e)
         {
-            if (gridView1.GetFocusedRow() is OrderInfo focusedRow)
-            {
-                if (string.IsNullOrEmpty(focusedRow.ProcessorName))
+            //如果当前选择
+            if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
+            WebServiceInvoker.GetInstance().ChangeOrderProcessor(orderInfo.Id, order =>
                 {
-                    if (XtraMessageBox.Show("当前订单没有处理者，是否由我来处理此订单？", "我来处理", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                        WebServiceInvoker.GetInstance().ChangeOrderProcessor(focusedRow.Id, order =>
-                            {
-                                if (order.ProcessorName != Security.AccountSessionInfo.RealName)
-                                {
-                                    XtraMessageBox.Show("很抱歉，你没有抢到此订单，此订单被[" + order.ProcessorName + "]抢到了！");
-                                    return;
-                                }
-                                focusedRow.ProcessorName = order.ProcessorName;
-                                var xtraForm1 = new PostCardCropForm(focusedRow.Id);
-                                xtraForm1.ShowDialog(this);
-                                if (xtraForm1.NeedRefresh)
-                                {
-                                    RefreshOrderList();
-                                }
-                            },
-                            message => { XtraMessageBox.Show(message); });
-                    else
-                        XtraMessageBox.Show("要想查看订单，必须处理此订单");
-                    return;
-                }
-                if (focusedRow.ProcessorName == Security.AccountSessionInfo.RealName)
-                {
-                    var xtraForm1 = new PostCardCropForm(focusedRow.Id);
-                    xtraForm1.Show();
-                }
-                else
-                {
-                    XtraMessageBox.Show("抱歉，您不是当前订单的负责人，当前订单的负责人为[" + focusedRow.ProcessorName + "]");
-                }
-            }
+                    if (order.ProcessorName != Security.AccountSessionInfo.RealName)
+                    {
+                        XtraMessageBox.Show("很抱歉，此订单[" + order.ProcessorName + "]已经开始处理！");
+                        return;
+                    }
+
+                    orderInfo.ProcessorName = order.ProcessorName;
+                    var xtraForm1 = new PostCardCropForm(orderInfo.Id);
+                    xtraForm1.ShowDialog(this);
+                    if (xtraForm1.NeedRefresh)
+                    {
+                        RefreshOrderList();
+                    }
+                },
+                message => { XtraMessageBox.Show(message); });
         }
 
         private void OrderCenter_Load(object sender, EventArgs e)
@@ -109,11 +99,10 @@ namespace PostCardCenter.form.order
 
         private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var a = sender as RadioGroup;
-            if (a == null) return;
+            if (!(sender is RadioGroup a)) return;
             var oo = a.Tag as IDictionary<string, TimeArea>;
             TimeArea timeArea = null;
-            if (oo != null) oo.TryGetValue(a.Text, out timeArea);
+            oo?.TryGetValue(a.Text, out timeArea);
             if (timeArea == null)
             {
                 dateEdit1.DateTime = DateTime.Now.Date;
@@ -123,43 +112,43 @@ namespace PostCardCenter.form.order
             }
             else
             {
-                dateEdit1.DateTime = timeArea.start;
+                dateEdit1.DateTime = timeArea.Start;
                 dateEdit1.Properties.ReadOnly = true;
-                dateEdit2.DateTime = timeArea.end;
+                dateEdit2.DateTime = timeArea.End;
                 dateEdit2.Properties.ReadOnly = true;
             }
+
             RefreshOrderList();
         }
 
         private void gridView1_FocusedRowChanged(object sender,
             FocusedRowChangedEventArgs e)
         {
-            var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
-            if (orderInfo != null)
+            if (gridView1.GetFocusedRow() is OrderInfo orderInfo)
                 barButtonItem4.Enabled = !"已完成".Equals(orderInfo.ProcessStatus);
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
-            if (orderInfo == null) return;
+            if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
             if (orderInfo.ProcessorName != Security.AccountSessionInfo.RealName)
             {
                 XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
             }
+
             WebServiceInvoker.GetInstance().ChangeOrderProcessor(orderInfo.Id, order => { RefreshOrderList(); }, message => { XtraMessageBox.Show(message); });
         }
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var orderInfo = gridView1.GetFocusedRow() as OrderInfo;
-            if (orderInfo == null) return;
+            if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
             if (orderInfo.ProcessorName != Security.AccountSessionInfo.RealName)
             {
                 XtraMessageBox.Show("只有订单的负责人才能修改订单状态，订单负责人为[" + orderInfo.ProcessorName + "]");
                 return;
             }
+
             if (XtraMessageBox.Show("是否真的将订单状态修改为已处理？", "订单状态修改", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 WebServiceInvoker.GetInstance().ChangeOrderStatus(orderInfo.Id, "4", re => { RefreshOrderList(); });
         }
@@ -184,12 +173,12 @@ namespace PostCardCenter.form.order
     {
         public TimeArea(DateTime startDate, DateTime endDate)
         {
-            start = startDate;
-            end = endDate;
+            Start = startDate;
+            End = endDate;
         }
 
-        public DateTime start { get; set; }
+        public DateTime Start { get; set; }
 
-        public DateTime end { get; set; }
+        public DateTime End { get; set; }
     }
 }

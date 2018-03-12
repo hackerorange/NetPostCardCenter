@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Text;
-using postCardCenterSdk.interceptor;
 using postCardCenterSdk.Properties;
 using postCardCenterSdk.request.order;
 using postCardCenterSdk.request.postCard;
@@ -16,25 +16,18 @@ using postCardCenterSdk.response.postCard;
 using postCardCenterSdk.response.security;
 using postCardCenterSdk.response.system;
 using Spring.Http;
-using Spring.Http.Converters.Json;
-using Spring.Rest.Client;
 
 namespace postCardCenterSdk.sdk
 {
     public class WebServiceInvoker : BaseApi
     {
         private static WebServiceInvoker _webServiceInvoker;
-        private static WebServiceInvoker _fileServiceInvoker;
 
         public static WebServiceInvoker GetInstance()
         {
-            return _webServiceInvoker ?? (_webServiceInvoker = new WebServiceInvoker("http://localhost:8083"));
+            return _webServiceInvoker ?? (_webServiceInvoker = new WebServiceInvoker("http://localhost"));
         }
-
-        public static WebServiceInvoker GetFileServerInstance()
-        {
-            return _fileServiceInvoker ?? (_fileServiceInvoker = new WebServiceInvoker("http://localhost:8089"));
-        }
+     
         public WebServiceInvoker(string baseUrL) : base(baseUrL)
         {
         }
@@ -145,7 +138,10 @@ namespace postCardCenterSdk.sdk
 
         public void DownLoadBytesAsync(string url, Success<byte[]> success, Success<int> process, Failure failure = null)
         {
-            var webClient = new WebClient();
+            var webClient = new WebClient
+            {
+                CachePolicy = new RequestCachePolicy(RequestCacheLevel.CacheIfAvailable)
+            };
             webClient.Headers.Add("token", Token);
             //下载完成
             webClient.DownloadDataCompleted += (sender, e) =>
@@ -155,6 +151,9 @@ namespace postCardCenterSdk.sdk
                 else
                     success?.Invoke(e.Result);
             };
+          
+
+
             // 进度条
             webClient.DownloadProgressChanged += (sender, e) => { process?.Invoke(e.ProgressPercentage); };
             // 异步下载文件

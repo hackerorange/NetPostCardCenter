@@ -242,9 +242,8 @@ namespace pictureCroper.control
         {
             //如果是预览模式，直接返回，不响应操作
             if (IsPreview) return;
-            if (CropContext.DisplayImage == null) return;
+            if (CropContext?.DisplayImage == null) return;
             CanvasResize(e.Location, 0.05, e.Delta, _scaleSlow, _allowOut, _allowIn);
-            pictureEdit1.Refresh();
         }
 
 
@@ -345,11 +344,9 @@ namespace pictureCroper.control
                 cropInfo.CropMove(newRectangle.Size);
                 CropContext.CropInfo = cropInfo;
             }
-
-            pictureEdit1.Refresh();
             CropInfoChanged?.Invoke(CropContext.CropInfo);
             LastPoint = mousePoint;
-
+            pictureEdit1.Refresh();
             #endregion
         }
 

@@ -269,7 +269,7 @@ namespace PostCardCrop.control
                             var directoryInfo = new DirectoryInfo(SystemConstants.tmpFilePath);
                             if (!directoryInfo.Exists)
                                 directoryInfo.Create();
-                            WebServiceInvoker.GetFileServerInstance().DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, success =>
+                            WebServiceInvoker.GetInstance().DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, success =>
                             {
                                 tmpPostCardInfo.FileInfo = success;
                                 try
@@ -288,7 +288,7 @@ namespace PostCardCrop.control
                         var directoryInfo = new DirectoryInfo(SystemConstants.tmpFilePath);
                         if (!directoryInfo.Exists)
                             directoryInfo.Create();
-                        WebServiceInvoker.GetFileServerInstance().DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, result =>
+                        WebServiceInvoker.GetInstance().DownLoadFileByFileId(tmpPostCardInfo.FileId, directoryInfo, result =>
                         {
                             tmpPostCardInfo.FileInfo = result;
                             Image = Image.FromFile(tmpPostCardInfo.FileInfo.FullName);

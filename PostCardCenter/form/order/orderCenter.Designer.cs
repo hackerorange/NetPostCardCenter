@@ -43,6 +43,7 @@
             this.imageCollection1 = new DevExpress.Utils.ImageCollection();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
@@ -63,7 +64,6 @@
             this.orderCreateDateColum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.orderProcessorName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.orderProcessStatus = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.orderPaperType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.orderUrgent = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -144,7 +144,7 @@
             this.navBarGroupControlContainer1.Appearance.Options.UseBackColor = true;
             this.navBarGroupControlContainer1.Controls.Add(this.layoutControl2);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(242, 200);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(242, 203);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // layoutControl2
@@ -157,7 +157,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(242, 200);
+            this.layoutControl2.Size = new System.Drawing.Size(242, 203);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -176,7 +176,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem("30天内", "30天内"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("全部", "全部"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("自定义", "自定义")});
-            this.radioGroup1.Size = new System.Drawing.Size(167, 102);
+            this.radioGroup1.Size = new System.Drawing.Size(167, 105);
             this.radioGroup1.StyleController = this.layoutControl2;
             this.radioGroup1.TabIndex = 7;
             this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged);
@@ -191,8 +191,9 @@
             this.barManager1.Images = this.imageCollection1;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItem1,
-            this.barButtonItem4});
-            this.barManager1.MaxItemId = 6;
+            this.barButtonItem4,
+            this.barButtonItem2});
+            this.barManager1.MaxItemId = 7;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemPictureEdit1});
@@ -237,7 +238,7 @@
             // 
             // barButtonItem1
             // 
-            this.barButtonItem1.Caption = "我来处理";
+            this.barButtonItem1.Caption = "处理订单";
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
@@ -250,6 +251,14 @@
             this.barButtonItem4.ImageOptions.DisabledImageIndex = 0;
             this.barButtonItem4.Name = "barButtonItem4";
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "下载成品";
+            this.barButtonItem2.Id = 6;
+            this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
+            this.barButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
+            this.barButtonItem2.Name = "barButtonItem2";
             // 
             // repositoryItemTextEdit1
             // 
@@ -298,7 +307,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(12, 166);
+            this.simpleButton1.Location = new System.Drawing.Point(12, 169);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(218, 22);
             this.simpleButton1.StyleController = this.layoutControl2;
@@ -317,7 +326,7 @@
             this.layoutControlItem6});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(242, 200);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(242, 203);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem3
@@ -341,7 +350,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 154);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 157);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(222, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -352,7 +361,7 @@
             this.layoutControlItem6.Control = this.radioGroup1;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(222, 106);
+            this.layoutControlItem6.Size = new System.Drawing.Size(222, 109);
             this.layoutControlItem6.Text = "日期选择";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -406,7 +415,6 @@
             this.orderCreateDateColum,
             this.orderProcessorName,
             this.orderProcessStatus,
-            this.orderPaperType,
             this.orderUrgent});
             this.gridView1.GridControl = this.orderDetailGridController;
             this.gridView1.IndicatorWidth = 40;
@@ -446,7 +454,7 @@
             this.orderCreateDateColum.OptionsColumn.AllowFocus = false;
             this.orderCreateDateColum.OptionsColumn.ReadOnly = true;
             this.orderCreateDateColum.Visible = true;
-            this.orderCreateDateColum.VisibleIndex = 2;
+            this.orderCreateDateColum.VisibleIndex = 1;
             this.orderCreateDateColum.Width = 150;
             // 
             // orderProcessorName
@@ -464,7 +472,7 @@
             this.orderProcessorName.OptionsColumn.AllowFocus = false;
             this.orderProcessorName.OptionsColumn.ReadOnly = true;
             this.orderProcessorName.Visible = true;
-            this.orderProcessorName.VisibleIndex = 4;
+            this.orderProcessorName.VisibleIndex = 3;
             this.orderProcessorName.Width = 100;
             // 
             // orderProcessStatus
@@ -482,23 +490,7 @@
             this.orderProcessStatus.OptionsColumn.AllowFocus = false;
             this.orderProcessStatus.OptionsColumn.ReadOnly = true;
             this.orderProcessStatus.Visible = true;
-            this.orderProcessStatus.VisibleIndex = 5;
-            // 
-            // orderPaperType
-            // 
-            this.orderPaperType.AppearanceHeader.Options.UseTextOptions = true;
-            this.orderPaperType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.orderPaperType.Caption = "纸张类型";
-            this.orderPaperType.FieldName = "PaperType";
-            this.orderPaperType.MaxWidth = 200;
-            this.orderPaperType.MinWidth = 100;
-            this.orderPaperType.Name = "orderPaperType";
-            this.orderPaperType.OptionsColumn.AllowEdit = false;
-            this.orderPaperType.OptionsColumn.AllowFocus = false;
-            this.orderPaperType.OptionsColumn.ReadOnly = true;
-            this.orderPaperType.Visible = true;
-            this.orderPaperType.VisibleIndex = 1;
-            this.orderPaperType.Width = 100;
+            this.orderProcessStatus.VisibleIndex = 4;
             // 
             // orderUrgent
             // 
@@ -513,7 +505,7 @@
             this.orderUrgent.OptionsColumn.AllowFocus = false;
             this.orderUrgent.OptionsColumn.ReadOnly = true;
             this.orderUrgent.Visible = true;
-            this.orderUrgent.VisibleIndex = 3;
+            this.orderUrgent.VisibleIndex = 2;
             this.orderUrgent.Width = 50;
             // 
             // layoutControlGroup1
@@ -553,6 +545,7 @@
             // 
             this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barButtonItem1, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barButtonItem2, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(((DevExpress.XtraBars.BarLinkUserDefines)((DevExpress.XtraBars.BarLinkUserDefines.Caption | DevExpress.XtraBars.BarLinkUserDefines.PaintStyle))), this.barButtonItem4, "打印完成", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.Standard)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
@@ -613,7 +606,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn orderProcessorName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn orderProcessStatus;
-        private DevExpress.XtraGrid.Columns.GridColumn orderPaperType;
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
@@ -644,5 +636,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }

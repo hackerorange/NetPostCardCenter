@@ -58,7 +58,7 @@ namespace PostCardCrop.control
                 if (File.Exists(saveFileDialog.FileName))
                     File.Delete(saveFileDialog.FileName);
                 var fileInfo = new FileInfo(saveFileDialog.FileName);
-                WebServiceInvoker.GetFileServerInstance().DownLoadFileByFileId(_postCardInfo.FileId, fileInfo, downloadFileInfo =>
+                WebServiceInvoker.GetInstance().DownLoadFileByFileId(_postCardInfo.FileId, fileInfo, downloadFileInfo =>
                 {
                     layoutControlItem4.Visibility = LayoutVisibility.Never;
                     if (XtraMessageBox.Show("文件下载完成，是否使用PhotoShop打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;

@@ -30,8 +30,11 @@ namespace PostCardCrop.form
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostCardCropForm));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.photocroper1 = new PhotoCropper.controller.Photocroper();
             this.progressBarControl1 = new DevExpress.XtraEditors.ProgressBarControl();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
@@ -43,14 +46,11 @@ namespace PostCardCrop.form
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.postCardControl = new DevExpress.XtraGrid.GridControl();
             this.PostCardView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.PostCardFileNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,26 +58,21 @@ namespace PostCardCrop.form
             this.envelopeListControl = new DevExpress.XtraGrid.GridControl();
             this.EnvelopeView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.EnvelopePaperNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pictureCropControl1 = new pictureCroper.control.PictureCropControl();
-            this.postCardInfoController1 = new PostCardCrop.control.PostCardInfoController();
-            this.envelopeInfoController1 = new PostCardCrop.control.EnvelopeInfoController();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup6 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::PostCardCrop.form.SubmitWaitForm), true, true);
             this.PostCardCropFormlayoutControl2ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -89,15 +84,13 @@ namespace PostCardCrop.form
             ((System.ComponentModel.ISupportInitialize)(this.envelopeListControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnvelopeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PostCardCropFormlayoutControl2ConvertedLayout)).BeginInit();
             this.PostCardCropFormlayoutControl2ConvertedLayout.SuspendLayout();
@@ -107,26 +100,34 @@ namespace PostCardCrop.form
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.elementHost1);
             this.layoutControl1.Controls.Add(this.progressBarControl1);
             this.layoutControl1.Controls.Add(this.postCardControl);
             this.layoutControl1.Controls.Add(this.envelopeListControl);
-            this.layoutControl1.Controls.Add(this.pictureCropControl1);
-            this.layoutControl1.Controls.Add(this.postCardInfoController1);
-            this.layoutControl1.Controls.Add(this.envelopeInfoController1);
             this.layoutControl1.Location = new System.Drawing.Point(12, 12);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(690, 306, 925, 400);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1253, 671);
+            this.layoutControl1.Size = new System.Drawing.Size(1253, 675);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // elementHost1
+            // 
+            this.elementHost1.Location = new System.Drawing.Point(296, 43);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(933, 608);
+            this.elementHost1.TabIndex = 33;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.elementHost1_ChildChanged);
+            this.elementHost1.Child = this.photocroper1;
+            // 
             // progressBarControl1
             // 
-            this.progressBarControl1.Location = new System.Drawing.Point(225, 337);
+            this.progressBarControl1.Location = new System.Drawing.Point(24, 633);
             this.progressBarControl1.MenuManager = this.ribbonControl1;
             this.progressBarControl1.Name = "progressBarControl1";
-            this.progressBarControl1.Size = new System.Drawing.Size(318, 16);
+            this.progressBarControl1.Size = new System.Drawing.Size(244, 18);
             this.progressBarControl1.StyleController = this.layoutControl1;
             this.progressBarControl1.TabIndex = 32;
             // 
@@ -144,7 +145,6 @@ namespace PostCardCrop.form
             this.barButtonItem8,
             this.barButtonItem9,
             this.barButtonItem10,
-            this.barButtonItem11,
             this.barToggleSwitchItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.MaxItemId = 20;
@@ -153,7 +153,7 @@ namespace PostCardCrop.form
             this.ribbonPage1});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(1277, 129);
+            this.ribbonControl1.Size = new System.Drawing.Size(1277, 125);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbonControl1.Click += new System.EventHandler(this.RibbonControl1_Click);
             // 
@@ -242,31 +242,20 @@ namespace PostCardCrop.form
             this.barButtonItem10.Tag = "D";
             this.barButtonItem10.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItem3_ItemClick);
             // 
-            // barButtonItem11
-            // 
-            this.barButtonItem11.Caption = "完成订单";
-            this.barButtonItem11.Id = 18;
-            this.barButtonItem11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.Image")));
-            this.barButtonItem11.Name = "barButtonItem11";
-            this.barButtonItem11.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItem11_ItemClick);
-            // 
             // barToggleSwitchItem1
             // 
             this.barToggleSwitchItem1.Caption = "预览";
             this.barToggleSwitchItem1.Id = 19;
             this.barToggleSwitchItem1.Name = "barToggleSwitchItem1";
             this.barToggleSwitchItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barToggleSwitchItem1.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.barToggleSwitchItem1_CheckedChanged);
+            this.barToggleSwitchItem1.CheckedChanged += new DevExpress.XtraBars.ItemClickEventHandler(this.BarToggleSwitchItem1_CheckedChanged);
             // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup3,
             this.ribbonPageGroup2,
-            this.ribbonPageGroup1,
-            this.ribbonPageGroup4,
-            this.ribbonPageGroup5});
+            this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "相关操作";
             // 
@@ -294,25 +283,13 @@ namespace PostCardCrop.form
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "相关操作";
             // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem11);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "订单操作";
-            // 
-            // ribbonPageGroup5
-            // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.barToggleSwitchItem1);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
-            this.ribbonPageGroup5.Text = "ribbonPageGroup5";
-            // 
             // postCardControl
             // 
-            this.postCardControl.Location = new System.Drawing.Point(225, 43);
+            this.postCardControl.Location = new System.Drawing.Point(24, 295);
             this.postCardControl.MainView = this.PostCardView;
             this.postCardControl.MenuManager = this.ribbonControl1;
             this.postCardControl.Name = "postCardControl";
-            this.postCardControl.Size = new System.Drawing.Size(318, 290);
+            this.postCardControl.Size = new System.Drawing.Size(244, 334);
             this.postCardControl.TabIndex = 31;
             this.postCardControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PostCardView});
@@ -332,18 +309,36 @@ namespace PostCardCrop.form
             this.PostCardFileNameColumn.Caption = "文件名称";
             this.PostCardFileNameColumn.FieldName = "FileName";
             this.PostCardFileNameColumn.Name = "PostCardFileNameColumn";
+            this.PostCardFileNameColumn.OptionsColumn.AllowEdit = false;
+            this.PostCardFileNameColumn.OptionsColumn.AllowFocus = false;
+            this.PostCardFileNameColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.PostCardFileNameColumn.OptionsColumn.AllowMove = false;
+            this.PostCardFileNameColumn.OptionsColumn.AllowShowHide = false;
+            this.PostCardFileNameColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
             this.PostCardFileNameColumn.Visible = true;
             this.PostCardFileNameColumn.VisibleIndex = 0;
             this.PostCardFileNameColumn.Width = 211;
             // 
             // PostCardStatusColumn
             // 
+            this.PostCardStatusColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.PostCardStatusColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.PostCardStatusColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.PostCardStatusColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.PostCardStatusColumn.Caption = "状态";
             this.PostCardStatusColumn.FieldName = "ProcessStatusText";
+            this.PostCardStatusColumn.MaxWidth = 80;
+            this.PostCardStatusColumn.MinWidth = 80;
             this.PostCardStatusColumn.Name = "PostCardStatusColumn";
+            this.PostCardStatusColumn.OptionsColumn.AllowEdit = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowFocus = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.PostCardStatusColumn.OptionsColumn.AllowMove = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowShowHide = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.PostCardStatusColumn.Visible = true;
             this.PostCardStatusColumn.VisibleIndex = 1;
-            this.PostCardStatusColumn.Width = 87;
+            this.PostCardStatusColumn.Width = 80;
             // 
             // envelopeListControl
             // 
@@ -351,7 +346,7 @@ namespace PostCardCrop.form
             this.envelopeListControl.MainView = this.EnvelopeView;
             this.envelopeListControl.MenuManager = this.ribbonControl1;
             this.envelopeListControl.Name = "envelopeListControl";
-            this.envelopeListControl.Size = new System.Drawing.Size(173, 352);
+            this.envelopeListControl.Size = new System.Drawing.Size(244, 205);
             this.envelopeListControl.TabIndex = 30;
             this.envelopeListControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.EnvelopeView});
@@ -362,6 +357,8 @@ namespace PostCardCrop.form
             this.EnvelopePaperNameColumn});
             this.EnvelopeView.GridControl = this.envelopeListControl;
             this.EnvelopeView.Name = "EnvelopeView";
+            this.EnvelopeView.OptionsDetail.EnableMasterViewMode = false;
+            this.EnvelopeView.OptionsDetail.ShowDetailTabs = false;
             this.EnvelopeView.OptionsView.ShowGroupPanel = false;
             this.EnvelopeView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.EnvelopeView_FocusedRowChanged);
             // 
@@ -370,131 +367,93 @@ namespace PostCardCrop.form
             this.EnvelopePaperNameColumn.Caption = "纸张名称";
             this.EnvelopePaperNameColumn.FieldName = "PaperName";
             this.EnvelopePaperNameColumn.Name = "EnvelopePaperNameColumn";
+            this.EnvelopePaperNameColumn.OptionsColumn.AllowEdit = false;
+            this.EnvelopePaperNameColumn.OptionsColumn.AllowSize = false;
             this.EnvelopePaperNameColumn.Visible = true;
             this.EnvelopePaperNameColumn.VisibleIndex = 0;
-            // 
-            // pictureCropControl1
-            // 
-            this.pictureCropControl1.CropBoxBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.pictureCropControl1.CropContext = null;
-            this.pictureCropControl1.IsPreview = true;
-            this.pictureCropControl1.Location = new System.Drawing.Point(559, 12);
-            this.pictureCropControl1.Name = "pictureCropControl1";
-            this.pictureCropControl1.Size = new System.Drawing.Size(682, 647);
-            this.pictureCropControl1.TabIndex = 29;
-            // 
-            // postCardInfoController1
-            // 
-            this.postCardInfoController1.Location = new System.Drawing.Point(237, 388);
-            this.postCardInfoController1.Name = "postCardInfoController1";
-            this.postCardInfoController1.PostCardInfo = null;
-            this.postCardInfoController1.Size = new System.Drawing.Size(294, 247);
-            this.postCardInfoController1.TabIndex = 28;
-            // 
-            // envelopeInfoController1
-            // 
-            this.envelopeInfoController1.EnvelopeInfo = null;
-            this.envelopeInfoController1.Location = new System.Drawing.Point(24, 399);
-            this.envelopeInfoController1.Name = "envelopeInfoController1";
-            this.envelopeInfoController1.Size = new System.Drawing.Size(173, 248);
-            this.envelopeInfoController1.TabIndex = 27;
             // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem4,
+            this.layoutControlGroup4,
             this.layoutControlGroup2,
-            this.layoutControlGroup4});
+            this.layoutControlGroup5});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1253, 671);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1253, 675);
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.pictureCropControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(547, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(686, 651);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem13,
-            this.layoutControlItem5});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(201, 651);
-            this.layoutControlGroup2.Text = "明信片集合信息";
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.envelopeInfoController1;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 356);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(177, 252);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.envelopeListControl;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(177, 356);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlGroup4
             // 
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup6,
             this.layoutControlItem1,
             this.layoutControlItem6});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(201, 0);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 252);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(346, 651);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(272, 403);
             this.layoutControlGroup4.Text = "明信片图片信息";
-            // 
-            // layoutControlGroup6
-            // 
-            this.layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem3});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 314);
-            this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(322, 294);
-            this.layoutControlGroup6.Text = "明信片信息";
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.postCardInfoController1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(298, 251);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.postCardControl;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.MaxSize = new System.Drawing.Size(248, 0);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(248, 24);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(322, 294);
+            this.layoutControlItem1.Size = new System.Drawing.Size(248, 338);
+            this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.progressBarControl1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 294);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 338);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(322, 20);
+            this.layoutControlItem6.Size = new System.Drawing.Size(248, 22);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem5});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(272, 252);
+            this.layoutControlGroup2.Text = "明信片集合";
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.envelopeListControl;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(248, 0);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(248, 24);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(248, 209);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlGroup5
+            // 
+            this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem3});
+            this.layoutControlGroup5.Location = new System.Drawing.Point(272, 0);
+            this.layoutControlGroup5.Name = "layoutControlGroup5";
+            this.layoutControlGroup5.Size = new System.Drawing.Size(961, 655);
+            this.layoutControlGroup5.Text = "明信片裁切";
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.elementHost1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(937, 612);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
             // imageCollection1
             // 
@@ -517,11 +476,11 @@ namespace PostCardCrop.form
             // 
             this.PostCardCropFormlayoutControl2ConvertedLayout.Controls.Add(this.layoutControl1);
             this.PostCardCropFormlayoutControl2ConvertedLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PostCardCropFormlayoutControl2ConvertedLayout.Location = new System.Drawing.Point(0, 129);
+            this.PostCardCropFormlayoutControl2ConvertedLayout.Location = new System.Drawing.Point(0, 125);
             this.PostCardCropFormlayoutControl2ConvertedLayout.Name = "PostCardCropFormlayoutControl2ConvertedLayout";
             this.PostCardCropFormlayoutControl2ConvertedLayout.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(86, 384, 766, 615);
             this.PostCardCropFormlayoutControl2ConvertedLayout.Root = this.layoutControlGroup3;
-            this.PostCardCropFormlayoutControl2ConvertedLayout.Size = new System.Drawing.Size(1277, 695);
+            this.PostCardCropFormlayoutControl2ConvertedLayout.Size = new System.Drawing.Size(1277, 699);
             this.PostCardCropFormlayoutControl2ConvertedLayout.TabIndex = 3;
             // 
             // layoutControlGroup3
@@ -532,7 +491,7 @@ namespace PostCardCrop.form
             this.layoutControlItem2});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "Root";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1277, 695);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1277, 699);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem2
@@ -540,7 +499,7 @@ namespace PostCardCrop.form
             this.layoutControlItem2.Control = this.layoutControl1;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControl1item";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1257, 675);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1257, 679);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -565,12 +524,13 @@ namespace PostCardCrop.form
             this.ClientSize = new System.Drawing.Size(1277, 824);
             this.Controls.Add(this.PostCardCropFormlayoutControl2ConvertedLayout);
             this.Controls.Add(this.ribbonControl1);
+            this.KeyPreview = true;
             this.Name = "PostCardCropForm";
             this.Ribbon = this.ribbonControl1;
             this.Text = "postCardCropForm";
             this.Load += new System.EventHandler(this.PostCardCropForm_Load);
-            this.Shown += new System.EventHandler(this.PostCardCropForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PostCardCropForm_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PostCardCropForm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PostCardCropForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -581,15 +541,13 @@ namespace PostCardCrop.form
             ((System.ComponentModel.ISupportInitialize)(this.envelopeListControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EnvelopeView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PostCardCropFormlayoutControl2ConvertedLayout)).EndInit();
             this.PostCardCropFormlayoutControl2ConvertedLayout.ResumeLayout(false);
@@ -614,7 +572,6 @@ namespace PostCardCrop.form
         private DevExpress.Utils.ImageCollection imageCollection1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
-        private EnvelopeInfoController envelopeInfoController1;
         private DevExpress.XtraLayout.LayoutControl PostCardCropFormlayoutControl2ConvertedLayout;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
@@ -622,20 +579,12 @@ namespace PostCardCrop.form
         private DevExpress.XtraBars.BarCheckItem barCheckItem1;
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup6;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
-        private PostCardInfoController postCardInfoController1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
-        private pictureCroper.control.PictureCropControl pictureCropControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraGrid.GridControl envelopeListControl;
         private DevExpress.XtraGrid.Views.Grid.GridView EnvelopeView;
         private DevExpress.XtraGrid.Columns.GridColumn EnvelopePaperNameColumn;
@@ -650,6 +599,9 @@ namespace PostCardCrop.form
         private DevExpress.XtraEditors.ProgressBarControl progressBarControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private PhotoCropper.controller.Photocroper photocroper1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }
