@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SystemSetting.size.model;
 using OrderBatchCreate.model;
@@ -7,8 +9,11 @@ using EnvelopeInfo = OrderBatchCreate.model.EnvelopeInfo;
 
 namespace OrderBatchCreate.control.envelope
 {
+    
     public partial class EnvelopePrintInfo : UserControl
     {
+        
+
         public event EnvelopeEvent EnvelopeChanged;
 
         private EnvelopeInfo _envelopeInfo;
@@ -53,10 +58,10 @@ namespace OrderBatchCreate.control.envelope
                     paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
                     paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
 
-                    arrayRow.Properties.MinValue = 1;
                     arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
-                    arrayColumn.Properties.MinValue = 1;
+                    arrayRow.Properties.MinValue = 1;
                     arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
+                    arrayColumn.Properties.MinValue = 1;
                 }
                 else
                 {
@@ -101,19 +106,21 @@ namespace OrderBatchCreate.control.envelope
                 Width = _envelopeInfo.PaperSize.Height,
                 Height = _envelopeInfo.PaperSize.Width
             };
-            //重置宽和高
-            _envelopeInfo.ResetRowAndColumn();
-            paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
-            paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
+            EnvelopeInfo = _envelopeInfo;
+            ////重置宽和高
+            //_envelopeInfo.ResetRowAndColumn();
+            
+            //paperWidth.EditValue = _envelopeInfo.PaperSize.Width;
+            //paperHeight.EditValue = _envelopeInfo.PaperSize.Height;
 
-            _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PaperNeedPrint);
-            _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardWaste);
-            _envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardCount);
+            //_envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PaperNeedPrint);
+            //_envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardWaste);
+            //_envelopeInfo.NotifyPropertyChanged(() => _envelopeInfo.PostCardCount);
 
-//            arrayRow.Properties.MinValue = 1;
-//            arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
-//            arrayColumn.Properties.MinValue = 1;
-//            arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
+            //arrayRow.Properties.MaxValue = _envelopeInfo.ArrayRow;
+            //arrayRow.Properties.MinValue = 1;
+            //arrayColumn.Properties.MaxValue = _envelopeInfo.ArrayColumn;
+            //arrayColumn.Properties.MinValue = 1;
 
             EnvelopeChanged?.Invoke(_envelopeInfo);
         }
@@ -121,7 +128,10 @@ namespace OrderBatchCreate.control.envelope
         private void ArrayColumn_EditValueChanged(object sender, EventArgs e)
         {
             EnvelopeChanged?.Invoke(_envelopeInfo);
+            
         }
+
+        
 
         private void ArrayRow_EditValueChanged(object sender, EventArgs e)
         {

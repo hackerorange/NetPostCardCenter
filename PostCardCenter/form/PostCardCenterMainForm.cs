@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using SystemSetting.size.form;
 using DevExpress.Utils.Internal;
@@ -8,6 +10,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTabbedMdi;
 using OrderBatchCreate.form;
+using OrderBatchCreate.form.order;
 using PostCardCenter.form.order;
 using soho.security;
 
@@ -71,6 +74,22 @@ namespace PostCardCenter.form
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             new SizeManageForm().ShowDialog();
+        }
+
+        public List<DirectoryInfo> BaseBath { get; set; }
+
+
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var enumerator = BaseBath.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                
+            }
+            enumerator.Dispose();
+
+
+            new OrderCreateForm().Show();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -35,10 +36,6 @@ namespace PostCardCrop.form
                 photocroper.KeyUp += Photocroper_KeyUp;
             }
 
-            elementHost1.KeyPress += PostCardCropForm_KeyPress;
-            elementHost1.KeyDown += ElementHost1_KeyDown;
-            //绑定鼠标滑轮事件
-            //            cropControllerCrop.MouseWheel += cropControllerCrop.CanvasMouseWheel;
             _orderId = focusedRowOrderId;
         }
 
@@ -51,18 +48,7 @@ namespace PostCardCrop.form
             {
                 case Key.Enter:
                     SubmitPostCard(PostCardView.FocusedRowHandle, photocroper.CropInfo);
-                    if (PostCardView.DataSource is List<PostCardInfo> postCards)
-                    {
-                        for (var index = PostCardView.FocusedRowHandle; index < postCards.Count; index++)
-                        {
-                            var postCard = postCards[index];
-                            if (postCard.ProcessStatusText == "未提交")
-                            {
-                                PostCardView.FocusedRowHandle = index;
-                                break;
-                            }
-                        }
-                    }
+
 
                     //photocroper.FastChange = true;
                     break;
@@ -77,39 +63,55 @@ namespace PostCardCrop.form
                 case Key.Space:
                     photocroper.Preview = false;
                     break;
-                case Key.L:
-                    photocroper.LeftRotate();
-                    break;
-                case Key.R:
-                    photocroper.RightRotate();
-                    break;
             }
-
-            //提交
         }
 
         private void SubmitPostCard(int rowHandler, CropInfo cropInfo)
         {
+            if (_currentEnvelopeInfo == null)
+            {
+                return;
+            }
+
             if (PostCardView.GetRow(rowHandler) is PostCardInfo postCardInfo)
             {
-                postCardInfo.ProcessStatusText = "提交中";
-                WebServiceInvoker.GetInstance().SubmitPostCardCropInfo(postCardInfo.PostCardId, cropInfo.CropLeft, cropInfo.CropTop, cropInfo.CropWidth, cropInfo.CropHeight, cropInfo.Rotation, resp =>
+                postCardInfo.ProcessStatusText = "裁切中";
+                PostCardView.RefreshRow(rowHandler);
+                WebServiceInvoker.GetInstance().SubmitPostCardCropInfo(postCardInfo.FileId, cropInfo.CropLeft, cropInfo.CropTop, cropInfo.CropWidth, cropInfo.CropHeight, cropInfo.Rotation, _currentEnvelopeInfo.ProductSize.Width, _currentEnvelopeInfo.ProductSize.Height, postCardInfo.FrontStyle, resp =>
                 {
-                    postCardInfo.ProcessStatusText = "已提交";
-                    postCardInfo.CropInfo = new model.CropInfo
-                    {
-                        LeftScale = cropInfo.CropLeft,
-                        TopScale = cropInfo.CropTop,
-                        WidthScale = cropInfo.CropWidth,
-                        HeightScale = cropInfo.CropHeight,
-                        Rotation = cropInfo.Rotation
-                    };
+                    //裁切成功
+                    postCardInfo.ProcessStatusText = "提交中";
                     PostCardView.RefreshRow(rowHandler);
-                },  msg =>
+                    WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardInfo.PostCardId, resp, () =>
+                    {
+                        //提交裁切结果成功
+                        postCardInfo.ProcessStatusText = "已提交";
+                        PostCardView.RefreshRow(rowHandler);
+                    }, msg =>
+                    {
+                        //提交裁切结果失败
+                        postCardInfo.ProcessStatusText = "提交失败";
+                        PostCardView.RefreshRow(rowHandler);
+                    });
+                }, msg =>
                 {
-                    postCardInfo.ProcessStatusText = "提交失败";
+                    //裁切失败
+                    postCardInfo.ProcessStatusText = "裁切失败";
                     PostCardView.RefreshRow(rowHandler);
                 });
+            }
+
+            if (PostCardView.DataSource is List<PostCardInfo> postCards)
+            {
+                for (var index = rowHandler; index < postCards.Count; index++)
+                {
+                    var postCard = postCards[index];
+                    if (postCard.ProcessStatusText == "未提交")
+                    {
+                        PostCardView.FocusedRowHandle = index;
+                        break;
+                    }
+                }
             }
         }
 
@@ -135,13 +137,13 @@ namespace PostCardCrop.form
                 case Key.Space:
                     photocroper.Preview = true;
                     break;
+                case Key.L:
+                    photocroper.LeftRotate();
+                    break;
+                case Key.R:
+                    photocroper.RightRotate();
+                    break;
             }
-        }
-
-        private void ElementHost1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            Console.WriteLine(@"按下了======");
-            Console.WriteLine(e.KeyData);
         }
 
         private void PostCardCropForm_Load(object sender, EventArgs e)
@@ -240,7 +242,6 @@ namespace PostCardCrop.form
 
                 WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(request, resp =>
                 {
-                    postCard.CropInfo = null;
                     var postCardInfo = resp.TranlateToPostCard();
                     postCard.ProcessStatus = postCardInfo.ProcessStatus;
                     postCard.ProcessStatusText = postCardInfo.ProcessStatusText;
@@ -248,10 +249,15 @@ namespace PostCardCrop.form
             }
         }
 
+        private EnvelopeInfo _currentEnvelopeInfo;
 
         private void EnvelopeView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            if (EnvelopeView.GetFocusedRow() is EnvelopeInfo envelope) postCardControl.DataSource = envelope.PostCards;
+            _currentEnvelopeInfo = EnvelopeView.GetFocusedRow() as EnvelopeInfo;
+            if (_currentEnvelopeInfo != null)
+            {
+                postCardControl.DataSource = _currentEnvelopeInfo.PostCards;
+            }
         }
 
         private void PostCardView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -259,27 +265,19 @@ namespace PostCardCrop.form
             if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
             {
                 progressBarControl1.EditValue = 0;
-//                cropContext.CropInfo = new CropInfo(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
+//                cropContext.CropInfoSubmitDto = new CropInfoSubmitDto(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
                 //                        pictureCropControl1.CropContext = cropContext;
                 if (elementHost1.Child is Photocroper photocroper)
                 {
                     photocroper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
                     photocroper.FrontStyle = postCardInfo.FrontStyle;
-
-                    CropInfo cropInfo = null;
-                    if (postCardInfo.CropInfo != null)
+                    photocroper.InitImage("http://127.0.0.1:8089/file/thumbnail/" + postCardInfo.FileId, null, () =>
                     {
-                        cropInfo = new CropInfo
+                        if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
                         {
-                            CropTop = postCardInfo.CropInfo.TopScale,
-                            CropLeft = postCardInfo.CropInfo.LeftScale,
-                            CropWidth = postCardInfo.CropInfo.WidthScale,
-                            CropHeight = postCardInfo.CropInfo.HeightScale,
-                            Rotation = postCardInfo.CropInfo.Rotation,
-                        };
-                    }
-
-                    photocroper.InitImage("http://127.0.0.1:8089/file/" + postCardInfo.ThumbnailFileId, cropInfo);
+                            timer1.Start();
+                        }
+                    });
                 }
             }
         }
@@ -290,15 +288,21 @@ namespace PostCardCrop.form
             if (elementHost1.Child is Photocroper photocroper) photocroper.Preview = barToggleSwitchItem1.BindableChecked;
         }
 
-        private void PostCardCropForm_KeyPress(object sender, KeyPressEventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
-            Console.WriteLine(@"=========================================");
-            Console.WriteLine(@"按下了按键");
-            Console.WriteLine(@"=========================================");
-        }
-
-        private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
+            timer1.Stop();
+            if (elementHost1.Child is Photocroper photocroper)
+            {
+                var aaa = new CropInfo
+                {
+                    Rotation = photocroper.CropInfo.Rotation,
+                    CropTop = 0,
+                    CropLeft = 0,
+                    CropHeight = 1,
+                    CropWidth = 1
+                };
+                SubmitPostCard(PostCardView.FocusedRowHandle, aaa);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace OrderBatchCreate.model
     {
         private Image _frontImage;
 
-        public string ThumbnailFileId { get; set; }
+        //public string ThumbnailFileId { get; set; }
 
 
         public PostCardInfo(FileSystemInfo fileInfo)

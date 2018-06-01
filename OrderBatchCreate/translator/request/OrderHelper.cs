@@ -56,8 +56,7 @@ namespace OrderBatchCreate.translator.request
                 Copy = postCard.Copy,
                 FileId = postCard.FileId,
                 FileName = postCard.DirectoryInfo.Name,
-                FrontStyle = postCard.FrontStyle,
-                ThumbnailFileId = postCard.ThumbnailFileId
+                FrontStyle = postCard.FrontStyle
             };
             if (postCard.BackStyle == null) return orderSubmitPostCard;
             orderSubmitPostCard.BackFileId = postCard.BackStyle.FileId;

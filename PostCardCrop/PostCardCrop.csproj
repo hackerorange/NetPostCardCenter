@@ -88,12 +88,6 @@
     <Compile Include="control\envelopeInfoController.Designer.cs">
       <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
     </Compile>
-    <Compile Include="control\PostCardCropController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="control\PostCardCropController.Designer.cs">
-      <DependentUpon>PostCardCropController.cs</DependentUpon>
-    </Compile>
     <Compile Include="control\PostCardInfoController.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,7 +117,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="translator\request\CropInfoTranslator.cs" />
     <Compile Include="translator\request\OrderHelper.cs" />
     <Compile Include="translator\response\EnvelopeHelper.cs" />
     <Compile Include="translator\response\OrderInfoTranslator.cs" />
@@ -132,9 +125,6 @@
   <ItemGroup>
     <EmbeddedResource Include="control\envelopeInfoController.resx">
       <DependentUpon>EnvelopeInfoController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="control\PostCardCropController.resx">
-      <DependentUpon>PostCardCropController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="control\PostCardInfoController.resx">
       <DependentUpon>PostCardInfoController.cs</DependentUpon>

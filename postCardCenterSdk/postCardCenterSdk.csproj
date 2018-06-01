@@ -70,9 +70,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="request\order\GetAllOrderRequest.cs" />
     <Compile Include="request\order\OrderPostRequest.cs" />
     <Compile Include="request\postCard\CropSubmitRequest.cs" />
     <Compile Include="request\postCard\PostCardInfoPatchRequest.cs" />
+    <Compile Include="request\postCard\PostCardProductFileIdSubmitRequest.cs" />
+    <Compile Include="request\security\UserLoginRequest.cs" />
     <Compile Include="request\system\SizeRequest.cs" />
     <Compile Include="response\BodyResponse.cs" />
     <Compile Include="response\envelope\EnvelopeResponse.cs" />

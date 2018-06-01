@@ -90,10 +90,9 @@ namespace OrderBatchCreate.helper
                     {
                         var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
                         tmpPostCardInfo.FileId = resp.FileId;
-                        tmpPostCardInfo.ThumbnailFileId = resp.ThumbnailFileId;
                         tmpPostCardInfo.IsUpload = true;
                         //判断图片是否是图片
-                        tmpPostCardInfo.IsImage = resp.ImageAvailable && !string.IsNullOrEmpty(resp.ThumbnailFileId);
+                        tmpPostCardInfo.IsImage = resp.ImageAvailable;
                         tmpPostCardInfo.Status = tmpPostCardInfo.IsImage
                             ? BatchStatus.PostCardUploadSuccess
                             : BatchStatus.PostCardTypeError;

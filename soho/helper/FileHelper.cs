@@ -9,7 +9,7 @@ namespace soho.helper
 {
     public static class FileHelper
     {
-        public static WebServiceInvoker WebServiceInvoker = new WebServiceInvoker("http://localhost:8089");
+        public static WebServiceInvoker WebServiceInvoker = new WebServiceInvoker("http://localhost");
 
         /// <summary>
         ///     向服务器上传文件
@@ -36,7 +36,6 @@ namespace soho.helper
                     success?.Invoke(new ImageFileUploadModel
                     {
                         FileId = fileUploadResponse.Id,
-                        ThumbnailFileId = fileUploadResponse.ThumbnailFileId,
                         ImageAvailable = fileUploadResponse.ImageAvailable
                     });
                 }
@@ -45,15 +44,14 @@ namespace soho.helper
                     failure?.Invoke(e.Message);
                 }
             else
-                WebServiceInvoker.Upload(file, category, rotation, cropLeft, cropTop, cropWidth, cropHeight, succ =>
+                WebServiceInvoker.Upload(file, category, succ =>
                 {
                     success?.Invoke(new ImageFileUploadModel
                     {
                         FileId = succ.Id,
-                        ThumbnailFileId = succ.ThumbnailFileId,
                         ImageAvailable = succ.ImageAvailable
                     });
-                }, message => { failure?.Invoke(message); });
+                }, message => { failure?.Invoke(message); }, rotation, cropLeft, cropTop, cropWidth, cropHeight);
         }
 
         /// <summary>

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using postCardCenterSdk.response;
 using Spring.Http;
+using Spring.Http.Client;
 using Spring.Http.Client.Interceptor;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
@@ -20,6 +23,11 @@ namespace postCardCenterSdk
     /// <typeparam name="T">成功返回的结果类型</typeparam>
     /// <param name="backStyleInfos">成功返回的结果</param>
     public delegate void Success<in T>(T backStyleInfos);
+
+    /// <summary>
+    ///     请求成功,没有返回值
+    /// </summary>
+    public delegate void Success();
 
     public abstract class BaseApi
     {
@@ -52,9 +60,9 @@ namespace postCardCenterSdk
         }
 
 
-        protected void PostForObjectAsync<T>(string uri, object request, Success<T> success = null, Failure failure = null)
+        protected void PostForObjectAsync(string uri, object request, Success success = null, Failure failure = null)
         {
-            _restTemplate.PostForObjectAsync<BodyResponse<T>>(uri, request,
+            _restTemplate.PostForObjectAsync<BodyResponse<object>>(uri, request,
                 resp =>
                 {
                     if (resp.Error != null)
@@ -69,13 +77,42 @@ namespace postCardCenterSdk
                         return;
                     }
 
-                    success?.Invoke(resp.Response.Data);
+                    success?.Invoke();
                 });
         }
 
+        protected void PostForObjectAsync<T>(string uri, object request, Success<T> success = null, Failure failure = null)
+        {
+            if (request == null)
+            {
+                request=new object();
+            }
+
+            var aaa=_restTemplate.PostForObjectAsync<BodyResponse<T>>(uri, request,
+                resp =>
+                {
+                    if (resp.Error != null)
+                    {
+                        failure?.Invoke(resp.Error.Message);
+                        return;
+                    }
+
+                    if (resp.Response.Code < 0)
+                    {
+                        failure?.Invoke(resp.Response.Message);
+                        return;
+                    }
+                    success?.Invoke(resp.Response.Data);
+                });
+            
+        }
 
         protected void GetForObjectAsync<T>(string uri, Dictionary<string, object> request, Success<T> success = null, Failure failure = null)
         {
+            if (request == null)
+            {
+                request=new Dictionary<string, object>();
+            }
             _restTemplate.GetForObjectAsync<BodyResponse<T>>(uri, request,
                 resp =>
                 {
@@ -113,15 +150,19 @@ namespace postCardCenterSdk
         }
     }
 
-    public class PerfRequestSyncInterceptor : IClientHttpRequestBeforeInterceptor
+    internal class PerfRequestSyncInterceptor : IClientHttpRequestBeforeInterceptor
     {
         public void BeforeExecute(IClientHttpRequestContext request)
         {
+            
             var token = WebServiceInvoker.Token;
             var requestHeader = request.Headers["token"];
             if (string.IsNullOrEmpty(requestHeader)) request.Headers.Add("token", token);
         }
     }
+
+    
+
 
     public static class WebServiceInvoker
     {

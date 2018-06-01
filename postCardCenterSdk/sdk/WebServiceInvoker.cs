@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Cache;
@@ -8,6 +9,7 @@ using System.Text;
 using postCardCenterSdk.Properties;
 using postCardCenterSdk.request.order;
 using postCardCenterSdk.request.postCard;
+using postCardCenterSdk.request.security;
 using postCardCenterSdk.request.system;
 using postCardCenterSdk.response;
 using postCardCenterSdk.response.envelope;
@@ -27,7 +29,7 @@ namespace postCardCenterSdk.sdk
         {
             return _webServiceInvoker ?? (_webServiceInvoker = new WebServiceInvoker("http://localhost"));
         }
-     
+
         public WebServiceInvoker(string baseUrL) : base(baseUrL)
         {
         }
@@ -69,7 +71,12 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">失败回调函数</param>
         public void GetSizeInfoFromServer(string category, Success<List<PostCardSizeResponse>> success, Failure failure = null)
         {
-            GetForObjectAsync<Page<PostCardSizeResponse>>(Resources.getAllProductSizeUrl, null, result => { success(result.Detail); }, failure);
+            var request = new Dictionary<string, object>
+            {
+                {"category", category}
+            };
+
+            GetForObjectAsync<Page<PostCardSizeResponse>>(Resources.getAllProductSizeUrl, request, result => { success(result.Detail); }, failure);
         }
 
         /// <summary>
@@ -81,7 +88,8 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure"></param>
         public void InsertProductSizeToServer(string category, SizeRequest sizeRequest, Success<PostCardSizeResponse> success, Failure failure = null)
         {
-            PostForObjectAsync(Resources.insertSizeUrl, sizeRequest, success, failure);
+            var url = Resources.insertSizeUrl.Replace("{category}", category);
+            PostForObjectAsync(url, sizeRequest, success, failure);
         }
 
         /// <summary>
@@ -151,7 +159,6 @@ namespace postCardCenterSdk.sdk
                 else
                     success?.Invoke(e.Result);
             };
-          
 
 
             // 进度条
@@ -215,16 +222,16 @@ namespace postCardCenterSdk.sdk
         /// <param name="cropLeft"></param>
         /// <param name="cropTop"></param>
         /// <param name="cropWidth"></param>
-        public void Upload(FileInfo file, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, Success<FileUploadResponse> success = null, Failure failure = null)
+        public void Upload(FileInfo file, string category, Success<FileUploadResponse> success, Failure failure = null, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1)
         {
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
-            dictionary.Add("rotation", rotation);
-            dictionary.Add("cropLeft", cropLeft);
-            dictionary.Add("cropTop", cropTop);
-            dictionary.Add("cropWidth", cropWidth);
-            dictionary.Add("cropHeight", cropHeight);
+            dictionary.Add("rotation", rotation.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropLeft", cropLeft.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropTop", cropTop.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropWidth", cropWidth.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropHeight", cropHeight.ToString(CultureInfo.InvariantCulture));
             dictionary.Add("category", Encoding.UTF8.GetBytes(category));
             PostForObjectAsync<FileUploadResponse>(Resources.fileUploadUrl, dictionary, result => { success?.Invoke(result); }, failure);
         }
@@ -245,11 +252,11 @@ namespace postCardCenterSdk.sdk
             var dictionary = new Dictionary<string, object>();
             var entity = new HttpEntity(file);
             dictionary.Add("file", entity);
-            dictionary.Add("rotation", rotation);
-            dictionary.Add("cropLeft", cropLeft);
-            dictionary.Add("cropTop", cropTop);
-            dictionary.Add("cropWidth", cropWidth);
-            dictionary.Add("cropHeight", cropHeight);
+            dictionary.Add("rotation", rotation.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropLeft", cropLeft.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropTop", cropTop.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropWidth", cropWidth.ToString(CultureInfo.InvariantCulture));
+            dictionary.Add("cropHeight", cropHeight.ToString(CultureInfo.InvariantCulture));
             dictionary.Add("category", Encoding.UTF8.GetBytes(category));
             FileUploadResponse tmpResult = null;
             PostForObject<FileUploadResponse>(Resources.fileUploadUrl, dictionary, result => { tmpResult = result; }, message => throw new Exception(message));
@@ -304,13 +311,14 @@ namespace postCardCenterSdk.sdk
 
         public void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
         {
-            var nameValueCollection = new Dictionary<string, object>
+
+            var request = new GetAllOrderRequest
             {
-                {"startDate", startDate.ToString("yyyy-MM-dd HH:mm:ss")},
-                {"endDate", endDate.ToString("yyyy-MM-dd HH:mm:ss")}
+                StarDateTime = startDate,
+                EndDateTime = endDate
             };
 
-            PostForObjectAsync<Page<OrderResponse>>(Resources.getAllOrderUrl, nameValueCollection, respon => { success?.Invoke(respon.Detail); }, failure);
+            PostForObjectAsync<Page<OrderResponse>>(Resources.getAllOrderUrl, request, respon => { success?.Invoke(respon.Detail); }, failure);
         }
 
         /// <summary>
@@ -355,18 +363,24 @@ namespace postCardCenterSdk.sdk
             GetForObjectAsync<OrderResponse>(Resources.getOrderInfoUrl, nameValueCollection, respon => { success?.Invoke(respon); }, failure);
         }
 
-
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="password">密码</param>
+        /// <param name="success">成功后的回调函数</param>
+        /// <param name="failure">失败后的回调函数</param>
         public void UserLogin(string userName, string password, Success<LoginResponse> success, Failure failure = null)
         {
-            var nameValueCollection = new NameValueCollection
+            var userLoginRequest = new UserLoginRequest
             {
-                {"userName", userName},
-                {"password", password}
+                UserName = userName,
+                Password = password
             };
 
             var httpHeaders = new HttpHeaders {{"tokenId", "123456"}};
 
-            var headers = new HttpEntity(nameValueCollection, httpHeaders);
+            var headers = new HttpEntity(userLoginRequest, httpHeaders);
 
             PostForObjectAsync<LoginResponse>(Resources.loginUrl, headers, resp => { success?.Invoke(resp); }, failure);
         }
@@ -374,27 +388,49 @@ namespace postCardCenterSdk.sdk
         /// <summary>
         /// 提交裁切结果
         /// </summary>
-        /// <param name="postCardId"></param>
-        /// <param name="cropLeft"></param>
-        /// <param name="cropTop"></param>
-        /// <param name="cropWidth"></param>
-        /// <param name="cropHeight"></param>
-        /// <param name="rotation"></param>
-        /// <param name="success"></param>
-        /// <param name="failure"></param>
-        public void SubmitPostCardCropInfo(string postCardId, double cropLeft, double cropTop, double cropWidth, double cropHeight, int rotation, Success<PostCardResponse> success, Failure failure = null)
+        /// <param name="fileId">文件ID</param>
+        /// <param name="cropLeft">左侧裁切</param>
+        /// <param name="cropTop">上面裁切</param>
+        /// <param name="cropWidth">裁切宽度</param>
+        /// <param name="cropHeight">裁切高度</param>
+        /// <param name="rotation">旋转角度值</param>
+        /// <param name="productWidth">成品的宽度</param>
+        /// <param name="productHeight">成品的高度</param>
+        /// <param name="style">裁切样式（A,B,C,D）</param>
+        /// <param name="success">成功后，返回文件裁切后的文件ID</param>
+        /// <param name="failure">失败后的逻辑</param>
+        public void SubmitPostCardCropInfo(string fileId, double cropLeft, double cropTop, double cropWidth, double cropHeight, int rotation, int productWidth, int productHeight, string style, Success<string> success, Failure failure = null)
         {
             var request = new CropSubmitRequest
             {
-                CropHeight = cropHeight,
-                CropTop = cropTop,
-                CropLeft = cropLeft,
-                CropWidth = cropWidth,
-                Rotation = rotation,
-                PostCardId = postCardId
+                CropInfo = new CropInfoSubmitDto
+                {
+                    CropHeight = cropHeight,
+                    CropTop = cropTop,
+                    CropLeft = cropLeft,
+                    CropWidth = cropWidth,
+                    Rotation = rotation,
+                },
+                ProductSize = new CropProductSize
+                {
+                    Width = productWidth,
+                    Height = productHeight
+                },
+                FileId = fileId,
+                Style = style
             };
 
-            PostForObjectAsync<PostCardResponse>(Resources.cropInfoSubmitUrl, request, resp => { success?.Invoke(resp); }, failure);
+            PostForObjectAsync<FileUploadResponse>(Resources.cropInfoSubmitUrl, request, resp => { success?.Invoke(resp.Id); }, failure);
+        }
+
+        public void SubmitPostCardProductFile(string postCardId, string productFile, Success success, Failure failure)
+        {
+            var request = new PostCardProductFileIdSubmitRequest
+            {
+                PostCardId = postCardId,
+                ProductFileId = productFile
+            };
+            PostForObjectAsync(Resources.productFileSubmitUrl, request, () => { success?.Invoke(); }, failure);
         }
 
         public void ChangePostCardFrontStyle(PostCardInfoPatchRequest frontStyle, Success<PostCardResponse> success, Failure failure = null)
@@ -413,7 +449,7 @@ namespace postCardCenterSdk.sdk
         {
             var nameValueCollection = new Dictionary<string, object>
             {
-                {"postCardId", postCardId}
+                {"fileId", postCardId}
             };
             GetForObjectAsync<PostCardResponse>(Resources.getPostCardInfoUrl, nameValueCollection, res => { success?.Invoke(res); }, failure);
         }

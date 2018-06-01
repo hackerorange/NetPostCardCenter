@@ -1,11 +1,7 @@
 ﻿using SystemSetting.backStyle.model;
-using SystemSetting.size.model;
 using postCardCenterSdk.response.postCard;
 using PostCardCrop.model;
-using soho.constant.postcard;
-using soho.domain;
-
-namespace PostCardCrop.translator.response
+using soho.constant.postcard;namespace PostCardCrop.translator.response
 {
     public static class PostCardHelper
     {
@@ -14,9 +10,7 @@ namespace PostCardCrop.translator.response
             var result = new PostCardInfo
             {
                 FileId = postCardResponse.FileId,
-                ThumbnailFileId = postCardResponse.ThumbnailFileId,
-                FileName = postCardResponse.FileName,
-                BackStyle = new BackStyleInfo
+                FileName = postCardResponse.FileName,BackStyle = new BackStyleInfo
                 {
                     FileId = postCardResponse.BackFileId,
                     Name = postCardResponse.BackStyle
@@ -28,9 +22,6 @@ namespace PostCardCrop.translator.response
                 ProcessStatusText = postCardResponse.ProcessStatusText,
                 ProcessStatus = (PostCardProcessStatusEnum) postCardResponse.ProcessStatus
             };
-            if (postCardResponse.CropInfo != null)
-                result.CropInfo = postCardResponse.CropInfo.TranlateToCropInfo();
-            ;
             return result;
         }
 

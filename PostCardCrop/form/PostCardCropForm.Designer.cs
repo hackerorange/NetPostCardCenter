@@ -30,7 +30,6 @@ namespace PostCardCrop.form
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostCardCropForm));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
@@ -66,13 +65,13 @@ namespace PostCardCrop.form
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::PostCardCrop.form.SubmitWaitForm), true, true);
             this.PostCardCropFormlayoutControl2ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -119,7 +118,6 @@ namespace PostCardCrop.form
             this.elementHost1.Size = new System.Drawing.Size(933, 608);
             this.elementHost1.TabIndex = 33;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.elementHost1_ChildChanged);
             this.elementHost1.Child = this.photocroper1;
             // 
             // progressBarControl1
@@ -503,6 +501,11 @@ namespace PostCardCrop.form
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "纸张名称";
@@ -530,7 +533,6 @@ namespace PostCardCrop.form
             this.Text = "postCardCropForm";
             this.Load += new System.EventHandler(this.PostCardCropForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PostCardCropForm_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PostCardCropForm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PostCardCropForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

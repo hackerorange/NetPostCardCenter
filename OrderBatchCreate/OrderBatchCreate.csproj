@@ -128,6 +128,7 @@
     <Compile Include="control\envelope\EnvelopeSettingControl.Designer.cs">
       <DependentUpon>EnvelopeSettingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="control\envelope\LayoutInfoHelper.cs" />
     <Compile Include="form\BackStyleCropForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +146,18 @@
     </Compile>
     <Compile Include="form\CustomerProductSizeForm.Designer.cs">
       <DependentUpon>CustomerProductSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\order\OrderCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\order\OrderCreateForm.Designer.cs">
+      <DependentUpon>OrderCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\order\OrderBasicInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\order\OrderBasicInfoForm.Designer.cs">
+      <DependentUpon>OrderBasicInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="helper\EnvelopeHelper.cs" />
     <Compile Include="helper\PostCardHelper.cs" />
@@ -194,6 +207,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\OrderBatch.resx">
       <DependentUpon>OrderBatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\order\OrderCreateForm.resx">
+      <DependentUpon>OrderCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\order\OrderBasicInfoForm.resx">
+      <DependentUpon>OrderBasicInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\PostCardCopySet.resx">
       <DependentUpon>PostCardCopySet.cs</DependentUpon>

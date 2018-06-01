@@ -16,12 +16,6 @@ namespace postCardCenterSdk.response.postCard
         [JsonProperty("fileId")]
         public string FileId { get; set; }
 
-        /// <summary>
-        ///     此文件在文件服务器的缩略图ID
-        /// </summary>
-        [JsonProperty("thumbnailFileId")]
-        public string ThumbnailFileId { get; set; }
-
         [JsonProperty("fileName")]
         public string FileName { get; set; }
 

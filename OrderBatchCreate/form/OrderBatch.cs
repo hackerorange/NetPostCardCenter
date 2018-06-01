@@ -561,6 +561,10 @@ namespace OrderBatchCreate.form
         private void BarButtonItem21_ItemClick(object sender, ItemClickEventArgs e)
         {
             var tmpNode = orderDetailListView.FocusedNode;
+            if (tmpNode == null)
+            {
+                return ;
+            }
 
             var nodeValue = tmpNode.GetValue("Key");
             if (!(nodeValue is PostCardInfo tmpPostCardInfo)) return;

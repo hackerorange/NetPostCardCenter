@@ -103,7 +103,6 @@ namespace PostCardCrop.control
                     if (result.ImageAvailable)
                     {
                         tmpPostCardInfo.FileId = result.FileId;
-                        tmpPostCardInfo.ThumbnailFileId = result.ThumbnailFileId;
                         tmpPostCardInfo.FileName = tmpPostCardInfo.FileInfo.Name;
 
                         var request = new PostCardInfoPatchRequest
@@ -119,7 +118,6 @@ namespace PostCardCrop.control
                             if (tmpPostCardInfo.FileInfo != null)
                                 tmpPostCardInfo.FileInfo = null;
                             tmpPostCardInfo.FileId = postCardInfo.FileId;
-                            tmpPostCardInfo.CropInfo = null;
                             tmpPostCardInfo.FileName = postCardInfo.FileName;
                             tmpPostCardInfo.ProcessStatus = postCardInfo.ProcessStatus;
                             tmpPostCardInfo.ProcessStatusText = postCardInfo.ProcessStatusText;

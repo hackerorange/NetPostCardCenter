@@ -39,8 +39,14 @@ namespace PostCardCrop.translator.request
             };
             //如果反面样式不为null，返回将反面样式提交上去
             if (envelope.BackStyle != null)
+            {
                 orderSubmitEnvelope.BackStyle = envelope.BackStyle.Name;
-            envelope.PostCards.ForEach(postCard => { orderSubmitEnvelope.PostCards.Add(postCard.PrepareSubmitPostCard()); });
+            }
+            //准备明信片信息
+            envelope.PostCards.ForEach(postCard =>
+            {
+                orderSubmitEnvelope.PostCards.Add(postCard.PrepareSubmitPostCard());
+            });
             return orderSubmitEnvelope;
         }
 

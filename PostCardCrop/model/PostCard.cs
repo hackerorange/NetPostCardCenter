@@ -45,11 +45,6 @@ namespace PostCardCrop.model
         public string FileId { get; set; }
 
         /// <summary>
-        ///     此文件的缩略图文件ID
-        /// </summary>
-        public string ThumbnailFileId { get; set; }
-
-        /// <summary>
         ///     明信片原始文件信息
         /// </summary>
         public FileInfo FileInfo { get; set; }
@@ -88,10 +83,6 @@ namespace PostCardCrop.model
         /// </summary>
         public string FileName { get; set; }
 
-        /// <summary>
-        ///     裁切信息
-        /// </summary>
-        public CropInfo CropInfo { get; set; }
 
         /// <summary>
         ///     处理者名称
@@ -102,7 +93,7 @@ namespace PostCardCrop.model
         ///     处理状态显示文本
         /// </summary>
         public string ProcessStatusText { get; set; }
-
+        
         public Image FrontImage
         {
             get

@@ -49,7 +49,6 @@ namespace SystemSetting.size.constant
                 Width = width,
                 Height = height
             };
-
             WebServiceInvoker.GetInstance().InsertProductSizeToServer("postCardProductSize", sizeRequest, response =>
             {
                 success(new PostSize()

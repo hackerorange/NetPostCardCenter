@@ -14,9 +14,45 @@ namespace OrderBatchCreate.model
 
     public sealed class EnvelopeInfo : PostCardBasic, INotifyPropertyChanged, ICloneable
     {
-        private int _arrayColumn;
-        private int _arrayRow;
 
+        internal class LayoutInfo
+        {
+            public LayoutInfo(EnvelopeInfo envelopeInfo)
+            {
+                if (envelopeInfo.ProductSize.Width != 0)
+                {
+                    ColumnCount = envelopeInfo.PaperSize.Width / envelopeInfo.ProductSize.Width;
+                }
+                if (envelopeInfo.ProductSize.Height != 0)
+                {
+                    RowCount = envelopeInfo.PaperSize.Height / envelopeInfo.ProductSize.Height;
+                }
+            }
+
+            public int ColumnCount { get; set; }
+            public int RowCount { get; set; }
+        }
+
+
+        private static readonly IDictionary<string, LayoutInfo> _layoutInfos=new Dictionary<string, LayoutInfo>();
+
+        private LayoutInfo GetLayoutInfo()
+        {
+            var key=GetLayoutKey();
+            if (_layoutInfos.ContainsKey(key))
+            {
+                return _layoutInfos[key];
+            }
+            var tmp=new LayoutInfo(this);
+            _layoutInfos.Add(key,tmp);
+            return tmp;
+        }
+
+        private string GetLayoutKey()
+        {
+            return ProductSize.Width + ":" + ProductSize.Height + ":" + PaperSize.Width + ":" + PaperSize.Height;
+        }
+        
 //        private PostSize _productSize;
 
         public EnvelopeInfo()
@@ -85,11 +121,12 @@ namespace OrderBatchCreate.model
         /// </summary>
         public int ArrayColumn
         {
-            get => _arrayColumn;
+            get => GetLayoutInfo().ColumnCount;
             set
             {
-                if (_arrayColumn == value) return;
-                _arrayColumn = value;
+                GetLayoutInfo().ColumnCount=value;
+                if (GetLayoutInfo().ColumnCount == value) return;
+                GetLayoutInfo().ColumnCount = value;
                 NotifyPropertyChanged(() => HorizontalWhite);
                 NotifyPropertyChanged(() => ArrayColumn);
             }
@@ -101,11 +138,11 @@ namespace OrderBatchCreate.model
         /// </summary>
         public int ArrayRow
         {
-            get => _arrayRow;
+            get => GetLayoutInfo().RowCount;
             set
             {
-                if (_arrayRow == value) return;
-                _arrayRow = value;
+                if (GetLayoutInfo().RowCount == value) return;
+                GetLayoutInfo().RowCount = value;
                 NotifyPropertyChanged(() => VerticalWhite);
                 NotifyPropertyChanged(() => ArrayRow);
             }
@@ -114,12 +151,12 @@ namespace OrderBatchCreate.model
         /// <summary>
         ///     水平方向白边（只读属性）
         /// </summary>
-        public int HorizontalWhite => PaperSize.Width - ProductSize.Width * _arrayColumn;
+        public int HorizontalWhite => PaperSize.Width - ProductSize.Width * GetLayoutInfo().ColumnCount;
 
         /// <summary>
         ///     竖直方向白边(只读属性)
         /// </summary>
-        public int VerticalWhite => PaperSize.Height - ProductSize.Height * _arrayRow;
+        public int VerticalWhite => PaperSize.Height - ProductSize.Height * GetLayoutInfo().RowCount;
 
         /// <summary>
         ///     此订单下的所有订单列表
@@ -138,7 +175,7 @@ namespace OrderBatchCreate.model
         {
             get
             {
-                var aa = _arrayColumn * _arrayRow;
+                var aa = GetLayoutInfo().RowCount * GetLayoutInfo().ColumnCount;
                 if (aa <= 0) return 0;
                 var waste = aa - PostCardCount % aa;
                 return waste == aa ? 0 : waste;
@@ -152,9 +189,9 @@ namespace OrderBatchCreate.model
         {
             get
             {
-                if (_arrayColumn * _arrayRow == 0)
+                if (GetLayoutInfo().RowCount * GetLayoutInfo().ColumnCount == 0)
                     return 0;
-                return PostCardCount / (_arrayColumn * _arrayRow) + PostCardWaste == 0 ? 1 : 0;
+                return PostCardCount / (GetLayoutInfo().ColumnCount * GetLayoutInfo().RowCount) + PostCardWaste == 0 ? 1 : 0;
             }
         }
 
@@ -175,21 +212,15 @@ namespace OrderBatchCreate.model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+
         public void ResetRowAndColumn()
         {
             if (ProductSize == null) return;
-            if (ProductSize.Width != 0)
-            {
-                _arrayColumn = PaperSize.Width / ProductSize.Width;
-                NotifyPropertyChanged(() => ArrayColumn);
-                NotifyPropertyChanged(() => HorizontalWhite);
-            }
-            if (ProductSize.Height != 0)
-            {
-                _arrayRow = PaperSize.Height / ProductSize.Height;
-                NotifyPropertyChanged(() => ArrayRow);
-                NotifyPropertyChanged(() => VerticalWhite);
-            }
+            var key = GetLayoutKey();
+            _layoutInfos.Remove(key);
+            NotifyPropertyChanged(() => ArrayColumn);
+            NotifyPropertyChanged(() => HorizontalWhite);
         }
 
         public void NotifyPropertyChanged<T>(Expression<Func<T>> property)
