@@ -74,14 +74,15 @@ namespace OrderBatchCreate.form
 
         private void SimpleButton2_Click(object sender, EventArgs e)
         {
+
             _backStyleInfo.FileInfo.Upload(
                 true,
                 "明信片反面样式",
-                pictureCropControl1.CropContext.CropInfo.Rotation,
-                pictureCropControl1.CropContext.CropInfo.LeftScale,
-                pictureCropControl1.CropContext.CropInfo.TopScale,
-                pictureCropControl1.CropContext.CropInfo.WidthScale,
-                pictureCropControl1.CropContext.CropInfo.HeightScale,
+                //pictureCropControl1.CropContext.CropInfo.Rotation,
+                //pictureCropControl1.CropContext.CropInfo.LeftScale,
+                //pictureCropControl1.CropContext.CropInfo.TopScale,
+                //pictureCropControl1.CropContext.CropInfo.WidthScale,
+                //pictureCropControl1.CropContext.CropInfo.HeightScale,
                 success =>
                 {
                     if (success.ImageAvailable)

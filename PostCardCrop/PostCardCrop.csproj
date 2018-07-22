@@ -49,6 +49,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -153,6 +156,10 @@
     <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
       <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
       <Name>postCardCenterSdk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PostCardProcessor\PostCardProcessor.csproj">
+      <Project>{32596c1f-259d-410e-b6f3-ba61aec6aef6}</Project>
+      <Name>PostCardProcessor</Name>
     </ProjectReference>
     <ProjectReference Include="..\soho\soho.csproj">
       <Project>{1F086FC8-76BF-4345-B62A-5F90D381EB6A}</Project>

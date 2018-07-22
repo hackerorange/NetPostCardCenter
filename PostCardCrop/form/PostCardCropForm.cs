@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Threading;
-using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -9,14 +10,22 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraLayout.Utils;
 using postCardCenterSdk.request.postCard;
 using postCardCenterSdk.sdk;
 using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
+using PostCardProcessor;
+using PostCardProcessor.model;
+using PostCardProcessor.queue;
 using soho.constant.postcard;
+using soho.helper;
+using soho.web;
 using CropInfo = PhotoCropper.viewModel.CropInfo;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using Size = System.Windows.Size;
+
 
 namespace PostCardCrop.form
 {
@@ -66,6 +75,8 @@ namespace PostCardCrop.form
             }
         }
 
+        private readonly List<PostCardInfo> _postCardNeedUpdateProductInfos=new List<PostCardInfo>();
+
         private void SubmitPostCard(int rowHandler, CropInfo cropInfo)
         {
             if (_currentEnvelopeInfo == null)
@@ -77,39 +88,53 @@ namespace PostCardCrop.form
             {
                 postCardInfo.ProcessStatusText = "裁切中";
                 PostCardView.RefreshRow(rowHandler);
-                WebServiceInvoker.GetInstance().SubmitPostCardCropInfo(postCardInfo.FileId, cropInfo.CropLeft, cropInfo.CropTop, cropInfo.CropWidth, cropInfo.CropHeight, cropInfo.Rotation, _currentEnvelopeInfo.ProductSize.Width, _currentEnvelopeInfo.ProductSize.Height, postCardInfo.FrontStyle, resp =>
+                var postCardProcessInfo = new PostCardProcessInfo
                 {
-                    //裁切成功
-                    postCardInfo.ProcessStatusText = "提交中";
-                    PostCardView.RefreshRow(rowHandler);
-                    WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardInfo.PostCardId, resp, () =>
-                    {
-                        //提交裁切结果成功
-                        postCardInfo.ProcessStatusText = "已提交";
-                        PostCardView.RefreshRow(rowHandler);
-                    }, msg =>
-                    {
-                        //提交裁切结果失败
-                        postCardInfo.ProcessStatusText = "提交失败";
-                        PostCardView.RefreshRow(rowHandler);
-                    });
-                }, msg =>
+                    PostCardId = postCardInfo.PostCardId,
+                    CropLeft = cropInfo.CropLeft,
+                    CropTop = cropInfo.CropTop,
+                    CropHeight = cropInfo.CropHeight,
+                    CropWidth = cropInfo.CropWidth,
+                    PostCardType = postCardInfo.FrontStyle,
+                    Rotation = cropInfo.Rotation,
+                    ProductHeight = postCardInfo.ProductSize.Height,
+                    ProductWidth = postCardInfo.ProductSize.Width
+                };
+                PostCardProcessQueue.Process(postCardProcessInfo, ((info) =>
                 {
-                    //裁切失败
-                    postCardInfo.ProcessStatusText = "裁切失败";
+                    _postCardNeedUpdateProductInfos.Add(postCardInfo);
+                    postCardInfo.ProcessStatusText = "已提交";
                     PostCardView.RefreshRow(rowHandler);
-                });
+                }), failure: ((info) =>
+                {
+                    postCardInfo.ProcessStatusText = "提交失败";
+                    PostCardView.RefreshRow(rowHandler);
+                }));
             }
 
             if (PostCardView.DataSource is List<PostCardInfo> postCards)
             {
+                var flag = true;
                 for (var index = rowHandler; index < postCards.Count; index++)
                 {
                     var postCard = postCards[index];
                     if (postCard.ProcessStatusText == "未提交")
                     {
                         PostCardView.FocusedRowHandle = index;
+                        flag = false;
                         break;
+                    }
+                }
+
+                if (flag)
+                {
+                    if (rowHandler < postCards.Count)
+                    {
+                        PostCardView.FocusedRowHandle = rowHandler + 1;
+                    }
+                    else
+                    {
+                        PostCardView.FocusedRowHandle = 0;
                     }
                 }
             }
@@ -181,21 +206,21 @@ namespace PostCardCrop.form
 
         private void PostCardCropForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
-            {
-                if (elementHost1.Child is Photocroper photocroper)
-                {
-                    photocroper.Preview = true;
-                }
-            }
+            //if (e.KeyCode == Keys.Space)
+            //{
+            //    if (elementHost1.Child is Photocroper photocroper)
+            //    {
+            //        photocroper.Preview = true;
+            //    }
+            //}
         }
 
         private void PostCardCropForm_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
-            {
-                if (elementHost1.Child is Photocroper photocroper) photocroper.Preview = false;
-            }
+            //if (e.KeyCode == Keys.Space)
+            //{
+            //    if (elementHost1.Child is Photocroper photocroper) photocroper.Preview = false;
+            //}
         }
 
 
@@ -232,19 +257,13 @@ namespace PostCardCrop.form
         {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCard)
             {
-                postCard.FrontStyle = e.Item.Tag as string;
-
-                var request = new PostCardInfoPatchRequest
-                {
-                    PostCardId = postCard.PostCardId,
-                    FrontStyle = postCard.FrontStyle
-                };
-
-                WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(request, resp =>
+                WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(postCard.PostCardId, e.Item.Tag as string, resp =>
                 {
                     var postCardInfo = resp.TranlateToPostCard();
                     postCard.ProcessStatus = postCardInfo.ProcessStatus;
+                    postCard.FrontStyle = postCardInfo.FrontStyle;
                     postCard.ProcessStatusText = postCardInfo.ProcessStatusText;
+                    PostCardChanged();
                 }, message => { XtraMessageBox.Show(message); });
             }
         }
@@ -262,26 +281,45 @@ namespace PostCardCrop.form
 
         private void PostCardView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
+            PostCardChanged();
+        }
+
+        private void PostCardChanged()
+        {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
             {
+               
+               
                 progressBarControl1.EditValue = 0;
-//                cropContext.CropInfoSubmitDto = new CropInfoSubmitDto(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
+                //                cropContext.CropInfoSubmitDto = new CropInfoSubmitDto(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
                 //                        pictureCropControl1.CropContext = cropContext;
+
                 if (elementHost1.Child is Photocroper photocroper)
                 {
                     photocroper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
                     photocroper.FrontStyle = postCardInfo.FrontStyle;
-                    photocroper.InitImage("http://127.0.0.1:8089/file/thumbnail/" + postCardInfo.FileId, null, () =>
+                    if (string.IsNullOrEmpty(postCardInfo.ProductFileId))
                     {
-                        if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
+                        photocroper.Preview = false;
+                        //FileApi.GetInstance().
+                        photocroper.InitImage(FileApi.GetInstance().BasePath + "/file/" + postCardInfo.FileId, null, (stream) =>
                         {
-                            timer1.Start();
-                        }
-                    });
+                            if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
+                            {
+                                timer1.Start();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        //FileApi.GetInstance().
+                        photocroper.Preview = true;
+                        photocroper.FrontStyle = "B";
+                        photocroper.InitImage(FileApi.GetInstance().BasePath + "/file/" + postCardInfo.ProductFileId);
+                    }
                 }
             }
         }
-
 
         private void BarToggleSwitchItem1_CheckedChanged(object sender, ItemClickEventArgs e)
         {
@@ -303,6 +341,41 @@ namespace PostCardCrop.form
                 };
                 SubmitPostCard(PostCardView.FocusedRowHandle, aaa);
             }
+        }
+
+        private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
+            {
+                WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardInfo.PostCardId, "", () =>
+                {
+                    postCardInfo.ProductFileId = "";
+                    PostCardChanged();
+                });
+            }
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            _postCardNeedUpdateProductInfos.ForEach(postCardInfo =>
+            {
+                if (string.IsNullOrEmpty(postCardInfo.ProductFileId))
+                {
+                    WebServiceInvoker.GetInstance().GetPostCardInfo(postCardInfo.PostCardId, result =>
+                    {
+                        if (string.IsNullOrEmpty(result.ProductFileId))
+                        {
+                            return;
+                        }
+                        postCardInfo.ProductFileId = result.ProductFileId;
+                    });
+                }
+            });
+        }
+
+        private void BarButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }

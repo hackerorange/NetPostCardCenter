@@ -218,7 +218,7 @@
             0,
             0,
             0});
-            this.arrayColumn.Location = new System.Drawing.Point(183, 33);
+            this.arrayColumn.Location = new System.Drawing.Point(183, 41);
             this.arrayColumn.MenuManager = this.ribbonControl1;
             this.arrayColumn.Name = "arrayColumn";
             this.arrayColumn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -264,7 +264,7 @@
             this.repositoryItemRadioGroup2});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barEditItem1
@@ -727,10 +727,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 747);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 748);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 28);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 27);
             // 
             // horizontalWhite
             // 
@@ -768,7 +768,7 @@
             // 
             // paperPrint
             // 
-            this.paperPrint.Location = new System.Drawing.Point(243, 124);
+            this.paperPrint.Location = new System.Drawing.Point(243, 132);
             this.paperPrint.MenuManager = this.ribbonControl1;
             this.paperPrint.Name = "paperPrint";
             this.paperPrint.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
@@ -784,7 +784,7 @@
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(316, 124);
+            this.simpleButton5.Location = new System.Drawing.Point(316, 132);
             this.simpleButton5.Name = "simpleButton5";
             this.simpleButton5.Size = new System.Drawing.Size(97, 22);
             this.simpleButton5.StyleController = this.layoutControl1;
@@ -794,7 +794,7 @@
             // 
             // postCardCount
             // 
-            this.postCardCount.Location = new System.Drawing.Point(41, 124);
+            this.postCardCount.Location = new System.Drawing.Point(41, 132);
             this.postCardCount.MenuManager = this.ribbonControl1;
             this.postCardCount.Name = "postCardCount";
             this.postCardCount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -815,7 +815,7 @@
             0,
             0,
             0});
-            this.arrayRow.Location = new System.Drawing.Point(183, 57);
+            this.arrayRow.Location = new System.Drawing.Point(183, 65);
             this.arrayRow.MenuManager = this.ribbonControl1;
             this.arrayRow.Name = "arrayRow";
             this.arrayRow.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -827,7 +827,7 @@
             // 
             // PostCardWaste
             // 
-            this.PostCardWaste.Location = new System.Drawing.Point(142, 124);
+            this.PostCardWaste.Location = new System.Drawing.Point(142, 132);
             this.PostCardWaste.Name = "PostCardWaste";
             this.PostCardWaste.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.PostCardWaste.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
@@ -847,7 +847,7 @@
             0,
             0,
             0});
-            this.paperHeight.Location = new System.Drawing.Point(41, 33);
+            this.paperHeight.Location = new System.Drawing.Point(41, 41);
             this.paperHeight.MenuManager = this.ribbonControl1;
             this.paperHeight.Name = "paperHeight";
             this.paperHeight.Properties.Appearance.Options.UseTextOptions = true;
@@ -878,7 +878,7 @@
             0,
             0,
             0});
-            this.paperWidth.Location = new System.Drawing.Point(41, 57);
+            this.paperWidth.Location = new System.Drawing.Point(41, 65);
             this.paperWidth.MenuManager = this.ribbonControl1;
             this.paperWidth.Name = "paperWidth";
             this.paperWidth.Properties.Appearance.Options.UseTextOptions = true;
@@ -926,7 +926,7 @@
             this.layoutControlItem13});
             this.layoutControlGroup5.Location = new System.Drawing.Point(142, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(142, 91);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(142, 99);
             this.layoutControlGroup5.Text = "排列设置";
             this.layoutControlGroup5.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.LayoutControlGroup5_CustomButtonClick);
             // 
@@ -957,9 +957,9 @@
             this.layoutControlItem43,
             this.layoutControlItem45,
             this.layoutControlItem46});
-            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 91);
+            this.layoutControlGroup6.Location = new System.Drawing.Point(0, 99);
             this.layoutControlGroup6.Name = "layoutControlGroup6";
-            this.layoutControlGroup6.Size = new System.Drawing.Size(427, 84);
+            this.layoutControlGroup6.Size = new System.Drawing.Size(427, 76);
             this.layoutControlGroup6.Text = "统计数据";
             // 
             // layoutControlItem47
@@ -968,7 +968,7 @@
             this.layoutControlItem47.CustomizationFormText = "打印数量";
             this.layoutControlItem47.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem47.Name = "layoutControlItem47";
-            this.layoutControlItem47.Size = new System.Drawing.Size(101, 41);
+            this.layoutControlItem47.Size = new System.Drawing.Size(101, 33);
             this.layoutControlItem47.Text = "个数";
             this.layoutControlItem47.TextSize = new System.Drawing.Size(24, 14);
             // 
@@ -978,7 +978,7 @@
             this.layoutControlItem43.CustomizationFormText = "浪费张数";
             this.layoutControlItem43.Location = new System.Drawing.Point(101, 0);
             this.layoutControlItem43.Name = "layoutControlItem43";
-            this.layoutControlItem43.Size = new System.Drawing.Size(101, 41);
+            this.layoutControlItem43.Size = new System.Drawing.Size(101, 33);
             this.layoutControlItem43.Text = "浪费";
             this.layoutControlItem43.TextSize = new System.Drawing.Size(24, 14);
             // 
@@ -988,7 +988,7 @@
             this.layoutControlItem45.CustomizationFormText = "纸张数量";
             this.layoutControlItem45.Location = new System.Drawing.Point(202, 0);
             this.layoutControlItem45.Name = "layoutControlItem45";
-            this.layoutControlItem45.Size = new System.Drawing.Size(100, 41);
+            this.layoutControlItem45.Size = new System.Drawing.Size(100, 33);
             this.layoutControlItem45.Text = "张数";
             this.layoutControlItem45.TextSize = new System.Drawing.Size(24, 14);
             // 
@@ -998,7 +998,7 @@
             this.layoutControlItem46.CustomizationFormText = "layoutControlItem46";
             this.layoutControlItem46.Location = new System.Drawing.Point(302, 0);
             this.layoutControlItem46.Name = "layoutControlItem46";
-            this.layoutControlItem46.Size = new System.Drawing.Size(101, 41);
+            this.layoutControlItem46.Size = new System.Drawing.Size(101, 33);
             this.layoutControlItem46.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem46.TextVisible = false;
             // 
@@ -1009,7 +1009,7 @@
             this.layoutControlItem39});
             this.layoutControlGroup4.Location = new System.Drawing.Point(284, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(143, 91);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(143, 99);
             this.layoutControlGroup4.Text = "留白信息";
             // 
             // layoutControlItem16
@@ -1028,7 +1028,7 @@
             this.layoutControlItem39.CustomizationFormText = "上下白边";
             this.layoutControlItem39.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem39.Name = "layoutControlItem39";
-            this.layoutControlItem39.Size = new System.Drawing.Size(119, 24);
+            this.layoutControlItem39.Size = new System.Drawing.Size(119, 32);
             this.layoutControlItem39.Text = "上下";
             this.layoutControlItem39.TextSize = new System.Drawing.Size(24, 14);
             // 
@@ -1041,7 +1041,7 @@
             this.layoutControlItem2});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(142, 91);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(142, 99);
             this.layoutControlGroup3.Text = "纸张尺寸";
             this.layoutControlGroup3.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.PaperSizeRotate_CustomButtonClick);
             // 

@@ -117,20 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="getAllOrderInfo" xml:space="preserve">
-    <value>order|getAll</value>
-    <comment>获取所有订单信息</comment>
+  <data name="cropInfoSubmitUrl" xml:space="preserve">
+    <value>/file/crop</value>
   </data>
-  <data name="loginPath" xml:space="preserve">
-    <value>http://127.0.0.1:8080/security/login</value>
-    <comment>用户登录接口地址</comment>
-  </data>
-  <data name="styleListPath" xml:space="preserve">
-    <value>http://127.0.0.1:8081/system/styleController/</value>
-    <comment>获取所有样式</comment>
-  </data>
-  <data name="urlDictionaryUrl" xml:space="preserve">
-    <value>http://127.0.0.1:8083/rest/url/get?category={category}&amp;method={method}</value>
-    <comment>URL资源获取路径</comment>
+  <data name="fileUploadUrl" xml:space="preserve">
+    <value>/file/upload</value>
   </data>
 </root>

@@ -10,8 +10,6 @@ namespace soho.model
     {
         public string FileId { get; set; }
 
-        public string ThumbnailFileId { get; set; }
-
         public bool ImageAvailable { get; set; }
     }
 }

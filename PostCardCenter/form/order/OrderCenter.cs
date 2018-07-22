@@ -7,11 +7,11 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraNavBar;
+using postCardCenterSdk;
 using postCardCenterSdk.sdk;
 using PostCardCrop.form;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
-using soho.security;
 
 namespace PostCardCenter.form.order
 {
@@ -32,7 +32,7 @@ namespace PostCardCenter.form.order
                 popupMenu1.ShowPopup(MousePosition);
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void SimpleButton1_Click(object sender, EventArgs e)
         {
             RefreshOrderList();
         }
@@ -55,13 +55,13 @@ namespace PostCardCenter.form.order
         }
 
 
-        private void orderDetailGridController_DoubleClick(object sender, EventArgs e)
+        private void OrderDetailGridController_DoubleClick(object sender, EventArgs e)
         {
             //如果当前选择
             if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
             WebServiceInvoker.GetInstance().ChangeOrderProcessor(orderInfo.Id, order =>
                 {
-                    if (order.ProcessorName != Security.AccountSessionInfo.RealName)
+                    if (order.ProcessorName != SecurityInfo.UserName)
                     {
                         XtraMessageBox.Show("很抱歉，此订单[" + order.ProcessorName + "]已经开始处理！");
                         return;
@@ -131,7 +131,7 @@ namespace PostCardCenter.form.order
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
-            if (orderInfo.ProcessorName != Security.AccountSessionInfo.RealName)
+            if (orderInfo.ProcessorName != SecurityInfo.UserName)
             {
                 XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
@@ -143,7 +143,7 @@ namespace PostCardCenter.form.order
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
-            if (orderInfo.ProcessorName != Security.AccountSessionInfo.RealName)
+            if (orderInfo.ProcessorName != SecurityInfo.UserName)
             {
                 XtraMessageBox.Show("只有订单的负责人才能修改订单状态，订单负责人为[" + orderInfo.ProcessorName + "]");
                 return;

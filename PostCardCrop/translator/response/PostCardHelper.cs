@@ -9,6 +9,7 @@ using soho.constant.postcard;namespace PostCardCrop.translator.response
         {
             var result = new PostCardInfo
             {
+                ProductFileId = postCardResponse.ProductFileId,
                 FileId = postCardResponse.FileId,
                 FileName = postCardResponse.FileName,BackStyle = new BackStyleInfo
                 {

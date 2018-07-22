@@ -61,38 +61,20 @@ namespace soho.Properties {
         }
         
         /// <summary>
-        ///   查找类似 order|getAll 的本地化字符串。
+        ///   查找类似 /file/crop 的本地化字符串。
         /// </summary>
-        public static string getAllOrderInfo {
+        public static string cropInfoSubmitUrl {
             get {
-                return ResourceManager.GetString("getAllOrderInfo", resourceCulture);
+                return ResourceManager.GetString("cropInfoSubmitUrl", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 http://127.0.0.1:8080/security/login 的本地化字符串。
+        ///   查找类似 /file/upload 的本地化字符串。
         /// </summary>
-        public static string loginPath {
+        public static string fileUploadUrl {
             get {
-                return ResourceManager.GetString("loginPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 http://127.0.0.1:8081/system/styleController/ 的本地化字符串。
-        /// </summary>
-        public static string styleListPath {
-            get {
-                return ResourceManager.GetString("styleListPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 http://127.0.0.1:8083/rest/url/get?category={category}&amp;method={method} 的本地化字符串。
-        /// </summary>
-        public static string urlDictionaryUrl {
-            get {
-                return ResourceManager.GetString("urlDictionaryUrl", resourceCulture);
+                return ResourceManager.GetString("fileUploadUrl", resourceCulture);
             }
         }
     }

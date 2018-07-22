@@ -61,7 +61,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/system/backStyle 的本地化字符串。
+        ///   查找类似 /backStyle 的本地化字符串。
         /// </summary>
         public static string backStyleListUrl {
             get {
@@ -70,7 +70,16 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/order/changeProcessor 的本地化字符串。
+        ///   查找类似 http://localhost:8087 的本地化字符串。
+        /// </summary>
+        public static string baseURI {
+            get {
+                return ResourceManager.GetString("baseURI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /order/changeProcessor 的本地化字符串。
         /// </summary>
         public static string changeOrderProcessorUrl {
             get {
@@ -79,11 +88,20 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/order/changeStatus 的本地化字符串。
+        ///   查找类似 /order/changeStatus 的本地化字符串。
         /// </summary>
         public static string changeOrderStatusUrl {
             get {
                 return ResourceManager.GetString("changeOrderStatusUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 /postCard/updateFrontStyle 的本地化字符串。
+        /// </summary>
+        public static string changePostCardFrontStyle {
+            get {
+                return ResourceManager.GetString("changePostCardFrontStyle", resourceCulture);
             }
         }
         
@@ -97,7 +115,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/envelope/info?envelopeId={envelopeId} 的本地化字符串。
+        ///   查找类似 /envelope/info?envelopeId={envelopeId} 的本地化字符串。
         /// </summary>
         public static string envelopeInfoUrl {
             get {
@@ -133,7 +151,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/order/{orderId} 的本地化字符串。
+        ///   查找类似 /order/{orderId} 的本地化字符串。
         /// </summary>
         public static string getAllEnvelopeByOrderIdUrl {
             get {
@@ -142,7 +160,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/order/getAll 的本地化字符串。
+        ///   查找类似 /order/getAll 的本地化字符串。
         /// </summary>
         public static string getAllOrderUrl {
             get {
@@ -151,7 +169,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/system/size/{category} 的本地化字符串。
+        ///   查找类似 /size/{category} 的本地化字符串。
         /// </summary>
         public static string getAllProductSizeUrl {
             get {
@@ -169,7 +187,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/order/info?orderId={orderId} 的本地化字符串。
+        ///   查找类似 /order/info?orderId={orderId} 的本地化字符串。
         /// </summary>
         public static string getOrderInfoUrl {
             get {
@@ -178,7 +196,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/envelope/{envelopeId} 的本地化字符串。
+        ///   查找类似 /postCard/byEnvelopeId/{envelopeId} 的本地化字符串。
         /// </summary>
         public static string getPostCardByEnvelopeIdUrl {
             get {
@@ -187,7 +205,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/postCard/info/{fileId} 的本地化字符串。
+        ///   查找类似 /postCard/info/{fileId} 的本地化字符串。
         /// </summary>
         public static string getPostCardInfoUrl {
             get {
@@ -196,7 +214,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/system/size/{category} 的本地化字符串。
+        ///   查找类似 /size/{category} 的本地化字符串。
         /// </summary>
         public static string insertSizeUrl {
             get {
@@ -205,7 +223,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/security/login 的本地化字符串。
+        ///   查找类似 /security/login 的本地化字符串。
         /// </summary>
         public static string loginUrl {
             get {
@@ -214,7 +232,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/postCard/info 的本地化字符串。
+        ///   查找类似 /postCard/info 的本地化字符串。
         /// </summary>
         public static string patchPostCardInfoUrl {
             get {
@@ -223,7 +241,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/order/submit 的本地化字符串。
+        ///   查找类似 /order/submit 的本地化字符串。
         /// </summary>
         public static string postCardSubmitUrl {
             get {
@@ -232,7 +250,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 /rest/postcard/postCard/submitProduct 的本地化字符串。
+        ///   查找类似 /postCard/submitProduct 的本地化字符串。
         /// </summary>
         public static string productFileSubmitUrl {
             get {

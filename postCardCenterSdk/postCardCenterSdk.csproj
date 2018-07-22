@@ -49,6 +49,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -72,14 +75,13 @@
     </Compile>
     <Compile Include="request\order\GetAllOrderRequest.cs" />
     <Compile Include="request\order\OrderPostRequest.cs" />
-    <Compile Include="request\postCard\CropSubmitRequest.cs" />
+    <Compile Include="request\postCard\PostCardFrontStyleUpdateRequest.cs" />
     <Compile Include="request\postCard\PostCardInfoPatchRequest.cs" />
     <Compile Include="request\postCard\PostCardProductFileIdSubmitRequest.cs" />
     <Compile Include="request\security\UserLoginRequest.cs" />
     <Compile Include="request\system\SizeRequest.cs" />
     <Compile Include="response\BodyResponse.cs" />
     <Compile Include="response\envelope\EnvelopeResponse.cs" />
-    <Compile Include="response\file\FileUploadResponse.cs" />
     <Compile Include="response\order\OrderCenterResponse.cs" />
     <Compile Include="response\Page.cs" />
     <Compile Include="response\postCard\CropInfoResponse.cs" />

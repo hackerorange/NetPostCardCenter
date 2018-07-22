@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using SystemSetting.size.form;
-using DevExpress.Utils.Internal;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
@@ -11,8 +10,8 @@ using DevExpress.XtraTab;
 using DevExpress.XtraTabbedMdi;
 using OrderBatchCreate.form;
 using OrderBatchCreate.form.order;
+using postCardCenterSdk;
 using PostCardCenter.form.order;
-using soho.security;
 
 namespace PostCardCenter.form
 {
@@ -25,19 +24,16 @@ namespace PostCardCenter.form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (Security.AccountSessionInfo == null)
+            if (string.IsNullOrEmpty(SecurityInfo.Token))
             {
                 Application.Exit();
                 return;
             }
-            barStaticItem1.Caption = Security.AccountSessionInfo.RealName;
+            barStaticItem1.Caption = SecurityInfo.UserName;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Security.AccountSessionInfo == null)
-                return;
-
             if (XtraMessageBox.Show("是否真的退出应用", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
                 e.Cancel = true;
         }

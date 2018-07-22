@@ -5,8 +5,8 @@ using static System.String;
 
 namespace postCardCenterSdk.interceptor
 {
-    public class PerfRequestSyncInterceptor : IClientHttpRequestBeforeInterceptor
-    {
+    //public class PerfRequestSyncInterceptor : IClientHttpRequestBeforeInterceptor
+    //{
 //        public void ExecuteAsync(IClientHttpRequestAsyncExecution execution)
 //        {
 //            var token = WebServiceInvoker.Token;
@@ -21,12 +21,12 @@ namespace postCardCenterSdk.interceptor
 //            });
 //        }
 
-        public void BeforeExecute(IClientHttpRequestContext request)
-        {
-            var token = WebServiceInvoker.Token;
-            var requestHeader = request.Headers["token"];
-            if (IsNullOrEmpty(requestHeader))
-                request.Headers.Add("token", token);
-        }
-    }
+    //    public void BeforeExecute(IClientHttpRequestContext request)
+    //    {
+    //        var token = WebServiceInvoker.Token;
+    //        var requestHeader = request.Headers["token"];
+    //        if (IsNullOrEmpty(requestHeader))
+    //            request.Headers.Add("token", token);
+    //    }
+    //}
 }

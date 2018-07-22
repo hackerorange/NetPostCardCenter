@@ -66,5 +66,8 @@ namespace postCardCenterSdk.response.postCard
         /// </summary>
         [JsonProperty("cropInfo")]
         public CropInfoResponse CropInfo { get; set; }
+
+        [JsonProperty("productFileId")]
+        public string ProductFileId { get; set; }
     }
 }

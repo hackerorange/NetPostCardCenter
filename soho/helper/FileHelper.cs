@@ -3,13 +3,14 @@ using System.Drawing;
 using System.IO;
 using postCardCenterSdk;
 using soho.model;
+using soho.web;
 using WebServiceInvoker = postCardCenterSdk.sdk.WebServiceInvoker;
 
 namespace soho.helper
 {
     public static class FileHelper
     {
-        public static WebServiceInvoker WebServiceInvoker = new WebServiceInvoker("http://localhost");
+        public static FileApi WebServiceInvoker = FileApi.GetInstance();
 
         /// <summary>
         ///     向服务器上传文件
@@ -17,21 +18,16 @@ namespace soho.helper
         /// <param name="file">要上传到服务器的文件</param>
         /// <param name="category">分类</param>
         /// <param name="synchronize">是否同步，同步为True</param>
-        /// <param name="cropHeight"></param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        /// <param name="rotation"></param>
-        /// <param name="cropLeft"></param>
-        /// <param name="cropTop"></param>
-        /// <param name="cropWidth"></param>
         /// <returns>服务器返回的文件ID</returns>
-        public static void Upload(this FileInfo file, bool synchronize, string category, double rotation = 0, double cropLeft = 0, double cropTop = 0, double cropWidth = 1, double cropHeight = 1, Success<ImageFileUploadModel> success = null,
+        public static void Upload(this FileInfo file, bool synchronize, string category, Success<ImageFileUploadModel> success = null,
             Failure failure = null)
         {
             if (synchronize)
                 try
                 {
-                    var fileUploadResponse = WebServiceInvoker.Upload(file, category, rotation, cropLeft, cropTop, cropWidth, cropHeight);
+                    var fileUploadResponse = WebServiceInvoker.Upload(file, category);
 
                     success?.Invoke(new ImageFileUploadModel
                     {
@@ -51,7 +47,7 @@ namespace soho.helper
                         FileId = succ.Id,
                         ImageAvailable = succ.ImageAvailable
                     });
-                }, message => { failure?.Invoke(message); }, rotation, cropLeft, cropTop, cropWidth, cropHeight);
+                }, message => { failure?.Invoke(message); });
         }
 
         /// <summary>

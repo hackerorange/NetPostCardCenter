@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using postCardCenterSdk.Properties;
 using postCardCenterSdk.response;
 using Spring.Http;
 using Spring.Http.Client;
@@ -33,9 +34,12 @@ namespace postCardCenterSdk
     {
         private readonly RestTemplate _restTemplate;
 
-        protected BaseApi(string baseUrL)
+        public string BasePath => Resources.baseURI;
+
+        protected BaseApi()
         {
-            _restTemplate = new RestTemplate(new Uri(baseUrL));
+            
+            _restTemplate = new RestTemplate(new Uri(Resources.baseURI));
             _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             _restTemplate.RequestInterceptors.Add(new PerfRequestSyncInterceptor());
         }
@@ -60,9 +64,9 @@ namespace postCardCenterSdk
         }
 
 
-        protected void PostForObjectAsync(string uri, object request, Success success = null, Failure failure = null)
+        protected RestOperationCanceler PostForObjectAsync(string uri, object request, Success success = null, Failure failure = null)
         {
-            _restTemplate.PostForObjectAsync<BodyResponse<object>>(uri, request,
+            var a=_restTemplate.PostForObjectAsync<BodyResponse<object>>(uri, request,
                 resp =>
                 {
                     if (resp.Error != null)
@@ -79,6 +83,7 @@ namespace postCardCenterSdk
 
                     success?.Invoke();
                 });
+            return a;
         }
 
         protected void PostForObjectAsync<T>(string uri, object request, Success<T> success = null, Failure failure = null)
@@ -132,6 +137,31 @@ namespace postCardCenterSdk
                 });
         }
 
+
+        protected void GetForObject<T>(string uri, Dictionary<string, object> request, Success<T> success = null, Failure failure = null)
+        {
+            if (request == null)
+            {
+                request = new Dictionary<string, object>();
+            }
+
+            try
+            {                
+                var resp = _restTemplate.GetForObject<BodyResponse<T>>(uri, request);
+                
+                if (resp.Code < 0)
+                {
+                    failure?.Invoke(resp.Message);
+                    return;
+                }
+                success?.Invoke(resp.Data);
+            }
+            catch
+            {
+                failure?.Invoke("接口调用失败");
+            }
+        }
+
         protected void ExchangeAsync<T>(string patchPostCardInfoUrl, HttpMethod httpMethod, HttpEntity httpEntity, Success<T> success, Failure failure)
         {
             _restTemplate.ExchangeAsync<BodyResponse<T>>(patchPostCardInfoUrl, httpMethod, httpEntity, res =>
@@ -154,17 +184,13 @@ namespace postCardCenterSdk
     {
         public void BeforeExecute(IClientHttpRequestContext request)
         {
-            
-            var token = WebServiceInvoker.Token;
+            var token = SecurityInfo.Token;
             var requestHeader = request.Headers["token"];
             if (string.IsNullOrEmpty(requestHeader)) request.Headers.Add("token", token);
         }
     }
 
-    
-
-
-    public static class WebServiceInvoker
+    public static class SecurityInfo
     {
         public static string Token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJlYWxOYW1lIjoi5Luy5bSH5ruUIn0.OetJnklm4_kM0AF3d7Lmgh5ukJ1UclwRkqgZhDIWtSA";
         public static string UserName;

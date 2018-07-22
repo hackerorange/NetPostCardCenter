@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace postCardCenterSdk.response.file
+namespace soho.web.response.file
 {
     public class FileUploadResponse
     {

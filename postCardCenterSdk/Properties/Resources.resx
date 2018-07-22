@@ -118,20 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="backStyleListUrl" xml:space="preserve">
-    <value>/rest/system/backStyle</value>
+    <value>/backStyle</value>
     <comment>WW</comment>
   </data>
+  <data name="baseURI" xml:space="preserve">
+    <value>http://localhost:8087</value>
+  </data>
   <data name="changeOrderProcessorUrl" xml:space="preserve">
-    <value>/rest/postcard/order/changeProcessor</value>
+    <value>/order/changeProcessor</value>
   </data>
   <data name="changeOrderStatusUrl" xml:space="preserve">
-    <value>/rest/postcard/order/changeStatus</value>
+    <value>/order/changeStatus</value>
+  </data>
+  <data name="changePostCardFrontStyle" xml:space="preserve">
+    <value>/postCard/updateFrontStyle</value>
   </data>
   <data name="cropInfoSubmitUrl" xml:space="preserve">
     <value>/file/crop</value>
   </data>
   <data name="envelopeInfoUrl" xml:space="preserve">
-    <value>/rest/postcard/envelope/info?envelopeId={envelopeId}</value>
+    <value>/envelope/info?envelopeId={envelopeId}</value>
   </data>
   <data name="fileDownloadUrl" xml:space="preserve">
     <value>/file</value>
@@ -146,41 +152,41 @@
     <comment>fileUploadUrl</comment>
   </data>
   <data name="getAllEnvelopeByOrderIdUrl" xml:space="preserve">
-    <value>/rest/postcard/order/{orderId}</value>
+    <value>/order/{orderId}</value>
   </data>
   <data name="getAllOrderUrl" xml:space="preserve">
-    <value>/rest/postcard/order/getAll</value>
+    <value>/order/getAll</value>
   </data>
   <data name="getAllProductSizeUrl" xml:space="preserve">
-    <value>/rest/system/size/{category}</value>
+    <value>/size/{category}</value>
   </data>
   <data name="getFileThumbnailUrl" xml:space="preserve">
     <value>/file/generateThumbnail/{fileId}</value>
     <comment>fileThumbnailGenerateUrl</comment>
   </data>
   <data name="getOrderInfoUrl" xml:space="preserve">
-    <value>/rest/postcard/order/info?orderId={orderId}</value>
+    <value>/order/info?orderId={orderId}</value>
   </data>
   <data name="getPostCardByEnvelopeIdUrl" xml:space="preserve">
-    <value>/rest/postcard/envelope/{envelopeId}</value>
+    <value>/postCard/byEnvelopeId/{envelopeId}</value>
   </data>
   <data name="getPostCardInfoUrl" xml:space="preserve">
-    <value>/rest/postcard/postCard/info/{fileId}</value>
+    <value>/postCard/info/{fileId}</value>
   </data>
   <data name="insertSizeUrl" xml:space="preserve">
-    <value>/rest/system/size/{category}</value>
+    <value>/size/{category}</value>
   </data>
   <data name="loginUrl" xml:space="preserve">
-    <value>/rest/security/login</value>
+    <value>/security/login</value>
   </data>
   <data name="patchPostCardInfoUrl" xml:space="preserve">
-    <value>/rest/postcard/postCard/info</value>
+    <value>/postCard/info</value>
   </data>
   <data name="postCardSubmitUrl" xml:space="preserve">
-    <value>/rest/postcard/order/submit</value>
+    <value>/order/submit</value>
     <comment>orderSubmitUrl</comment>
   </data>
   <data name="productFileSubmitUrl" xml:space="preserve">
-    <value>/rest/postcard/postCard/submitProduct</value>
+    <value>/postCard/submitProduct</value>
   </data>
 </root>

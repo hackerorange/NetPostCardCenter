@@ -57,6 +57,7 @@ namespace PostCardCrop.translator.request
             {
                 Copy = postCard.Copy,
                 FileId = postCard.FileId,
+                
                 FileName = postCard.FileName,
                 FrontStyle = postCard.FrontStyle
             };

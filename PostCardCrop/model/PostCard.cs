@@ -1,38 +1,18 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
 using System.IO;
 using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
 using soho.constant;
 using soho.constant.postcard;
-using soho.domain;
 
 namespace PostCardCrop.model
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class PostCardInfo
     {
-        private Image _frontImage;
-
-        private int _thumbnailGenerateTime;
-
-
-        public bool RetryGenerateThumbnail()
-        {
-            _thumbnailGenerateTime++;
-            return _thumbnailGenerateTime <= 3;
-        }
-
-
         public PostCardInfo()
         {
         }
-
-        public PostCardInfo(FileInfo fileInfo)
-        {
-            FileInfo = fileInfo;
-        }
-
 
         /// <summary>
         ///     明信片ID
@@ -43,6 +23,11 @@ namespace PostCardCrop.model
         ///     此文件在文件服务器的ID
         /// </summary>
         public string FileId { get; set; }
+
+        /// <summary>
+        ///     此文件在文件服务器的ID
+        /// </summary>
+        public string ProductFileId { get; set; }
 
         /// <summary>
         ///     明信片原始文件信息
@@ -64,15 +49,7 @@ namespace PostCardCrop.model
         /// </summary>
         public BackStyleInfo BackStyle { get; set; }
 
-        /// <summary>
-        ///     文件上传状态，分为：未上传，正在上传，已上传，
-        /// </summary>
-        public PostCardFileUploadStatusEnum FileUploadStat { get; set; }
-
-        /// <summary>
-        ///     文件是否是图片文件，根据Header请求获取文件信息
-        /// </summary>
-        public bool IsImage { get; set; }
+      
 
         /// <summary>
         ///     明信片反面文件ID
@@ -94,24 +71,7 @@ namespace PostCardCrop.model
         /// </summary>
         public string ProcessStatusText { get; set; }
         
-        public Image FrontImage
-        {
-            get
-            {
-                if (_frontImage == null)
-                    if (FileInfo != null && FileInfo.Exists)
-                        try
-                        {
-                            _frontImage = Image.FromFile(FileInfo.FullName);
-                        }
-                        catch
-                        {
-                            return _frontImage = null;
-                        }
-                return _frontImage;
-            }
-        }
-
+        
         /// <summary>
         ///     成品尺寸（裁切页面使用）
         /// </summary>
@@ -121,14 +81,6 @@ namespace PostCardCrop.model
         ///     当前处理状态枚举
         /// </summary>
         public PostCardProcessStatusEnum ProcessStatus { get; set; }
-
-        ~PostCardInfo()
-        {
-            if (_frontImage != null)
-            {
-                _frontImage.Dispose();
-                _frontImage = null;
-            }
-        }
+        
     }
 }

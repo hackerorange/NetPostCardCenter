@@ -111,19 +111,19 @@ namespace PostCardCrop.control
                             FileId = result.FileId,
                             FileName = fileInfo.Name
                         };
-
-                        WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(request, resp =>
-                        {
-                            var postCardInfo = resp.TranlateToPostCard();
-                            if (tmpPostCardInfo.FileInfo != null)
-                                tmpPostCardInfo.FileInfo = null;
-                            tmpPostCardInfo.FileId = postCardInfo.FileId;
-                            tmpPostCardInfo.FileName = postCardInfo.FileName;
-                            tmpPostCardInfo.ProcessStatus = postCardInfo.ProcessStatus;
-                            tmpPostCardInfo.ProcessStatusText = postCardInfo.ProcessStatusText;
-                            FileChanged?.Invoke(tmpPostCardInfo);
-                        }, message => { XtraMessageBox.Show(message); });
-                        Application.DoEvents();
+                        //TODO:重新上传废弃
+                        //WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(request, resp =>
+                        //{
+                        //    var postCardInfo = resp.TranlateToPostCard();
+                        //    if (tmpPostCardInfo.FileInfo != null)
+                        //        tmpPostCardInfo.FileInfo = null;
+                        //    tmpPostCardInfo.FileId = postCardInfo.FileId;
+                        //    tmpPostCardInfo.FileName = postCardInfo.FileName;
+                        //    tmpPostCardInfo.ProcessStatus = postCardInfo.ProcessStatus;
+                        //    tmpPostCardInfo.ProcessStatusText = postCardInfo.ProcessStatusText;
+                        //    FileChanged?.Invoke(tmpPostCardInfo);
+                        //}, message => { XtraMessageBox.Show(message); });
+                        //Application.DoEvents();
                     }
                     else
                     {
