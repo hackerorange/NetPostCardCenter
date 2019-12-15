@@ -180,7 +180,7 @@
             this.radioGroup1.Size = new System.Drawing.Size(167, 102);
             this.radioGroup1.StyleController = this.layoutControl2;
             this.radioGroup1.TabIndex = 7;
-            this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged);
+            this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.RadioGroup1_SelectedIndexChanged);
             // 
             // barManager1
             // 
@@ -242,7 +242,7 @@
             this.barButtonItem1.Caption = "处理订单";
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItem1_ItemClick);
             // 
             // barButtonItem4
             // 
@@ -251,7 +251,7 @@
             this.barButtonItem4.ImageIndexDisabled = 0;
             this.barButtonItem4.ImageOptions.DisabledImageIndex = 0;
             this.barButtonItem4.Name = "barButtonItem4";
-            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
+            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItem4_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -269,7 +269,6 @@
             // repositoryItemPictureEdit1
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            this.repositoryItemPictureEdit1.ZoomAccelerationFactor = 1D;
             // 
             // dateEdit2
             // 
@@ -325,7 +324,6 @@
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(242, 200);
             this.layoutControlGroup2.TextVisible = false;
@@ -381,20 +379,20 @@
             this.navBarItem1.Caption = "未完成";
             this.navBarItem1.Name = "navBarItem1";
             this.navBarItem1.Tag = "未处理";
-            this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem1_LinkClicked);
+            this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.NavBarItem1_LinkClicked);
             // 
             // navBarItem2
             // 
             this.navBarItem2.Caption = "已完成";
             this.navBarItem2.Name = "navBarItem2";
             this.navBarItem2.Tag = "已完成";
-            this.navBarItem2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem1_LinkClicked);
+            this.navBarItem2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.NavBarItem1_LinkClicked);
             // 
             // navBarItem3
             // 
             this.navBarItem3.Caption = "全部";
             this.navBarItem3.Name = "navBarItem3";
-            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem1_LinkClicked);
+            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.NavBarItem1_LinkClicked);
             // 
             // orderDetailGridController
             // 
@@ -405,9 +403,9 @@
             this.orderDetailGridController.TabIndex = 4;
             this.orderDetailGridController.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.orderDetailGridController.Click += new System.EventHandler(this.orderDetailGridController_Click);
+            this.orderDetailGridController.Click += new System.EventHandler(this.OrderDetailGridController_Click);
             this.orderDetailGridController.DoubleClick += new System.EventHandler(this.OrderDetailGridController_DoubleClick);
-            this.orderDetailGridController.MouseClick += new System.Windows.Forms.MouseEventHandler(this.orderDetailGridController_MouseClick);
+            this.orderDetailGridController.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OrderDetailGridController_MouseClick);
             // 
             // gridView1
             // 
@@ -423,8 +421,8 @@
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
             this.gridView1.OptionsDetail.ShowDetailTabs = false;
             this.gridView1.OptionsDetail.ShowEmbeddedDetailIndent = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
-            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.GridView1_CustomDrawRowIndicator);
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.GridView1_FocusedRowChanged);
             // 
             // orderCustomerTaobaoIdColum
             // 
@@ -516,7 +514,6 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1255, 526);
             this.layoutControlGroup1.TextVisible = false;

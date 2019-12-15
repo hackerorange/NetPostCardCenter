@@ -91,7 +91,7 @@ namespace PostCardProcessor.queue
                 }
                 postCardUploadContext.Success?.Invoke(postCardUploadContext.PostCardProcessInfo);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 postCardUploadContext.Failure?.Invoke(postCardUploadContext.PostCardProcessInfo);
             }

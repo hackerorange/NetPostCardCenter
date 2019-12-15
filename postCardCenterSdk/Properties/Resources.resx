@@ -125,7 +125,7 @@
     <value>http://localhost:8087</value>
   </data>
   <data name="changeOrderProcessorUrl" xml:space="preserve">
-    <value>/order/changeProcessor</value>
+    <value>/order/{orderId}/updateProcessor</value>
   </data>
   <data name="changeOrderStatusUrl" xml:space="preserve">
     <value>/order/changeStatus</value>

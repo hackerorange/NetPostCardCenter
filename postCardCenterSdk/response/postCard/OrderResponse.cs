@@ -29,7 +29,12 @@ namespace postCardCenterSdk.response.postCard
         /// <summary>
         ///     订单处理人姓名
         /// </summary>
-        [JsonProperty("processorName")]
+        [JsonProperty("processUserId")]
+        public string ProcessUserId { get; set; }
+        /// <summary>
+        ///     订单处理人姓名
+        /// </summary>
+        [JsonProperty("processUserName")]
         public string ProcessorName { get; set; }
 
         /// <summary>

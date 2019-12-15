@@ -70,7 +70,7 @@ namespace PostCardQueueProcessor
                 webClient.DownloadFile(s, fileInfo.FullName);
                 Log(@"文件下载成功");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Log(@"文件下载异常");
                 return ;

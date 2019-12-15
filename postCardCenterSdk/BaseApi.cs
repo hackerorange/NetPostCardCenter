@@ -32,17 +32,18 @@ namespace postCardCenterSdk
 
     public abstract class BaseApi
     {
-        private readonly RestTemplate _restTemplate;
+        protected readonly RestTemplate _restTemplate;
 
         public string BasePath => Resources.baseURI;
 
         protected BaseApi()
-        {
-            
+        {            
             _restTemplate = new RestTemplate(new Uri(Resources.baseURI));
             _restTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             _restTemplate.RequestInterceptors.Add(new PerfRequestSyncInterceptor());
         }
+
+        
 
         //        protected void PostAsync<T>(string uri, object request, Success<T> success = null, Failure failure = null)
         //        {
@@ -50,6 +51,8 @@ namespace postCardCenterSdk
 
         protected void PostForObject<T>(string uri, object request, Success<T> success = null, Failure failure = null)
         {
+            
+
             try
             {
                 var postForObject = _restTemplate.PostForObject<BodyResponse<T>>(uri, request);
@@ -186,13 +189,32 @@ namespace postCardCenterSdk
         {
             var token = SecurityInfo.Token;
             var requestHeader = request.Headers["token"];
+            request.Headers.Add("channel", "1");
+
+            if(token==null || token.Length == 0)
+            {
+                return;
+            }
+
+
+
             if (string.IsNullOrEmpty(requestHeader)) request.Headers.Add("token", token);
+
+            if (token.StartsWith("Bearer "))
+            {
+                token = token.Substring(7);
+            }
+
+            var tokenHeader = request.Headers["token"];
+            if (string.IsNullOrEmpty(requestHeader)) request.Headers.Add("Authorization", "Bearer "+ tokenHeader.Trim());
+
         }
     }
 
     public static class SecurityInfo
     {
-        public static string Token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJlYWxOYW1lIjoi5Luy5bSH5ruUIn0.OetJnklm4_kM0AF3d7Lmgh5ukJ1UclwRkqgZhDIWtSA";
+        public static string Token;
+        public static string UserId;
         public static string UserName;
     }
 }

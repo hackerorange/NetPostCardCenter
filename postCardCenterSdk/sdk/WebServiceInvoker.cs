@@ -185,7 +185,7 @@ namespace postCardCenterSdk.sdk
             DownLoadFile(Resources.fileDownloadUrl + "/" + fileId, fileInfo, success, process, failure);
         }
 
-       
+
 
         /// <summary>
         ///     根据订单ID获取所有明信片集合
@@ -234,14 +234,28 @@ namespace postCardCenterSdk.sdk
 
         public void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
         {
-
             var request = new GetAllOrderRequest
             {
                 StarDateTime = startDate,
                 EndDateTime = endDate
             };
 
-            PostForObjectAsync<Page<OrderResponse>>(Resources.getAllOrderUrl, request, respon => { success?.Invoke(respon.Detail); }, failure);
+            var aaaa = _restTemplate.PostForObjectAsync<BodyResponse<Page<OrderResponse>>>("/order/getAll", request, postCompleted:
+                respon =>
+                {
+                    if (respon.Error != null)
+                    {
+                        failure.Invoke(respon.Error.Message);
+                        return;
+                    }
+
+                    if (respon.Response.Code < 0)
+                    {
+                        failure?.Invoke(respon.Response.Message);
+                        return;
+                    }
+                    success?.Invoke(respon.Response.Data.Detail);
+                });
         }
 
         /// <summary>
@@ -268,13 +282,24 @@ namespace postCardCenterSdk.sdk
         /// <param name="orderId">订单ID</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public void ChangeOrderProcessor(string orderId, Success<OrderResponse> success, Failure failure = null)
+        public OrderResponse ChangeOrderProcessor(string orderId)
         {
-            var nameValueCollection = new Dictionary<string, object>
+            try
             {
-                {"orderId", orderId}
-            };
-            PostForObjectAsync<OrderResponse>(Resources.changeOrderProcessorUrl, nameValueCollection, response => { success?.Invoke(response); }, failure);
+                var result = _restTemplate.PostForObject<BodyResponse<OrderResponse>>(@"/order/{orderId}/updateProcessor", null, uriVariables: orderId);
+
+                if (result.Code >= 0)
+                {
+                    return result.Data;
+                }
+            }
+            catch (Exception e)
+            {
+                var a = e.Message;
+            }
+
+            return null;
+
         }
 
         public void GetOrderInfo(string orderId, Success<OrderResponse> success, Failure failure = null)
@@ -293,7 +318,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="password">密码</param>
         /// <param name="success">成功后的回调函数</param>
         /// <param name="failure">失败后的回调函数</param>
-        public void UserLogin(string userName, string password, Success<LoginResponse> success, Failure failure = null)
+        public LoginResponse UserLogin(string userName, string password)
         {
             var userLoginRequest = new UserLoginRequest
             {
@@ -301,14 +326,25 @@ namespace postCardCenterSdk.sdk
                 Password = password
             };
 
-            var httpHeaders = new HttpHeaders {{"tokenId", "123456"}};
+            var httpHeaders = new HttpHeaders { { "tokenId", "123456" } };
 
             var headers = new HttpEntity(userLoginRequest, httpHeaders);
 
-            PostForObjectAsync<LoginResponse>(Resources.loginUrl, headers, resp => { success?.Invoke(resp); }, failure);
+            try
+            {
+                var login = _restTemplate.PostForObject<BodyResponse<LoginResponse>>("/security/login", headers);
+                if (login.Code >= 0)
+                {
+                    return login.Data;
+                }
+            }
+            catch
+            {
+            }
+            return null;
         }
 
-        public RestOperationCanceler SubmitPostCardProductFile(string postCardId, string productFile, Success success=null, Failure failure=null)
+        public RestOperationCanceler SubmitPostCardProductFile(string postCardId, string productFile, Success success = null, Failure failure = null)
         {
             var request = new PostCardProductFileIdSubmitRequest
             {
@@ -360,7 +396,7 @@ namespace postCardCenterSdk.sdk
             GetForObject<PostCardResponse>(Resources.getPostCardInfoUrl, nameValueCollection, res =>
             {
                 postCardResponse = res;
-                
+
             });
             return postCardResponse;
         }

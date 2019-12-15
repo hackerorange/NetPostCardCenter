@@ -35,8 +35,6 @@ namespace PostCardCrop.control
             }
         }
 
-        public event PostCardModifiedHandler FileChanged;
-
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
             if (_postCardInfo == null) return;

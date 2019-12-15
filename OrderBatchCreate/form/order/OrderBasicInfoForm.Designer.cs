@@ -58,15 +58,15 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(364, 122);
+            this.layoutControl1.Size = new System.Drawing.Size(358, 106);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(184, 88);
+            this.simpleButton1.Location = new System.Drawing.Point(181, 72);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(168, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(165, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 6;
             this.simpleButton1.Text = "确定";
@@ -74,7 +74,7 @@
             // 
             // checkEdit1
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(306, 12);
+            this.checkEdit1.Location = new System.Drawing.Point(300, 12);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "加急";
             this.checkEdit1.Size = new System.Drawing.Size(46, 19);
@@ -85,7 +85,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(63, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(239, 20);
+            this.textBox1.Size = new System.Drawing.Size(233, 20);
             this.textBox1.TabIndex = 4;
             // 
             // layoutControlGroup1
@@ -98,9 +98,8 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.emptySpaceItem2});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(364, 122);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(358, 106);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -108,7 +107,7 @@
             this.layoutControlItem1.Control = this.textBox1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(294, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(288, 24);
             this.layoutControlItem1.Text = "客户淘宝";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -117,13 +116,13 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(344, 52);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(338, 36);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.checkEdit1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(294, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(288, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(50, 24);
             this.layoutControlItem2.Text = "是否加急";
@@ -133,25 +132,25 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.simpleButton1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(172, 76);
+            this.layoutControlItem3.Location = new System.Drawing.Point(169, 60);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(172, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(169, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 76);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 60);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(172, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(169, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // OrderBasicInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 122);
+            this.ClientSize = new System.Drawing.Size(358, 106);
             this.Controls.Add(this.layoutControl1);
             this.Name = "OrderBasicInfoForm";
             this.Text = "订单基本信息";

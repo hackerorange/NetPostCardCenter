@@ -14,6 +14,9 @@ namespace PostCardCrop.model
             //Envelopes = new List<EnvelopeInfo>();
         }
 
+
+        public string ProcessUserId { get; set; }
+
         /// <summary>
         ///     处理者名称
         /// </summary>

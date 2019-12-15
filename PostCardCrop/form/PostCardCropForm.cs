@@ -32,9 +32,6 @@ namespace PostCardCrop.form
     public partial class PostCardCropForm : RibbonForm
     {
         private readonly string _orderId;
-
-        public bool NeedRefresh { get; set; } = false;
-
         //明信片集合
         public PostCardCropForm(string focusedRowOrderId)
         {

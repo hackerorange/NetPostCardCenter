@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.pictureCropControl1 = new pictureCroper.control.PictureCropControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
@@ -64,7 +63,6 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.pictureCropControl1);
             this.layoutControl1.Controls.Add(this.simpleButton1);
             this.layoutControl1.Controls.Add(this.simpleButton2);
             this.layoutControl1.Controls.Add(this.simpleButton3);
@@ -75,25 +73,15 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(775, 649);
+            this.layoutControl1.Size = new System.Drawing.Size(769, 633);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // pictureCropControl1
-            // 
-            this.pictureCropControl1.CropBoxBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.pictureCropControl1.CropContext = null;
-            this.pictureCropControl1.IsPreview = false;
-            this.pictureCropControl1.Location = new System.Drawing.Point(12, 12);
-            this.pictureCropControl1.Name = "pictureCropControl1";
-            this.pictureCropControl1.Size = new System.Drawing.Size(751, 599);
-            this.pictureCropControl1.TabIndex = 4;
-            // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(12, 615);
+            this.simpleButton1.Location = new System.Drawing.Point(12, 599);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(121, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 5;
             this.simpleButton1.Text = "更换图片";
@@ -101,9 +89,9 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(516, 615);
+            this.simpleButton2.Location = new System.Drawing.Point(512, 599);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton2.Size = new System.Drawing.Size(121, 22);
             this.simpleButton2.StyleController = this.layoutControl1;
             this.simpleButton2.TabIndex = 6;
             this.simpleButton2.Text = "确定";
@@ -111,9 +99,9 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(390, 615);
+            this.simpleButton3.Location = new System.Drawing.Point(387, 599);
             this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton3.Size = new System.Drawing.Size(121, 22);
             this.simpleButton3.StyleController = this.layoutControl1;
             this.simpleButton3.TabIndex = 7;
             this.simpleButton3.Text = "顺时针旋转";
@@ -121,9 +109,9 @@
             // 
             // simpleButton4
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(264, 615);
+            this.simpleButton4.Location = new System.Drawing.Point(262, 599);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton4.Size = new System.Drawing.Size(121, 22);
             this.simpleButton4.StyleController = this.layoutControl1;
             this.simpleButton4.TabIndex = 8;
             this.simpleButton4.Text = "逆时针旋转";
@@ -131,9 +119,9 @@
             // 
             // simpleButton5
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(642, 615);
+            this.simpleButton5.Location = new System.Drawing.Point(637, 599);
             this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(121, 22);
+            this.simpleButton5.Size = new System.Drawing.Size(120, 22);
             this.simpleButton5.StyleController = this.layoutControl1;
             this.simpleButton5.TabIndex = 9;
             this.simpleButton5.Text = "取消";
@@ -141,9 +129,9 @@
             // 
             // simpleButton6
             // 
-            this.simpleButton6.Location = new System.Drawing.Point(138, 615);
+            this.simpleButton6.Location = new System.Drawing.Point(137, 599);
             this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(122, 22);
+            this.simpleButton6.Size = new System.Drawing.Size(121, 22);
             this.simpleButton6.StyleController = this.layoutControl1;
             this.simpleButton6.TabIndex = 10;
             this.simpleButton6.Text = "变形";
@@ -161,71 +149,69 @@
             this.layoutControlItem4,
             this.layoutControlItem6,
             this.layoutControlItem7});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(775, 649);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(769, 633);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.pictureCropControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(755, 603);
+            this.layoutControlItem1.Size = new System.Drawing.Size(749, 587);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.simpleButton1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 603);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 587);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(125, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.simpleButton2;
-            this.layoutControlItem3.Location = new System.Drawing.Point(504, 603);
+            this.layoutControlItem3.Location = new System.Drawing.Point(500, 587);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(125, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton4;
-            this.layoutControlItem5.Location = new System.Drawing.Point(252, 603);
+            this.layoutControlItem5.Location = new System.Drawing.Point(250, 587);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem5.Size = new System.Drawing.Size(125, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.simpleButton3;
-            this.layoutControlItem4.Location = new System.Drawing.Point(378, 603);
+            this.layoutControlItem4.Location = new System.Drawing.Point(375, 587);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(125, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.simpleButton5;
-            this.layoutControlItem6.Location = new System.Drawing.Point(630, 603);
+            this.layoutControlItem6.Location = new System.Drawing.Point(625, 587);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(125, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(124, 26);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.simpleButton6;
-            this.layoutControlItem7.Location = new System.Drawing.Point(126, 603);
+            this.layoutControlItem7.Location = new System.Drawing.Point(125, 587);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(126, 26);
+            this.layoutControlItem7.Size = new System.Drawing.Size(125, 26);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -257,7 +243,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 649);
+            this.ClientSize = new System.Drawing.Size(769, 633);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Name = "BackStyleCropForm";

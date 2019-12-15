@@ -5,18 +5,16 @@ namespace PostCardCrop.translator.response
 {
     public static class OrderInfoTranslator
     {
-        public static OrderInfo TranslateToOrderInfo(this OrderResponse orderResponse)
+        public static OrderInfo TranslateToOrderInfo(this OrderResponse orderResponse) => new OrderInfo
         {
-            return new OrderInfo
-            {
-                Id = orderResponse.OrderId,
-                CreateDate = orderResponse.CreateDate,
-                PaperType = orderResponse.PaperType,
-                ProcessorName = orderResponse.ProcessorName,
-                ProcessStatus = string.IsNullOrEmpty(orderResponse.ProcessStatus) ? "未处理" : orderResponse.ProcessStatus,
-                TaobaoId = orderResponse.TaobaoId,
-                Urgent = orderResponse.Urgent
-            };
-        }
+            Id = orderResponse.OrderId,
+            CreateDate = orderResponse.CreateDate,
+            PaperType = orderResponse.PaperType,
+            ProcessorName = orderResponse.ProcessorName,
+            ProcessUserId = orderResponse.ProcessUserId,
+            ProcessStatus = string.IsNullOrEmpty(orderResponse.ProcessStatus) ? "未处理" : orderResponse.ProcessStatus,
+            TaobaoId = orderResponse.TaobaoId,
+            Urgent = orderResponse.Urgent
+        };
     }
 }
