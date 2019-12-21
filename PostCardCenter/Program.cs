@@ -9,6 +9,8 @@ using postCardCenterSdk.sdk;
 using PostCardCenter.form;
 using PostCardCenter.form.security;
 using soho.domain.system;
+using System.IO;
+using postCardCenterSdk;
 
 namespace PostCardCenter
 {
@@ -29,18 +31,41 @@ namespace PostCardCenter
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
                     UserLookAndFeel.Default.SetSkinStyle("DevExpress Style"); // 设置皮肤样式
-
-                    /* Application.EnableVisualStyles();
-                     Application.SetCompatibleTextRenderingDefault(false);*/
-
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    var a = new UserLogin();
-                    if (a.ShowDialog() != DialogResult.OK) return;
-//                    WebServiceInvoker.Token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJlYWxOYW1lIjoi5Luy5bSH5ruUIn0.OetJnklm4_kM0AF3d7Lmgh5ukJ1UclwRkqgZhDIWtSA";
-                    SystemConstant.InitConstant();
+                    if (File.Exists("D:\\postCard\\userLogin.ini"))
+                    {
+                        try
+                        {
+                            // TODO: 需要校验保存起来的Token是否有效，刷新Token
+                            var fileReader = new StreamReader(new FileStream("D:\\postCard\\userLogin.ini", FileMode.Open));
+                            var refreshToken = fileReader.ReadLine();
+                            var isWait = true;
+                            WebServiceInvoker.GetInstance().RefreshToken(refreshToken, success: result =>
+                            {
+                                SecurityInfo.Token = result.Token;
+                                SecurityInfo.UserId = result.UserId;
+                                SecurityInfo.UserName = result.RealName;
+                                isWait = false;
+                            }, null);
+                            while (isWait)
+                            {
+
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                    // 如果当前用户没有登录过，Token已经失效
+                    if (string.IsNullOrEmpty(SecurityInfo.Token))
+                    {
+                        var a = new UserLogin();
+                        if (a.ShowDialog() != DialogResult.OK) return;
+                    }
+                    // 运行主程序
                     Application.Run(new PostCardCenterMainForm());
-//                    Application.Run(new OrderBatch());
                 }
                 else
                 {

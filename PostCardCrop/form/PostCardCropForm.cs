@@ -70,7 +70,7 @@ namespace PostCardCrop.form
                 }
             }
         }
-        
+
 
         private void SubmitPostCard(int rowHandler, CropInfo cropInfo)
         {
@@ -258,6 +258,7 @@ namespace PostCardCrop.form
                 {
                     var postCardInfo = resp.TranlateToPostCard();
                     postCard.ProcessStatus = postCardInfo.ProcessStatus;
+                    postCard.ProductFileId = postCardInfo.ProductFileId;
                     postCard.FrontStyle = postCardInfo.FrontStyle;
                     postCard.ProcessStatusText = postCardInfo.ProcessStatusText;
                     PostCardChanged();
@@ -269,7 +270,7 @@ namespace PostCardCrop.form
 
         private void EnvelopeView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            
+
             if (EnvelopeView.GetFocusedRow() is EnvelopeInfo _currentEnvelopeInfo)
             {
                 postCardControl.DataSource = _currentEnvelopeInfo.PostCards;

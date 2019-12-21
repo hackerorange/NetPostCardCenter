@@ -4,6 +4,8 @@ namespace postCardCenterSdk.response.security
 {
     public class LoginResponse
     {
+        [JsonProperty("refreshToken")]
+        public string RefreshToken { get; set; }
         /// <summary>
         ///     TOKEN
         /// </summary>

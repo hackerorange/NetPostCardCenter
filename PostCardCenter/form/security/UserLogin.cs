@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using postCardCenterSdk;
@@ -17,18 +18,22 @@ namespace PostCardCenter.form.security
         {
         }
 
-
         private void LoginButton_Click(object sender, EventArgs e)
         {
             loginButton.Enabled = false;
-            WebServiceInvoker.GetInstance().UserLogin(textEdit1.Text, textEdit2.Text,success:result=>
+            WebServiceInvoker.GetInstance().UserLogin(textEdit1.Text, textEdit2.Text, success: result =>
             {
+                var stream = new StreamWriter(new FileStream("D:\\postCard\\userLogin.ini", FileMode.CreateNew));
+                stream.WriteLine(result.RefreshToken);
+                stream.Flush();
+                stream.Close();
+
                 loginButton.Enabled = true;
                 SecurityInfo.Token = result.Token;
                 SecurityInfo.UserId = result.UserId;
                 SecurityInfo.UserName = result.RealName;
                 DialogResult = DialogResult.OK;
-            },failure:message=>
+            }, failure: message =>
             {
                 XtraMessageBox.Show(message);
             });
