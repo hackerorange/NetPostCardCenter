@@ -111,6 +111,7 @@
     <Compile Include="form\SubmitWaitForm.Designer.cs">
       <DependentUpon>SubmitWaitForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="helper\ActionResponseHelper.cs" />
     <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="model\CropInfo.cs" />
     <Compile Include="model\EnvelopeInfo.cs" />
@@ -140,6 +141,7 @@
     <EmbeddedResource Include="form\SubmitWaitForm.resx">
       <DependentUpon>SubmitWaitForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

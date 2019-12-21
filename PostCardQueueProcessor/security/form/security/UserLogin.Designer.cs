@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.CloseButton = new DevExpress.XtraEditors.SimpleButton();
             this.loginButton = new DevExpress.XtraEditors.SimpleButton();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
@@ -40,8 +40,9 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
@@ -70,16 +71,6 @@
             this.layoutControl1.Size = new System.Drawing.Size(351, 109);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(319, 75);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(20, 22);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 7;
-            this.simpleButton1.Text = "...";
-            this.simpleButton1.Click += new System.EventHandler(this.SimpleButton1_Click);
             // 
             // CloseButton
             // 
@@ -178,6 +169,20 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(331, 15);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Blue";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(319, 75);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(20, 22);
+            this.simpleButton1.StyleController = this.layoutControl1;
+            this.simpleButton1.TabIndex = 7;
+            this.simpleButton1.Text = "...";
+            this.simpleButton1.Click += new System.EventHandler(this.SimpleButton1_Click);
+            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton1;
@@ -186,10 +191,6 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(24, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // defaultLookAndFeel1
-            // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Blue";
             // 
             // UserLogin
             // 

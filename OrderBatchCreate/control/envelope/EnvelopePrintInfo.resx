@@ -366,7 +366,7 @@
         QmCC
 </value>
   </data>
-  <data name="layoutControlGroup5.CustomHeaderButtons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="buttonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABF0RVh0VGl0
         bGUAUmVzZXQ7VW5kbzsTgRb/AAAA70lEQVQ4T6XTMWoCURDG8W2EWGgRC7ERDF7AVrDwAN7BRgQheAev
@@ -376,7 +376,7 @@
         6lvIIgtnxPiC/M3zSHLzE/07F90Bmo0RPdcw7NUAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="layoutControlGroup3.CustomHeaderButtons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="buttonImageOptions2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABh0RVh0VGl0
         bGUAUm90YXRlO0NoYXJ0O1RyYW5zyyU2+wAAAqhJREFUOE+dkW1IU1EYx0+2ykzqQx+CwpKIgrI3E6ys

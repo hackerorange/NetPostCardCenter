@@ -58,7 +58,6 @@
             this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.ZoomAccelerationFactor = 1D;
             this.pictureEdit1.Size = new System.Drawing.Size(831, 508);
             this.pictureEdit1.StyleController = this.layoutControl1;
             this.pictureEdit1.TabIndex = 4;
@@ -75,7 +74,6 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup1.Size = new System.Drawing.Size(835, 512);

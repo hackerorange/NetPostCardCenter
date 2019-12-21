@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Cache;
 using System.Text;
+using postCardCenterSdk.helper;
 using postCardCenterSdk.Properties;
 using postCardCenterSdk.request.order;
 using postCardCenterSdk.request.postCard;
@@ -50,10 +51,9 @@ namespace postCardCenterSdk.sdk
         /// </summary>
         /// <param name="success"></param>
         /// <param name="failure"></param>
-        public void GetBackStyleTemplateList(Success<List<BackStyleResponse>> success, Failure failure = null)
-        {
-            GetForObjectAsync(Resources.backStyleListUrl, null, success, failure);
-        }
+        public void GetBackStyleTemplateList(Action<List<BackStyleResponse>> success, Action<string> failure = null) =>
+            _restTemplate.GetForObjectAsync<BodyResponse<List<BackStyleResponse>>>("/backStyle", resp => resp.prepareResult(success, failure));
+
 
         /// <summary>
         ///     从服务器端获取明信片尺寸信息
@@ -61,15 +61,11 @@ namespace postCardCenterSdk.sdk
         /// <param name="category">尺寸所属分类</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public void GetSizeInfoFromServer(string category, Success<List<PostCardSizeResponse>> success, Failure failure = null)
-        {
-            var request = new Dictionary<string, object>
+        public void GetSizeInfoFromServer(string category, Action<List<PostCardSizeResponse>> success, Action<string> failure = null) =>
+            _restTemplate.GetForObjectAsync<BodyResponse<List<PostCardSizeResponse>>>("/size/{category}", new Dictionary<string, object>
             {
                 {"category", category}
-            };
-
-            GetForObjectAsync<Page<PostCardSizeResponse>>(Resources.getAllProductSizeUrl, request, result => { success(result.Detail); }, failure);
-        }
+            }, resp => resp.prepareResult(success, failure));
 
         /// <summary>
         /// 向服务器插入成品尺寸信息
@@ -186,21 +182,17 @@ namespace postCardCenterSdk.sdk
         }
 
 
-
         /// <summary>
         ///     根据订单ID获取所有明信片集合
         /// </summary>
         /// <param name="orderId">订单ID</param>
         /// <param name="success">获取成功的响应结果</param>
         /// <param name="failure">获取失败的响应结果</param>
-        public void GetAllEnvelopeByOrderId(string orderId, Success<List<EnvelopeResponse>> success, Failure failure = null)
-        {
-            var nameValueCollection = new Dictionary<string, object>
+        public void GetAllEnvelopeByOrderId(string orderId, Action<List<EnvelopeResponse>> success, Action<string> failure = null) =>
+            _restTemplate.GetForObjectAsync<BodyResponse<Page<EnvelopeResponse>>>("/bill/{billId}/collection/list", new Dictionary<string, object>
             {
-                {"orderId", orderId}
-            };
-            GetForObjectAsync<Page<EnvelopeResponse>>(Resources.getAllEnvelopeByOrderIdUrl, nameValueCollection, result => { success?.Invoke(result.Detail); }, failure);
-        }
+                { "billId", orderId }
+            }, resp => resp.prepareResult(kk => success?.Invoke(kk.Detail), failure));
 
         /// <summary>
         ///     根据明信片集合ID获取明信片集合中的所有明信片
@@ -208,14 +200,11 @@ namespace postCardCenterSdk.sdk
         /// <param name="envelopeId">明信片集合ID</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public void GetPostCardByEnvelopeId(string envelopeId, Success<List<PostCardResponse>> success, Failure failure = null)
-        {
-            var nameValueCollection = new Dictionary<string, object>
+        public void GetPostCardByEnvelopeId(string envelopeId, Action<List<PostCardResponse>> success, Action<string> failure = null) =>
+            _restTemplate.GetForObjectAsync<BodyResponse<Page<PostCardResponse>>>("/collection/{collectionId}/postCard/list", new Dictionary<string, object>
             {
-                {"envelopeId", envelopeId}
-            };
-            GetForObjectAsync<Page<PostCardResponse>>(Resources.getPostCardByEnvelopeIdUrl, nameValueCollection, resp => { success?.Invoke(resp.Detail); }, failure);
-        }
+                {"collectionId", envelopeId}
+            }, resp => resp.prepareResult(kk => success?.Invoke(kk.Detail), failure));
 
         /// <summary>
         ///     根据ID获取明信片集合详细信息
@@ -223,14 +212,11 @@ namespace postCardCenterSdk.sdk
         /// <param name="envelopeId">明信片集合ID</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
-        public void GetEnvelopeInfoById(string envelopeId, Success<EnvelopeResponse> success, Failure failure = null)
-        {
-            var nameValueCollection = new Dictionary<string, object>
+        public void GetEnvelopeInfoById(string envelopeId, Action<EnvelopeResponse> success, Action<string> failure = null) =>
+            _restTemplate.GetForObjectAsync<BodyResponse<EnvelopeResponse>>("/envelope/{envelopeId}/info", new Dictionary<string, object>
             {
                 {"envelopeId", envelopeId}
-            };
-            GetForObjectAsync<EnvelopeResponse>(Resources.envelopeInfoUrl, nameValueCollection, headCompleted => { success?.Invoke(headCompleted); }, failure);
-        }
+            }, resp => resp.prepareResult(success, failure));
 
         public void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
         {
@@ -302,14 +288,11 @@ namespace postCardCenterSdk.sdk
 
         }
 
-        public void GetOrderInfo(string orderId, Success<OrderResponse> success, Failure failure = null)
-        {
-            var nameValueCollection = new Dictionary<string, object>
+        public void GetOrderInfo(string orderId, Action<OrderResponse> success, Action<string> failure = null) =>
+            _restTemplate.GetForObjectAsync<BodyResponse<OrderResponse>>("/bill/{billId}/info", new Dictionary<string, object>
             {
                 {"orderId", orderId}
-            };
-            GetForObjectAsync<OrderResponse>(Resources.getOrderInfoUrl, nameValueCollection, respon => { success?.Invoke(respon); }, failure);
-        }
+            }, resp => resp.prepareResult(success, failure));
 
         /// <summary>
         /// 用户登录
@@ -318,41 +301,19 @@ namespace postCardCenterSdk.sdk
         /// <param name="password">密码</param>
         /// <param name="success">成功后的回调函数</param>
         /// <param name="failure">失败后的回调函数</param>
-        public LoginResponse UserLogin(string userName, string password)
-        {
-            var userLoginRequest = new UserLoginRequest
+        public void UserLogin(string userName, string password, Action<LoginResponse> success, Action<string> failure) =>
+            _restTemplate.PostForObjectAsync<BodyResponse<LoginResponse>>("/security/login", new HttpEntity(new UserLoginRequest
             {
                 UserName = userName,
                 Password = password
-            };
+            }), result => result.prepareResult(success, failure));
 
-            var httpHeaders = new HttpHeaders { { "tokenId", "123456" } };
-
-            var headers = new HttpEntity(userLoginRequest, httpHeaders);
-
-            try
-            {
-                var login = _restTemplate.PostForObject<BodyResponse<LoginResponse>>("/security/login", headers);
-                if (login.Code >= 0)
-                {
-                    return login.Data;
-                }
-            }
-            catch
-            {
-            }
-            return null;
-        }
-
-        public RestOperationCanceler SubmitPostCardProductFile(string postCardId, string productFile, Success success = null, Failure failure = null)
-        {
-            var request = new PostCardProductFileIdSubmitRequest
+        public void SubmitPostCardProductFile(string postCardId, string productFileId, Action<bool> success = null, Action<string> failure = null) =>
+            _restTemplate.PostForObjectAsync<BodyResponse<bool>>("/postCard/submitProduct", new PostCardProductFileIdSubmitRequest
             {
                 PostCardId = postCardId,
-                ProductFileId = productFile
-            };
-            return PostForObjectAsync(Resources.productFileSubmitUrl, request, () => { success?.Invoke(); }, failure);
-        }
+                ProductFileId = productFileId
+            }, result => result.prepareResult(success, failure));
 
         public void ChangePostCardFrontStyle(string postCardId, string frontStyle, Success<PostCardResponse> success, Failure failure = null)
         {
@@ -372,15 +333,13 @@ namespace postCardCenterSdk.sdk
         /// <param name="postCardId">明信片ID</param>
         /// <param name="success">成功返回信息</param>
         /// <param name="failure">失败返回信息</param>
-        public void GetPostCardInfo(string postCardId, Success<PostCardResponse> success, Failure failure = null)
+        public void GetPostCardInfo(string postCardId, Action<PostCardResponse> success, Action<string> failure = null)
         {
-            var nameValueCollection = new Dictionary<string, object>
+            _restTemplate.GetForObjectAsync<BodyResponse<PostCardResponse>>("/postCard/{postCardId}/info", new Dictionary<string, object>
             {
-                {"fileId", postCardId}
-            };
-            GetForObjectAsync<PostCardResponse>(Resources.getPostCardInfoUrl, nameValueCollection, res => { success?.Invoke(res); }, failure);
+                {"postCardId", postCardId}
+            }, resp => resp.prepareResult(success, failure));
         }
-
 
         /// <summary>
         ///     获取明信片信息
@@ -388,17 +347,19 @@ namespace postCardCenterSdk.sdk
         /// <param name="postCardId">明信片ID</param>
         public PostCardResponse GetPostCardInfo(string postCardId)
         {
-            PostCardResponse postCardResponse = null;
-            var nameValueCollection = new Dictionary<string, object>
+            try
             {
-                {"fileId", postCardId}
-            };
-            GetForObject<PostCardResponse>(Resources.getPostCardInfoUrl, nameValueCollection, res =>
+                var result = _restTemplate.GetForObject<BodyResponse<PostCardResponse>>("/postCard/{postCardId}/info", new Dictionary<string, object>
             {
-                postCardResponse = res;
-
+                {"postCardId", postCardId}
             });
-            return postCardResponse;
+
+                return result.Data;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
         //frontStyle
     }

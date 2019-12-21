@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostCardCenterMainForm));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -50,9 +49,9 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
@@ -96,7 +95,6 @@
             this.barStaticItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barStaticItem1.ImageOptions.Image")));
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barButtonItem3
             // 
@@ -223,7 +221,6 @@
             // repositoryItemPictureEdit1
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            this.repositoryItemPictureEdit1.ZoomAccelerationFactor = 1D;
             // 
             // repositoryItemComboBox1
             // 

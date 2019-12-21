@@ -31,7 +31,6 @@ namespace OrderBatchCreate.form
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderBatch));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
@@ -60,6 +59,8 @@ namespace OrderBatchCreate.form
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.envelopePrintInfo2 = new OrderBatchCreate.control.envelope.EnvelopePrintInfo();
+            this.envelopeSettingControl2 = new OrderBatchCreate.control.envelope.EnvelopeSettingControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.envelopePrintInfoListView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.OrderEnvelopeListPaperName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,7 +91,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemComboBox5 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.backStyleColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
             this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.orderPathTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -174,10 +175,10 @@ namespace OrderBatchCreate.form
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SizeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.timer1 = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -484,6 +485,8 @@ namespace OrderBatchCreate.form
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.envelopePrintInfo2);
+            this.layoutControl1.Controls.Add(this.envelopeSettingControl2);
             this.layoutControl1.Controls.Add(this.gridControl2);
             this.layoutControl1.Controls.Add(this.gridControl1);
             this.layoutControl1.Controls.Add(this.orderDetailListView);
@@ -499,6 +502,25 @@ namespace OrderBatchCreate.form
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // envelopePrintInfo2
+            // 
+            this.envelopePrintInfo2.EnvelopeInfo = null;
+            this.envelopePrintInfo2.Location = new System.Drawing.Point(24, 470);
+            this.envelopePrintInfo2.Name = "envelopePrintInfo2";
+            this.envelopePrintInfo2.Size = new System.Drawing.Size(351, 166);
+            this.envelopePrintInfo2.TabIndex = 71;
+            this.envelopePrintInfo2.EnvelopeChanged += new OrderBatchCreate.model.EnvelopeEvent(this.EnvelopePrintInfo2_EnvelopeChanged);
+            // 
+            // envelopeSettingControl2
+            // 
+            this.envelopeSettingControl2.EnvelopeInfo = null;
+            this.envelopeSettingControl2.Location = new System.Drawing.Point(403, 43);
+            this.envelopeSettingControl2.Name = "envelopeSettingControl2";
+            this.envelopeSettingControl2.Size = new System.Drawing.Size(994, 256);
+            this.envelopeSettingControl2.TabIndex = 70;
+            this.envelopeSettingControl2.EnvelopeChanged += new OrderBatchCreate.model.EnvelopeEvent(this.EnvelopeSettingControl1_envelopeChanged);
+            this.envelopeSettingControl2.Load += new System.EventHandler(this.EnvelopeSettingControl2_Load);
+            // 
             // gridControl2
             // 
             this.gridControl2.Location = new System.Drawing.Point(24, 303);
@@ -506,7 +528,7 @@ namespace OrderBatchCreate.form
             this.gridControl2.MenuManager = this.ribbon;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.Size = new System.Drawing.Size(351, 163);
-            this.gridControl2.TabIndex = 64;
+            this.gridControl2.TabIndex = 3;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.envelopePrintInfoListView});
             this.gridControl2.Click += new System.EventHandler(this.GridControl2_Click);
@@ -605,7 +627,7 @@ namespace OrderBatchCreate.form
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.orderUrgentItemCheckEdit});
             this.gridControl1.Size = new System.Drawing.Size(351, 232);
-            this.gridControl1.TabIndex = 60;
+            this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             this.gridControl1.Click += new System.EventHandler(this.GridControl1_Click);
@@ -699,7 +721,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemButtonEdit1});
             this.orderDetailListView.SelectImageList = this.imageCollection1;
             this.orderDetailListView.Size = new System.Drawing.Size(994, 359);
-            this.orderDetailListView.TabIndex = 52;
+            this.orderDetailListView.TabIndex = 6;
             this.orderDetailListView.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.OrderDetailListView_FocusedNodeChanged);
             this.orderDetailListView.CellValueChanging += new DevExpress.XtraTreeList.CellValueChangedEventHandler(this.OrderDetailListView_CellValueChanging);
             this.orderDetailListView.CellValueChanged += new DevExpress.XtraTreeList.CellValueChangedEventHandler(this.OrderDetailListView_CellValueChanged);
@@ -983,7 +1005,7 @@ namespace OrderBatchCreate.form
             this.orderPathTextEdit.Properties.ReadOnly = true;
             this.orderPathTextEdit.Size = new System.Drawing.Size(300, 20);
             this.orderPathTextEdit.StyleController = this.layoutControl1;
-            this.orderPathTextEdit.TabIndex = 61;
+            this.orderPathTextEdit.TabIndex = 0;
             // 
             // simpleButton1
             // 
@@ -992,7 +1014,7 @@ namespace OrderBatchCreate.form
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(251, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 66;
+            this.simpleButton1.TabIndex = 4;
             this.simpleButton1.Text = "提交订单（所有设置完成的）";
             this.simpleButton1.Click += new System.EventHandler(this.SimpleButton1_Click);
             // 
@@ -1004,7 +1026,7 @@ namespace OrderBatchCreate.form
             this.checkEdit1.Properties.Caption = "自己处理";
             this.checkEdit1.Size = new System.Drawing.Size(96, 19);
             this.checkEdit1.StyleController = this.layoutControl1;
-            this.checkEdit1.TabIndex = 69;
+            this.checkEdit1.TabIndex = 5;
             // 
             // layoutControlGroup1
             // 
@@ -1066,6 +1088,7 @@ namespace OrderBatchCreate.form
             // 
             // layoutControlItem8
             // 
+            this.layoutControlItem8.Control = this.envelopePrintInfo2;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 427);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(355, 170);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(355, 170);
@@ -1160,7 +1183,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemRadioGroup4});
             this.ribbonControl2.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl2.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl2.Size = new System.Drawing.Size(966, 122);
+            this.ribbonControl2.Size = new System.Drawing.Size(966, 123);
             this.ribbonControl2.StatusBar = this.ribbonStatusBar2;
             // 
             // barEditItem4
@@ -1403,10 +1426,10 @@ namespace OrderBatchCreate.form
             // 
             // ribbonStatusBar2
             // 
-            this.ribbonStatusBar2.Location = new System.Drawing.Point(0, 747);
+            this.ribbonStatusBar2.Location = new System.Drawing.Point(0, 748);
             this.ribbonStatusBar2.Name = "ribbonStatusBar2";
             this.ribbonStatusBar2.Ribbon = this.ribbonControl2;
-            this.ribbonStatusBar2.Size = new System.Drawing.Size(984, 28);
+            this.ribbonStatusBar2.Size = new System.Drawing.Size(984, 27);
             // 
             // ribbonControl1
             // 
@@ -1444,7 +1467,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemRadioGroup2});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barEditItem1
@@ -1687,10 +1710,10 @@ namespace OrderBatchCreate.form
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 747);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 748);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 28);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 27);
             // 
             // gridColumn1
             // 

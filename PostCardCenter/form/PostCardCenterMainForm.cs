@@ -8,10 +8,9 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTabbedMdi;
-using OrderBatchCreate.form;
-using OrderBatchCreate.form.order;
 using postCardCenterSdk;
 using PostCardCenter.form.order;
+using OrderBatchCreate.form;
 
 namespace PostCardCenter.form
 {

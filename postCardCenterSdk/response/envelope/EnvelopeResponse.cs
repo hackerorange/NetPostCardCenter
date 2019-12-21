@@ -7,7 +7,7 @@ namespace postCardCenterSdk.response.envelope
         /// <summary>
         ///     此明信片所属订单ID
         /// </summary>
-        [JsonProperty("orderId")] public string OrderId;
+        [JsonProperty("orderId")] public string OrderId { get; set; }
 
         /// <summary>
         ///     明信片集合ID

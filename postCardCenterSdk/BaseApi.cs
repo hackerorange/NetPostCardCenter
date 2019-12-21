@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using postCardCenterSdk.helper;
 using postCardCenterSdk.Properties;
 using postCardCenterSdk.response;
 using Spring.Http;
@@ -115,29 +116,13 @@ namespace postCardCenterSdk
             
         }
 
-        protected void GetForObjectAsync<T>(string uri, Dictionary<string, object> request, Success<T> success = null, Failure failure = null)
+        protected void GetForObjectAsync<T>(string uri, Dictionary<string, object> request, Action<T> success = null, Action<string> failure = null)
         {
             if (request == null)
             {
                 request=new Dictionary<string, object>();
             }
-            _restTemplate.GetForObjectAsync<BodyResponse<T>>(uri, request,
-                resp =>
-                {
-                    if (resp.Error != null)
-                    {
-                        failure?.Invoke(resp.Error.Message);
-                        return;
-                    }
-
-                    if (resp.Response.Code < 0)
-                    {
-                        failure?.Invoke(resp.Response.Message);
-                        return;
-                    }
-
-                    success?.Invoke(resp.Response.Data);
-                });
+            _restTemplate.GetForObjectAsync<BodyResponse<T>>(uri, request, resp => resp.prepareResult(success, failure));
         }
 
 

@@ -27,7 +27,7 @@ namespace PostCardProcessor
         public PhotoShopOperation()
         {
             //初始化对象
-            Application = new Application();
+            Application = new Photoshop.Application();
             //设置为毫米
             _oldPsUnits = Application.Preferences.RulerUnits;
             //重置颜色

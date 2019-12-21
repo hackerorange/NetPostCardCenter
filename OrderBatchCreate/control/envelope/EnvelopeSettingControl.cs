@@ -14,6 +14,7 @@ using SystemSetting.size.model;
 using DevExpress.XtraEditors;
 using OrderBatchCreate.form;
 using OrderBatchCreate.model;
+using postCardCenterSdk.sdk;
 
 namespace OrderBatchCreate.control.envelope
 {
@@ -21,11 +22,15 @@ namespace OrderBatchCreate.control.envelope
     {
         public event EnvelopeEvent EnvelopeChanged;
 
-
         public EnvelopeSettingControl()
         {
             InitializeComponent();
             ProductSizeFactory.GetInstance().GetProductSizeListFromServer(success => success.ForEach(postSize => productSizeList.Items.Add(postSize)));
+            WebServiceInvoker.GetInstance().GetSizeInfoFromServer("postCardProductSize", response =>
+            {
+                productSizeList.Items.AddRange(response.ToArray());
+                productSizeList.Refresh();
+            });
             BackStyleFactory.GetBackStyleFromServer(success => success.ForEach(backStyle => backStyleList.Items.Add(backStyle)));
         }
 

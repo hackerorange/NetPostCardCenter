@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderCenter));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -36,12 +35,12 @@
             this.navBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -69,7 +68,7 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -108,7 +107,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(842, 671, 1011, 617);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1255, 526);
+            this.layoutControl1.Size = new System.Drawing.Size(1237, 478);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -126,7 +125,7 @@
             this.navBarControl1.Location = new System.Drawing.Point(12, 12);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 250;
-            this.navBarControl1.Size = new System.Drawing.Size(250, 502);
+            this.navBarControl1.Size = new System.Drawing.Size(250, 454);
             this.navBarControl1.TabIndex = 5;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -205,15 +204,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1255, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1237, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 526);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 478);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1255, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1237, 0);
             // 
             // barDockControlLeft
             // 
@@ -221,15 +220,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 526);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 478);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1255, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1237, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 526);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 478);
             // 
             // imageCollection1
             // 
@@ -399,7 +398,7 @@
             this.orderDetailGridController.Location = new System.Drawing.Point(266, 12);
             this.orderDetailGridController.MainView = this.gridView1;
             this.orderDetailGridController.Name = "orderDetailGridController";
-            this.orderDetailGridController.Size = new System.Drawing.Size(977, 502);
+            this.orderDetailGridController.Size = new System.Drawing.Size(959, 454);
             this.orderDetailGridController.TabIndex = 4;
             this.orderDetailGridController.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -515,7 +514,7 @@
             this.layoutControlItem1,
             this.layoutControlItem2});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1255, 526);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1237, 478);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -523,7 +522,7 @@
             this.layoutControlItem1.Control = this.orderDetailGridController;
             this.layoutControlItem1.Location = new System.Drawing.Point(254, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(981, 506);
+            this.layoutControlItem1.Size = new System.Drawing.Size(963, 458);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -534,7 +533,7 @@
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(254, 0);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(254, 14);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(254, 506);
+            this.layoutControlItem2.Size = new System.Drawing.Size(254, 458);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -552,7 +551,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 526);
+            this.ClientSize = new System.Drawing.Size(1237, 478);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
