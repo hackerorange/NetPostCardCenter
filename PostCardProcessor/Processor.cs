@@ -21,12 +21,12 @@ namespace PostCardProcessor
             {
                 Directory.CreateDirectory(sourceFileInfo.Directory.FullName);
             }
-            var photoShopOperation = new PhotoShopOperation();
 
             try //尝试打开，如果打不开进行标记
             {
+                var photoShopOperation = new PhotoShopOperation(sourceFileInfo);
 
-                var myDoc = photoShopOperation.OpenDocument(sourceFileInfo);
+                var myDoc = photoShopOperation.OpenDocument();
 
                 //如果色彩模式不是CMYK、RGB、灰度的话，转化为CMYK模式
                 if ((myDoc.Mode != PsDocumentMode.psCMYK) && (myDoc.Mode != PsDocumentMode.psRGB) && (myDoc.Mode != PsDocumentMode.psGrayscale))
@@ -34,14 +34,7 @@ namespace PostCardProcessor
                     myDoc.ChangeMode(PsChangeMode.psConvertToCMYK);
                 }
 
-
-
-
-                if (postCardProcessInfo.Rotation != 0)
-                {
-                    myDoc.RotateCanvas(postCardProcessInfo.Rotation);
-                }
-
+                myDoc.RotateCanvas(postCardProcessInfo.Rotation);
 
                 myDoc.ResizeImage(null, null, 300);
                 //切换到点

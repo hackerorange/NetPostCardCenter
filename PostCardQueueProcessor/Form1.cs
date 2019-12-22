@@ -24,7 +24,7 @@ namespace PostCardQueueProcessor
         {
             InitializeComponent();
             //创建连接工厂
-            IConnectionFactory factory = new ConnectionFactory("tcp://localhost:61616");
+            IConnectionFactory factory = new ConnectionFactory("tcp://zhongct-p1.grandsoft.com.cn:61616");
             //通过工厂构建连接
             var connection = factory.CreateConnection();
             //这个是连接的客户端名称标识
@@ -50,7 +50,7 @@ namespace PostCardQueueProcessor
         public delegate void DelegateRevMessage(ITextMessage message);
         public void RevMessage(ITextMessage message)
         {
-            var postCardId=message.Text;
+            var postCardId = message.Text;
             var postCardProcessInfo = JsonConvert.DeserializeObject<PostCardProcessInfo>(postCardId);
             //postCardProcessInfo.Process();
             Log(@"开始处理明信片[" + postCardProcessInfo.PostCardId + "]");
@@ -73,31 +73,48 @@ namespace PostCardQueueProcessor
             catch (Exception)
             {
                 Log(@"文件下载异常");
-                return ;
+                return;
             }
 
             Log(@"开始处理文件");
             var resultFileInfo = postCardProcessInfo.Process(fileInfo);
-            Log(@"文件处理完成");
-            Log(@"开始上传成品文件");
-            var fileUploadResponse = FileApi.GetInstance().Upload(resultFileInfo, "明信片成品");
-            Log(@"成品文件上传成功");
-            Log(@"开始提交成品ID");
-            WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardProcessInfo.PostCardId, fileUploadResponse.Id);
-            Log(@"成品ID提交成功");
-            fileInfo.Delete();
-            resultFileInfo.Delete();
-            Log(@"临时文件删除成功");
-            
+            if (resultFileInfo is null)
+            {
+                Log(@"文件处理失败");
+            }
+            else
+            {
+                Log(@"文件处理完成");
+                Log(@"开始上传成品文件");
+                var fileUploadResponse = FileApi.GetInstance().Upload(resultFileInfo, "明信片成品");
+                Log(@"成品文件上传成功");
+                Log(@"开始提交成品ID");
+                WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardProcessInfo.PostCardId, fileUploadResponse.Id);
+                Log(@"成品ID提交成功");
+                try
+                {
+                    fileInfo.Delete();
+                    resultFileInfo.Delete();
+                    Log(@"临时文件删除成功");
+                }
+                catch
+                {
+                    Log(@"临时文件删除失败，下次启动的时候重新删除");
+                }
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            var tempDirectory = new DirectoryInfo("D:/postCard/tmpFile/");
+            foreach (FileInfo f in tempDirectory.GetFiles())
+            {
+                f.Delete();
+            }
         }
 
         private void Log(string message)
         {
-            listBoxControl1.Items.Add(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm:ss ]") +" "+ message);
+            listBoxControl1.Items.Add(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm:ss ]") + " " + message);
             listBoxControl1.SelectedIndex = listBoxControl1.ItemCount;
         }
     }

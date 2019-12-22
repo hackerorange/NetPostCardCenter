@@ -10,22 +10,70 @@ namespace PostCardProcessor
 {
     public class PhotoShopOperation
     {
-
+        private FileInfo _fileInfo;
         private readonly PsUnits _oldPsUnits;
         public Application Application { get; }
 
-        public Document OpenDocument(FileInfo fileInfo)
+        public Document OpenDocument()
         {
-            var document=Application.Open(fileInfo.FullName);
-            //ChangeImageDpi();
-            document.Info.Author = "仲崇滔";
-            //document.ResizeImage(null,null,300);
-            Application.ActiveDocument = document;
-            return document;
+            try
+            {
+                var document = Application.Open(_fileInfo.FullName);
+                //ChangeImageDpi();
+                document.Info.Author = "仲崇滔";
+                //document.ResizeImage(null,null,300);
+                Application.ActiveDocument = document;
+                return document;
+            }
+            catch (Exception e)
+            {
+                if (RefreshFileInfo())
+                {
+                    return OpenDocument();
+                }
+                else
+                {
+                    throw e;
+                }
+            }
         }
 
-        public PhotoShopOperation()
+        private bool RefreshFileInfo()
         {
+            var extention = _fileInfo.Extension;
+            var fullName = _fileInfo.FullName;
+            fullName = fullName.Replace(extention, "(convertToJpg).jpg");
+
+            try
+            {
+                using (System.Diagnostics.Process myProcess = new System.Diagnostics.Process())
+                {
+                    myProcess.StartInfo = new System.Diagnostics.ProcessStartInfo()
+                    {
+                        UseShellExecute = false,
+                        Arguments = string.Format("\"-> JPG\" \"Original Size\" \"{0}\" \"{1}\" /hide", _fileInfo.FullName.Replace(@"\", @"/"), fullName.Replace(@"\", @"/")),
+                        CreateNoWindow = true,
+                        FileName = "FormatFactory.exe"
+                    };
+
+                    Console.Out.WriteLine(myProcess.StartInfo.FileName + " " + myProcess.StartInfo.Arguments);
+                    myProcess.Start();
+                    myProcess.WaitForExit();
+                    _fileInfo.Delete();
+                    File.Move(fullName, _fileInfo.FullName);
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        public PhotoShopOperation(FileInfo fileInfo)
+        {
+            _fileInfo = fileInfo;
             //初始化对象
             Application = new Photoshop.Application();
             //设置为毫米
@@ -37,7 +85,7 @@ namespace PostCardProcessor
         ~PhotoShopOperation()
         {
             //重置单位
-            Application.Preferences.RulerUnits= _oldPsUnits;
+            Application.Preferences.RulerUnits = _oldPsUnits;
         }
 
 
