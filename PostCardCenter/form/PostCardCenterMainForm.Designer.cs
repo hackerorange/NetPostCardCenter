@@ -1,4 +1,4 @@
-﻿namespace PostCardCenter.form
+﻿namespace postCardCenter.form
 {
     partial class PostCardCenterMainForm
     {

@@ -7,13 +7,14 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraNavBar;
+using Inko.Security;
 using postCardCenterSdk;
 using postCardCenterSdk.sdk;
 using PostCardCrop.form;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
 
-namespace PostCardCenter.form.order
+namespace postCardCenter.form.order
 {
     public partial class OrderCenter : XtraForm
     {
@@ -82,7 +83,7 @@ namespace PostCardCenter.form.order
                     return;
                 }
                 // 如果有多人同时提交，取抢到的用户
-                if (orderInfo.ProcessUserId != SecurityInfo.UserId)
+                if (orderInfo.ProcessUserId != InkoSecurityContext.UserId)
                 {
                     XtraMessageBox.Show("当前订单已经有人在处理，当前处理人:" + orderInfo.ProcessorName);
                     return;
@@ -145,7 +146,7 @@ namespace PostCardCenter.form.order
         private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
-            if (orderInfo.ProcessUserId != null && orderInfo.ProcessUserId.Length > 0 && orderInfo.ProcessUserId != SecurityInfo.UserId)
+            if (orderInfo.ProcessUserId != null && orderInfo.ProcessUserId.Length > 0 && orderInfo.ProcessUserId != InkoSecurityContext.UserId)
             {
                 XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
@@ -156,7 +157,7 @@ namespace PostCardCenter.form.order
         private void BarButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
-            if (orderInfo.ProcessUserId != SecurityInfo.UserId)
+            if (orderInfo.ProcessUserId != InkoSecurityContext.UserId)
             {
                 XtraMessageBox.Show("只有订单的处理人才能修改订单状态，订单负责人为：" + orderInfo.ProcessorName);
                 return;

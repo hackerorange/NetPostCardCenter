@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
-using soho.domain;
+using postCardCenterSdk.domain;
 
 namespace PostCardCrop.model
 {

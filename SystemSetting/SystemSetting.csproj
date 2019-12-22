@@ -101,8 +101,6 @@
       <DependentUpon>SizeManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="backStyle\model\BackStyleInfo.cs" />
-    <Compile Include="size\model\PostSize.cs" />
-    <Compile Include="size\response\ProductSizeResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

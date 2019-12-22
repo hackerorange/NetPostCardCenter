@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostCardCenter.Properties {
+namespace postCardCenter.Properties {
     using System;
     
     

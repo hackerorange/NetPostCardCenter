@@ -83,16 +83,9 @@
     <Compile Include="control\PictureCropControl.Designer.cs">
       <DependentUpon>PictureCropControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\CropTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\CropTestForm.Designer.cs">
-      <DependentUpon>CropTestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="model\CropContext.cs" />
     <Compile Include="model\CropInfo.cs" />
     <Compile Include="model\StyleInfo.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="constant\StyleInfoConstant.cs" />
     <Compile Include="suport\CropInfoSupport.cs" />
@@ -101,19 +94,16 @@
     <EmbeddedResource Include="control\PictureCropControl.resx">
       <DependentUpon>PictureCropControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\CropTestForm.resx">
-      <DependentUpon>CropTestForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\soho\soho.csproj">
-      <Project>{1F086FC8-76BF-4345-B62A-5F90D381EB6A}</Project>
-      <Name>soho</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
+      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
+      <Name>postCardCenterSdk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

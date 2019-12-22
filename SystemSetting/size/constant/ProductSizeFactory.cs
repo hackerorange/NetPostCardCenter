@@ -7,13 +7,13 @@ using postCardCenterSdk;
 using postCardCenterSdk.request.system;
 using postCardCenterSdk.response;
 using WebServiceInvoker = postCardCenterSdk.sdk.WebServiceInvoker;
-
+using System;
 
 namespace SystemSetting.size.constant
 {
     public class ProductSizeFactory
     {
-        
+
 
         private static ProductSizeFactory _productSizeFactory = null;
 
@@ -23,7 +23,7 @@ namespace SystemSetting.size.constant
         }
 
 
-        public void GetProductSizeListFromServer(Success<List<PostSize>> success, Failure failure = null)
+        public void GetProductSizeListFromServer(Action<List<PostSize>> success, Action<string> failure = null)
         {
             WebServiceInvoker.GetInstance().GetSizeInfoFromServer("postCardProductSize", response =>
             {
@@ -41,7 +41,7 @@ namespace SystemSetting.size.constant
             });
         }
 
-        public void InsertNewPostSize(string name, int width, int height, Success<PostSize> success)
+        public void InsertNewPostSize(string name, int width, int height, Action<PostSize> success)
         {
             var sizeRequest = new SizeRequest()
             {

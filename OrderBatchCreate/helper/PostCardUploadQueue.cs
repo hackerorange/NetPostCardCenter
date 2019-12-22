@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading;
 using OrderBatchCreate.model;
-using soho.helper;
+using postCardCenterSdk.helper;
 
 namespace OrderBatchCreate.helper
 {
@@ -86,7 +86,7 @@ namespace OrderBatchCreate.helper
                 }
 
                 var tmpDirectoryInfo = postCardUploadContext.PostCardInfo.DirectoryInfo as FileInfo;
-                tmpDirectoryInfo.Upload(true, "明信片原始文件", success: resp =>
+                tmpDirectoryInfo.UploadSynchronize("明信片原始文件", success: resp =>
                     {
                         var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
                         tmpPostCardInfo.FileId = resp.FileId;

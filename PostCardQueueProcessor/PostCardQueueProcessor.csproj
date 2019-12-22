@@ -107,12 +107,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="security\form\security\UserLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="security\form\security\UserLogin.Designer.cs">
-      <DependentUpon>UserLogin.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,9 +120,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="security\form\security\UserLogin.resx">
-      <DependentUpon>UserLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -142,6 +133,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\commons\security\security.csproj">
+      <Project>{36989B59-FE22-40EC-A653-B7483E2A5E79}</Project>
+      <Name>security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
       <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
       <Name>postCardCenterSdk</Name>
@@ -149,10 +144,6 @@
     <ProjectReference Include="..\PostCardProcessor\PostCardProcessor.csproj">
       <Project>{32596c1f-259d-410e-b6f3-ba61aec6aef6}</Project>
       <Name>PostCardProcessor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\soho\soho.csproj">
-      <Project>{1F086FC8-76BF-4345-B62A-5F90D381EB6A}</Project>
-      <Name>soho</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

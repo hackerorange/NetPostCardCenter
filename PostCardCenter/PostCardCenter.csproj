@@ -140,12 +140,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="form\security\UserLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\security\UserLogin.Designer.cs">
-      <DependentUpon>UserLogin.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="form\order\OrderCenter.resx">
       <DependentUpon>OrderCenter.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,9 +159,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="form\security\UserLogin.resx">
-      <DependentUpon>UserLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
@@ -197,6 +188,10 @@
     <Content Include="res\D.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\commons\security\security.csproj">
+      <Project>{36989B59-FE22-40EC-A653-B7483E2A5E79}</Project>
+      <Name>security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OrderBatchCreate\OrderBatchCreate.csproj">
       <Project>{F093C784-F735-4817-8826-AC5D35C1C70A}</Project>
       <Name>OrderBatchCreate</Name>
@@ -209,10 +204,6 @@
       <Project>{AD3764F1-FE61-4CC0-8A5C-C830CB32FE14}</Project>
       <Name>PostCardCrop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\soho\soho.csproj">
-      <Project>{1f086fc8-76bf-4345-b62a-5f90d381eb6a}</Project>
-      <Name>soho</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SystemSetting\SystemSetting.csproj">
       <Project>{2f888264-1fa2-4f7c-a9bb-4ae388b816e6}</Project>
       <Name>SystemSetting</Name>
@@ -220,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="form\postCard\" />
+    <Folder Include="form\security\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

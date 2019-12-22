@@ -1,18 +1,17 @@
-﻿using System;
-using System.Threading;
-using System.Windows.Forms;
+﻿
+
 using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
-using OrderBatchCreate.form;
-using postCardCenterSdk.sdk;
-using PostCardCenter.form;
-using PostCardCenter.form.security;
-using soho.domain.system;
-using System.IO;
-using postCardCenterSdk;
+using postCardCenter.form;
+using Inko.Security.form.security;
+using System;
+using System.Threading;
+using System.Windows.Forms;
+using Inko.Security;
+using postCardCenterSdk.constant;
 
-namespace PostCardCenter
+namespace postCardCenter
 {
     internal static class Program
     {
@@ -33,39 +32,14 @@ namespace PostCardCenter
                     UserLookAndFeel.Default.SetSkinStyle("DevExpress Style"); // 设置皮肤样式
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    if (File.Exists("D:\\postCard\\userLogin.ini"))
+                    string token = InkoSecurityContext.GetToken();
+                    if (!string.IsNullOrEmpty(token))
                     {
-                        try
-                        {
-                            // TODO: 需要校验保存起来的Token是否有效，刷新Token
-                            var fileReader = new StreamReader(new FileStream("D:\\postCard\\userLogin.ini", FileMode.Open));
-                            var refreshToken = fileReader.ReadLine();
-                            var isWait = true;
-                            WebServiceInvoker.GetInstance().RefreshToken(refreshToken, success: result =>
-                            {
-                                SecurityInfo.Token = result.Token;
-                                SecurityInfo.UserId = result.UserId;
-                                SecurityInfo.UserName = result.RealName;
-                                isWait = false;
-                            }, null);
-                            while (isWait)
-                            {
-
-                            }
-                        }
-                        catch
-                        {
-
-                        }
+                        GlobalApiContext.Token = token;
+                        Application.Run(new PostCardCenterMainForm());
                     }
-                    // 如果当前用户没有登录过，Token已经失效
-                    if (string.IsNullOrEmpty(SecurityInfo.Token))
-                    {
-                        var a = new UserLogin();
-                        if (a.ShowDialog() != DialogResult.OK) return;
-                    }
-                    // 运行主程序
-                    Application.Run(new PostCardCenterMainForm());
+
+                   
                 }
                 else
                 {

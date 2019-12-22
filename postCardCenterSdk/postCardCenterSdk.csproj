@@ -69,11 +69,28 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseApi.cs" />
+    <Compile Include="constant\GlobalApiContext.cs" />
+    <Compile Include="constant\PostCardFileUploadStatusEnum.cs" />
+    <Compile Include="constant\postcard\PostCardProcessStatusEnum.cs" />
+    <Compile Include="constant\system\SystemConstants.cs" />
+    <Compile Include="domain\FrontStyleInfo.cs" />
+    <Compile Include="domain\orderCenter\EnvelopeInfo.cs" />
+    <Compile Include="domain\PostCardStyle.cs" />
+    <Compile Include="domain\system\SystemConstant.cs" />
+    <Compile Include="file\CropSubmitRequest.cs" />
+    <Compile Include="file\FileUploadResponse.cs" />
     <Compile Include="helper\ActionResponseHelper.cs" />
+    <Compile Include="helper\FileHelper.cs" />
+    <Compile Include="helper\ImageHelper.cs" />
+    <Compile Include="helper\Md5Helper.cs" />
+    <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="interceptor\PerfRequestSyncInterceptor.cs" />
+    <Compile Include="model\ImageFileUploadModel.cs" />
+    <Compile Include="model\PostSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,9 +115,13 @@
     <Compile Include="response\system\BackStyleResponse.cs" />
     <Compile Include="response\system\FrontStyleResponse.cs" />
     <Compile Include="response\system\PostCardSizeResponse.cs" />
+    <Compile Include="sdk\FileApi.cs" />
     <Compile Include="sdk\WebServiceInvoker.cs" />
+    <Compile Include="size\response\ProductSizeResponse.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="size\request\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

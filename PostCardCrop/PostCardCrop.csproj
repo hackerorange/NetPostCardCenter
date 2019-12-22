@@ -111,8 +111,6 @@
     <Compile Include="form\SubmitWaitForm.Designer.cs">
       <DependentUpon>SubmitWaitForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="helper\ActionResponseHelper.cs" />
-    <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="model\CropInfo.cs" />
     <Compile Include="model\EnvelopeInfo.cs" />
     <Compile Include="model\OrderInfo.cs" />
@@ -162,10 +160,6 @@
     <ProjectReference Include="..\PostCardProcessor\PostCardProcessor.csproj">
       <Project>{32596c1f-259d-410e-b6f3-ba61aec6aef6}</Project>
       <Name>PostCardProcessor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\soho\soho.csproj">
-      <Project>{1F086FC8-76BF-4345-B62A-5F90D381EB6A}</Project>
-      <Name>soho</Name>
     </ProjectReference>
     <ProjectReference Include="..\SystemSetting\SystemSetting.csproj">
       <Project>{2F888264-1FA2-4F7C-A9BB-4AE388B816E6}</Project>

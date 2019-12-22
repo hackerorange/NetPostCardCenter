@@ -1,7 +1,7 @@
 ﻿using SystemSetting.backStyle.model;
 using postCardCenterSdk.response.postCard;
 using PostCardCrop.model;
-using soho.constant.postcard;namespace PostCardCrop.translator.response
+using postCardCenterSdk.constant.postcard;namespace PostCardCrop.translator.response
 {
     public static class PostCardHelper
     {

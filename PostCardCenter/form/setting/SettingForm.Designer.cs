@@ -1,4 +1,4 @@
-﻿namespace PostCardCenter.form.setting
+﻿namespace postCardCenter.form.setting
 {
     partial class SettingForm
     {

@@ -8,7 +8,7 @@ using postCardCenterSdk.request.postCard;
 using postCardCenterSdk.sdk;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
-using soho.helper;
+using postCardCenterSdk.helper;
 
 namespace PostCardCrop.control
 {
@@ -95,7 +95,7 @@ namespace PostCardCrop.control
             var fileInfo = new FileInfo(saveFileDialog.FileName);
 
 
-            fileInfo.Upload(true, "明信片原始文件",
+            fileInfo.UploadSynchronize("明信片原始文件",
                 success: result =>
                 {
                     if (result.ImageAvailable)

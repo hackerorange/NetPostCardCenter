@@ -15,7 +15,7 @@ using DevExpress.XtraEditors;
 using OrderBatchCreate.model;
 using pictureCroper.constant;
 using pictureCroper.model;
-using soho.helper;
+using postCardCenterSdk.helper;
 
 namespace OrderBatchCreate.form
 {
@@ -75,8 +75,7 @@ namespace OrderBatchCreate.form
         private void SimpleButton2_Click(object sender, EventArgs e)
         {
 
-            _backStyleInfo.FileInfo.Upload(
-                true,
+            _backStyleInfo.FileInfo.UploadSynchronize(
                 "明信片反面样式",
                 //pictureCropControl1.CropContext.CropInfo.Rotation,
                 //pictureCropControl1.CropContext.CropInfo.LeftScale,

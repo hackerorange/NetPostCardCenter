@@ -9,10 +9,12 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTabbedMdi;
 using postCardCenterSdk;
-using PostCardCenter.form.order;
+using postCardCenter.form.order;
 using OrderBatchCreate.form;
+using postCardCenterSdk.constant;
+using Inko.Security;
 
-namespace PostCardCenter.form
+namespace postCardCenter.form
 {
     public partial class PostCardCenterMainForm : RibbonForm
     {
@@ -23,12 +25,12 @@ namespace PostCardCenter.form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(SecurityInfo.Token))
+            if (string.IsNullOrEmpty(GlobalApiContext.Token))
             {
                 Application.Exit();
                 return;
             }
-            barStaticItem1.Caption = SecurityInfo.UserName;
+            barStaticItem1.Caption = InkoSecurityContext.UserName;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

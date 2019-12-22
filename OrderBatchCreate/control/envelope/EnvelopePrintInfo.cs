@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SystemSetting.size.model;
 using OrderBatchCreate.model;
-using soho.domain;
+using postCardCenterSdk.domain;
 using EnvelopeInfo = OrderBatchCreate.model.EnvelopeInfo;
 
 namespace OrderBatchCreate.control.envelope

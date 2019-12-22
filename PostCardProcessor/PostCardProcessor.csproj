@@ -109,10 +109,6 @@
       <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
       <Name>postCardCenterSdk</Name>
     </ProjectReference>
-    <ProjectReference Include="..\soho\soho.csproj">
-      <Project>{1F086FC8-76BF-4345-B62A-5F90D381EB6A}</Project>
-      <Name>soho</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\Spring.Rest.txt" />

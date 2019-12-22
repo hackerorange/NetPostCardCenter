@@ -2,7 +2,7 @@
 using System.IO;
 using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
-using soho.domain;
+using postCardCenterSdk.domain;
 
 namespace OrderBatchCreate.model
 {

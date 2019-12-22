@@ -22,9 +22,9 @@ using OrderBatchCreate.model;
 using OrderBatchCreate.Properties;
 using OrderBatchCreate.translator.request;
 using postCardCenterSdk.sdk;
-using soho.domain;
-using soho.domain.system;
-using soho.helper;
+using postCardCenterSdk.domain;
+using postCardCenterSdk.domain.system;
+using postCardCenterSdk.helper;
 using CellValueChangedEventArgs = DevExpress.XtraTreeList.CellValueChangedEventArgs;
 
 namespace OrderBatchCreate.form
@@ -44,7 +44,7 @@ namespace OrderBatchCreate.form
             BackStyleFactory.GetBackStyleFromServer(success => success.ForEach(backStyle => repositoryItemComboBox3.Items.Add(backStyle)));
 
 
-//            repositoryItemComboBox3.Items.AddRange(SystemConstant.BackStyleList);
+            //            repositoryItemComboBox3.Items.AddRange(SystemConstant.BackStyleList);
             //repositoryItemComboBox3.Items.Add()
             gridControl1.DataSource = OrderInfos;
             BatchStatus.StatusList.ForEach(createStatus =>
@@ -78,7 +78,7 @@ namespace OrderBatchCreate.form
         private void OrderDetailListView_DragDrop(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
-            var files = (string[]) e.Data.GetData(DataFormats.FileDrop);
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (var s in files)
                 //如果存在此路径
                 if (Directory.Exists(s))
@@ -157,7 +157,7 @@ namespace OrderBatchCreate.form
                             postCard.FrontStyle = "D";
                             postCard.BackStyle = tmpEnvelopeInfo.BackStyle;
                         });
-//                        fileInfo.Upload("自定义反面样式", false, fileId => { tmpEnvelopeInfo.BackStyle.FileId = fileId; }, message => { XtraMessageBox.Show("反面文件上传失败！"); });
+                        //                        fileInfo.Upload("自定义反面样式", false, fileId => { tmpEnvelopeInfo.BackStyle.FileId = fileId; }, message => { XtraMessageBox.Show("反面文件上传失败！"); });
                     }
 
                     continue;
@@ -207,7 +207,7 @@ namespace OrderBatchCreate.form
 
             //orderDetailListView.RefreshDataSource();
             if (e.Node == null) return;
-//            var nodes = e.PostCardInfo.ParentNode == null ? orderDetailListView.Nodes : e.PostCardInfo.ParentNode.Nodes;
+            //            var nodes = e.PostCardInfo.ParentNode == null ? orderDetailListView.Nodes : e.PostCardInfo.ParentNode.Nodes;
             if (!(e.Node.GetValue("Key") is PostCardBasic postCardBasic)) return;
 
             switch (postCardBasic)
@@ -346,7 +346,7 @@ namespace OrderBatchCreate.form
                 if (openFileDialog.ShowDialog() != DialogResult.OK) return;
                 var fileInfo = new FileInfo(openFileDialog.FileName);
 
-                fileInfo.Upload(false, "自定义反面样式", success: imageUploadInfo =>
+                fileInfo.Upload("自定义反面样式", success: imageUploadInfo =>
                 {
                     if (imageUploadInfo.ImageAvailable)
                     {
@@ -381,7 +381,7 @@ namespace OrderBatchCreate.form
             if (e.Column == paperNameColumn) postCardBasic.PaperName = e.Value as string;
             if (e.Column == doubleSideColumn)
             {
-                if ((bool) e.Value)
+                if ((bool)e.Value)
                 {
                     postCardBasic.DoubleSide = true;
                     //如果为明信片集合，更新明信片集合中的所有明信片
@@ -484,7 +484,7 @@ namespace OrderBatchCreate.form
                     {
                         tmpPostCardInfo.DirectoryInfo = new FileInfo(fileDialog.FileName);
                         tmpPostCardInfo.FileId = null;
-                        tmpPostCardInfo.IsImage = ((FileInfo) tmpPostCardInfo.DirectoryInfo).IsImage();
+                        tmpPostCardInfo.IsImage = ((FileInfo)tmpPostCardInfo.DirectoryInfo).IsImage();
                         _postCardUploadWorker.Upload(tmpPostCardInfo, success => { timer1.Start(); });
                     }
 
@@ -563,7 +563,7 @@ namespace OrderBatchCreate.form
             var tmpNode = orderDetailListView.FocusedNode;
             if (tmpNode == null)
             {
-                return ;
+                return;
             }
 
             var nodeValue = tmpNode.GetValue("Key");
@@ -580,16 +580,14 @@ namespace OrderBatchCreate.form
             {
                 tmpPostCardInfo.DirectoryInfo = new FileInfo(fileDialog.FileName);
                 tmpPostCardInfo.FileId = null;
-                tmpPostCardInfo.IsImage = ((FileInfo) tmpPostCardInfo.DirectoryInfo).IsImage();
+                tmpPostCardInfo.IsImage = ((FileInfo)tmpPostCardInfo.DirectoryInfo).IsImage();
                 _postCardUploadWorker.Upload(tmpPostCardInfo, success => { timer1.Start(); });
             }
         }
 
 
-        private EnvelopeInfo CurrentEnvelopeInfo
-        {
-            get
-            {
+        private EnvelopeInfo CurrentEnvelopeInfo {
+            get {
                 var tmpNode = orderDetailListView.FocusedNode;
                 var nodeValue = tmpNode.GetValue("Key");
                 switch (nodeValue)

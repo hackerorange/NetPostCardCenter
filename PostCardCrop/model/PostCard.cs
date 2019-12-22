@@ -2,8 +2,8 @@
 using System.IO;
 using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
-using soho.constant;
-using soho.constant.postcard;
+using postCardCenterSdk.constant;
+using postCardCenterSdk.constant.postcard;
 
 namespace PostCardCrop.model
 {

@@ -5,8 +5,13 @@ using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
-using soho.domain.system;
+using postCardCenterSdk.domain.system;
 using System.Threading;
+using System.IO;
+using postCardCenterSdk.sdk;
+using postCardCenterSdk;
+using Inko.Security;
+using postCardCenterSdk.constant;
 
 namespace PostCardQueueProcessor
 {
@@ -31,10 +36,12 @@ namespace PostCardQueueProcessor
 
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    var a = new PostCardCenter.form.security.UserLogin();
-                    if (a.ShowDialog() != DialogResult.OK) return;
-                    
-                    Application.Run(new Form1());                    
+
+                    string token = InkoSecurityContext.GetToken();
+                    if (!string.IsNullOrEmpty(token)){
+                        GlobalApiContext.Token = token;
+                        Application.Run(new Form1());
+                    }
                 }
                 else
                 {

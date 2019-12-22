@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace PostCardCenter.form.setting
+namespace postCardCenter.form.setting
 {
     public partial class SettingForm : DevExpress.XtraEditors.XtraForm
     {

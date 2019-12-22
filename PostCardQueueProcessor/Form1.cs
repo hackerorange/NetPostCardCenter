@@ -14,7 +14,8 @@ using Newtonsoft.Json;
 using postCardCenterSdk.sdk;
 using PostCardProcessor;
 using PostCardProcessor.model;
-using soho.web;
+using postCardCenterSdk.web;
+using postCardCenterSdk.helper;
 
 namespace PostCardQueueProcessor
 {
@@ -59,49 +60,78 @@ namespace PostCardQueueProcessor
             {
                 Directory.CreateDirectory(fileInfo.Directory.FullName);
             }
+            bool isWait = true;
 
-            var postCardResponse = WebServiceInvoker.GetInstance().GetPostCardInfo(postCardProcessInfo.PostCardId);
-            var webClient = new WebClient();
-            var s = WebServiceInvoker.GetInstance().BasePath + "/file/" + postCardResponse.FileId;
+            WebServiceInvoker.GetInstance().GetPostCardInfo(postCardProcessInfo.PostCardId, postCardResponse =>
+            {
+                var webClient = new WebClient();
+                var s = WebServiceInvoker.GetInstance().BasePath + "/file/" + postCardResponse.FileId;
 
-            try
-            {
-                Log(@"开始下载文件");
-                webClient.DownloadFile(s, fileInfo.FullName);
-                Log(@"文件下载成功");
-            }
-            catch (Exception)
-            {
-                Log(@"文件下载异常");
-                return;
-            }
-
-            Log(@"开始处理文件");
-            var resultFileInfo = postCardProcessInfo.Process(fileInfo);
-            if (resultFileInfo is null)
-            {
-                Log(@"文件处理失败");
-            }
-            else
-            {
-                Log(@"文件处理完成");
-                Log(@"开始上传成品文件");
-                var fileUploadResponse = FileApi.GetInstance().Upload(resultFileInfo, "明信片成品");
-                Log(@"成品文件上传成功");
-                Log(@"开始提交成品ID");
-                WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardProcessInfo.PostCardId, fileUploadResponse.Id);
-                Log(@"成品ID提交成功");
                 try
                 {
-                    fileInfo.Delete();
-                    resultFileInfo.Delete();
-                    Log(@"临时文件删除成功");
+                    Log(@"开始下载文件");
+                    webClient.DownloadFile(s, fileInfo.FullName);
+                    Log(@"文件下载成功");
                 }
-                catch
+                catch (Exception)
                 {
-                    Log(@"临时文件删除失败，下次启动的时候重新删除");
+                    Log(@"文件下载异常");
+                    isWait = false;
+                    return;
                 }
+
+                Log(@"开始处理文件");
+                var resultFileInfo = postCardProcessInfo.Process(fileInfo);
+                if (resultFileInfo is null)
+                {
+                    Log(@"文件处理失败");
+                    WebServiceInvoker.GetInstance().UpdatePostCardProcessStatus(postCardProcessInfo.PostCardId, "PROCESS_FAILURE");
+                    isWait = false;
+                }
+                else
+                {
+                    Log(@"文件处理完成");
+                    Log(@"开始上传成品文件");
+                    // 上传文件
+                    resultFileInfo.UploadSynchronize("明信片成品", result =>
+                    {
+                        Log(@"成品文件上传成功");
+                        Log(@"开始提交成品ID");
+                        WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardProcessInfo.PostCardId, result.FileId);
+                        Log(@"成品ID提交成功");
+                        try
+                        {
+                            WebServiceInvoker.GetInstance().UpdatePostCardProcessStatus(postCardProcessInfo.PostCardId, "AFTER_PROCESS");
+                            fileInfo.Delete();
+                            resultFileInfo.Delete();
+                            Log(@"临时文件删除成功");
+                            isWait = false;
+                        }
+                        catch (Exception e)
+                        {
+                            Log(@"临时文件删除失败，下次启动的时候重新删除");
+                            isWait = false;
+                        }
+                        finally
+                        {
+                            isWait = false;
+                        }
+                    },
+                    failure =>
+                    {
+                        Log(@"成品文件上传失败");
+                        WebServiceInvoker.GetInstance().UpdatePostCardProcessStatus(postCardProcessInfo.PostCardId, "PROCESS_FAILURE");
+                    });
+                }
+
+
+            });
+
+            while (isWait)
+            {
+                Application.DoEvents();
             }
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {

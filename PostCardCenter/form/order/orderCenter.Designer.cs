@@ -1,4 +1,4 @@
-﻿namespace PostCardCenter.form.order
+﻿namespace postCardCenter.form.order
 {
     partial class OrderCenter
     {

@@ -14,7 +14,7 @@ namespace SystemSetting.size.constant
     {
         public delegate void PostSizeGetSuccess(List<BackStyleInfo> sizeList);
 
-        public static void GetBackStyleFromServer(Success<List<BackStyleInfo>> success, Failure failure = null)
+        public static void GetBackStyleFromServer(Action<List<BackStyleInfo>> success, Action<string> failure = null)
         {
             //异步获取反面样式列表
             WebServiceInvoker.GetInstance().GetBackStyleTemplateList(response =>

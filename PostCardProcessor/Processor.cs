@@ -6,7 +6,7 @@ using System.Threading;
 using postCardCenterSdk.sdk;
 using Photoshop;
 using PostCardProcessor.model;
-using soho.web;
+using postCardCenterSdk.web;
 
 namespace PostCardProcessor
 {
@@ -71,6 +71,7 @@ namespace PostCardProcessor
                 photoShopOperation.SwitchRuler(PsUnits.psMM);
 
                 myDoc.ResizeImage(pictureSize.Width, pictureSize.Height);
+
                 //photoShopOperation.Cut(cutLeft, cutTop, cutRight, cutBottom, pictureSize.Width, pictureSize.Height, 300);
                 if (postCardProcessInfo.PostCardType == "C")
                 {
@@ -79,6 +80,28 @@ namespace PostCardProcessor
                 }
                 //将文件大小修改为成品尺寸,图像居中
                 myDoc.ResizeCanvas(postCardProcessInfo.ProductWidth, postCardProcessInfo.ProductHeight);
+
+                //切换到厘米
+                photoShopOperation.SwitchRuler(PsUnits.psPoints);
+                myDoc.Selection.SelectAll();
+
+
+
+                var solidColor = new SolidColor
+                {
+                    CMYK = new CMYKColor
+                    {
+                        Cyan = 0,
+                        Magenta = 0,
+                        Yellow = 0,
+                        Black= 40
+                    }
+                };
+
+                myDoc.Selection.Stroke(solidColor, 1, Opacity: 100);
+
+                //切换到厘米
+                photoShopOperation.SwitchRuler(PsUnits.psMM);
 
                 var myJpegSaveOption = new JPEGSaveOptions
                 {
@@ -103,6 +126,9 @@ namespace PostCardProcessor
                         orange.Delete();
                     }
                 }
+
+
+
 
                 var fileInfo = new FileInfo(sourceFileInfo.FullName + ".tmp.jpg");
                 myDoc.SaveAs(fileInfo.FullName, myJpegSaveOption);

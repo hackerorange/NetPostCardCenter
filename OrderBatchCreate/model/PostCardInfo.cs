@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.IO;
 using SystemSetting.size.model;
-using soho.domain;
-using soho.helper;
+using postCardCenterSdk.domain;
+using postCardCenterSdk.helper;
 
 namespace OrderBatchCreate.model
 {

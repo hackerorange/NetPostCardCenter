@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using SystemSetting.size.model;
 using OrderBatchCreate.helper;
-using soho.domain;
+using postCardCenterSdk.domain;
 
 namespace OrderBatchCreate.model
 {

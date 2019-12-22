@@ -3,7 +3,7 @@ using SystemSetting.backStyle.model;
 using SystemSetting.size.model;
 using postCardCenterSdk.response.envelope;
 using PostCardCrop.model;
-using soho.domain;
+using postCardCenterSdk.domain;
 
 namespace PostCardCrop.translator.response
 {

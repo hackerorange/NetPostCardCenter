@@ -43,7 +43,6 @@ namespace PostCardProcessor
             var extention = _fileInfo.Extension;
             var fullName = _fileInfo.FullName;
             fullName = fullName.Replace(extention, "(convertToJpg).jpg");
-
             try
             {
                 using (System.Diagnostics.Process myProcess = new System.Diagnostics.Process())
@@ -63,7 +62,7 @@ namespace PostCardProcessor
                     File.Move(fullName, _fileInfo.FullName);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

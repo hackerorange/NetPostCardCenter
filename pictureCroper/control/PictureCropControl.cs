@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using pictureCroper.model;
 using pictureCroper.suport;
-using soho.helper;
+using postCardCenterSdk.helper;
 
 namespace pictureCroper.control
 {
