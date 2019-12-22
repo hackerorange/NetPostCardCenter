@@ -1183,7 +1183,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemRadioGroup4});
             this.ribbonControl2.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl2.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl2.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl2.Size = new System.Drawing.Size(966, 122);
             this.ribbonControl2.StatusBar = this.ribbonStatusBar2;
             // 
             // barEditItem4
@@ -1426,10 +1426,10 @@ namespace OrderBatchCreate.form
             // 
             // ribbonStatusBar2
             // 
-            this.ribbonStatusBar2.Location = new System.Drawing.Point(0, 748);
+            this.ribbonStatusBar2.Location = new System.Drawing.Point(0, 747);
             this.ribbonStatusBar2.Name = "ribbonStatusBar2";
             this.ribbonStatusBar2.Ribbon = this.ribbonControl2;
-            this.ribbonStatusBar2.Size = new System.Drawing.Size(984, 27);
+            this.ribbonStatusBar2.Size = new System.Drawing.Size(984, 28);
             // 
             // ribbonControl1
             // 
@@ -1467,7 +1467,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemRadioGroup2});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barEditItem1
@@ -1710,10 +1710,10 @@ namespace OrderBatchCreate.form
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 748);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 747);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 27);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 28);
             // 
             // gridColumn1
             // 

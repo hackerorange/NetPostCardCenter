@@ -211,7 +211,7 @@
             this.repositoryItemRadioGroup2});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barEditItem1
@@ -454,10 +454,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 748);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 747);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 27);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 28);
             // 
             // horizontalWhite
             // 

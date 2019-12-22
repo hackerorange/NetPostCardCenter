@@ -70,7 +70,7 @@ namespace postCardCenterSdk.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://10.1.175.155:8087 的本地化字符串。
+        ///   查找类似 http://zhongct-p1.grandsoft.com.cn:8087 的本地化字符串。
         /// </summary>
         public static string baseURI {
             get {

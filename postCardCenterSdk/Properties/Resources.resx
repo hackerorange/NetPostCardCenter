@@ -122,7 +122,7 @@
     <comment>WW</comment>
   </data>
   <data name="baseURI" xml:space="preserve">
-    <value>http://10.1.175.155:8087</value>
+    <value>http://zhongct-p1.grandsoft.com.cn:8087</value>
     <comment>http://zhongct-p1.grandsoft.com.cn:8087</comment>
   </data>
   <data name="changeOrderProcessorUrl" xml:space="preserve">

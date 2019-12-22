@@ -218,30 +218,13 @@ namespace postCardCenterSdk.sdk
                 {"envelopeId", envelopeId}
             }, resp => resp.prepareResult(success, failure));
 
-        public void GetOrderDetails(DateTime startDate, DateTime endDate, Success<List<OrderResponse>> success, Failure failure = null)
+        public void GetOrderDetails(DateTime startDate, DateTime endDate, Action<List<OrderResponse>> success, Action<string> failure = null)
         {
-            var request = new GetAllOrderRequest
+            _restTemplate.PostForObjectAsync<BodyResponse<Page<OrderResponse>>>("/order/getAll", new GetAllOrderRequest
             {
                 StarDateTime = startDate,
                 EndDateTime = endDate
-            };
-
-            var aaaa = _restTemplate.PostForObjectAsync<BodyResponse<Page<OrderResponse>>>("/order/getAll", request, postCompleted:
-                respon =>
-                {
-                    if (respon.Error != null)
-                    {
-                        failure.Invoke(respon.Error.Message);
-                        return;
-                    }
-
-                    if (respon.Response.Code < 0)
-                    {
-                        failure?.Invoke(respon.Response.Message);
-                        return;
-                    }
-                    success?.Invoke(respon.Response.Data.Detail);
-                });
+            }, postCompleted: respon => respon.prepareResult(result => success?.Invoke(result.Detail), failure));
         }
 
         /// <summary>
@@ -308,6 +291,22 @@ namespace postCardCenterSdk.sdk
                 Password = password
             }), result => result.prepareResult(success, failure));
 
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="password">密码</param>
+        /// <param name="success">成功后的回调函数</param>
+        /// <param name="failure">失败后的回调函数</param>
+        public void RefreshToken(string refreshToken, Action<LoginResponse> success, Action<string> failure)
+        {
+            _restTemplate.PostForObjectAsync<BodyResponse<LoginResponse>>("/security/refreshToken", new HttpEntity(new HttpHeaders
+            {
+                { "refresh-token", refreshToken }
+            }), result => result.prepareResult(success, failure));
+        }
+
         public void SubmitPostCardProductFile(string postCardId, string productFileId, Action<bool> success = null, Action<string> failure = null) =>
             _restTemplate.PostForObjectAsync<BodyResponse<bool>>("/postCard/submitProduct", new PostCardProductFileIdSubmitRequest
             {
@@ -315,16 +314,17 @@ namespace postCardCenterSdk.sdk
                 ProductFileId = productFileId
             }, result => result.prepareResult(success, failure));
 
-        public void ChangePostCardFrontStyle(string postCardId, string frontStyle, Success<PostCardResponse> success, Failure failure = null)
+        /// <summary>
+        /// 改变明信片的正面样式
+        /// </summary>
+        /// <param name="postCardId">明信片ID</param>
+        /// <param name="frontStyle">正面样式：A、B、C、D</param>
+        /// <param name="success">成功后的回调函数</param>
+        /// <param name="failure">失败了的回调函数</param>
+
+        public void ChangePostCardFrontStyle(string postCardId, string frontStyle, Action<PostCardResponse> success, Action<string> failure = null)
         {
-            var url = Resources.changePostCardFrontStyle;
-            var postCardFrontStyleUpdate = new PostCardFrontStyleUpdateRequest
-            {
-                FrontStyle = frontStyle,
-                PostCardId = postCardId
-            };
-            url = url.Replace("{postcardId}", postCardId);
-            PostForObjectAsync<PostCardResponse>(url, postCardFrontStyleUpdate, (pos) => { success?.Invoke(pos); }, failure);
+            _restTemplate.PostForObjectAsync<BodyResponse<PostCardResponse>>("/postCard/{postCardId}/changeFrontStyle/{fontStyleCode}", null, postCompleted: respon => respon.prepareResult(success, failure), postCardId, frontStyle);
         }
 
         /// <summary>
