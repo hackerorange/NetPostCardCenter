@@ -308,10 +308,10 @@ namespace postCardCenterSdk.sdk
         }
 
         public void SubmitPostCardProductFile(string postCardId, string productFileId, Action<bool> success = null, Action<string> failure = null) =>
-            _restTemplate.PostForObjectAsync<BodyResponse<bool>>("/postCard/submitProduct", new PostCardProductFileIdSubmitRequest
+            _restTemplate.PostForObjectAsync<BodyResponse<bool>>("/postCard/{postCardId}/submitProduct/{productFileId}", null, new Dictionary<string, object>
             {
-                PostCardId = postCardId,
-                ProductFileId = productFileId
+                { "postCardId", postCardId},
+                { "productFileId",productFileId}
             }, result => result.prepareResult(success, failure));
 
         public void UpdatePostCardProcessStatus(string postCardId, string processStatus, Action<bool> success = null, Action<string> failure = null) =>
