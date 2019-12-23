@@ -1,26 +1,26 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using Hacker.Inko.PostCard.Support;
+using iText.IO.Image;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Xobject;
+using iText.Layout;
+using iText.Layout.Element;
+using postCardCenterSdk.helper;
+using postCardCenterSdk.response.envelope;
+using postCardCenterSdk.response.postCard;
+using postCardCenterSdk.sdk;
+using postCardCenterSdk.web;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Text;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using postCardCenterSdk.sdk;
-using postCardCenterSdk.response.envelope;
-using System.IO;
-using System.Threading;
-using postCardCenterSdk.response.postCard;
-using postCardCenterSdk.web;
-using postCardCenterSdk.helper;
-using iText.Kernel.Pdf;
-using iText.Kernel.Geom;
-using iText.Layout.Element;
-using iText.Layout;
-using iText.IO.Image;
-using iText.Kernel.Pdf.Xobject;
-using Hacker.Inko.PostCard.Support;
 
 namespace PostCardCenter.form.collection
 {
@@ -48,10 +48,10 @@ namespace PostCardCenter.form.collection
                  // 处理每一个集合
                  foreach (EnvelopeResponse envelopeResponse in result)
                  {
-                     _fileInfoList.Add(envelopeResponse.GeneratePdfFile(message =>
-                     {
-                         XtraMessageBox.Show(message);
-                     }));
+                     //_fileInfoList.Add(envelopeResponse.GeneratePdfByteArray(message =>
+                     //{
+                     //    XtraMessageBox.Show(message);
+                     //}));
                  }
              }, failure: message =>
               {

@@ -58,12 +58,14 @@ namespace OrderBatchCreate.form
                 try
                 {
                     cropContext.Image = Image.FromFile(_backStyleInfo.FileInfo.FullName);
-                    cropContext.CropInfo = new CropInfo(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
+                    cropContext.CropInfo = new CropInfo(cropContext.Image.Size, cropContext.PicturePrintAreaSize,
+                        fit: cropContext.StyleInfo.Fit);
                 }
                 catch
                 {
                     XtraMessageBox.Show("自定义反面图像无法加载，图像路径[" + _backStyleInfo.FileInfo.FullName + "]，请处理后，选择新文件进行加载！");
                 }
+
                 pictureCropControl1.CropContext = cropContext;
             }
             else
@@ -74,7 +76,6 @@ namespace OrderBatchCreate.form
 
         private void SimpleButton2_Click(object sender, EventArgs e)
         {
-
             _backStyleInfo.FileInfo.UploadSynchronize(
                 "明信片反面样式",
                 //pictureCropControl1.CropContext.CropInfo.Rotation,
@@ -144,9 +145,11 @@ namespace OrderBatchCreate.form
                         // ignored
                     }
                 }
+
                 pictureCropControl1.CropContext.Image = image;
                 var cropContext = pictureCropControl1.CropContext;
-                cropContext.CropInfo = new CropInfo(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
+                cropContext.CropInfo = new CropInfo(cropContext.Image.Size, cropContext.PicturePrintAreaSize,
+                    fit: cropContext.StyleInfo.Fit);
                 _backStyleInfo.FileInfo = new FileInfo(fileDialog.FileName);
                 pictureCropControl1.Rotate(0);
                 pictureCropControl1.RefreshImage();

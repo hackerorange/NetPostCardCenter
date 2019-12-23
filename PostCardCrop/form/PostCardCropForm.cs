@@ -25,7 +25,8 @@ using postCardCenterSdk.web;
 using CropInfo = PhotoCropper.viewModel.CropInfo;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Size = System.Windows.Size;
-
+using DevExpress.XtraEditors;
+using Hacker.Inko.PostCard.Support;
 
 namespace PostCardCrop.form
 {
@@ -353,6 +354,67 @@ namespace PostCardCrop.form
                     PostCardChanged();
                 });
             }
+        }
+
+        /// <summary>
+        /// 生成PDF按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BarButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (_currentEnvelopeInfo == null)
+            {
+                return;
+            }
+            var envelopeId = _currentEnvelopeInfo.Id;
+
+            WebServiceInvoker.GetInstance().GetOrderInfo(_currentEnvelopeInfo.OrderId, orderInfo =>
+            {
+                WebServiceInvoker.GetInstance().GetEnvelopeInfoById(envelopeId, envelopeInfo =>
+                {
+
+                    var dialog = new XtraSaveFileDialog
+                    {
+                        DefaultExt = "pdf",
+                        FileName = orderInfo.TaobaoId + "_" + envelopeInfo.PaperName + ".pdf",
+                        InitialDirectory = "D://"
+                    };
+                    var dialogResult = dialog.ShowDialog();
+
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        var exportForm = new ExportForm();
+                        exportForm.Show(this);
+
+                        envelopeInfo.GeneratePdfFile(dialog.FileName, processValue =>
+                        {
+                            exportForm.RefreshProgress(processValue);
+                            Thread.Sleep(100);
+                            Application.DoEvents();
+                        }, message =>
+                         {
+                             XtraMessageBox.Show(message);
+                         });
+                        exportForm.Close();
+                        exportForm.Dispose();
+                        var result = XtraMessageBox.Show("导出完成，是否定位到当前文件?", "导出完成", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("Explorer.exe", "/select," + dialog.FileName);
+                        }
+                    }
+                }, message =>
+                {
+                    XtraMessageBox.Show(message);
+                });
+
+
+            }, message => XtraMessageBox.Show(message));
+
+
+
+
         }
     }
 }

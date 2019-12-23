@@ -22,17 +22,44 @@ namespace Hacker.Inko.PostCard.Support
     public static class PostCardCollectionSupport
     {
 
-        public static FileInfo GeneratePdfFile(this EnvelopeResponse envelopeResponse, Action<string> onError)
+        private class ProgressInternal
         {
-            var paperColumn = envelopeResponse.PaperColumn;
-            var paperRow = envelopeResponse.PaperRow;
-            var postCardResponses = new List<PostCardResponse>();
+            double _start;
+            double _end;
 
+            public ProgressInternal(double start, double end)
+            {
+                this._start = start;
+                this._end = end;
+            }
+
+            public double GetProcessRealValue(double processValue)
+            {
+                return (_end - _start) * processValue + _start;
+            }
+
+        }
+
+        public static void GeneratePdfFile(this EnvelopeResponse envelopeResponse, string fileFullName, Action<double> processHandler = null, Action<string> onError = null)
+        {
+            var current = new ProgressInternal(0.0, 0.3);
+            // 从服务器获取明信片,并安装份数进行划分
+            var postCardResponses = preparePostCardFromServer(envelopeResponse, value => processHandler?.Invoke(current.GetProcessRealValue(value)), onError);
+            // 生成PDF
+            GeneratePdfFileByPostCardList(envelopeResponse, postCardResponses, fileFullName, value => processHandler?.Invoke(new ProgressInternal(0.3, 1).GetProcessRealValue(value)));
+        }
+
+
+        private static List<PostCardResponse> preparePostCardFromServer(EnvelopeResponse envelopeResponse, Action<double> processHandler = null, Action<string> onError = null)
+        {
+            var postCardResponses = new List<PostCardResponse>();
             bool isWait = true;
             WebServiceInvoker.GetInstance().GetPostCardByEnvelopeId(envelopeResponse.EnvelopeId, postCardList =>
             {
-                foreach (var postCard in postCardList)
+                for (int i1 = 0; i1 < postCardList.Count; i1++)
                 {
+                    processHandler?.Invoke(i1 / (double)postCardList.Count);
+                    PostCardResponse postCard = postCardList[i1];
                     for (var i = 0; i < postCard.Copy; i++)
                     {
                         postCardResponses.Add(postCard);
@@ -50,26 +77,34 @@ namespace Hacker.Inko.PostCard.Support
                 Application.DoEvents();
                 Thread.Sleep(100);
             }
+            processHandler?.Invoke(1);
+            return postCardResponses;
 
-            return GeneratePdfFileByPostCardList(envelopeResponse, postCardResponses);
         }
 
-        private static FileInfo GeneratePdfFileByPostCardList(EnvelopeResponse envelopeResponse, List<PostCardResponse> postCardResponses)
+
+
+        private static void GeneratePdfFileByPostCardList(EnvelopeResponse envelopeResponse, List<PostCardResponse> postCardResponses, string fileFullName, Action<double> processHandler)
         {
 
             try
             {
-                var resultFileInfo = new FileInfo(@"D:\productFile\oddProduct\" + Guid.NewGuid().ToString().Replace("-", "") + ".pdf");
-                if (!resultFileInfo.Directory.Exists)
+                var fileInfo = new FileInfo(fileFullName);
+
+                if (!fileInfo.Directory.Exists)
                 {
-                    resultFileInfo.Directory.Create();
+                    fileInfo.Directory.Create();
                 }
-                PdfDocument pdfDocument = new PdfDocument(new PdfWriter(resultFileInfo));
+                if (fileInfo.Exists)
+                {
+                    fileInfo.Delete();
+                }
+
+                var pdfDocument = new PdfDocument(new PdfWriter(new FileStream(fileInfo.FullName, FileMode.CreateNew)));
+
                 var document = new Document(pdfDocument);
                 try
                 {
-
-
                     pdfDocument.SetDefaultPageSize(new PageSize(464.MMtoPix(), 320.MMtoPix()));
 
                     var pageContexts = new List<PostCardPageContext>();
@@ -101,12 +136,13 @@ namespace Hacker.Inko.PostCard.Support
                         }
                     }
 
-                    foreach (var page in pageContexts)
+                    for (int i = 0; i < pageContexts.Count; i++)
                     {
+                        processHandler?.Invoke(i / (double)pageContexts.Count);
+                        PostCardPageContext page = pageContexts[i];
                         page.PreparePdfPage();
                     }
-
-                    return resultFileInfo;
+                    processHandler?.Invoke(1);
                 }
                 finally
                 {
@@ -191,7 +227,7 @@ namespace Hacker.Inko.PostCard.Support
                     }
                     var postCard = _postCardResponses[currentIndex];
                     var fileId = postCard.ProductFileId;
-                    var bytes = WebServiceInvoker.GetInstance().DownloadBytesByFileId(fileId);                 
+                    var bytes = WebServiceInvoker.GetInstance().DownloadBytesByFileId(fileId);
                     // 正面
                     var image = new Image(ImageDataFactory.Create(bytes));
                     // 转化尺寸

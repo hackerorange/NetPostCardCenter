@@ -262,7 +262,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
         public void GetEnvelopeInfoById(string envelopeId, Action<EnvelopeResponse> success, Action<string> failure = null) =>
-            _restTemplate.GetForObjectAsync<BodyResponse<EnvelopeResponse>>("/envelope/{envelopeId}/info", new Dictionary<string, object>
+            _restTemplate.GetForObjectAsync<BodyResponse<EnvelopeResponse>>("/collection/{envelopeId}/info", new Dictionary<string, object>
             {
                 {"envelopeId", envelopeId}
             }, resp => resp.prepareResult(success, failure));
@@ -323,7 +323,7 @@ namespace postCardCenterSdk.sdk
         public void GetOrderInfo(string orderId, Action<OrderResponse> success, Action<string> failure = null) =>
             _restTemplate.GetForObjectAsync<BodyResponse<OrderResponse>>("/bill/{billId}/info", new Dictionary<string, object>
             {
-                {"orderId", orderId}
+                {"billId", orderId}
             }, resp => resp.prepareResult(success, failure));
 
         /// <summary>

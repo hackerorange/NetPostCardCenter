@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\zhongct\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\zhongct\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_PostCardCenter.1772739953.00" t="ExcludeRecursive" />
+    <e p="E:\HackerOrange\Net\NetPostCardCenter" t="IncludeFlat">
+      <e p="commons" t="Include">
+        <e p="security" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="form" t="Include">
+            <e p="UserLogin.cs" t="Include" />
+            <e p="UserLogin.Designer.cs" t="Include" />
+            <e p="UserLogin.resx" t="Include" />
+          </e>
+          <e p="InkoSecurityContext.cs" t="Include" />
+          <e p="obj" t="ExcludeRecursive" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="security.csproj" t="IncludeRecursive" />
+        </e>
+      </e>
+      <e p="Hacker.Inko.PostCard" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="Hacker.Inko.PostCard.csproj" t="IncludeRecursive" />
+        <e p="Library" t="Include">
+          <e p="Support" t="Include">
+            <e p="PostCardCollectionSupport.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="OrderBatchCreate" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="control" t="Include">
+          <e p="envelope" t="Include">
+            <e p="EnvelopePrintInfo.cs" t="Include" />
+            <e p="EnvelopePrintInfo.Designer.cs" t="Include" />
+            <e p="EnvelopePrintInfo.resx" t="Include" />
+            <e p="EnvelopeSettingControl.cs" t="Include" />
+            <e p="EnvelopeSettingControl.Designer.cs" t="Include" />
+            <e p="EnvelopeSettingControl.resx" t="Include" />
+            <e p="LayoutInfoHelper.cs" t="Include" />
+          </e>
+        </e>
+        <e p="form" t="Include">
+          <e p="BackStyleCropForm.cs" t="Include" />
+          <e p="BackStyleCropForm.Designer.cs" t="Include" />
+          <e p="BackStyleCropForm.resx" t="Include" />
+          <e p="CustomerBackStyleCropForm.cs" t="Include" />
+          <e p="CustomerBackStyleCropForm.Designer.cs" t="Include" />
+          <e p="CustomerBackStyleCropForm.resx" t="Include" />
+          <e p="CustomerProductSizeForm.cs" t="Include" />
+          <e p="CustomerProductSizeForm.Designer.cs" t="Include" />
+          <e p="CustomerProductSizeForm.resx" t="Include" />
+          <e p="order" t="Include">
+            <e p="OrderBasicInfoForm.cs" t="Include" />
+            <e p="OrderBasicInfoForm.Designer.cs" t="Include" />
+            <e p="OrderBasicInfoForm.resx" t="Include" />
+            <e p="OrderCreateForm.cs" t="Include" />
+            <e p="OrderCreateForm.Designer.cs" t="Include" />
+            <e p="OrderCreateForm.resx" t="Include" />
+          </e>
+          <e p="OrderBasicInfoForm.cs" t="Include" />
+          <e p="OrderBasicInfoForm.Designer.cs" t="Include" />
+          <e p="OrderBasicInfoForm.resx" t="Include" />
+          <e p="OrderBatch.cs" t="Include" />
+          <e p="OrderBatch.Designer.cs" t="Include" />
+          <e p="OrderBatch.resx" t="Include" />
+          <e p="PostCardCopySet.cs" t="Include" />
+          <e p="PostCardCopySet.Designer.cs" t="Include" />
+          <e p="PostCardCopySet.resx" t="Include" />
+        </e>
+        <e p="helper" t="Include">
+          <e p="EnvelopeHelper.cs" t="Include" />
+          <e p="PostCardHelper.cs" t="Include" />
+          <e p="PostCardUploadQueue.cs" t="Include" />
+        </e>
+        <e p="model" t="Include">
+          <e p="BatchStatus.cs" t="Include" />
+          <e p="EnvelopeInfo.cs" t="Include" />
+          <e p="OrderInfo.cs" t="Include" />
+          <e p="PostCardBasic.cs" t="Include" />
+          <e p="PostCardInfo.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="OrderBatchCreate.csproj" t="IncludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="licenses.licx" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="translator" t="Include">
+          <e p="request" t="Include">
+            <e p="OrderHelper.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="PhotoCropper" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="constant" t="Include">
+          <e p="FrontStyleEnum.cs" t="Include" />
+        </e>
+        <e p="controller" t="Include">
+          <e p="Photocroper.xaml" t="Include" />
+          <e p="Photocroper.xaml.cs" t="Include" />
+        </e>
+        <e p="converter" t="Include">
+          <e p="MultiBindingConvert.cs" t="Include" />
+          <e p="VisiableConver.cs" t="Include" />
+        </e>
+        <e p="Dictionary1.xaml" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="controller" t="Include">
+              <e p="Photocroper.g.cs" t="Include" />
+            </e>
+            <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
+          </e>
+        </e>
+        <e p="packages.config" t="Include" />
+        <e p="PhotoCropper.csproj" t="IncludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="Annotations.cs" t="Include" />
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="util" t="Include">
+          <e p="MyRectangleHelper.cs" t="Include" />
+        </e>
+        <e p="viewModel" t="Include">
+          <e p="CropInfo.cs" t="Include" />
+          <e p="MyRectangle.cs" t="Include" />
+          <e p="PhotoCropContext.cs" t="Include" />
+          <e p="PostCardPadding.cs" t="Include" />
+        </e>
+      </e>
+      <e p="pictureCroper" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="constant" t="Include">
+          <e p="StyleInfoConstant.cs" t="Include" />
+        </e>
+        <e p="control" t="Include">
+          <e p="PictureCropControl.cs" t="Include" />
+          <e p="PictureCropControl.Designer.cs" t="Include" />
+          <e p="PictureCropControl.resx" t="Include" />
+        </e>
+        <e p="model" t="Include">
+          <e p="CropContext.cs" t="Include" />
+          <e p="CropInfo.cs" t="Include" />
+          <e p="StyleInfo.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="pictureCroper.csproj" t="IncludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="suport" t="Include">
+          <e p="CropInfoSupport.cs" t="Include" />
+          <e p="PostCardCollectionSupport" t="Include" />
+        </e>
+      </e>
+      <e p="PostCardCenter" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ClassDiagram1.cd" t="Include" />
+        <e p="devexpress" t="Include">
+          <e p="DataGridViewHelper.cs" t="Include" />
+        </e>
+        <e p="DevExpress.BonusSkins.v18.2" t="Include" />
+        <e p="DevExpress.Data.v18.2" t="Include" />
+        <e p="DevExpress.Images.v18.2" t="Include" />
+        <e p="DevExpress.Office.v18.2.Core" t="Include" />
+        <e p="DevExpress.Pdf.v18.2.Core" t="Include" />
+        <e p="DevExpress.RichEdit.v18.2.Core" t="Include" />
+        <e p="DevExpress.Utils.v18.2" t="Include" />
+        <e p="DevExpress.XtraBars.v18.2" t="Include" />
+        <e p="DevExpress.XtraEditors.v18.2" t="Include" />
+        <e p="DevExpress.XtraGrid.v18.2" t="Include" />
+        <e p="DevExpress.XtraLayout.v18.2" t="Include" />
+        <e p="DevExpress.XtraNavBar.v18.2" t="Include" />
+        <e p="form" t="Include">
+          <e p="collection" t="Include">
+            <e p="PdfGenerator.cs" t="Include" />
+            <e p="PdfGenerator.Designer.cs" t="Include" />
+            <e p="PdfGenerator.resx" t="Include" />
+          </e>
+          <e p="order" t="Include">
+            <e p="NewFolder1" t="Include" />
+            <e p="OrderCenter.cs" t="Include" />
+            <e p="orderCenter.Designer.cs" t="Include" />
+            <e p="OrderCenter.resx" t="Include" />
+          </e>
+          <e p="postCard" t="Include" />
+          <e p="PostCardCenterMainForm.cs" t="Include" />
+          <e p="PostCardCenterMainForm.Designer.cs" t="Include" />
+          <e p="PostCardCenterMainForm.resx" t="Include" />
+          <e p="security" t="Include" />
+          <e p="setting" t="Include">
+            <e p="SettingForm.cs" t="Include" />
+            <e p="SettingForm.Designer.cs" t="Include" />
+            <e p="SettingForm.resx" t="Include" />
+          </e>
+        </e>
+        <e p="if_BT_cut_905651.ico" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PostCardCenter.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="app.manifest" t="Include" />
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="DataSources" t="Include">
+            <e p="soho.domain.EnvelopeInfo.datasource" t="Include" />
+            <e p="soho.domain.system.SystemConstant.datasource" t="Include" />
+          </e>
+          <e p="licenses.licx" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="res" t="Include">
+          <e p="A.png" t="Include" />
+          <e p="B.png" t="Include" />
+          <e p="C.png" t="Include" />
+          <e p="D.png" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="A.png" t="Include" />
+          <e p="B.png" t="Include" />
+          <e p="C.png" t="Include" />
+          <e p="D.png" t="Include" />
+        </e>
+      </e>
+      <e p="PostCardCenter.sln" t="IncludeFlat" />
+      <e p="postCardCenterSdk" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="BaseApi.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="constant" t="Include">
+          <e p="GlobalApiContext.cs" t="Include" />
+          <e p="postCard" t="Include">
+            <e p="PostCardProcessStatusEnum.cs" t="Include" />
+          </e>
+          <e p="PostCardFileUploadStatusEnum.cs" t="Include" />
+          <e p="system" t="Include">
+            <e p="SystemConstants.cs" t="Include" />
+          </e>
+        </e>
+        <e p="domain" t="Include">
+          <e p="FrontStyleInfo.cs" t="Include" />
+          <e p="orderCenter" t="Include">
+            <e p="EnvelopeInfo.cs" t="Include" />
+          </e>
+          <e p="PostCardStyle.cs" t="Include" />
+          <e p="system" t="Include">
+            <e p="SystemConstant.cs" t="Include" />
+          </e>
+        </e>
+        <e p="file" t="Include">
+          <e p="CropSubmitRequest.cs" t="Include" />
+          <e p="FileUploadResponse.cs" t="Include" />
+        </e>
+        <e p="helper" t="Include">
+          <e p="ActionResponseHelper.cs" t="Include" />
+          <e p="FileHelper.cs" t="Include" />
+          <e p="ImageHelper.cs" t="Include" />
+          <e p="Md5Helper.cs" t="Include" />
+          <e p="sizeConvertHelper.cs" t="Include" />
+          <e p="SizeHelper.cs" t="Include" />
+        </e>
+        <e p="interceptor" t="Include">
+          <e p="PerfRequestSyncInterceptor.cs" t="Include" />
+        </e>
+        <e p="model" t="Include">
+          <e p="ImageFileUploadModel.cs" t="Include" />
+          <e p="PostSize.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="postCardCenterSdk.csproj" t="IncludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="request" t="Include">
+          <e p="order" t="Include">
+            <e p="GetAllOrderRequest.cs" t="Include" />
+            <e p="OrderPostRequest.cs" t="Include" />
+          </e>
+          <e p="postCard" t="Include">
+            <e p="PostCardFrontStyleUpdateRequest.cs" t="Include" />
+            <e p="PostCardInfoPatchRequest.cs" t="Include" />
+            <e p="PostCardProductFileIdSubmitRequest.cs" t="Include" />
+          </e>
+          <e p="security" t="Include">
+            <e p="UserLoginRequest.cs" t="Include" />
+          </e>
+          <e p="system" t="Include">
+            <e p="SizeRequest.cs" t="Include" />
+          </e>
+        </e>
+        <e p="response" t="Include">
+          <e p="BodyResponse.cs" t="Include" />
+          <e p="envelope" t="Include">
+            <e p="EnvelopeResponse.cs" t="Include" />
+          </e>
+          <e p="order" t="Include">
+            <e p="OrderCenterResponse.cs" t="Include" />
+          </e>
+          <e p="Page.cs" t="Include" />
+          <e p="postCard" t="Include">
+            <e p="CropInfoResponse.cs" t="Include" />
+            <e p="OrderResponse.cs" t="Include" />
+            <e p="PostCardResponse.cs" t="Include" />
+          </e>
+          <e p="security" t="Include">
+            <e p="LoginResponse.cs" t="Include" />
+          </e>
+          <e p="system" t="Include">
+            <e p="BackStyleResponse.cs" t="Include" />
+            <e p="FrontStyleResponse.cs" t="Include" />
+            <e p="PostCardSizeResponse.cs" t="Include" />
+          </e>
+        </e>
+        <e p="sdk" t="Include">
+          <e p="FileApi.cs" t="Include" />
+          <e p="WebServiceInvoker.cs" t="Include" />
+        </e>
+        <e p="size" t="Include">
+          <e p="request" t="Include" />
+          <e p="response" t="Include">
+            <e p="ProductSizeResponse.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="PostCardCrop" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="control" t="Include">
+          <e p="EnvelopeInfoController.cs" t="Include" />
+          <e p="envelopeInfoController.Designer.cs" t="Include" />
+          <e p="envelopeInfoController.resx" t="Include" />
+          <e p="PostCardInfoController.cs" t="Include" />
+          <e p="PostCardInfoController.Designer.cs" t="Include" />
+          <e p="PostCardInfoController.resx" t="Include" />
+        </e>
+        <e p="form" t="Include">
+          <e p="PostCardCropForm.cs" t="Include" />
+          <e p="PostCardCropForm.Designer.cs" t="Include" />
+          <e p="postCardCropForm.resx" t="Include" />
+          <e p="SubmitWaitForm.cs" t="Include" />
+          <e p="SubmitWaitForm.Designer.cs" t="Include" />
+          <e p="SubmitWaitForm.resx" t="Include" />
+        </e>
+        <e p="model" t="Include">
+          <e p="CropInfo.cs" t="Include" />
+          <e p="EnvelopeInfo.cs" t="Include" />
+          <e p="OrderInfo.cs" t="Include" />
+          <e p="PostCard.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PostCardCrop.csproj" t="IncludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="DataSources" t="Include">
+            <e p="PostCardCrop.model.PostCardInfo.datasource" t="Include" />
+          </e>
+          <e p="licenses.licx" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="A.png" t="Include" />
+          <e p="B.png" t="Include" />
+          <e p="C.png" t="Include" />
+          <e p="D.png" t="Include" />
+        </e>
+        <e p="translator" t="Include">
+          <e p="request" t="Include">
+            <e p="OrderHelper.cs" t="Include" />
+          </e>
+          <e p="response" t="Include">
+            <e p="EnvelopeHelper.cs" t="Include" />
+            <e p="OrderInfoTranslator.cs" t="Include" />
+            <e p="PostCardHelper.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="PostCardProcessor" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="model" t="Include">
+          <e p="PostCardProcessInfo.cs" t="Include" />
+          <e p="Size.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PhotoShopOperation.cs" t="Include" />
+        <e p="PostCardProcessor.csproj" t="IncludeRecursive" />
+        <e p="Processor.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="queue" t="Include">
+          <e p="PostCardProcessQueue.cs" t="Include" />
+        </e>
+      </e>
+      <e p="PostCardQueueProcessor" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Form1.cs" t="Include" />
+        <e p="Form1.Designer.cs" t="Include" />
+        <e p="Form1.resx" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PostCardQueueProcessor.csproj" t="IncludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="licenses.licx" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+      </e>
+      <e p="SystemSetting" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="App_Readme" t="Include">
+          <e p="Spring.Rest.txt" t="Include" />
+        </e>
+        <e p="backStyle" t="Include">
+          <e p="model" t="Include">
+            <e p="BackStyleInfo.cs" t="Include" />
+            <e p="CustomerBackStyleInfo.cs" t="Include" />
+          </e>
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="licenses.licx" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+        </e>
+        <e p="size" t="Include">
+          <e p="constant" t="Include">
+            <e p="BackStyleFactory.cs" t="Include" />
+            <e p="ProductSizeFactory.cs" t="Include" />
+          </e>
+          <e p="form" t="Include">
+            <e p="NewPostCardSizeForm.cs" t="Include" />
+            <e p="NewPostCardSizeForm.Designer.cs" t="Include" />
+            <e p="NewPostCardSizeForm.resx" t="Include" />
+            <e p="SizeManageForm.cs" t="Include" />
+            <e p="SizeManageForm.Designer.cs" t="Include" />
+            <e p="SizeManageForm.resx" t="Include" />
+          </e>
+        </e>
+        <e p="SystemSetting.csproj" t="IncludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
