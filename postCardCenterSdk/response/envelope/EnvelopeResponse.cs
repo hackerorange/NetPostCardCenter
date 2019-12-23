@@ -56,5 +56,18 @@ namespace postCardCenterSdk.response.envelope
         /// </summary>
         [JsonProperty("productFileId")]
         public string ProductFileId { get; set; }
+
+
+        /// <summary>
+        ///     列数
+        /// </summary>
+        [JsonProperty("paperColumn")]
+        public int PaperColumn { get; set; }
+
+        /// <summary>
+        ///     行数
+        /// </summary>
+        [JsonProperty("paperRow")]
+        public int PaperRow { get; set; }
     }
 }

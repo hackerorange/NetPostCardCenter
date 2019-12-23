@@ -13,6 +13,7 @@ namespace PostCardCrop.translator.response
             ProcessorName = orderResponse.ProcessorName,
             ProcessUserId = orderResponse.ProcessUserId,
             ProcessStatus = string.IsNullOrEmpty(orderResponse.ProcessStatus) ? "未处理" : orderResponse.ProcessStatus,
+            ProcessStatusCode= orderResponse.ProcessStatusCode,
             TaobaoId = orderResponse.TaobaoId,
             Urgent = orderResponse.Urgent
         };

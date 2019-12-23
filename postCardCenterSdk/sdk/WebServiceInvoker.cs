@@ -132,6 +132,57 @@ namespace postCardCenterSdk.sdk
             webClient.DownloadFileAsync(new Uri(url), fileInfo.FullName, fileInfo.Name);
         }
 
+        public byte[] DownloadBytesByFileId(string fileId)
+        {
+            return _restTemplate.GetForObject<byte[]>("/file/{fileId}", new Dictionary<string, object>
+            {
+                { "fileId",fileId   }
+            });
+        }
+
+
+        /// <summary>
+        ///     同步下载文件
+        /// </summary>
+        /// <param name="fileId">文件ID</param>        
+        /// <param name="fileInfo">文件信息</param>
+        public FileInfo DownLoadFileByFileIdSynchronize(string fileId, FileInfo fileInfo)
+        {
+            if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+                fileInfo.Directory.Create();
+            if (fileInfo.Exists)
+            {
+                Console.WriteLine(@"文件本地已经存在");
+                return fileInfo;
+            }
+            var result = _restTemplate.GetForObject<byte[]>("/file/{fileId}", new Dictionary<string, object>
+            {
+                { "fileId",fileId   }
+            });
+            BinaryWriter binaryWriter = new BinaryWriter(new FileStream(fileInfo.FullName, FileMode.CreateNew));
+            binaryWriter.Write(result);
+            //StreamWriter streamWriter = new StreamWriter(new FileStream(fileInfo.FullName, FileMode.CreateNew));
+            //streamWriter.W
+
+
+            //if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+            //    fileInfo.Directory.Create();
+            //if (fileInfo.Exists)
+            //{
+            //    Console.WriteLine(@"文件本地已经存在");
+            //    return fileInfo;
+            //}
+
+            //new WebClient
+            //{
+            //    Headers = new WebHeaderCollection
+            //    {
+            //        {"token", GlobalApiContext.Token }
+            //    }
+            //}.DownloadFile(new Uri(WebServiceInvoker.GetInstance().BasePath + "/file" + "/" + fileId), fileInfo.FullName);
+            return fileInfo;
+        }
+
         public void DownLoadBytesAsync(string url, Action<byte[]> success, Action<int> process, Action<string> failure = null)
         {
             var webClient = new WebClient
@@ -147,8 +198,6 @@ namespace postCardCenterSdk.sdk
                 else
                     success?.Invoke(e.Result);
             };
-
-
             // 进度条
             webClient.DownloadProgressChanged += (sender, e) => { process?.Invoke(e.ProgressPercentage); };
             // 异步下载文件

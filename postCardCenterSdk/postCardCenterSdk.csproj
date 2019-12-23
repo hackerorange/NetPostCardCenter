@@ -87,6 +87,7 @@
     <Compile Include="helper\FileHelper.cs" />
     <Compile Include="helper\ImageHelper.cs" />
     <Compile Include="helper\Md5Helper.cs" />
+    <Compile Include="helper\sizeConvertHelper.cs" />
     <Compile Include="helper\SizeHelper.cs" />
     <Compile Include="interceptor\PerfRequestSyncInterceptor.cs" />
     <Compile Include="model\ImageFileUploadModel.cs" />

@@ -6,22 +6,6 @@ namespace PostCardCrop.translator.request
 {
     public static class OrderHelper
     {
-        /// <summary>
-        ///     将Order转化成提交订单请求对象
-        /// </summary>
-        /// <param name="order">Order对象</param>
-        /// <returns>提交订单请求对象</returns>
-        public static OrderSubmitRequest PrepareSubmitRequest(this OrderInfo order)
-        {
-            var orderSubmit = new OrderSubmitRequest
-            {
-                TaobaoId = order.TaobaoId,
-                Urgent = order.Urgent ? 1 : 0,
-                EnvelopeList = new List<OrderSubmitEnvelope>()
-            };
-            order.Envelopes.ForEach(Envelope => { orderSubmit.EnvelopeList.Add(Envelope.PrepareSubmitEnvelope()); });
-            return orderSubmit;
-        }
 
         public static OrderSubmitEnvelope PrepareSubmitEnvelope(this EnvelopeInfo envelope)
         {

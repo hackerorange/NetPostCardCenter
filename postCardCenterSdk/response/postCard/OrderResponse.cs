@@ -44,6 +44,12 @@ namespace postCardCenterSdk.response.postCard
         public string ProcessStatus { get; set; }
 
         /// <summary>
+        ///     订单处理状态编码
+        /// </summary>
+        [JsonProperty("processStatusCode")]
+        public string ProcessStatusCode { get; set; }
+
+        /// <summary>
         ///     订单创建时间
         /// </summary>
         [JsonProperty("createDate")]

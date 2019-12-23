@@ -8,6 +8,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraNavBar;
 using Inko.Security;
+using PostCardCenter.form.collection;
 using postCardCenterSdk;
 using postCardCenterSdk.sdk;
 using PostCardCrop.form;
@@ -18,6 +19,10 @@ namespace postCardCenter.form.order
 {
     public partial class OrderCenter : XtraForm
     {
+
+
+        private OrderInfo FocusOrderInfo { get; set; }
+
         public OrderCenter()
         {
             InitializeComponent();
@@ -30,7 +35,9 @@ namespace postCardCenter.form.order
         private void OrderDetailGridController_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
+            {
                 popupMenu1.ShowPopup(MousePosition);
+            }
         }
 
         private void SimpleButton1_Click(object sender, EventArgs e)
@@ -44,7 +51,10 @@ namespace postCardCenter.form.order
             WebServiceInvoker.GetInstance().GetOrderDetails(dateEdit1.DateTime, dateEdit2.DateTime, orders =>
             {
                 var orderInfoList = new List<OrderInfo>();
-                orders.ForEach(orderResponse => { orderInfoList.Add(orderResponse.TranslateToOrderInfo()); });
+                orders.ForEach(orderResponse =>
+                {
+                    orderInfoList.Add(orderResponse.TranslateToOrderInfo());
+                });
                 orderDetailGridController.DataSource = orderInfoList;
                 orderDetailGridController.RefreshDataSource();
                 simpleButton1.Enabled = true;
@@ -136,35 +146,69 @@ namespace postCardCenter.form.order
             RefreshOrderList();
         }
 
-        private void GridView1_FocusedRowChanged(object sender,
-            FocusedRowChangedEventArgs e)
+
+        private void GridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-            if (gridView1.GetFocusedRow() is OrderInfo orderInfo)
-                barButtonItem4.Enabled = !"已完成".Equals(orderInfo.ProcessStatus);
+            FocusOrderInfo = gridView1.GetFocusedRow() as OrderInfo;
+            if (FocusOrderInfo != null)
+            {
+                barButtonItem4.Enabled = !"16".Equals(FocusOrderInfo.ProcessStatusCode);
+                // 完成状态
+                switch (FocusOrderInfo.ProcessStatusCode){
+                    case "0": // 未开始
+                        barButtonItem2.Enabled = false;
+                        barButtonItem4.Enabled = true;
+                        break;
+                    case "2": // 未完成
+                        barButtonItem2.Enabled = false;
+                        barButtonItem4.Enabled = true;
+                        break;
+                    case "4": // 已完成
+                        barButtonItem2.Enabled = true;
+                        barButtonItem4.Enabled = true;
+                        break;
+                    case "8": // 已生成PDF
+                        barButtonItem2.Enabled = true;
+                        barButtonItem4.Enabled = true;
+                        break;
+                    case "16": // 已关闭
+                        barButtonItem2.Enabled = true;
+                        barButtonItem4.Enabled = true;
+                        break;
+                }
+            }
         }
 
         private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
-            if (orderInfo.ProcessUserId != null && orderInfo.ProcessUserId.Length > 0 && orderInfo.ProcessUserId != InkoSecurityContext.UserId)
+            if (FocusOrderInfo == null)
             {
-                XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + orderInfo.ProcessorName + "]");
                 return;
             }
-            WebServiceInvoker.GetInstance().ChangeOrderProcessor(orderInfo.Id);
+
+            if (FocusOrderInfo.ProcessUserId != null && FocusOrderInfo.ProcessUserId.Length > 0 && FocusOrderInfo.ProcessUserId != InkoSecurityContext.UserId)
+            {
+                XtraMessageBox.Show("当前订单已经有负责人，如需交接，请联系负责人[" + FocusOrderInfo.ProcessorName + "]");
+                return;
+            }
+            WebServiceInvoker.GetInstance().ChangeOrderProcessor(FocusOrderInfo.Id);
         }
 
         private void BarButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (!(gridView1.GetFocusedRow() is OrderInfo orderInfo)) return;
-            if (orderInfo.ProcessUserId != InkoSecurityContext.UserId)
+            if (FocusOrderInfo == null)
             {
-                XtraMessageBox.Show("只有订单的处理人才能修改订单状态，订单负责人为：" + orderInfo.ProcessorName);
+                return;
+            }
+            
+            if (FocusOrderInfo.ProcessUserId != InkoSecurityContext.UserId)
+            {
+                XtraMessageBox.Show("只有订单的处理人才能修改订单状态，订单负责人为：" + FocusOrderInfo.ProcessorName);
                 return;
             }
 
             if (XtraMessageBox.Show("是否真的将订单状态修改为已处理？", "订单状态修改", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                WebServiceInvoker.GetInstance().ChangeOrderStatus(orderInfo.Id, "4", re =>
+                WebServiceInvoker.GetInstance().ChangeOrderStatus(FocusOrderInfo.Id, "4", re =>
                 {
                     RefreshOrderList();
                 });
@@ -183,6 +227,16 @@ namespace postCardCenter.form.order
                 orderProcessStatus.FilterInfo = new ColumnFilterInfo(orderProcessStatus, ba.Tag);
             else
                 orderProcessStatus.ClearFilter();
+        }
+
+        private void BarButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+        }
+
+        private void BarButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new PdfGenerator(FocusOrderInfo.Id).Show(this);
         }
     }
 

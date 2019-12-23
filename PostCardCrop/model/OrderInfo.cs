@@ -9,7 +9,7 @@ namespace PostCardCrop.model
         public OrderInfo()
         {
             //订单根目录只有一个明信片集合
-            BaseEnvelope = new EnvelopeInfo();
+            //BaseEnvelope = new EnvelopeInfo();
             //初始化明信片集合
             //Envelopes = new List<EnvelopeInfo>();
         }
@@ -27,10 +27,15 @@ namespace PostCardCrop.model
         /// </summary>
         public string ProcessStatus { get; set; }
 
+
         /// <summary>
-        ///     订单状态
+        ///     处理状态编码
+        ///     2:已下载
+        ///     4:已完成
+        ///     8:未完成
         /// </summary>
-        public string OrderStatus { get; set; }
+        public string ProcessStatusCode { get; set; }
+
 
         /// <summary>
         ///     创建时间
@@ -41,16 +46,6 @@ namespace PostCardCrop.model
         ///     纸张类型
         /// </summary>
         public string PaperType { get; set; }
-
-        /// <summary>
-        ///     明信片集合
-        /// </summary>
-        public List<EnvelopeInfo> Envelopes => null;
-
-        /// <summary>
-        ///     基准路径明信片集合
-        /// </summary>
-        public EnvelopeInfo BaseEnvelope { get; set; }
 
         /// <summary>
         ///     订单ID
@@ -66,30 +61,5 @@ namespace PostCardCrop.model
         ///     是否加急
         /// </summary>
         public bool Urgent { get; set; }
-
-        /// <summary>
-        ///     此订单所处文件夹
-        /// </summary>
-        //  public DirectoryInfo Directory { get; set; }
-
-
-        public double FileUploadPercent
-        {
-            get
-            {
-                var total = 0;
-                var uploaded = 0;
-
-                uploaded = Envelopes.Sum(EnvelopeInfo =>
-                {
-                    return EnvelopeInfo.PostCards.Sum(PostCardInfo =>
-                    {
-                        total++;
-                        return string.IsNullOrEmpty(PostCardInfo.FileId) ? 0 : 1;
-                    });
-                });
-                return 100 * uploaded / (double) total;
-            }
-        }
     }
 }

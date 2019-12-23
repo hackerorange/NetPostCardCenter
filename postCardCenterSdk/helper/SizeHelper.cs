@@ -22,5 +22,32 @@ namespace postCardCenterSdk.helper
         {
             return new Size(postSize.Width, postSize.Height);
         }
+
+
+        public static float MMtoInch(this double value)
+        {
+            return (float)value * 0.039382716049382716049382716049383f;
+        }
+        public static float IntMMtoInch(this int value)
+        {
+            return value * 0.039382716049382716049382716049383f;
+        }
+
+        public static float MMtoPix(this float value)
+        {
+            return 72 * MMtoInch(value);
+        }
+
+        /// <summary>
+        /// 毫米转 pix
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static float MMtoPix(this int value)
+        {
+            return 72 * MMtoInch(value);
+        }
+
+
     }
 }
