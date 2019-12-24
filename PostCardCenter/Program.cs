@@ -1,6 +1,4 @@
-﻿
-
-using DevExpress.LookAndFeel;
+﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
 using DevExpress.UserSkins;
 using postCardCenter.form;
@@ -10,6 +8,9 @@ using System.Threading;
 using System.Windows.Forms;
 using Inko.Security;
 using postCardCenterSdk.constant;
+using DevExpress.XtraEditors;
+using System.Diagnostics;
+using System.IO;
 
 namespace postCardCenter
 {
@@ -32,14 +33,19 @@ namespace postCardCenter
                     UserLookAndFeel.Default.SetSkinStyle("DevExpress Style"); // 设置皮肤样式
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
-                    string token = InkoSecurityContext.GetToken();
-                    if (!string.IsNullOrEmpty(token))
+                    var token = InkoSecurityContext.GetToken();
+                    // 如果登录失败或者取消登录，直接退出
+                    if (string.IsNullOrEmpty(token)) return;
+
+                    // 获取当前程序文件夹
+                    if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
                     {
-                        GlobalApiContext.Token = token;
-                        Application.Run(new PostCardCenterMainForm());
+                        var fileInfo = new FileInfo(processModule.FileName);
+                        XtraMessageBox.Show(fileInfo.DirectoryName);
                     }
 
-                   
+                    GlobalApiContext.Token = token;
+                    Application.Run(new PostCardCenterMainForm());
                 }
                 else
                 {

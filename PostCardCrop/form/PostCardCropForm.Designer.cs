@@ -30,6 +30,7 @@ namespace PostCardCrop.form
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostCardCropForm));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
@@ -68,12 +69,12 @@ namespace PostCardCrop.form
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.postCardCropBoxGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.PostCardCropFormlayoutControl2ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();

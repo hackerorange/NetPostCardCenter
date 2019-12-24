@@ -1,38 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Threading;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraLayout.Utils;
-using postCardCenterSdk.request.postCard;
 using postCardCenterSdk.sdk;
 using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
-using PostCardProcessor;
 using PostCardProcessor.model;
 using PostCardProcessor.queue;
-using postCardCenterSdk.constant.postcard;
-using postCardCenterSdk.helper;
 using postCardCenterSdk.web;
 using CropInfo = PhotoCropper.viewModel.CropInfo;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Size = System.Windows.Size;
-using DevExpress.XtraEditors;
-using Hacker.Inko.PostCard.Support;
+using Hacker.Inko.PostCard.Library.Support;
 
 namespace PostCardCrop.form
 {
     public partial class PostCardCropForm : RibbonForm
     {
         private readonly string _orderId;
+
         //明信片集合
         public PostCardCropForm(string focusedRowOrderId)
         {
@@ -196,10 +188,7 @@ namespace PostCardCrop.form
                     }, message => { XtraMessageBox.Show(message); });
                 });
                 envelopeListControl.DataSource = envelopeInfos;
-            }, failure: kk =>
-            {
-                XtraMessageBox.Show(kk);
-            });
+            }, failure: kk => { XtraMessageBox.Show(kk); });
         }
 
         private void PostCardCropForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -271,7 +260,6 @@ namespace PostCardCrop.form
 
         private void EnvelopeView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
-
             if (EnvelopeView.GetFocusedRow() is EnvelopeInfo _currentEnvelopeInfo)
             {
                 postCardControl.DataSource = _currentEnvelopeInfo.PostCards;
@@ -288,8 +276,6 @@ namespace PostCardCrop.form
         {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
             {
-
-
                 progressBarControl1.EditValue = 0;
                 //                cropContext.CropInfoSubmitDto = new CropInfoSubmitDto(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
                 //                        pictureCropControl1.CropContext = cropContext;
@@ -367,54 +353,10 @@ namespace PostCardCrop.form
             {
                 return;
             }
+
             var envelopeId = _currentEnvelopeInfo.Id;
 
-            WebServiceInvoker.GetInstance().GetOrderInfo(_currentEnvelopeInfo.OrderId, orderInfo =>
-            {
-                WebServiceInvoker.GetInstance().GetEnvelopeInfoById(envelopeId, envelopeInfo =>
-                {
-
-                    var dialog = new XtraSaveFileDialog
-                    {
-                        DefaultExt = "pdf",
-                        FileName = orderInfo.TaobaoId + "_" + envelopeInfo.PaperName + ".pdf",
-                        InitialDirectory = "D://"
-                    };
-                    var dialogResult = dialog.ShowDialog();
-
-                    if (dialogResult == DialogResult.OK)
-                    {
-                        var exportForm = new ExportForm();
-                        exportForm.Show(this);
-
-                        envelopeInfo.GeneratePdfFile(dialog.FileName, processValue =>
-                        {
-                            exportForm.RefreshProgress(processValue);
-                            Thread.Sleep(100);
-                            Application.DoEvents();
-                        }, message =>
-                         {
-                             XtraMessageBox.Show(message);
-                         });
-                        exportForm.Close();
-                        exportForm.Dispose();
-                        var result = XtraMessageBox.Show("导出完成，是否定位到当前文件?", "导出完成", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.Yes)
-                        {
-                            System.Diagnostics.Process.Start("Explorer.exe", "/select," + dialog.FileName);
-                        }
-                    }
-                }, message =>
-                {
-                    XtraMessageBox.Show(message);
-                });
-
-
-            }, message => XtraMessageBox.Show(message));
-
-
-
-
+            new ExportForm(envelopeId).Show(this);
         }
     }
 }

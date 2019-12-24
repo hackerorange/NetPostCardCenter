@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using Hacker.Inko.PostCard.Support;
 using iText.IO.Image;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;

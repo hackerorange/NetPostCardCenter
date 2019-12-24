@@ -6,7 +6,8 @@ namespace postCardCenterSdk.request.security
 {
     public class UserLoginRequest
     {
-        [JsonProperty("userName")] public string UserName;
-        [JsonProperty("password")] public string Password;
+        [JsonProperty("userName")] public string UserName { get; set; }
+
+        [JsonProperty("password")] public string Password { get; set; }
     }
 }
