@@ -40,7 +40,7 @@ namespace postCardCenterSdk.web
             {
                 { "file", new HttpEntity(file) },
                 { "category", Encoding.UTF8.GetBytes(category) }
-            }, resp => resp.prepareResult(success, failure));
+            }, resp => resp.PrepareResult(success, failure));
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace postCardCenterSdk.web
                 Style = style
             };
 
-            _restTemplate.PostForObjectAsync<BodyResponse<string>>(Resources.cropInfoSubmitUrl, request, resp => { resp.prepareResult(success, failure); });
+            _restTemplate.PostForObjectAsync<BodyResponse<string>>(Resources.cropInfoSubmitUrl, request, resp => { resp.PrepareResult(success, failure); });
         }
 
     }

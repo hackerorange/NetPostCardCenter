@@ -39,6 +39,7 @@ namespace Inko.Security.form.security
             }, failure: message =>
             {
                 XtraMessageBox.Show(message);
+                loginButton.Enabled = true;
             });
         }
 

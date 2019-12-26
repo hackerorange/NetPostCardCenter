@@ -10,7 +10,7 @@ namespace postCardCenterSdk.helper
 {
     public static class ActionResponseHelper
     {
-        public static void prepareResult<T>(this RestOperationCompletedEventArgs<BodyResponse<T>> response, Action<T> success, Action<String> failure)
+        public static void PrepareResult<T>(this RestOperationCompletedEventArgs<BodyResponse<T>> response, Action<T> success, Action<String> failure)
         {
             if (response.Error != null)
             {

@@ -44,7 +44,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure">失败处理逻辑</param>
         public void SubmitOrderList(OrderSubmitRequest orderSubmit, Action<string> success, Action<string> failure = null)
         {
-            _restTemplate.PostForObjectAsync<BodyResponse<string>>("/order/submit", orderSubmit, resp => resp.prepareResult(success, failure));
+            _restTemplate.PostForObjectAsync<BodyResponse<string>>("/order/submit", orderSubmit, resp => resp.PrepareResult(success, failure));
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="success"></param>
         /// <param name="failure"></param>
         public void GetBackStyleTemplateList(Action<List<BackStyleResponse>> success, Action<string> failure = null) =>
-            _restTemplate.GetForObjectAsync<BodyResponse<List<BackStyleResponse>>>("/backStyle", resp => resp.prepareResult(success, failure));
+            _restTemplate.GetForObjectAsync<BodyResponse<List<BackStyleResponse>>>("/backStyle", resp => resp.PrepareResult(success, failure));
 
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.GetForObjectAsync<BodyResponse<List<PostCardSizeResponse>>>("/size/{category}", new Dictionary<string, object>
             {
                 {"category", category}
-            }, resp => resp.prepareResult(success, failure));
+            }, resp => resp.PrepareResult(success, failure));
 
         /// <summary>
         /// 向服务器插入成品尺寸信息
@@ -77,7 +77,7 @@ namespace postCardCenterSdk.sdk
         /// <param name="failure"></param>
         public void InsertProductSizeToServer(string category, SizeRequest sizeRequest, Action<PostCardSizeResponse> success, Action<string> failure = null)
         {
-            _restTemplate.PostForObjectAsync<BodyResponse<PostCardSizeResponse>>("/size/{category}", sizeRequest, resp => resp.prepareResult(success, failure), category);
+            _restTemplate.PostForObjectAsync<BodyResponse<PostCardSizeResponse>>("/size/{category}", sizeRequest, resp => resp.PrepareResult(success, failure), category);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.GetForObjectAsync<BodyResponse<Page<EnvelopeResponse>>>("/bill/{billId}/collection/list", new Dictionary<string, object>
             {
                 { "billId", orderId }
-            }, resp => resp.prepareResult(kk => success?.Invoke(kk.Detail), failure));
+            }, resp => resp.PrepareResult(kk => success?.Invoke(kk.Detail), failure));
 
         /// <summary>
         ///     根据明信片集合ID获取明信片集合中的所有明信片
@@ -253,7 +253,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.GetForObjectAsync<BodyResponse<Page<PostCardResponse>>>("/collection/{collectionId}/postCard/list", new Dictionary<string, object>
             {
                 {"collectionId", envelopeId}
-            }, resp => resp.prepareResult(kk => success?.Invoke(kk.Detail), failure));
+            }, resp => resp.PrepareResult(kk => success?.Invoke(kk.Detail), failure));
 
         /// <summary>
         ///     根据ID获取明信片集合详细信息
@@ -265,7 +265,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.GetForObjectAsync<BodyResponse<EnvelopeResponse>>("/collection/{envelopeId}/info", new Dictionary<string, object>
             {
                 {"envelopeId", envelopeId}
-            }, resp => resp.prepareResult(success, failure));
+            }, resp => resp.PrepareResult(success, failure));
 
         public void GetOrderDetails(DateTime startDate, DateTime endDate, Action<List<OrderResponse>> success, Action<string> failure = null)
         {
@@ -273,7 +273,7 @@ namespace postCardCenterSdk.sdk
             {
                 StarDateTime = startDate,
                 EndDateTime = endDate
-            }, postCompleted: respon => respon.prepareResult(result => success?.Invoke(result.Detail), failure));
+            }, postCompleted: respon => respon.PrepareResult(result => success?.Invoke(result.Detail), failure));
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace postCardCenterSdk.sdk
             {
                 {"orderId", orderId},
                 {"orderStatus", orderStatus}
-            }), postCompleted: respon => respon.prepareResult(success, failure));
+            }), postCompleted: respon => respon.PrepareResult(success, failure));
             //PostForObjectAsync<OrderResponse>(Resources.changeOrderStatusUrl, nameValueCollection, response => { success?.Invoke(response); }, failure);
         }
 
@@ -324,7 +324,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.GetForObjectAsync<BodyResponse<OrderResponse>>("/bill/{billId}/info", new Dictionary<string, object>
             {
                 {"billId", orderId}
-            }, resp => resp.prepareResult(success, failure));
+            }, resp => resp.PrepareResult(success, failure));
 
         /// <summary>
         /// 用户登录
@@ -338,7 +338,7 @@ namespace postCardCenterSdk.sdk
             {
                 UserName = userName,
                 Password = password
-            }), result => result.prepareResult(success, failure));
+            }), result => result.PrepareResult(success, failure));
 
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.PostForObjectAsync<BodyResponse<LoginResponse>>("/security/refreshToken", new HttpEntity(new HttpHeaders
             {
                 { "refresh-token", refreshToken }
-            }), result => result.prepareResult(success, failure));
+            }), result => result.PrepareResult(success, failure));
         }
 
         public void SubmitPostCardProductFile(string postCardId, string productFileId, Action<bool> success = null, Action<string> failure = null) =>
@@ -361,14 +361,14 @@ namespace postCardCenterSdk.sdk
             {
                 { "postCardId", postCardId},
                 { "productFileId",productFileId}
-            }, result => result.prepareResult(success, failure));
+            }, result => result.PrepareResult(success, failure));
 
         public void UpdatePostCardProcessStatus(string postCardId, string processStatus, Action<bool> success = null, Action<string> failure = null) =>
             _restTemplate.PostForObjectAsync<BodyResponse<bool>>("/postCard/{postCardId}/updateProcessStatus/{processStatusCode} ", null, new Dictionary<string, object>
             {
                 { "postCardId" , postCardId },
                 { "processStatusCode" , processStatus }
-            }, result => result.prepareResult(success, failure));
+            }, result => result.PrepareResult(success, failure));
 
         /// <summary>
         /// 改变明信片的正面样式
@@ -380,7 +380,7 @@ namespace postCardCenterSdk.sdk
 
         public void ChangePostCardFrontStyle(string postCardId, string frontStyle, Action<PostCardResponse> success, Action<string> failure = null)
         {
-            _restTemplate.PostForObjectAsync<BodyResponse<PostCardResponse>>("/postCard/{postCardId}/changeFrontStyle/{fontStyleCode}", null, postCompleted: respon => respon.prepareResult(success, failure), postCardId, frontStyle);
+            _restTemplate.PostForObjectAsync<BodyResponse<PostCardResponse>>("/postCard/{postCardId}/changeFrontStyle/{fontStyleCode}", null, postCompleted: respon => respon.PrepareResult(success, failure), postCardId, frontStyle);
         }
 
         /// <summary>
@@ -394,7 +394,7 @@ namespace postCardCenterSdk.sdk
             _restTemplate.GetForObjectAsync<BodyResponse<PostCardResponse>>("/postCard/{postCardId}/info", new Dictionary<string, object>
             {
                 {"postCardId", postCardId}
-            }, resp => resp.prepareResult(success, failure));
+            }, resp => resp.PrepareResult(success, failure));
         }
 
         /// <summary>
