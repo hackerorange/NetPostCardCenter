@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
+using DevExpress.XtraEditors;
 using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Base;
@@ -18,23 +21,76 @@ namespace PostCardQueueProcessor
     {
         public Form1()
         {
+
             InitializeComponent();
-            //创建连接工厂
-            IConnectionFactory factory = new ConnectionFactory("tcp://zhongct-p1.grandsoft.com.cn:61616");
-            //通过工厂构建连接
-            var connection = factory.CreateConnection();
-            //这个是连接的客户端名称标识
-            connection.ClientId = "firstQueueListener";
-            //启动连接，监听的话要主动启动连接
-            connection.Start();
-            //通过连接创建一个会话
-            var session = connection.CreateSession();
-            //通过会话创建一个消费者，这里就是Queue这种会话类型的监听参数设置
-            var consumer = session.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
-            //注册监听事件
-            consumer.Listener += Consumer_Listener;
-            //connection.Stop();
-            //connection.Close();  
+
+            if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
+            {
+                var dictionary = new Dictionary<string, string>();
+                var fileInfo = new FileInfo(processModule.FileName);
+                XtraMessageBox.Show(fileInfo.DirectoryName);
+                fileInfo = new FileInfo(fileInfo.DirectoryName + "/inkoConfig.ini");
+                if (fileInfo.Exists)
+                {
+                    var streamReader = new StreamReader(new FileStream(fileInfo.FullName, FileMode.Open));
+                    while (!streamReader.EndOfStream)
+                    {
+                        var line = streamReader.ReadLine();
+                        if (line == null) continue;
+                        var currentSplit = line.Split('=');
+                        if (currentSplit.Length == 2)
+                        {
+                            dictionary.Add(currentSplit[0], currentSplit[1]);
+                        }
+                    }
+
+                    var brokerUrl = dictionary["brokerUrl"];
+                    if (string.IsNullOrEmpty(brokerUrl))
+                    {
+                        XtraMessageBox.Show("没有配置brokerUrl，无法初始化消息队列");
+                    }
+
+                    var clientId = dictionary["clientId"];
+                    if (string.IsNullOrEmpty(clientId))
+                    {
+                        XtraMessageBox.Show("没有配置clientId，无法初始化消息队列");
+                    }
+
+                    var queueName = dictionary["queueName"];
+                    if (string.IsNullOrEmpty(queueName))
+                    {
+                        XtraMessageBox.Show("没有配置queueName，无法初始化消息队列");
+                    }
+
+
+
+                    //创建连接工厂
+                    IConnectionFactory factory = new ConnectionFactory("tcp://zhongct-p1.grandsoft.com.cn:61616");
+                    //通过工厂构建连接
+                    var connection = factory.CreateConnection();
+                    //这个是连接的客户端名称标识
+                    connection.ClientId = "firstQueueListener";
+                    //启动连接，监听的话要主动启动连接
+                    connection.Start();
+                    //通过连接创建一个会话
+                    var session = connection.CreateSession();
+                    //通过会话创建一个消费者，这里就是Queue这种会话类型的监听参数设置
+                    var consumer = session.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
+                    //注册监听事件
+                    consumer.Listener += Consumer_Listener;
+                    //connection.Stop();
+                    //connection.Close();  
+
+
+
+                }
+                else
+                {
+                    XtraMessageBox.Show("没有找到配置文件，无法初始化消息队列");
+                }
+            }
+
+
         }
 
         private void Consumer_Listener(IMessage message)
