@@ -183,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="inkoConfig.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\PostCardCrop.model.PostCardInfo.datasource" />
     <None Include="Resources\A.png" />

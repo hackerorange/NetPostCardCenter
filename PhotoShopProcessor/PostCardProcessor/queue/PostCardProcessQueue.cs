@@ -15,7 +15,6 @@ namespace PostCardProcessor.queue
         public DoubleSidePostCardCropInfo PostCardProcessInfo { get; set; }
         public PostCardUploadHandler Success { get; set; }
         public PostCardUploadHandler Failure { get; set; }
-
     }
 
     public class PostCardProcessQueue
@@ -23,8 +22,10 @@ namespace PostCardProcessor.queue
         private readonly Queue<PostCardProcessContext> _contexts = new Queue<PostCardProcessContext>();
         private readonly Semaphore _taskSemaphore = new Semaphore(0, 256);
         private static PostCardProcessQueue _postCardUploadWorker;
+        public static string ProviderUri { get; set; } = "tcp://localhost:61616";
 
-       
+        public static string QueueName { get; set; } = "firstQueue";
+
 
         private bool _flag = true;
 
@@ -38,14 +39,13 @@ namespace PostCardProcessor.queue
             try
             {
                 //初始化工厂，这里默认的URL是不需要修改的
-                _factory = new NMSConnectionFactory("tcp://localhost:61616");
+                _factory = new NMSConnectionFactory(ProviderUri);
             }
             catch
             {
                 // ignored
             }
         }
-
 
 
         ~PostCardProcessQueue()
@@ -59,6 +59,7 @@ namespace PostCardProcessor.queue
             {
                 _postCardUploadWorker = new PostCardProcessQueue();
             }
+
             _postCardUploadWorker.Upload(new PostCardProcessContext
             {
                 PostCardProcessInfo = postCardProcessInfo,
@@ -77,7 +78,7 @@ namespace PostCardProcessor.queue
                     using (var session = connection.CreateSession())
                     {
                         //通过会话创建生产者，方法里面new出来的是MQ中的Queue
-                        var prod = session.CreateProducer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
+                        var prod = session.CreateProducer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue(QueueName));
                         //创建一个发送的消息对象
                         var message = prod.CreateTextMessage();
                         //给这个对象赋实际的消息
@@ -88,14 +89,13 @@ namespace PostCardProcessor.queue
                         prod.Send(message, MsgDeliveryMode.NonPersistent, MsgPriority.Normal, TimeSpan.MinValue);
                     }
                 }
+
                 postCardUploadContext.Success?.Invoke(postCardUploadContext.PostCardProcessInfo);
             }
             catch (Exception)
             {
                 postCardUploadContext.Failure?.Invoke(postCardUploadContext.PostCardProcessInfo);
             }
-
-
         }
 
 
@@ -111,7 +111,7 @@ namespace PostCardProcessor.queue
                 }
 
                 var a = postCardProcessContext.PostCardProcessInfo;
-                var aaa=JsonConvert.SerializeObject(a);
+                var aaa = JsonConvert.SerializeObject(a);
                 Console.WriteLine(aaa);
                 //通过工厂建立连接
                 using (var connection = _factory.CreateConnection())
@@ -131,6 +131,7 @@ namespace PostCardProcessor.queue
                         prod.Send(message, MsgDeliveryMode.NonPersistent, MsgPriority.Normal, TimeSpan.MinValue);
                     }
                 }
+
                 //var fileInfo = postCardProcessContext.PostCardProcessCropInfo.Process();//.DirectoryInfo as FileInfo;
                 //if (fileInfo == null)
                 //{

@@ -9,17 +9,29 @@ namespace Hacker.Inko.Net.Base
     {
         public static string AccessToken { get; set; }
 
-        public static string Host { get; set; } = "http://zhongct-p1.grandsoft.com.cn:8087";
+        public static string Host
+        {
+            get => _host;
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    return;
+                }
+
+                RestTemplate.BaseAddress = new Uri(value);
+                _host = value;
+            }
+        }
 
 
         public static readonly RestTemplate RestTemplate;
+        private static string _host;
 
         static NetGlobalInfo()
         {
-            RestTemplate = new RestTemplate
-            {
-                BaseAddress = new Uri(Host)
-            };
+            RestTemplate = new RestTemplate();
             RestTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             RestTemplate.RequestInterceptors.Add(new RequestAuthorizationInterceptor());
         }

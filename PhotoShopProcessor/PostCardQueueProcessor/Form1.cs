@@ -17,18 +17,16 @@ using PostCardProcessor.model;
 
 namespace PostCardQueueProcessor
 {
-    public partial class Form1 : DevExpress.XtraEditors.XtraForm
+    public partial class Form1 : XtraForm
     {
         public Form1()
         {
-
             InitializeComponent();
 
             if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
             {
                 var dictionary = new Dictionary<string, string>();
                 var fileInfo = new FileInfo(processModule.FileName);
-                XtraMessageBox.Show(fileInfo.DirectoryName);
                 fileInfo = new FileInfo(fileInfo.DirectoryName + "/inkoConfig.ini");
                 if (fileInfo.Exists)
                 {
@@ -38,59 +36,54 @@ namespace PostCardQueueProcessor
                         var line = streamReader.ReadLine();
                         if (line == null) continue;
                         var currentSplit = line.Split('=');
-                        if (currentSplit.Length == 2)
-                        {
-                            dictionary.Add(currentSplit[0], currentSplit[1]);
-                        }
+                        if (currentSplit.Length == 2) dictionary.Add(currentSplit[0], currentSplit[1]);
                     }
+                    streamReader.Close();
 
                     var brokerUrl = dictionary["brokerUrl"];
                     if (string.IsNullOrEmpty(brokerUrl))
                     {
                         XtraMessageBox.Show("没有配置brokerUrl，无法初始化消息队列");
+                        return;
                     }
 
                     var clientId = dictionary["clientId"];
                     if (string.IsNullOrEmpty(clientId))
                     {
                         XtraMessageBox.Show("没有配置clientId，无法初始化消息队列");
+                        return;
                     }
 
                     var queueName = dictionary["queueName"];
                     if (string.IsNullOrEmpty(queueName))
                     {
                         XtraMessageBox.Show("没有配置queueName，无法初始化消息队列");
+                        return;
                     }
 
 
-
                     //创建连接工厂
-                    IConnectionFactory factory = new ConnectionFactory("tcp://zhongct-p1.grandsoft.com.cn:61616");
+                    IConnectionFactory factory = new ConnectionFactory(brokerUrl);
                     //通过工厂构建连接
                     var connection = factory.CreateConnection();
                     //这个是连接的客户端名称标识
-                    connection.ClientId = "firstQueueListener";
+                    connection.ClientId = clientId;
                     //启动连接，监听的话要主动启动连接
                     connection.Start();
                     //通过连接创建一个会话
                     var session = connection.CreateSession();
                     //通过会话创建一个消费者，这里就是Queue这种会话类型的监听参数设置
-                    var consumer = session.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
+                    var consumer = session.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue(queueName));
                     //注册监听事件
                     consumer.Listener += Consumer_Listener;
                     //connection.Stop();
                     //connection.Close();  
-
-
-
                 }
                 else
                 {
                     XtraMessageBox.Show("没有找到配置文件，无法初始化消息队列");
                 }
             }
-
-
         }
 
         private void Consumer_Listener(IMessage message)
@@ -110,10 +103,7 @@ namespace PostCardQueueProcessor
             Log(@"开始处理明信片[" + postCardProcessCropInfo.PostCardId + "]");
 
             // 创建临时目录
-            if (!Directory.Exists("D:/postCard/tmpFile/"))
-            {
-                Directory.CreateDirectory("D:/postCard/tmpFile/");
-            }
+            if (!Directory.Exists("D:/postCard/tmpFile/")) Directory.CreateDirectory("D:/postCard/tmpFile/");
 
             var isWait = true;
             try
@@ -191,10 +181,7 @@ namespace PostCardQueueProcessor
                 isWait = false;
             }
 
-            while (isWait)
-            {
-                Application.DoEvents();
-            }
+            while (isWait) Application.DoEvents();
         }
 
 
@@ -208,10 +195,7 @@ namespace PostCardQueueProcessor
         private void Form1_Load(object sender, EventArgs e)
         {
             var tempDirectory = new DirectoryInfo("D:/postCard/tmpFile/");
-            foreach (FileInfo f in tempDirectory.GetFiles())
-            {
-                f.Delete();
-            }
+            foreach (var f in tempDirectory.GetFiles()) f.Delete();
         }
 
         private void Log(string message)

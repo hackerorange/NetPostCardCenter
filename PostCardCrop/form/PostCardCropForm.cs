@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Input;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -23,7 +25,58 @@ namespace PostCardCrop.form
     public partial class PostCardCropForm : RibbonForm
     {
         private readonly string _orderId;
+
         private DoubleSidePostCardCropInfo _doubleSidePostCardCropInfo;
+
+        static PostCardCropForm()
+        {
+            if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
+            {
+                var dictionary = new Dictionary<string, string>();
+                var fileInfo = new FileInfo(processModule.FileName);
+                fileInfo = new FileInfo(fileInfo.DirectoryName + "/inkoConfig.ini");
+                if (fileInfo.Exists)
+                {
+                    var streamReader = new StreamReader(new FileStream(fileInfo.FullName, FileMode.Open));
+                    while (!streamReader.EndOfStream)
+                    {
+                        var line = streamReader.ReadLine();
+                        if (line == null) continue;
+                        var currentSplit = line.Split('=');
+                        if (currentSplit.Length == 2)
+                        {
+                            dictionary.Add(currentSplit[0], currentSplit[1]);
+                        }
+                    }
+                    streamReader.Close();
+
+                    var queueName = dictionary["queueName"];
+                    if (string.IsNullOrEmpty(queueName))
+                    {
+                        XtraMessageBox.Show("没有配置host，无法初始化网络请求");
+                    }
+                    else
+                    {
+                        PostCardProcessQueue.QueueName = queueName;
+                    }
+
+                    var providerUri = dictionary["providerUri"];
+                    if (string.IsNullOrEmpty(providerUri))
+                    {
+                        XtraMessageBox.Show("没有配置providerUri，无法初始化消息队列");
+                    }
+                    else
+                    {
+                        PostCardProcessQueue.ProviderUri = providerUri;
+                    }
+                }
+            }
+            else
+            {
+                XtraMessageBox.Show("没有找到配置文件");
+            }
+        }
+
 
         //明信片集合
         public PostCardCropForm(string focusedRowOrderId)
