@@ -108,15 +108,19 @@ namespace Hacker.Inko.PostCard.Library.Support
                 pdfDocument.SetDefaultPageSize(new PageSize(envelopeResponse.PaperWidth.MMtoPix(), envelopeResponse.PaperHeight.MMtoPix()));
 
                 var pageContexts = new List<PostCardPageContext>();
-
-                pdfDocument.AddNewPage();
                 var postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse)
                 {
-                    FrontPageNumber = pdfDocument.GetNumberOfPages(),
-                    BackPageNumber = pdfDocument.GetNumberOfPages() + 1,
                     Document = document
                 };
-                pdfDocument.AddNewPage();
+
+                pdfDocument.AddNewPage(); // 添加一页
+                postCardPageContext.FrontPageNumber = pdfDocument.GetNumberOfPages(); // 正面为当前最后一页
+                // 如果是正反面，再添加一页
+                if (envelopeResponse.DoubleSide)
+                {
+                    pdfDocument.AddNewPage(); // 添加一页
+                    postCardPageContext.BackPageNumber = pdfDocument.GetNumberOfPages(); // 反面为最后一页
+                }
 
                 pageContexts.Add(postCardPageContext);
 
@@ -133,6 +137,7 @@ namespace Hacker.Inko.PostCard.Library.Support
                         };
                         pdfDocument.AddNewPage();
                         pageContexts.Add(postCardPageContext);
+                        postCardPageContext.AddPostCardResponse(postCard);
                     }
                 }
 
@@ -190,17 +195,7 @@ namespace Hacker.Inko.PostCard.Library.Support
 
         public void PreparePdfPage()
         {
-            ProcessFrontPage();
-            ProcessBackPage();
-        }
-
-        /// <summary>
-        /// 处理正面
-        /// </summary>
-        private void ProcessFrontPage()
-        {
             // 创建新的一页
-
             var leftWhite = (Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - _paperColumn * _envelopeResponse.ProductWidth.MMtoPix()) / 2;
             var topWhite = (Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - _paperRow * _envelopeResponse.ProductHeight.MMtoPix()) / 2;
 
@@ -218,38 +213,53 @@ namespace Hacker.Inko.PostCard.Library.Support
                     }
 
                     var postCard = _postCardResponses[currentIndex];
-                    var fileId = postCard.ProductFileId;
-                    var templateFileInfo = new FileInfo(_templateDirectoryInfo.FullName + "/" + fileId);
-                    if (!templateFileInfo.Exists)
-                    {
-                        var bytes = FileApi.DownloadBytesByFileId(fileId);
 
-                        var fileStream = new BufferedStream(new FileStream(templateFileInfo.FullName, FileMode.CreateNew));
-                        fileStream.Write(bytes, 0, bytes.Length);
-                        fileStream.Flush();
-                        fileStream.Close();
-                    }
 
                     // 正面
-                    var image = new Image(ImageDataFactory.Create(templateFileInfo.FullName));
-                    // 转化尺寸
-                    image.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
-                    image.SetPageNumber(FrontPageNumber);
+                    var fileId = postCard.ProductFileId;
+                    if (!string.IsNullOrEmpty(fileId))
+                    {
+                        var frontFile = new FileInfo(_templateDirectoryInfo.FullName + "/" + fileId);
+                        if (!frontFile.Exists)
+                        {
+                            frontFile = FileApi.DownloadFileByFileId(fileId, frontFile);
+                        }
 
-                    // 坐标po
-                    image.SetFixedPosition(
-                        leftWhite + j * _envelopeResponse.ProductWidth.MMtoPix(),
-                        topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
-                    Document.Add(image);
+                        var frontImage = new Image(ImageDataFactory.Create(frontFile.FullName));
+                        // 转化尺寸
+                        frontImage.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
+                        frontImage.SetPageNumber(FrontPageNumber);
+
+                        // 坐标po
+                        frontImage.SetFixedPosition(
+                            leftWhite + j * _envelopeResponse.ProductWidth.MMtoPix(),
+                            topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
+                        Document.Add(frontImage);
+                    }
+
+                    // 反面
+                    var backFileId = postCard.BackProductFileId;
+                    if (!string.IsNullOrEmpty(backFileId))
+                    {
+                        var backFileInfo = new FileInfo(_templateDirectoryInfo.FullName + "/" + backFileId);
+                        if (!backFileInfo.Exists)
+                        {
+                            FileApi.DownloadFileByFileId(backFileId, backFileInfo);
+                        }
+
+                        var backImage = new Image(ImageDataFactory.Create(backFileInfo.FullName));
+                        // 转化尺寸
+                        backImage.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
+                        backImage.SetPageNumber(BackPageNumber);
+
+                        // 坐标po
+                        backImage.SetFixedPosition(
+                            leftWhite + (_paperColumn - j - 1) * _envelopeResponse.ProductWidth.MMtoPix(),
+                            topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
+                        Document.Add(backImage);
+                    }
                 }
             }
-        }
-
-        /// <summary>
-        /// 处理反面
-        /// </summary>
-        private void ProcessBackPage()
-        {
         }
     }
 }

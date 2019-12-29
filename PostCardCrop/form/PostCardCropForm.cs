@@ -85,6 +85,7 @@ namespace PostCardCrop.form
                         PostCardType = postCardInfo.FrontStyle, // 正面样式，A B C D，用于确定板式
                         FrontCropCropInfo = new PostCardProcessCropInfo // 正面裁切信息
                         {
+                            FileId = postCardInfo.FileId,
                             CropLeft = cropInfo.CropLeft,
                             CropTop = cropInfo.CropTop,
                             CropHeight = cropInfo.CropHeight,
@@ -110,6 +111,7 @@ namespace PostCardCrop.form
                 {
                     _doubleSidePostCardCropInfo.BackCropCropInfo = new PostCardProcessCropInfo
                     {
+                        FileId = postCardInfo.BackFileId,
                         CropLeft = cropInfo.CropLeft, // 反面左边
                         CropTop = cropInfo.CropTop, // 反面右边
                         CropHeight = cropInfo.CropHeight, // 反面高度
