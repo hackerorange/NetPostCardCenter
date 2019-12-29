@@ -38,7 +38,7 @@ namespace PostCardProcessor.queue
             try
             {
                 //初始化工厂，这里默认的URL是不需要修改的
-                _factory = new ConnectionFactory("tcp://localhost:61616");
+                _factory = new NMSConnectionFactory("tcp://localhost:61616");
             }
             catch
             {
