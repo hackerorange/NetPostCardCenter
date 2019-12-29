@@ -9,7 +9,7 @@ namespace Hacker.Inko.Net.Base
     {
         public static string AccessToken { get; set; }
 
-        public static string Host { get; set; } = "http://127.0.0.1:8087";
+        public static string Host { get; set; } = "http://zhongct-p1.grandsoft.com.cn:8087";
 
 
         public static readonly RestTemplate RestTemplate;

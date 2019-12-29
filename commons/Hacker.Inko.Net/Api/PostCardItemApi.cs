@@ -68,9 +68,8 @@ namespace Hacker.Inko.Net.Api.Collection
 
         public static void GetPostCardInfo(string postCardId, Action<PostCardResponse> success, Action<string> failure = null)
         {
-            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<PostCardResponse>>(
+            NetGlobalInfo.RestTemplate.GetForMessageAsync<DataResponse<PostCardResponse>>(
                 "/postCard/{postCardId}/info",
-                null,
                 new Dictionary<string, object>
                 {
                     {"postCardId", postCardId}
