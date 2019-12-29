@@ -58,6 +58,7 @@ namespace PostCardQueueProcessor
             {
                 Directory.CreateDirectory("D:/postCard/tmpFile/");
             }
+
             var isWait = true;
             try
             {
@@ -69,11 +70,9 @@ namespace PostCardQueueProcessor
                     var frontFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
                     Log(@"开始下载正面文件");
                     frontFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.FrontCropCropInfo.FileId, frontFileInfo);
-
-
                     Log(@"正面文件下载完成");
                     Log(@"开始处理正面文件");
-                    var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, "B", postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                    var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
                     Log(@"正面文件处理完成");
                     Log(@"开始上传正面成品文件");
                     var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
@@ -98,7 +97,7 @@ namespace PostCardQueueProcessor
 
                     Log(@"反面文件下载完成");
                     Log(@"开始处理反面文件");
-                    var backProductFile = backFileInfo.Process(postCardProcessCropInfo.BackCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                    var backProductFile = backFileInfo.Process(postCardProcessCropInfo.BackCropCropInfo, "B", postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
                     Log(@"反面文件处理完成");
                     Log(@"开始上传反面成品文件");
                     var backFileUploadResponse = backProductFile.UploadFile("明信片正面成品");
