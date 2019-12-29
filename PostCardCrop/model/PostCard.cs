@@ -29,6 +29,17 @@ namespace PostCardCrop.model
         public string ProductFileId { get; set; }
 
         /// <summary>
+        /// 反面原始文件ID
+        /// </summary>
+        public string BackFileId { get; set; }
+
+        /// <summary>
+        /// 反面成品文件ID
+        /// </summary>
+        public string BackProductFileId { get; set; }
+
+
+        /// <summary>
         ///     明信片原始文件信息
         /// </summary>
         public FileInfo FileInfo { get; set; }

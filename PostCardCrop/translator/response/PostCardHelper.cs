@@ -12,7 +12,10 @@ public static class PostCardHelper
         {
             ProductFileId = postCardResponse.ProductFileId,
             FileId = postCardResponse.FileId,
-            FileName = postCardResponse.FileName, BackStyle = new BackStyleInfo
+            FileName = postCardResponse.FileName,
+            BackFileId = postCardResponse.BackFileId,
+            BackProductFileId = postCardResponse.BackProductFileId,
+            BackStyle = new BackStyleInfo
             {
                 FileId = postCardResponse.BackFileId,
                 Name = postCardResponse.BackStyle

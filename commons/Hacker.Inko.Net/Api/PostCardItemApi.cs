@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Hacker.Inko.Net.Base;
 using Hacker.Inko.Net.Base.Helper;
+using Hacker.Inko.Net.Request.postCard;
 using Hacker.Inko.Net.Response;
 using Hacker.Inko.Net.Response.postCard;
 
@@ -26,15 +27,14 @@ namespace Hacker.Inko.Net.Api.Collection
                 resp => resp.PrepareResponse(kk => success?.Invoke(kk.Detail), failure));
         }
 
-        public static void SubmitPostCardProductFile(string postCardId, string productFileId, Action<bool> success, Action<string> failure = null)
+        public static void SubmitPostCardProductFile(string postCardId, PostCardItemProductFileSubmitRequest productFileSubmitRequest, Action<bool> success, Action<string> failure = null)
         {
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<bool>>(
-                "/postCard/{postCardId}/submitProduct/{productFileId}",
-                null,
+                "/postCard/{postCardId}/submitProduct",
+                productFileSubmitRequest,
                 new Dictionary<string, object>
                 {
-                    {"postCardId", postCardId},
-                    {"productFileId", productFileId}
+                    {"postCardId", postCardId}
                 },
                 resp => resp.PrepareResponse(success, failure));
         }

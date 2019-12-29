@@ -78,7 +78,7 @@
     <Compile Include="model\Size.cs" />
     <Compile Include="PhotoShopOperation.cs" />
     <Compile Include="Processor.cs" />
-    <Compile Include="model\PostCardProcessInfo.cs" />
+    <Compile Include="model\PostCardProcessCropInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="queue\PostCardProcessQueue.cs" />
   </ItemGroup>

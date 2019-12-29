@@ -8,11 +8,11 @@ using PostCardProcessor.model;
 
 namespace PostCardProcessor.queue
 {
-    public delegate void PostCardUploadHandler(PostCardProcessInfo postCardProcessInfo);
+    public delegate void PostCardUploadHandler(DoubleSidePostCardCropInfo postCardProcessInfo);
 
     public class PostCardProcessContext
     {
-        public PostCardProcessInfo PostCardProcessInfo { get; set; }
+        public DoubleSidePostCardCropInfo PostCardProcessInfo { get; set; }
         public PostCardUploadHandler Success { get; set; }
         public PostCardUploadHandler Failure { get; set; }
 
@@ -53,7 +53,7 @@ namespace PostCardProcessor.queue
             _flag = false;
         }
 
-        public static void Process(PostCardProcessInfo postCardProcessInfo, PostCardUploadHandler success, PostCardUploadHandler failure = null)
+        public static void Process(DoubleSidePostCardCropInfo postCardProcessInfo, PostCardUploadHandler success, PostCardUploadHandler failure = null)
         {
             if (_postCardUploadWorker == null)
             {
@@ -131,14 +131,14 @@ namespace PostCardProcessor.queue
                         prod.Send(message, MsgDeliveryMode.NonPersistent, MsgPriority.Normal, TimeSpan.MinValue);
                     }
                 }
-                //var fileInfo = postCardProcessContext.PostCardProcessInfo.Process();//.DirectoryInfo as FileInfo;
+                //var fileInfo = postCardProcessContext.PostCardProcessCropInfo.Process();//.DirectoryInfo as FileInfo;
                 //if (fileInfo == null)
                 //{
-                //    postCardProcessContext.Failure?.Invoke(postCardProcessContext.PostCardProcessInfo);
+                //    postCardProcessContext.Failure?.Invoke(postCardProcessContext.PostCardProcessCropInfo);
                 //}
                 //else
                 //{
-                //    postCardProcessContext.Success?.Invoke(postCardProcessContext.PostCardProcessInfo, fileInfo);
+                //    postCardProcessContext.Success?.Invoke(postCardProcessContext.PostCardProcessCropInfo, fileInfo);
                 //}
             }
         }

@@ -35,47 +35,47 @@ namespace PostCardCrop.control
 
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
-            if (_postCardInfo == null) return;
-
-            var saveFileDialog = new SaveFileDialog
-            {
-                FileName = _postCardInfo.FileName,
-                Filter = @"图像文件|*.jpg|所有文件|*.*",
-                OverwritePrompt = true,
-                FilterIndex = 1
-            };
-
-            if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
-
-            //FileInfo fileInfo = new FileInfo();
-
-            try
-            {
-                if (File.Exists(saveFileDialog.FileName))
-                    File.Delete(saveFileDialog.FileName);
-                var fileInfo = new FileInfo(saveFileDialog.FileName);
-                FileApi.DownLoadFileByFileId(_postCardInfo.FileId, fileInfo, downloadFileInfo =>
-                {
-                    layoutControlItem4.Visibility = LayoutVisibility.Never;
-                    if (XtraMessageBox.Show("文件下载完成，是否使用PhotoShop打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
-                    try
-                    {
-                        Process.Start("photoshop.exe", downloadFileInfo.FullName);
-                    }
-                    catch
-                    {
-                        XtraMessageBox.Show("调用PhotoShop失败，可能没有安装PhotoShop或者文件格式有误");
-                    }
-                }, proce =>
-                {
-                    layoutControlItem4.Visibility = LayoutVisibility.Always;
-                    progressBarControl1.EditValue = proce;
-                });
-            }
-            catch
-            {
-                XtraMessageBox.Show("文件被占用，无法删除，操作取消！");
-            }
+            // if (_postCardInfo == null) return;
+            //
+            // var saveFileDialog = new SaveFileDialog
+            // {
+            //     FileName = _postCardInfo.FileName,
+            //     Filter = @"图像文件|*.jpg|所有文件|*.*",
+            //     OverwritePrompt = true,
+            //     FilterIndex = 1
+            // };
+            //
+            // if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
+            //
+            // //FileInfo fileInfo = new FileInfo();
+            //
+            // try
+            // {
+            //     if (File.Exists(saveFileDialog.FileName))
+            //         File.Delete(saveFileDialog.FileName);
+            //     var fileInfo = new FileInfo(saveFileDialog.FileName);
+            //     FileApi.DownLoadFileByFileId(_postCardInfo.FileId, fileInfo, downloadFileInfo =>
+            //     {
+            //         layoutControlItem4.Visibility = LayoutVisibility.Never;
+            //         if (XtraMessageBox.Show("文件下载完成，是否使用PhotoShop打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
+            //         try
+            //         {
+            //             Process.Start("photoshop.exe", downloadFileInfo.FullName);
+            //         }
+            //         catch
+            //         {
+            //             XtraMessageBox.Show("调用PhotoShop失败，可能没有安装PhotoShop或者文件格式有误");
+            //         }
+            //     }, proce =>
+            //     {
+            //         layoutControlItem4.Visibility = LayoutVisibility.Always;
+            //         progressBarControl1.EditValue = proce;
+            //     });
+            // }
+            // catch
+            // {
+            //     XtraMessageBox.Show("文件被占用，无法删除，操作取消！");
+            // }
         }
 
         private void SimpleButton2_Click(object sender, EventArgs e)

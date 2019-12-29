@@ -8,6 +8,7 @@ using DevExpress.XtraGrid.Views.Base;
 using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Base;
+using Hacker.Inko.Net.Request.postCard;
 using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
@@ -22,6 +23,7 @@ namespace PostCardCrop.form
     public partial class PostCardCropForm : RibbonForm
     {
         private readonly string _orderId;
+        private DoubleSidePostCardCropInfo _doubleSidePostCardCropInfo;
 
         //明信片集合
         public PostCardCropForm(string focusedRowOrderId)
@@ -72,21 +74,53 @@ namespace PostCardCrop.form
 
             if (PostCardView.GetRow(rowHandler) is PostCardInfo postCardInfo)
             {
+                // 如果当前提交doubleSide提交为null，创建一个(第一次提交为 null
+                if (_doubleSidePostCardCropInfo == null)
+                {
+                    _doubleSidePostCardCropInfo = new DoubleSidePostCardCropInfo
+                    {
+                        PostCardId = postCardInfo.PostCardId, // ID，用于提交数据
+                        ProductHeight = postCardInfo.ProductSize.Height, // 成品高度，用于确定成品尺寸
+                        ProductWidth = postCardInfo.ProductSize.Width, // 成品宽度，用于确定成品尺寸
+                        PostCardType = postCardInfo.FrontStyle, // 正面样式，A B C D，用于确定板式
+                        FrontCropCropInfo = new PostCardProcessCropInfo // 正面裁切信息
+                        {
+                            CropLeft = cropInfo.CropLeft,
+                            CropTop = cropInfo.CropTop,
+                            CropHeight = cropInfo.CropHeight,
+                            CropWidth = cropInfo.CropWidth,
+                            Rotation = cropInfo.Rotation,
+                        }
+                    };
+                    // 如果是双面，裁切双面
+                    if (!string.IsNullOrEmpty(postCardInfo.BackFileId))
+                    {
+                        // 肯定是的，设置为反面
+                        if (elementHost1.Child is Photocroper photoCropper)
+                        {
+                            photoCropper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
+                            photoCropper.FrontStyle = "B";
+                            photoCropper.Preview = false;
+                            photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.BackFileId);
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    _doubleSidePostCardCropInfo.BackCropCropInfo = new PostCardProcessCropInfo
+                    {
+                        CropLeft = cropInfo.CropLeft, // 反面左边
+                        CropTop = cropInfo.CropTop, // 反面右边
+                        CropHeight = cropInfo.CropHeight, // 反面高度
+                        CropWidth = cropInfo.CropWidth, // 反面宽度
+                        Rotation = cropInfo.Rotation, // 反面旋转角度
+                    };
+                }
+
                 postCardInfo.ProcessStatusText = "裁切中";
                 PostCardView.RefreshRow(rowHandler);
-                var postCardProcessInfo = new PostCardProcessInfo
-                {
-                    PostCardId = postCardInfo.PostCardId,
-                    CropLeft = cropInfo.CropLeft,
-                    CropTop = cropInfo.CropTop,
-                    CropHeight = cropInfo.CropHeight,
-                    CropWidth = cropInfo.CropWidth,
-                    PostCardType = postCardInfo.FrontStyle,
-                    Rotation = cropInfo.Rotation,
-                    ProductHeight = postCardInfo.ProductSize.Height,
-                    ProductWidth = postCardInfo.ProductSize.Width
-                };
-                PostCardProcessQueue.Process(postCardProcessInfo, ((info) =>
+                PostCardProcessQueue.Process(_doubleSidePostCardCropInfo, ((info) =>
                 {
                     postCardInfo.ProcessStatusText = "已提交";
                     PostCardView.RefreshRow(rowHandler);
@@ -274,20 +308,22 @@ namespace PostCardCrop.form
         {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
             {
+                // 还原当前选中双面裁切信息
+                _doubleSidePostCardCropInfo = null;
                 progressBarControl1.EditValue = 0;
                 //                cropContext.CropInfoSubmitDto = new CropInfoSubmitDto(cropContext.Image.Size, cropContext.PicturePrintAreaSize, fit: cropContext.StyleInfo.Fit);
                 //                        pictureCropControl1.CropContext = cropContext;
 
-                if (elementHost1.Child is Photocroper photocroper)
+                if (elementHost1.Child is Photocroper photoCropper)
                 {
-                    photocroper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
-                    photocroper.FrontStyle = postCardInfo.FrontStyle;
+                    photoCropper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
+                    photoCropper.FrontStyle = postCardInfo.FrontStyle;
                     if (string.IsNullOrEmpty(postCardInfo.ProductFileId))
                     {
-                        photocroper.Preview = false;
+                        photoCropper.Preview = false;
 
                         //FileApi.GetInstance().
-                        photocroper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.FileId, null, (stream) =>
+                        photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.FileId, null, (stream) =>
                         {
                             if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
                             {
@@ -298,9 +334,9 @@ namespace PostCardCrop.form
                     else
                     {
                         //FileApi.GetInstance().
-                        photocroper.Preview = true;
-                        photocroper.FrontStyle = "B";
-                        photocroper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.ProductFileId);
+                        photoCropper.Preview = true;
+                        photoCropper.FrontStyle = "B";
+                        photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.ProductFileId);
                     }
                 }
             }
@@ -334,7 +370,7 @@ namespace PostCardCrop.form
             {
                 PostCardItemApi.SubmitPostCardProductFile(
                     postCardInfo.PostCardId,
-                    "",
+                    new PostCardItemProductFileSubmitRequest(),
                     (boolean) =>
                     {
                         postCardInfo.ProductFileId = "";

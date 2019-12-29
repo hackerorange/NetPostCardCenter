@@ -36,12 +36,12 @@ namespace postCardCenter
                     // 如果登录失败或者取消登录，直接退出
                     if (string.IsNullOrEmpty(token)) return;
 
-                    // 获取当前程序文件夹
-                    if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
-                    {
-                        var fileInfo = new FileInfo(processModule.FileName);
-                        XtraMessageBox.Show(fileInfo.DirectoryName);
-                    }
+                    // TODO: 获取当前程序文件夹
+                    // if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
+                    // {
+                    //     var fileInfo = new FileInfo(processModule.FileName);
+                    //     XtraMessageBox.Show(fileInfo.DirectoryName);
+                    // }
 
                     NetGlobalInfo.AccessToken = token;
                     Application.Run(new PostCardCenterMainForm());

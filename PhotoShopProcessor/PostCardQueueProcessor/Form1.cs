@@ -7,6 +7,7 @@ using Apache.NMS.ActiveMQ;
 using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Base;
+using Hacker.Inko.Net.Request.postCard;
 using Newtonsoft.Json;
 using PostCardProcessor;
 using PostCardProcessor.model;
@@ -38,113 +39,116 @@ namespace PostCardQueueProcessor
 
         private void Consumer_Listener(IMessage message)
         {
-            var msg = (ITextMessage)message;
+            var msg = (ITextMessage) message;
             //异步调用下，否则无法回归主线程
             Invoke(new DelegateRevMessage(RevMessage), msg);
         }
 
         public delegate void DelegateRevMessage(ITextMessage message);
 
-        public void RevMessage(ITextMessage message)
+
+        private void ProcessFront(DoubleSidePostCardCropInfo postCardProcessCropInfo)
         {
-            var postCardId = message.Text;
-            var postCardProcessInfo = JsonConvert.DeserializeObject<PostCardProcessInfo>(postCardId);
-            //postCardProcessInfo.Process();
-            Log(@"开始处理明信片[" + postCardProcessInfo.PostCardId + "]");
-            var fileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
-            if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+            string resultFileId = null;
+            //postCardProcessCropInfo.Process();
+            Log(@"开始处理明信片[" + postCardProcessCropInfo.PostCardId + "]");
+
+            // 创建临时目录
+            if (!Directory.Exists("D:/postCard/tmpFile/"))
             {
-                Directory.CreateDirectory(fileInfo.Directory.FullName);
+                Directory.CreateDirectory("D:/postCard/tmpFile/");
             }
 
-            bool isWait = true;
+            // 正面文件
+            var frontFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
+            // 反面文件
+            var backFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
 
-            PostCardItemApi.GetPostCardInfo(postCardProcessInfo.PostCardId, postCardResponse =>
+            var isWait = true;
+
+            try
             {
-                var webClient = new WebClient();
-                var s = NetGlobalInfo.Host + "/file/" + postCardResponse.FileId;
+                Log(@"开始下载正面文件");
+                frontFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.FrontCropCropInfo.FileId, frontFileInfo);
 
-                try
+
+                Log(@"正面文件下载完成");
+                Log(@"开始处理正面文件");
+                var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                Log(@"正面文件处理完成");
+                Log(@"开始上传正面成品文件");
+                var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
+                var resultFileInfo = new PostCardItemProductFileSubmitRequest
                 {
-                    Log(@"开始下载文件");
+                    FrontProductFileId = frontFileUploadResponse.Id
+                };
+                Log(@"正面成品文件上传成功");
+                Log(@"开始删除正面文件");
+                // 删除文件
+                frontFileInfo.Delete();
+                // 删除文件
+                frontProductFile.Delete();
+                Log(@"正面文件删除成功");
 
-                    var fileBytes = FileApi.DownloadBytesByFileId(postCardResponse.FileId);
-                    var fileStream = new BufferedStream(new FileStream(fileInfo.FullName, FileMode.CreateNew));
-                    fileStream.Write(fileBytes, 0, fileBytes.Length);
-                    fileStream.Flush();
-                    fileStream.Close();
-                    Log(@"文件下载完成");
-                    Log(@"开始处理文件");
-                    var resultFileInfo = postCardProcessInfo.Process(fileInfo);
-                    if (resultFileInfo is null)
+
+                // 有反面裁切
+                if (postCardProcessCropInfo.BackCropCropInfo != null)
+                {
+                    Log(@"开始下载反面文件");
+                    backFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.FrontCropCropInfo.FileId, backFileInfo);
+
+                    Log(@"反面文件下载完成");
+                    Log(@"开始处理反面文件");
+                    var backProductFile = backFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                    Log(@"反面文件处理完成");
+                    Log(@"开始上传反面成品文件");
+                    var backFileUploadResponse = backProductFile.UploadFile("明信片正面成品");
+                    resultFileInfo.BackProductFileId = backFileUploadResponse.Id;
+                    Log(@"反面成品文件上传成功");
+                    Log(@"开始删除反面文件");
+                    // 删除文件
+                    backFileInfo.Delete();
+                    // 删除文件
+                    backProductFile.Delete();
+                    Log(@"反面文件删除成功");
+                }
+
+                Log(@"开始提交成品ID");
+                PostCardItemApi.SubmitPostCardProductFile(
+                    postCardProcessCropInfo.PostCardId,
+                    resultFileInfo,
+                    k =>
                     {
-                        Log(@"文件处理失败");
-                        PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessInfo.PostCardId, "PROCESS_FAILURE", null, null);
+                        Log(@"成品ID提交成功");
+                        PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "AFTER_PROCESS", null);
                         isWait = false;
-                    }
-                    else
+                    },
+                    m =>
                     {
-                        Log(@"文件处理完成");
-                        Log(@"开始上传成品文件");
-                        // 上传文件
-                        resultFileInfo.UploadAsync(
-                            "明信片成品",
-                            result =>
-                            {
-                                Log(@"成品文件上传成功");
-                                Log(@"开始提交成品ID");
-                                PostCardItemApi.SubmitPostCardProductFile(
-                                    postCardProcessInfo.PostCardId,
-                                    result.Id,
-                                    k =>
-                                    {
-                                        Log(@"成品ID提交成功");
-                                        try
-                                        {
-                                            PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessInfo.PostCardId, "AFTER_PROCESS", null);
-                                            fileInfo.Delete();
-                                            resultFileInfo.Delete();
-                                            Log(@"临时文件删除成功");
-                                            isWait = false;
-                                        }
-                                        catch
-                                        {
-                                            Log(@"临时文件删除失败，下次启动的时候重新删除");
-                                        }
-                                        finally
-                                        {
-                                            isWait = false;
-                                        }
-                                    },
-                                    m => { isWait = false; });
-                            },
-                            failure =>
-                            {
-                                Log(@"成品文件上传失败");
-                                PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessInfo.PostCardId, "PROCESS_FAILURE", null);
-                                isWait = false;
-                            });
-                    }
-
-                }
-                catch
-                {
-                    Log(@"文件下载异常");
-                    isWait = false;
-                    return;
-                }
-            },
-            errorMessage =>
+                        Log(@"成品ID提交失败");
+                        PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                        isWait = false;
+                    });
+            }
+            catch (Exception e)
             {
-                Log(@"获取文件信息失败");
+                Log(e.Message);
+                PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
                 isWait = false;
             }
-            );
 
             while (isWait)
             {
                 Application.DoEvents();
             }
+        }
+
+
+        public void RevMessage(ITextMessage message)
+        {
+            var postCardId = message.Text;
+            var postCardProcessInfo = JsonConvert.DeserializeObject<DoubleSidePostCardCropInfo>(postCardId);
+            ProcessFront(postCardProcessInfo);
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -16,8 +16,7 @@ namespace Hacker.Inko.Net.Response.postCard
         [JsonProperty("fileId")]
         public string FileId { get; set; }
 
-        [JsonProperty("fileName")]
-        public string FileName { get; set; }
+        [JsonProperty("fileName")] public string FileName { get; set; }
 
         /// <summary>
         ///     此张明信片打印的份数
@@ -43,6 +42,13 @@ namespace Hacker.Inko.Net.Response.postCard
         [JsonProperty("backFileId")]
         public string BackFileId { get; set; }
 
+
+        /// <summary>
+        ///     反面成品文件ID
+        /// </summary>
+        [JsonProperty("backProductId")]
+        public string BackProductFileId { get; set; }
+
         /// <summary>
         ///     明信片处理者姓名
         /// </summary>
@@ -67,7 +73,6 @@ namespace Hacker.Inko.Net.Response.postCard
         [JsonProperty("cropInfo")]
         public CropInfoResponse CropInfo { get; set; }
 
-        [JsonProperty("productFileId")]
-        public string ProductFileId { get; set; }
+        [JsonProperty("productFileId")] public string ProductFileId { get; set; }
     }
 }

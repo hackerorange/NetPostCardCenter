@@ -76,6 +76,7 @@
     <Compile Include="Request\order\OrderPostRequest.cs" />
     <Compile Include="Request\postCard\PostCardFrontStyleUpdateRequest.cs" />
     <Compile Include="Request\postCard\PostCardInfoPatchRequest.cs" />
+    <Compile Include="Request\postCard\PostCardItemProductFileSubmitRequest.cs" />
     <Compile Include="Request\postCard\PostCardProductFileIdSubmitRequest.cs" />
     <Compile Include="Request\system\SizeRequest.cs" />
     <Compile Include="Request\UserLoginRequest.cs" />
