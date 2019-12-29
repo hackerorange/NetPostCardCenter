@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Hacker.Inko.Net.Request.order;
 using OrderBatchCreate.model;
-using postCardCenterSdk.request.order;
 
 namespace OrderBatchCreate.translator.request
 {

@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
-using postCardCenterSdk.sdk;
+using Hacker.Inko.Net.Api;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
 
@@ -34,7 +34,7 @@ namespace PostCardCrop.control
         {
             if (_envelopeInfo == null) return;
             var tmpEnvelope = _envelopeInfo;
-            WebServiceInvoker.GetInstance().GetEnvelopeInfoById(tmpEnvelope.Id, result =>
+            PostCardCollectionApi.GetEnvelopeInfoById(tmpEnvelope.Id, result =>
             {
                 var envelopeInfo = result.TranslateToEnvelope();
                 //更新成品ID
@@ -50,7 +50,8 @@ namespace PostCardCrop.control
                     downloadProductFile.Tag = null;
                     downloadProductFile.Enabled = false;
                 }
-                WebServiceInvoker.GetInstance().GetOrderInfo(tmpEnvelope.OrderId,
+
+                PostCardBillApi.GetOrderInfo(tmpEnvelope.OrderId,
                     orderInfo => { customerName.Text = orderInfo.TaobaoId; },
                     message => { XtraMessageBox.Show(message); });
                 paperName.Text = tmpEnvelope.PaperName;
@@ -82,7 +83,7 @@ namespace PostCardCrop.control
 
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
-            WebServiceInvoker.GetInstance().GetEnvelopeInfoById(tmpEnvelope.Id, tmpresult =>
+            PostCardCollectionApi.GetEnvelopeInfoById(tmpEnvelope.Id, tmpresult =>
             {
                 var result = tmpresult.TranslateToEnvelope();
                 var productFileId = result.ProductFileId;
@@ -91,6 +92,7 @@ namespace PostCardCrop.control
                     XtraMessageBox.Show("此集合没有成品，请稍后重试");
                     return;
                 }
+
                 if (File.Exists(saveFileDialog.FileName))
                     try
                     {
@@ -101,9 +103,10 @@ namespace PostCardCrop.control
                         XtraMessageBox.Show("文件已经被占用，请关闭后重新下载!");
                         return;
                     }
+
                 var fileInfo = new FileInfo(saveFileDialog.FileName);
 
-                WebServiceInvoker.GetInstance().DownLoadFileByFileId(productFileId, fileInfo, downloadFileInfo =>
+                FileApi.DownLoadFileByFileId(productFileId, fileInfo, downloadFileInfo =>
                 {
                     layoutControlItem8.Visibility = LayoutVisibility.Never;
                     if (XtraMessageBox.Show("文件下载完成，是否打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;

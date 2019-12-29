@@ -5,8 +5,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using SystemSetting.backStyle.model;
-using SystemSetting.size.model;
-using postCardCenterSdk.domain;
+using Hacker.Inko.PostCard.Library;
+
 
 namespace PostCardCrop.model
 {
@@ -215,6 +215,7 @@ namespace PostCardCrop.model
                     var waste = aa - PostCardCount % aa;
                     return waste == aa ? 0 : waste;
                 }
+
                 return 0;
             }
         }
@@ -264,6 +265,7 @@ namespace PostCardCrop.model
                 NotifyPropertyChanged(() => ArrayColumn);
                 NotifyPropertyChanged(() => HorizontalWhite);
             }
+
             if (_productSize.Height != 0)
             {
                 _arrayRow = _paperSize.Height / ProductSize.Height;

@@ -1,4 +1,4 @@
-﻿using postCardCenterSdk.response.postCard;
+﻿using Hacker.Inko.Net.Response.postCard;
 using PostCardCrop.model;
 
 namespace PostCardCrop.translator.response

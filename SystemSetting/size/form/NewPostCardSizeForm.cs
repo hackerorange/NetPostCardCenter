@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SystemSetting.size.constant;
-using SystemSetting.size.model;
 using DevExpress.XtraEditors;
+using Hacker.Inko.Net.Api;
+using Hacker.Inko.Net.Request.system;
 
 namespace SystemSetting.size.form
 {
@@ -27,10 +20,16 @@ namespace SystemSetting.size.form
                 XtraMessageBox.Show("请输入尺寸名称！");
                 return;
             }
+
             var width = (int) spinEdit1.Value;
             var height = (int) spinEdit2.Value;
 
-            ProductSizeFactory.GetInstance().InsertNewPostSize(textEdit1.Text, width, height, success =>
+            SystemSizeApi.InsertProductSizeToServer("成品尺寸", new SizeRequest
+            {
+                Height = height,
+                Width = width,
+                Name = textEdit1.Text
+            }, success =>
             {
                 XtraMessageBox.Show("尺寸插入成功！");
                 DialogResult = DialogResult.OK;

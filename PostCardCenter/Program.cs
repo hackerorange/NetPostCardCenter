@@ -2,15 +2,14 @@
 using DevExpress.Skins;
 using DevExpress.UserSkins;
 using postCardCenter.form;
-using Inko.Security.form.security;
 using System;
 using System.Threading;
 using System.Windows.Forms;
 using Inko.Security;
-using postCardCenterSdk.constant;
 using DevExpress.XtraEditors;
 using System.Diagnostics;
 using System.IO;
+using Hacker.Inko.Net.Base;
 
 namespace postCardCenter
 {
@@ -44,7 +43,7 @@ namespace postCardCenter
                         XtraMessageBox.Show(fileInfo.DirectoryName);
                     }
 
-                    GlobalApiContext.Token = token;
+                    NetGlobalInfo.AccessToken = token;
                     Application.Run(new PostCardCenterMainForm());
                 }
                 else

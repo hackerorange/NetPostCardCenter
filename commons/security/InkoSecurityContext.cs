@@ -1,13 +1,8 @@
-﻿using Inko.Security.form.security;
-using postCardCenterSdk;
-using postCardCenterSdk.sdk;
-using System;
-using System.Collections.Generic;
+﻿using Hacker.Inko.Net.Api;
+using Inko.Security.form.security;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 
 namespace Inko.Security
 {
@@ -34,13 +29,18 @@ namespace Inko.Security
                     var fileReader = new StreamReader(new FileStream("D:\\postCard\\userLogin.ini", FileMode.Open));
                     var refreshToken = fileReader.ReadLine();
                     var isWait = true;
-                    WebServiceInvoker.GetInstance().RefreshToken(refreshToken, success: result =>
+                    UserApi.RefreshToken(refreshToken, success: result =>
                     {
                         token = result.Token;
                         UserId = result.UserId;
                         UserName = result.RealName;
                         isWait = false;
-                    }, null);
+                    }, message =>
+                    {
+                        XtraMessageBox.Show(message);
+                        isWait = false;
+
+                    });
                     while (isWait)
                     {
                         Application.DoEvents();
@@ -48,9 +48,9 @@ namespace Inko.Security
                 }
                 catch
                 {
-
                 }
             }
+
             // 如果当前用户没有登录过，Token已经失效
             if (string.IsNullOrEmpty(token))
             {
@@ -58,6 +58,7 @@ namespace Inko.Security
                 if (a.ShowDialog() != DialogResult.OK) return null;
                 return a.Token;
             }
+
             return token;
         }
     }

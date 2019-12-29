@@ -49,8 +49,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -67,17 +70,12 @@
     <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Spring.Http.Converters.NJson, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net40-client\Spring.Http.Converters.NJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -158,25 +156,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hacker.Inko.PostCard\Hacker.Inko.PostCard.csproj">
-      <Project>{f3ec0490-442d-4633-bdfa-e8d53a83b020}</Project>
+    <ProjectReference Include="..\commons\Hacker.Inko.Net\Hacker.Inko.Net.csproj">
+      <Project>{08B6D461-1EF2-439F-B79D-F805429EE72C}</Project>
+      <Name>Hacker.Inko.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\commons\Hacker.Inko.PostCard\Hacker.Inko.PostCard.csproj">
+      <Project>{F3EC0490-442D-4633-BDFA-E8D53A83B020}</Project>
       <Name>Hacker.Inko.PostCard</Name>
     </ProjectReference>
     <ProjectReference Include="..\PhotoCropper\PhotoCropper.csproj">
       <Project>{7E9FB079-4906-4E36-82D4-1DFA68A3AC7A}</Project>
       <Name>PhotoCropper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhotoShopProcessor\PostCardProcessor\PostCardProcessor.csproj">
+      <Project>{32596C1F-259D-410E-B6F3-BA61AEC6AEF6}</Project>
+      <Name>PostCardProcessor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\pictureCroper\pictureCroper.csproj">
       <Project>{89667af6-aebb-4ff8-b9e2-f4964353eefd}</Project>
       <Name>pictureCroper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
-      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
-      <Name>postCardCenterSdk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PostCardProcessor\PostCardProcessor.csproj">
-      <Project>{32596c1f-259d-410e-b6f3-ba61aec6aef6}</Project>
-      <Name>PostCardProcessor</Name>
     </ProjectReference>
     <ProjectReference Include="..\SystemSetting\SystemSetting.csproj">
       <Project>{2F888264-1FA2-4F7C-A9BB-4AE388B816E6}</Project>
@@ -197,9 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\D.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Readme\Spring.Rest.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

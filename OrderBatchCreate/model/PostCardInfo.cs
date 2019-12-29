@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using SystemSetting.size.model;
-using postCardCenterSdk.domain;
+using Hacker.Inko.PostCard.Library;
 using postCardCenterSdk.helper;
+
 
 namespace OrderBatchCreate.model
 {

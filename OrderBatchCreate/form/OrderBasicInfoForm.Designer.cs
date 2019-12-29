@@ -42,6 +42,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -55,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -68,7 +70,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(511, 96);
+            this.layoutControl1.Size = new System.Drawing.Size(499, 143);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -76,13 +78,13 @@
             // 
             this.textEdit1.Location = new System.Drawing.Point(51, 36);
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(448, 20);
+            this.textEdit1.Size = new System.Drawing.Size(436, 20);
             this.textEdit1.StyleController = this.layoutControl1;
             this.textEdit1.TabIndex = 4;
             // 
             // checkEdit1
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(426, 12);
+            this.checkEdit1.Location = new System.Drawing.Point(414, 12);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "加急";
             this.checkEdit1.Size = new System.Drawing.Size(73, 19);
@@ -94,16 +96,16 @@
             this.textEdit2.Location = new System.Drawing.Point(51, 12);
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Properties.ReadOnly = true;
-            this.textEdit2.Size = new System.Drawing.Size(371, 20);
+            this.textEdit2.Size = new System.Drawing.Size(359, 20);
             this.textEdit2.StyleController = this.layoutControl1;
             this.textEdit2.TabIndex = 6;
             // 
             // simpleButton1
             // 
             this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButton1.Location = new System.Drawing.Point(258, 60);
+            this.simpleButton1.Location = new System.Drawing.Point(251, 109);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(118, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(115, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 7;
             this.simpleButton1.Text = "确定";
@@ -112,9 +114,9 @@
             // simpleButton2
             // 
             this.simpleButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButton2.Location = new System.Drawing.Point(380, 60);
+            this.simpleButton2.Location = new System.Drawing.Point(370, 109);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(119, 22);
+            this.simpleButton2.Size = new System.Drawing.Size(117, 22);
             this.simpleButton2.StyleController = this.layoutControl1;
             this.simpleButton2.TabIndex = 8;
             this.simpleButton2.Text = "取消";
@@ -130,9 +132,10 @@
             this.layoutControlItem4,
             this.emptySpaceItem1,
             this.emptySpaceItem2,
-            this.layoutControlItem2});
+            this.layoutControlItem2,
+            this.emptySpaceItem3});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(511, 96);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(499, 143);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -140,7 +143,7 @@
             this.layoutControlItem1.Control = this.textEdit1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(491, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(479, 24);
             this.layoutControlItem1.Text = "淘宝ID";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(36, 14);
             // 
@@ -149,48 +152,48 @@
             this.layoutControlItem3.Control = this.textEdit2;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(414, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(402, 24);
             this.layoutControlItem3.Text = "文件夹";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(36, 14);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton2;
-            this.layoutControlItem5.Location = new System.Drawing.Point(368, 48);
+            this.layoutControlItem5.Location = new System.Drawing.Point(358, 97);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(123, 28);
+            this.layoutControlItem5.Size = new System.Drawing.Size(121, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.simpleButton1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(246, 48);
+            this.layoutControlItem4.Location = new System.Drawing.Point(239, 97);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(122, 28);
+            this.layoutControlItem4.Size = new System.Drawing.Size(119, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 48);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 97);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(123, 28);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(119, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(123, 48);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(119, 97);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(123, 28);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(120, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.checkEdit1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(414, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(402, 0);
             this.layoutControlItem2.MaxSize = new System.Drawing.Size(77, 23);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(77, 23);
             this.layoutControlItem2.Name = "layoutControlItem2";
@@ -199,15 +202,24 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 48);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(479, 49);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // OrderBasicInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.simpleButton2;
-            this.ClientSize = new System.Drawing.Size(511, 96);
+            this.ClientSize = new System.Drawing.Size(499, 143);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "OrderBasicInfoForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "订单基本信息";
             this.Load += new System.EventHandler(this.OrderBasicInfoForm_Load);
@@ -224,6 +236,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -244,5 +257,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

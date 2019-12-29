@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using SystemSetting.size.model;
 using DevExpress.XtraEditors;
+using Hacker.Inko.PostCard.Library;
 
 namespace OrderBatchCreate.form
 {

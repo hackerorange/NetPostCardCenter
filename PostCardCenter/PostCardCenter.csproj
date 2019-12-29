@@ -139,12 +139,6 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Http.Converters.NJson, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net40-client\Spring.Http.Converters.NJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -220,7 +214,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\Spring.Rest.txt" />
     <Content Include="if_BT_cut_905651.ico" />
     <None Include="Resources\D.png" />
     <None Include="Resources\C.png" />
@@ -232,21 +225,17 @@
     <Content Include="res\D.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\commons\Hacker.Inko.Net\Hacker.Inko.Net.csproj">
+      <Project>{08B6D461-1EF2-439F-B79D-F805429EE72C}</Project>
+      <Name>Hacker.Inko.Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\commons\security\security.csproj">
       <Project>{36989B59-FE22-40EC-A653-B7483E2A5E79}</Project>
       <Name>security</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hacker.Inko.PostCard\Hacker.Inko.PostCard.csproj">
-      <Project>{f3ec0490-442d-4633-bdfa-e8d53a83b020}</Project>
-      <Name>Hacker.Inko.PostCard</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OrderBatchCreate\OrderBatchCreate.csproj">
       <Project>{F093C784-F735-4817-8826-AC5D35C1C70A}</Project>
       <Name>OrderBatchCreate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
-      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
-      <Name>postCardCenterSdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\PostCardCrop\PostCardCrop.csproj">
       <Project>{AD3764F1-FE61-4CC0-8A5C-C830CB32FE14}</Project>

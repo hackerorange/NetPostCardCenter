@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using SystemSetting.backStyle.model;
-using SystemSetting.size.model;
-using postCardCenterSdk.domain;
+using Hacker.Inko.PostCard.Library;
 
 namespace OrderBatchCreate.model
 {

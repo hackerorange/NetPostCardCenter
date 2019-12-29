@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using SystemSetting.backStyle.model;
-using SystemSetting.size.model;
-using postCardCenterSdk.domain;
 
 namespace OrderBatchCreate.model
 {
@@ -42,6 +40,7 @@ namespace OrderBatchCreate.model
                         find = (EnvelopeInfo) envelopeInfo.Clone();
                         envelopeList.Add(find);
                     }
+
                     if (find.FrontStyle != envelopeInfo.FrontStyle)
                         find.FrontStyle = "MIX";
                     if (find.BackStyle != null && envelopeInfo.BackStyle != null)
@@ -78,11 +77,13 @@ namespace OrderBatchCreate.model
                 {
                     return BatchStatus.OrderNotReady;
                 }
+
                 ;
                 if (string.IsNullOrEmpty(TaobaoId))
                 {
                     return BatchStatus.OrderNotReady;
                 }
+
                 ;
                 return tmpEnvelopeList.Exists(envelopeInfo => envelopeInfo.PostCards.Count > 0) ? BatchStatus.OrderAlready : BatchStatus.OrderEmpty;
             }

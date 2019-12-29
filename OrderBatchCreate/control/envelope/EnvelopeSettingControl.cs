@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SystemSetting.backStyle.model;
-using SystemSetting.size.constant;
-using SystemSetting.size.model;
 using DevExpress.XtraEditors;
+using Hacker.Inko.Net.Api;
+using Hacker.Inko.PostCard.Library;
 using OrderBatchCreate.form;
 using OrderBatchCreate.model;
-using postCardCenterSdk.sdk;
 
 namespace OrderBatchCreate.control.envelope
 {
@@ -25,13 +17,22 @@ namespace OrderBatchCreate.control.envelope
         public EnvelopeSettingControl()
         {
             InitializeComponent();
-            ProductSizeFactory.GetInstance().GetProductSizeListFromServer(success => success.ForEach(postSize => productSizeList.Items.Add(postSize)));
-            WebServiceInvoker.GetInstance().GetSizeInfoFromServer("postCardProductSize", response =>
+            SystemSizeApi.GetSizeInfoFromServer("postCardProductSize", response =>
             {
-                productSizeList.Items.AddRange(response.ToArray());
+                response.ForEach(k => productSizeList.Items.Add(new PostSize
+                {
+                    Name = k.Name,
+                    Width = k.Width,
+                    Height = k.Height
+                }));
                 productSizeList.Refresh();
             });
-            BackStyleFactory.GetBackStyleFromServer(success => success.ForEach(backStyle => backStyleList.Items.Add(backStyle)));
+            SystemBackStyleApi.GetAllBackStyleFromServer(success =>
+                success.ForEach(backStyle => backStyleList.Items.Add(new BackStyleInfo
+                {
+                    FileId = backStyle.FileId,
+                    Name = backStyle.Name
+                })));
         }
 
         private EnvelopeInfo _envelopeInfo;
@@ -51,6 +52,7 @@ namespace OrderBatchCreate.control.envelope
                     layoutControlGroup3.Enabled = false;
                     return;
                 }
+
                 paperSettingGroup.Enabled = true;
                 productSettingGroup.Enabled = true;
                 productStyleGroup.Enabled = true;
@@ -72,8 +74,10 @@ namespace OrderBatchCreate.control.envelope
                             paperNameList.SelectedIndex = index;
                         }
                     }
+
                     paperName.EditValue = value.PaperName;
                 }
+
                 //显示成品尺寸
                 if (value.ProductSize != null)
                 {
@@ -87,11 +91,13 @@ namespace OrderBatchCreate.control.envelope
                             flag = false;
                         }
                     }
+
                     if (flag)
                     {
                         productSizeList.SelectedIndex = -1;
                     }
                 }
+
                 frontStyle.EditValue = value.FrontStyle;
                 //显示正面样式
                 if (value.FrontStyle != null)
@@ -111,6 +117,7 @@ namespace OrderBatchCreate.control.envelope
                         }
                     }
                 }
+
                 backStyleComboBox.EditValue = value.BackStyle;
                 //反面样式非空
                 if (value.BackStyle != null)
@@ -125,11 +132,13 @@ namespace OrderBatchCreate.control.envelope
                             break;
                         }
                     }
+
                     if (tmpFlag)
                     {
                         backStyleList.SelectedIndex = -1;
                     }
                 }
+
                 //是否双面打印
                 layoutControlGroup3.CustomHeaderButtons[0].Properties.Checked = value.DoubleSide;
                 backStyleList.Enabled = value.DoubleSide;
@@ -181,6 +190,7 @@ namespace OrderBatchCreate.control.envelope
                 _envelopeInfo.PostCards.ForEach(postCard => { postCard.FrontStyle = tmpFrontStyle; });
                 frontStyle.EditValue = tmpFrontStyle;
             }
+
             EnvelopeChanged?.Invoke(_envelopeInfo);
         }
 
@@ -246,10 +256,14 @@ namespace OrderBatchCreate.control.envelope
             var fileInfo = new FileInfo(openFileDialog.FileName);
 
             var tmpBackStyle = new CustomerBackStyleInfo(fileInfo);
-            _envelopeInfo.BackStyle = tmpBackStyle;
-            _envelopeInfo.PostCards.ForEach(postCardINfo => { postCardINfo.BackStyle = tmpBackStyle; });
-            backStyleComboBox.EditValue = tmpBackStyle;
-            EnvelopeChanged?.Invoke(_envelopeInfo);
+            fileInfo.UploadAsync("backStyle", result =>
+            {
+                _envelopeInfo.BackStyle = tmpBackStyle;
+                _envelopeInfo.PostCards.ForEach(postCardINfo => { postCardINfo.BackStyle = tmpBackStyle; });
+                backStyleComboBox.EditValue = tmpBackStyle;
+                EnvelopeChanged?.Invoke(_envelopeInfo);
+                tmpBackStyle.FileId = result.Id;
+            }, failure: message => { XtraMessageBox.Show("反面文件上传失败，请重新上传"); });
         }
 
         private void EnvelopePath_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

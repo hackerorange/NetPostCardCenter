@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using SystemSetting.size.model;
+using Hacker.Inko.PostCard.Library;
 using OrderBatchCreate.model;
-using postCardCenterSdk.domain;
 using EnvelopeInfo = OrderBatchCreate.model.EnvelopeInfo;
 
 namespace OrderBatchCreate.control.envelope

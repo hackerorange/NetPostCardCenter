@@ -4,11 +4,9 @@ using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraLayout.Utils;
-using postCardCenterSdk.request.postCard;
-using postCardCenterSdk.sdk;
+using Hacker.Inko.Net.Api;
+using Hacker.Inko.Net.Request.postCard;
 using PostCardCrop.model;
-using PostCardCrop.translator.response;
-using postCardCenterSdk.helper;
 
 namespace PostCardCrop.control
 {
@@ -56,7 +54,7 @@ namespace PostCardCrop.control
                 if (File.Exists(saveFileDialog.FileName))
                     File.Delete(saveFileDialog.FileName);
                 var fileInfo = new FileInfo(saveFileDialog.FileName);
-                WebServiceInvoker.GetInstance().DownLoadFileByFileId(_postCardInfo.FileId, fileInfo, downloadFileInfo =>
+                FileApi.DownLoadFileByFileId(_postCardInfo.FileId, fileInfo, downloadFileInfo =>
                 {
                     layoutControlItem4.Visibility = LayoutVisibility.Never;
                     if (XtraMessageBox.Show("文件下载完成，是否使用PhotoShop打开文件", "下载完成", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK) return;
@@ -95,33 +93,20 @@ namespace PostCardCrop.control
             var fileInfo = new FileInfo(saveFileDialog.FileName);
 
 
-            fileInfo.UploadSynchronize("明信片原始文件",
+            fileInfo.UploadAsync("明信片原始文件",
                 success: result =>
                 {
                     if (result.ImageAvailable)
                     {
-                        tmpPostCardInfo.FileId = result.FileId;
+                        tmpPostCardInfo.FileId = result.Id;
                         tmpPostCardInfo.FileName = tmpPostCardInfo.FileInfo.Name;
 
                         var request = new PostCardInfoPatchRequest
                         {
                             PostCardId = tmpPostCardInfo.PostCardId,
-                            FileId = result.FileId,
+                            FileId = result.Id,
                             FileName = fileInfo.Name
                         };
-                        //TODO:重新上传废弃
-                        //WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(request, resp =>
-                        //{
-                        //    var postCardInfo = resp.TranlateToPostCard();
-                        //    if (tmpPostCardInfo.FileInfo != null)
-                        //        tmpPostCardInfo.FileInfo = null;
-                        //    tmpPostCardInfo.FileId = postCardInfo.FileId;
-                        //    tmpPostCardInfo.FileName = postCardInfo.FileName;
-                        //    tmpPostCardInfo.ProcessStatus = postCardInfo.ProcessStatus;
-                        //    tmpPostCardInfo.ProcessStatusText = postCardInfo.ProcessStatusText;
-                        //    FileChanged?.Invoke(tmpPostCardInfo);
-                        //}, message => { XtraMessageBox.Show(message); });
-                        //Application.DoEvents();
                     }
                     else
                     {

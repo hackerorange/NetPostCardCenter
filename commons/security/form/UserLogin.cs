@@ -2,15 +2,18 @@
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using postCardCenterSdk;
-using postCardCenterSdk.sdk;
+using Hacker.Inko.Net.Api;
 
 namespace Inko.Security.form.security
 {
     public partial class UserLogin : XtraForm
     {
         private string _token = null;
-        public string Token { get { return _token; } }
+
+        public string Token
+        {
+            get { return _token; }
+        }
 
         public UserLogin()
         {
@@ -24,7 +27,7 @@ namespace Inko.Security.form.security
         private void LoginButton_Click(object sender, EventArgs e)
         {
             loginButton.Enabled = false;
-            WebServiceInvoker.GetInstance().UserLogin(textEdit1.Text, textEdit2.Text, success: result =>
+            UserApi.UserLogin(textEdit1.Text, textEdit2.Text, success: result =>
             {
                 var stream = new StreamWriter(new FileStream("D:\\postCard\\userLogin.ini", FileMode.CreateNew));
                 stream.WriteLine(result.RefreshToken);
@@ -50,7 +53,6 @@ namespace Inko.Security.form.security
 
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

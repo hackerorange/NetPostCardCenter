@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Hacker.Inko.PostCard.Library.Support;
 using pictureCroper.model;
 using pictureCroper.suport;
-using postCardCenterSdk.helper;
 
 namespace pictureCroper.control
 {
@@ -344,9 +344,11 @@ namespace pictureCroper.control
                 cropInfo.CropMove(newRectangle.Size);
                 CropContext.CropInfo = cropInfo;
             }
+
             CropInfoChanged?.Invoke(CropContext.CropInfo);
             LastPoint = mousePoint;
             pictureEdit1.Refresh();
+
             #endregion
         }
 

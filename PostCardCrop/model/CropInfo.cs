@@ -1,7 +1,7 @@
-﻿using postCardCenterSdk.helper;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using Hacker.Inko.PostCard.Library.Support;
 
 namespace PostCardCrop.model
 {

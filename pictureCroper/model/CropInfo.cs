@@ -1,6 +1,6 @@
-﻿using postCardCenterSdk.helper;
-using System;
+﻿using System;
 using System.Drawing;
+using Hacker.Inko.PostCard.Library.Support;
 
 namespace pictureCroper.model
 {
@@ -28,6 +28,7 @@ namespace pictureCroper.model
             {
                 rotation = 0;
             }
+
             Rotation = rotation % 360;
 
             if (!fit)

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Hacker.Inko.Net.Api;
+using Hacker.Inko.Net.Response.envelope;
+using Hacker.Inko.Net.Response.postCard;
 using Hacker.Inko.PostCard.Library.Support;
-using postCardCenterSdk.response.envelope;
-using postCardCenterSdk.response.postCard;
-using postCardCenterSdk.sdk;
 
 namespace PostCardCrop.form
 {
@@ -23,14 +22,14 @@ namespace PostCardCrop.form
 
         private void ExportForm_Load(object sender, EventArgs e)
         {
-            WebServiceInvoker.GetInstance().GetEnvelopeInfoById(_postCardCollectionId, envelopeResponse =>
+            PostCardCollectionApi.GetEnvelopeInfoById(_postCardCollectionId, envelopeResponse =>
             {
                 textEditPaperName.Text = envelopeResponse.PaperName;
                 textEditProductWidth.Text = envelopeResponse.ProductWidth.ToString();
                 textEditProductHeight.Text = envelopeResponse.ProductHeight.ToString();
                 _envelopeResponse = envelopeResponse;
 
-                WebServiceInvoker.GetInstance().GetOrderInfo(_envelopeResponse.OrderId, orderResponse =>
+                PostCardBillApi.GetOrderInfo(_envelopeResponse.OrderId, orderResponse =>
                 {
                     textEditCustomerName.Text = orderResponse.TaobaoId;
 

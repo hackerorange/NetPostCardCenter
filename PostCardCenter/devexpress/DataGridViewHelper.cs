@@ -1,7 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
 
-using PostCardCenter.devexpress;
-
 namespace PostCardCenter.devexpress
 {
     public static class DataGridViewHelper

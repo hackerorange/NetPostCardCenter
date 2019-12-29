@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using SystemSetting.backStyle.model;
-using SystemSetting.size.model;
-using postCardCenterSdk.response.envelope;
+using Hacker.Inko.Net.Response.envelope;
+using Hacker.Inko.PostCard.Library;
 using PostCardCrop.model;
-using postCardCenterSdk.domain;
+
 
 namespace PostCardCrop.translator.response
 {

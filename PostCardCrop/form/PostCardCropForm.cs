@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Windows.Forms;
 using System.Windows.Input;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
-using postCardCenterSdk.sdk;
+using Hacker.Inko.Net.Api;
+using Hacker.Inko.Net.Api.Collection;
+using Hacker.Inko.Net.Base;
 using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
 using PostCardProcessor.model;
 using PostCardProcessor.queue;
-using postCardCenterSdk.web;
 using CropInfo = PhotoCropper.viewModel.CropInfo;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Size = System.Windows.Size;
-using Hacker.Inko.PostCard.Library.Support;
 
 namespace PostCardCrop.form
 {
@@ -160,7 +158,7 @@ namespace PostCardCrop.form
 
         private void PostCardCropForm_Load(object sender, EventArgs e)
         {
-            WebServiceInvoker.GetInstance().GetAllEnvelopeByOrderId(_orderId, envelopeList =>
+            PostCardCollectionApi.GetAllEnvelopeByOrderId(_orderId, envelopeList =>
             {
                 var envelopeInfos = new List<EnvelopeInfo>();
 
@@ -173,7 +171,7 @@ namespace PostCardCrop.form
                         postCardControl.DataSource = envelope.PostCards;
                     }
 
-                    WebServiceInvoker.GetInstance().GetPostCardByEnvelopeId(envelope.Id, postCards =>
+                    PostCardItemApi.GetPostCardByEnvelopeId(envelope.Id, postCards =>
                     {
                         if (postCards == null) return;
                         //遍历明信片，对明信片进行Node绑定
@@ -244,7 +242,7 @@ namespace PostCardCrop.form
         {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCard)
             {
-                WebServiceInvoker.GetInstance().ChangePostCardFrontStyle(postCard.PostCardId, e.Item.Tag as string, resp =>
+                PostCardItemApi.ChangePostCardFrontStyle(postCard.PostCardId, e.Item.Tag as string, resp =>
                 {
                     var postCardInfo = resp.TranlateToPostCard();
                     postCard.ProcessStatus = postCardInfo.ProcessStatus;
@@ -289,7 +287,7 @@ namespace PostCardCrop.form
                         photocroper.Preview = false;
 
                         //FileApi.GetInstance().
-                        photocroper.InitImage(FileApi.GetInstance().BasePath + "/file/" + postCardInfo.FileId, null, (stream) =>
+                        photocroper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.FileId, null, (stream) =>
                         {
                             if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
                             {
@@ -302,7 +300,7 @@ namespace PostCardCrop.form
                         //FileApi.GetInstance().
                         photocroper.Preview = true;
                         photocroper.FrontStyle = "B";
-                        photocroper.InitImage(FileApi.GetInstance().BasePath + "/file/" + postCardInfo.ProductFileId);
+                        photocroper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.ProductFileId);
                     }
                 }
             }
@@ -334,11 +332,14 @@ namespace PostCardCrop.form
         {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
             {
-                WebServiceInvoker.GetInstance().SubmitPostCardProductFile(postCardInfo.PostCardId, "", (boolean) =>
-                {
-                    postCardInfo.ProductFileId = "";
-                    PostCardChanged();
-                });
+                PostCardItemApi.SubmitPostCardProductFile(
+                    postCardInfo.PostCardId,
+                    "",
+                    (boolean) =>
+                    {
+                        postCardInfo.ProductFileId = "";
+                        PostCardChanged();
+                    });
             }
         }
 

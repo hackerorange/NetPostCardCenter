@@ -8,10 +8,9 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 using DevExpress.XtraTabbedMdi;
-using postCardCenterSdk;
+using Hacker.Inko.Net.Base;
 using postCardCenter.form.order;
 using OrderBatchCreate.form;
-using postCardCenterSdk.constant;
 using Inko.Security;
 
 namespace postCardCenter.form
@@ -25,11 +24,12 @@ namespace postCardCenter.form
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(GlobalApiContext.Token))
+            if (string.IsNullOrEmpty(NetGlobalInfo.AccessToken))
             {
                 Application.Exit();
                 return;
             }
+
             barStaticItem1.Caption = InkoSecurityContext.UserName;
         }
 
@@ -45,6 +45,7 @@ namespace postCardCenter.form
             var orderBatchCreate = new OrderBatch();
             orderBatchCreate.ShowDialog(this);
         }
+
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenOrderCenter();
@@ -60,6 +61,7 @@ namespace postCardCenter.form
                 xtraTabbedMdiManager1.SelectedPage = page;
                 return;
             }
+
             var orderCenter = new OrderCenter
             {
                 MdiParent = this

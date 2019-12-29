@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
-using SystemSetting.size.model;
+using Hacker.Inko.PostCard.Library;
 using OrderBatchCreate.helper;
-using postCardCenterSdk.domain;
 
 namespace OrderBatchCreate.model
 {

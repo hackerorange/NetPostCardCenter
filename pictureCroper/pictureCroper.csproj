@@ -134,13 +134,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
-      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
-      <Name>postCardCenterSdk</Name>
-    </ProjectReference>
+    <Folder Include="suport\PostCardCollectionSupport\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="suport\PostCardCollectionSupport\" />
+    <ProjectReference Include="..\commons\Hacker.Inko.PostCard\Hacker.Inko.PostCard.csproj">
+      <Project>{F3EC0490-442D-4633-BDFA-E8D53A83B020}</Project>
+      <Name>Hacker.Inko.PostCard</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

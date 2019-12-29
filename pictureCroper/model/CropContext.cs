@@ -1,12 +1,10 @@
-﻿using postCardCenterSdk.helper;
-using System;
-using System.Drawing;
+﻿using System.Drawing;
+using Hacker.Inko.PostCard.Library.Support;
 
 namespace pictureCroper.model
 {
     public class CropContext
     {
-
         private Image _imageClone;
         private CropInfo _cropInfo;
 
@@ -31,14 +29,17 @@ namespace pictureCroper.model
                 {
                     return _imageClone;
                 }
+
                 if (Image == null)
                 {
                     return null;
                 }
+
                 if (_cropInfo == null)
                 {
                     return null;
                 }
+
                 _imageClone = (Image) Image.Clone();
 
                 switch ((_cropInfo.Rotation + 360) % 360)
@@ -56,6 +57,7 @@ namespace pictureCroper.model
                         _imageClone.RotateFlip(RotateFlipType.RotateNoneFlipNone);
                         break;
                 }
+
                 return _imageClone;
             }
         }
@@ -75,6 +77,7 @@ namespace pictureCroper.model
                     _imageClone?.Dispose();
                     _imageClone = null;
                 }
+
                 _cropInfo = value;
             }
         }
@@ -107,6 +110,7 @@ namespace pictureCroper.model
                     //如果不按照比例的图像区域比例比较宽，缩小高度
                     tmpPicturePrintAreaSize.Height = (int) (tmpPicturePrintAreaSize.Width * StyleInfo.PrintAreaRatio);
                 }
+
                 return tmpPicturePrintAreaSize;
             }
         }

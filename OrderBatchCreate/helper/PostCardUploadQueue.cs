@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Windows;
+using Hacker.Inko.Net.Api;
 using OrderBatchCreate.model;
-using postCardCenterSdk.helper;
+using Application = System.Windows.Forms.Application;
 
 namespace OrderBatchCreate.helper
 {
@@ -86,10 +88,15 @@ namespace OrderBatchCreate.helper
                 }
 
                 var tmpDirectoryInfo = postCardUploadContext.PostCardInfo.DirectoryInfo as FileInfo;
-                tmpDirectoryInfo.UploadSynchronize("明信片原始文件", success: resp =>
+
+                var isWait = true;
+
+                tmpDirectoryInfo.UploadAsync(
+                    "明信片原始文件",
+                    resp =>
                     {
                         var tmpPostCardInfo = postCardUploadContext.PostCardInfo;
-                        tmpPostCardInfo.FileId = resp.FileId;
+                        tmpPostCardInfo.FileId = resp.Id;
                         tmpPostCardInfo.IsUpload = true;
                         //判断图片是否是图片
                         tmpPostCardInfo.IsImage = resp.ImageAvailable;
@@ -97,8 +104,17 @@ namespace OrderBatchCreate.helper
                             ? BatchStatus.PostCardUploadSuccess
                             : BatchStatus.PostCardTypeError;
                         postCardUploadContext.Success?.Invoke(tmpPostCardInfo);
-                    }, failure: message => Upload(postCardUploadContext)
-                );
+                        isWait = false;
+                    }, failure: message =>
+                    {
+                        Upload(postCardUploadContext);
+                        isWait = false;
+                    });
+
+                while (isWait)
+                {
+                    Application.DoEvents();
+                }
             }
         }
     }

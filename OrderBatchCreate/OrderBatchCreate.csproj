@@ -57,8 +57,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v18.2" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -87,17 +90,12 @@
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Spring.Http.Converters.NJson, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Http.Converters.NJson.1.1.1\lib\net40-client\Spring.Http.Converters.NJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -132,18 +130,6 @@
       <DependentUpon>EnvelopeSettingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="control\envelope\LayoutInfoHelper.cs" />
-    <Compile Include="form\BackStyleCropForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\BackStyleCropForm.Designer.cs">
-      <DependentUpon>BackStyleCropForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\CustomerBackStyleCropForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\CustomerBackStyleCropForm.Designer.cs">
-      <DependentUpon>CustomerBackStyleCropForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="form\CustomerProductSizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,12 +182,6 @@
     <EmbeddedResource Include="control\envelope\EnvelopeSettingControl.resx">
       <DependentUpon>EnvelopeSettingControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\BackStyleCropForm.resx">
-      <DependentUpon>BackStyleCropForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="form\CustomerBackStyleCropForm.resx">
-      <DependentUpon>CustomerBackStyleCropForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="form\CustomerProductSizeForm.resx">
       <DependentUpon>CustomerProductSizeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,13 +224,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\commons\Hacker.Inko.Net\Hacker.Inko.Net.csproj">
+      <Project>{08B6D461-1EF2-439F-B79D-F805429EE72C}</Project>
+      <Name>Hacker.Inko.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\commons\Hacker.Inko.PostCard\Hacker.Inko.PostCard.csproj">
+      <Project>{F3EC0490-442D-4633-BDFA-E8D53A83B020}</Project>
+      <Name>Hacker.Inko.PostCard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\pictureCroper\pictureCroper.csproj">
       <Project>{89667af6-aebb-4ff8-b9e2-f4964353eefd}</Project>
       <Name>pictureCroper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\postCardCenterSdk\postCardCenterSdk.csproj">
-      <Project>{9ada8c78-8813-4853-86dc-2b1a7c62c516}</Project>
-      <Name>postCardCenterSdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\PostCardCrop\PostCardCrop.csproj">
       <Project>{AD3764F1-FE61-4CC0-8A5C-C830CB32FE14}</Project>
@@ -260,9 +244,6 @@
       <Project>{2F888264-1FA2-4F7C-A9BB-4AE388B816E6}</Project>
       <Name>SystemSetting</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Readme\Spring.Rest.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using SystemSetting.backStyle.model;
-using SystemSetting.size.model;
-using postCardCenterSdk.constant;
+using Hacker.Inko.PostCard.Library;
 using postCardCenterSdk.constant.postcard;
 
 namespace PostCardCrop.model
@@ -49,7 +48,6 @@ namespace PostCardCrop.model
         /// </summary>
         public BackStyleInfo BackStyle { get; set; }
 
-      
 
         /// <summary>
         ///     明信片反面文件ID
@@ -70,8 +68,8 @@ namespace PostCardCrop.model
         ///     处理状态显示文本
         /// </summary>
         public string ProcessStatusText { get; set; }
-        
-        
+
+
         /// <summary>
         ///     成品尺寸（裁切页面使用）
         /// </summary>
@@ -81,6 +79,5 @@ namespace PostCardCrop.model
         ///     当前处理状态枚举
         /// </summary>
         public PostCardProcessStatusEnum ProcessStatus { get; set; }
-        
     }
 }

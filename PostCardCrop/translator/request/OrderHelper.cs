@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using postCardCenterSdk.request.order;
+﻿using Hacker.Inko.Net.Request.order;
 using PostCardCrop.model;
 
 namespace PostCardCrop.translator.request
 {
     public static class OrderHelper
     {
-
         public static OrderSubmitEnvelope PrepareSubmitEnvelope(this EnvelopeInfo envelope)
         {
             var orderSubmitEnvelope = new OrderSubmitEnvelope
@@ -26,11 +24,9 @@ namespace PostCardCrop.translator.request
             {
                 orderSubmitEnvelope.BackStyle = envelope.BackStyle.Name;
             }
+
             //准备明信片信息
-            envelope.PostCards.ForEach(postCard =>
-            {
-                orderSubmitEnvelope.PostCards.Add(postCard.PrepareSubmitPostCard());
-            });
+            envelope.PostCards.ForEach(postCard => { orderSubmitEnvelope.PostCards.Add(postCard.PrepareSubmitPostCard()); });
             return orderSubmitEnvelope;
         }
 
@@ -41,7 +37,7 @@ namespace PostCardCrop.translator.request
             {
                 Copy = postCard.Copy,
                 FileId = postCard.FileId,
-                
+
                 FileName = postCard.FileName,
                 FrontStyle = postCard.FrontStyle
             };
@@ -50,6 +46,7 @@ namespace PostCardCrop.translator.request
                 orderSubmitPostCard.BackFileId = postCard.BackStyle.FileId;
                 orderSubmitPostCard.BackStyle = postCard.BackStyle.Name;
             }
+
             return orderSubmitPostCard;
         }
     }
