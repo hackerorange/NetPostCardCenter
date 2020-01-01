@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -8,13 +10,17 @@ using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Response.envelope;
 using Hacker.Inko.Net.Response.postCard;
+using iText.IO.Font;
 using iText.IO.Image;
 using iText.Kernel.Colors;
+using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas;
 using iText.Kernel.Pdf.Colorspace;
 using iText.Layout;
+using iText.Layout.Element;
+using Color = iText.Kernel.Colors.Color;
 using Image = iText.Layout.Element.Image;
 
 
@@ -39,14 +45,13 @@ namespace Hacker.Inko.PostCard.Library.Support
             }
         }
 
-        public static void GeneratePdfFile(this EnvelopeResponse envelopeResponse, string fileFullName,
-            Action<double> processHandler = null, Action<string> onError = null)
+        public static void GeneratePdfFile(this EnvelopeResponse envelopeResponse, string fileFullName, bool urgent, string waterMark, Action<double> processHandler = null, Action<string> onError = null)
         {
             var current = new ProgressInternal(0.0, 0.3);
             // 从服务器获取明信片,并安装份数进行划分
             var postCardResponses = PreparePostCardFromServer(envelopeResponse, value => processHandler?.Invoke(current.GetProcessRealValue(value)), onError);
             // 生成PDF
-            GeneratePdfFileByPostCardList(envelopeResponse, postCardResponses, fileFullName, value => processHandler?.Invoke(new ProgressInternal(0.3, 1).GetProcessRealValue(value)), onError);
+            GeneratePdfFileByPostCardList(envelopeResponse, postCardResponses, fileFullName, urgent, waterMark, value => processHandler?.Invoke(new ProgressInternal(0.3, 1).GetProcessRealValue(value)), onError);
         }
 
 
@@ -80,7 +85,7 @@ namespace Hacker.Inko.PostCard.Library.Support
         }
 
 
-        private static void GeneratePdfFileByPostCardList(EnvelopeResponse envelopeResponse, IEnumerable<PostCardResponse> postCardResponses, string fileFullName, Action<double> processHandler, Action<string> onError = null)
+        private static void GeneratePdfFileByPostCardList(EnvelopeResponse envelopeResponse, IEnumerable<PostCardResponse> postCardResponses, string fileFullName, bool urgent, string waterMark, Action<double> processHandler, Action<string> onError = null)
         {
             var fileInfo = new FileInfo(fileFullName);
 
@@ -108,7 +113,7 @@ namespace Hacker.Inko.PostCard.Library.Support
                 pdfDocument.SetDefaultPageSize(new PageSize(envelopeResponse.PaperWidth.MMtoPix(), envelopeResponse.PaperHeight.MMtoPix()));
 
                 var pageContexts = new List<PostCardPageContext>();
-                var postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse)
+                var postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse, urgent, waterMark)
                 {
                     Document = document
                 };
@@ -128,7 +133,7 @@ namespace Hacker.Inko.PostCard.Library.Support
                     if (!postCardPageContext.AddPostCardResponse(postCard))
                     {
                         pdfDocument.AddNewPage();
-                        postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse)
+                        postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse, urgent, waterMark)
                         {
                             FrontPageNumber = pdfDocument.GetNumberOfPages(),
                             BackPageNumber = pdfDocument.GetNumberOfPages() + 1,
@@ -150,7 +155,14 @@ namespace Hacker.Inko.PostCard.Library.Support
             }
             finally
             {
-                tempDirectoryInfo.Delete(true);
+                try
+                {
+                    tempDirectoryInfo.Delete(true);
+                }
+                catch
+                {
+                }
+
                 document.Flush();
                 document.Close();
             }
@@ -170,13 +182,18 @@ namespace Hacker.Inko.PostCard.Library.Support
 
         public Document Document { get; set; }
 
+        private bool _urgent;
+        private string _waterMark;
 
-        public PostCardPageContext(DirectoryInfo templateDirectoryInfo, EnvelopeResponse envelopeResponse)
+
+        public PostCardPageContext(DirectoryInfo templateDirectoryInfo, EnvelopeResponse envelopeResponse, bool urgent, string waterMark)
         {
             _templateDirectoryInfo = templateDirectoryInfo;
             _envelopeResponse = envelopeResponse;
             _paperColumn = envelopeResponse.PaperColumn;
             _paperRow = envelopeResponse.PaperColumn;
+            _urgent = urgent;
+            _waterMark = waterMark;
         }
 
         public bool AddPostCardResponse(PostCardResponse postCardResponse)
@@ -201,29 +218,35 @@ namespace Hacker.Inko.PostCard.Library.Support
 
             // 画竖线
             for (var i = 0; i <= _paperColumn; i++)
-            {
                 pdfCanvas
                     .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), 0)
                     .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), topWhite - 5)
                     .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), Document.GetPdfDocument().GetDefaultPageSize().GetHeight())
                     .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite + 5);
-            }
 
             for (var j = 0; j <= _paperRow; j++)
-            {
                 pdfCanvas
                     .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: 0)
                     .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: leftWhite - 5)
                     .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: Document.GetPdfDocument().GetDefaultPageSize().GetWidth())
                     .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite + 5);
-            }
+
 
             pdfCanvas.Stroke();
+            var fontPath = "";
+            if (Process.GetCurrentProcess().MainModule is ProcessModule processModule) fontPath = new FileInfo(processModule.FileName).DirectoryName + @"/STKAITI.TTF";
 
-
-            // 列
-
-
+            // 添加水印
+            var pdfFont = PdfFontFactory.CreateFont(fontPath, PdfEncodings.IDENTITY_H, false); // 列
+            var paragraph = new Paragraph(_waterMark);
+            paragraph.SetFont(pdfFont);
+            paragraph.SetFontSize(8);
+            paragraph.SetFontColor(_urgent ? DeviceRgb.RED : DeviceRgb.BLACK);
+            paragraph.SetFixedPosition(
+                leftWhite + 10,
+                Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
+                Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
+            Document.Add(paragraph);
             // 正面
             // 行
             for (var i = 0; i < _paperRow; i++)

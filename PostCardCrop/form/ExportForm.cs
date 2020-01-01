@@ -62,13 +62,22 @@ namespace PostCardCrop.form
             if (dialogResult != DialogResult.OK) return;
 
             // 生成PDF
-            _envelopeResponse.GeneratePdfFile(dialog.FileName, processValue =>
+            _envelopeResponse.GeneratePdfFile(dialog.FileName, _orderResponse.Urgent, textEditFinalMark.Text, processValue =>
             {
                 RefreshProgress(processValue);
                 Application.DoEvents();
             }, message => { XtraMessageBox.Show(message); });
-            var result = XtraMessageBox.Show("导出完成，是否定位到当前文件?", "导出完成", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes) System.Diagnostics.Process.Start("Explorer.exe", "/select," + dialog.FileName);
+
+            if (checkEdit1.Checked)
+            {
+                System.Diagnostics.Process.Start("Explorer.exe", "\"" + dialog.FileName + "\"");
+            }
+
+            DialogResult = DialogResult.OK;
+        }
+
+        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }

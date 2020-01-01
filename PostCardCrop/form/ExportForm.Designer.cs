@@ -47,6 +47,8 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEditFinalFileName.Properties)).BeginInit();
@@ -65,10 +67,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.checkEdit1);
             this.layoutControl1.Controls.Add(this.textEditFinalFileName);
             this.layoutControl1.Controls.Add(this.textEditProductWidth);
             this.layoutControl1.Controls.Add(this.textEditProductHeight);
@@ -124,9 +129,9 @@
             // simpleButton1
             // 
             this.simpleButton1.Enabled = false;
-            this.simpleButton1.Location = new System.Drawing.Point(12, 205);
+            this.simpleButton1.Location = new System.Drawing.Point(127, 205);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(409, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(294, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 7;
             this.simpleButton1.Text = "开始生成";
@@ -168,7 +173,8 @@
             this.layoutControlItem6,
             this.layoutControlItem7,
             this.emptySpaceItem1,
-            this.layoutControlItem8});
+            this.layoutControlItem8,
+            this.layoutControlItem9});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(433, 264);
             this.Root.TextVisible = false;
@@ -198,9 +204,9 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.simpleButton1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 193);
+            this.layoutControlItem4.Location = new System.Drawing.Point(115, 193);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(413, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(298, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -257,6 +263,26 @@
             this.layoutControlItem8.Text = "文件名称";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 14);
             // 
+            // checkEdit1
+            // 
+            this.checkEdit1.EditValue = true;
+            this.checkEdit1.Location = new System.Drawing.Point(12, 205);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "生成后打开文件";
+            this.checkEdit1.Size = new System.Drawing.Size(111, 19);
+            this.checkEdit1.StyleController = this.layoutControl1;
+            this.checkEdit1.TabIndex = 12;
+            this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.checkEdit1;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 193);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(115, 26);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
             // ExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -290,6 +316,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,5 +343,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraEditors.TextEdit textEditFinalFileName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     }
 }

@@ -482,7 +482,7 @@ namespace PostCardCrop.form
 
             var envelopeId = _currentEnvelopeInfo.Id;
 
-            new ExportForm(envelopeId).Show(this);
+            new ExportForm(envelopeId).ShowDialog(this);
         }
 
         private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
