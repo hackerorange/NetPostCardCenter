@@ -502,12 +502,12 @@ namespace PostCardCrop.form
                         {
                             foreach (var postCardResponse in postCardResponses)
                             {
-                                var cardResponse = dictionary[postCardResponse.PostCardId];
-                                if (cardResponse == null)
+                                if (!dictionary.ContainsKey(postCardResponse.PostCardId))
                                 {
-                                    continue;
+                                    ////////continue;
                                 }
 
+                                var cardResponse = dictionary[postCardResponse.PostCardId];
                                 // 处理状态
                                 postCardResponse.ProcessStatusText = cardResponse.ProcessStatusText;
                                 // 成品文件ID

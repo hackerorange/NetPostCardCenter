@@ -138,54 +138,14 @@ namespace postCardCenter.form.order
         private void GridView1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             FocusOrderInfo = gridView1.GetFocusedRow() as OrderInfo;
-            if (FocusOrderInfo != null)
-            {
-                barButtonItem4.Enabled = !"16".Equals(FocusOrderInfo.ProcessStatusCode);
-                // 完成状态
-                switch (FocusOrderInfo.ProcessStatusCode)
-                {
-                    case "0": // 未开始
-                        barButtonItem2.Enabled = false;
-                        barButtonItem4.Enabled = true;
-                        break;
-                    case "2": // 未完成
-                        barButtonItem2.Enabled = false;
-                        barButtonItem4.Enabled = true;
-                        break;
-                    case "4": // 已完成
-                        barButtonItem2.Enabled = true;
-                        barButtonItem4.Enabled = true;
-                        break;
-                    case "8": // 已生成PDF
-                        barButtonItem2.Enabled = true;
-                        barButtonItem4.Enabled = true;
-                        break;
-                    case "16": // 已关闭
-                        barButtonItem2.Enabled = true;
-                        barButtonItem4.Enabled = true;
-                        break;
-                }
-            }
-        }
-
-        private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            if (FocusOrderInfo == null)
-            {
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(FocusOrderInfo.ProcessUserId) && FocusOrderInfo.ProcessUserId != InkoSecurityContext.UserId)
-            {
-                XtraMessageBox.Show("当前订单已经有负责人，请联系负责人[" + FocusOrderInfo.ProcessorName + "]");
-                return;
-            }
-
-            PostCardBillApi.ChangeOrderProcessor(FocusOrderInfo.Id,
-                result => { });
         }
 
         private void BarButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            UpdateOrderStatus("Finished");
+        }
+
+        private void UpdateOrderStatus(string statusCode)
         {
             if (FocusOrderInfo == null)
             {
@@ -198,14 +158,15 @@ namespace postCardCenter.form.order
                 return;
             }
 
-            if (XtraMessageBox.Show("是否真的将订单状态修改为已处理？", "订单状态修改", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                PostCardBillApi.ChangeOrderStatus(FocusOrderInfo.Id, "4", re => { RefreshOrderList(); });
+            PostCardBillApi.ChangeOrderStatus(FocusOrderInfo.Id, statusCode, re => { RefreshOrderList(); });
         }
 
         private void GridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle > -1)
+            {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
         }
 
         private void NavBarItem1_LinkClicked(object sender, NavBarLinkEventArgs e)
@@ -213,7 +174,6 @@ namespace postCardCenter.form.order
             var ba = sender as NavBarItem;
             if (ba?.Tag != null)
             {
-
                 orderProcessStatus.FilterInfo = new ColumnFilterInfo(orderProcessStatus, ba.Tag);
             }
             else
@@ -224,11 +184,20 @@ namespace postCardCenter.form.order
 
         private void BarButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {
+            if (gridView1.GetFocusedRow() is OrderInfo focusOrderInfo)
+            {
+                PostCardBillApi.DeleteById(focusOrderInfo.Id, result => { RefreshOrderList(); });
+            }
         }
 
         private void BarButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
             new PdfGenerator(FocusOrderInfo.Id).Show(this);
+        }
+
+        private void BarButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            UpdateOrderStatus("NOT_FINISHED");
         }
     }
 

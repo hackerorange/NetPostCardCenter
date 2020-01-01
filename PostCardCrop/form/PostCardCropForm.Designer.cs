@@ -31,6 +31,15 @@ namespace PostCardCrop.form
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostCardCropForm));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            this.PostCardStatusColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.photocroper1 = new PhotoCropper.controller.Photocroper();
@@ -57,7 +66,6 @@ namespace PostCardCrop.form
             this.postCardControl = new DevExpress.XtraGrid.GridControl();
             this.PostCardView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.PostCardFileNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.PostCardStatusColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.envelopeListControl = new DevExpress.XtraGrid.GridControl();
             this.EnvelopeView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.EnvelopePaperNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -100,6 +108,27 @@ namespace PostCardCrop.form
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // PostCardStatusColumn
+            // 
+            this.PostCardStatusColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.PostCardStatusColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.PostCardStatusColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.PostCardStatusColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.PostCardStatusColumn.Caption = "状态";
+            this.PostCardStatusColumn.FieldName = "ProcessStatusText";
+            this.PostCardStatusColumn.MaxWidth = 80;
+            this.PostCardStatusColumn.MinWidth = 80;
+            this.PostCardStatusColumn.Name = "PostCardStatusColumn";
+            this.PostCardStatusColumn.OptionsColumn.AllowEdit = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowFocus = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.PostCardStatusColumn.OptionsColumn.AllowMove = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowShowHide = false;
+            this.PostCardStatusColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.PostCardStatusColumn.Visible = true;
+            this.PostCardStatusColumn.VisibleIndex = 1;
+            this.PostCardStatusColumn.Width = 80;
             // 
             // layoutControl1
             // 
@@ -337,6 +366,48 @@ namespace PostCardCrop.form
             this.PostCardView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.PostCardFileNameColumn,
             this.PostCardStatusColumn});
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Column = this.PostCardStatusColumn;
+            gridFormatRule1.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule1.Name = "已提交";
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue1.Value1 = "已提交";
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            gridFormatRule2.ApplyToRow = true;
+            gridFormatRule2.Column = this.PostCardStatusColumn;
+            gridFormatRule2.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule2.Name = "未提交";
+            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue2.Appearance.Options.UseFont = true;
+            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue2.Value1 = "未提交";
+            gridFormatRule2.Rule = formatConditionRuleValue2;
+            gridFormatRule3.ApplyToRow = true;
+            gridFormatRule3.Column = this.PostCardStatusColumn;
+            gridFormatRule3.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule3.Name = "正在处理";
+            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue3.Value1 = "正在处理";
+            gridFormatRule3.Rule = formatConditionRuleValue3;
+            gridFormatRule4.ApplyToRow = true;
+            gridFormatRule4.Column = this.PostCardStatusColumn;
+            gridFormatRule4.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule4.Name = "处理完成";
+            formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.Green;
+            formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue4.Value1 = "处理完成";
+            gridFormatRule4.Rule = formatConditionRuleValue4;
+            this.PostCardView.FormatRules.Add(gridFormatRule1);
+            this.PostCardView.FormatRules.Add(gridFormatRule2);
+            this.PostCardView.FormatRules.Add(gridFormatRule3);
+            this.PostCardView.FormatRules.Add(gridFormatRule4);
             this.PostCardView.GridControl = this.postCardControl;
             this.PostCardView.Name = "PostCardView";
             this.PostCardView.OptionsView.ShowGroupPanel = false;
@@ -356,27 +427,6 @@ namespace PostCardCrop.form
             this.PostCardFileNameColumn.Visible = true;
             this.PostCardFileNameColumn.VisibleIndex = 0;
             this.PostCardFileNameColumn.Width = 211;
-            // 
-            // PostCardStatusColumn
-            // 
-            this.PostCardStatusColumn.AppearanceCell.Options.UseTextOptions = true;
-            this.PostCardStatusColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.PostCardStatusColumn.AppearanceHeader.Options.UseTextOptions = true;
-            this.PostCardStatusColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.PostCardStatusColumn.Caption = "状态";
-            this.PostCardStatusColumn.FieldName = "ProcessStatusText";
-            this.PostCardStatusColumn.MaxWidth = 80;
-            this.PostCardStatusColumn.MinWidth = 80;
-            this.PostCardStatusColumn.Name = "PostCardStatusColumn";
-            this.PostCardStatusColumn.OptionsColumn.AllowEdit = false;
-            this.PostCardStatusColumn.OptionsColumn.AllowFocus = false;
-            this.PostCardStatusColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.PostCardStatusColumn.OptionsColumn.AllowMove = false;
-            this.PostCardStatusColumn.OptionsColumn.AllowShowHide = false;
-            this.PostCardStatusColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.PostCardStatusColumn.Visible = true;
-            this.PostCardStatusColumn.VisibleIndex = 1;
-            this.PostCardStatusColumn.Width = 80;
             // 
             // envelopeListControl
             // 

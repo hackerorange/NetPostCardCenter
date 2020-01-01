@@ -15,18 +15,19 @@ namespace Hacker.Inko.Net.Api
         ///     修改订单状态
         /// </summary>
         /// <param name="orderId">订单ID</param>
-        /// <param name="orderStatus">订单状态</param>
+        /// <param name="billStatus">订单状态</param>
         /// <param name="success">成功回调</param>
         /// <param name="failure">失败回调</param>
-        public static void ChangeOrderStatus(string orderId, string orderStatus, Action<OrderResponse> success, Action<string> failure = null)
+        public static void ChangeOrderStatus(string orderId, string billStatus, Action<OrderResponse> success, Action<string> failure = null)
         {
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<OrderResponse>>(
-                "/order/changeStatus",
-                new HttpEntity(new Dictionary<string, object>
+                "/bill/{billId}/updateStatus/{billStatus}",
+                null,
+                new Dictionary<string, object>
                 {
-                    {"orderId", orderId},
-                    {"orderStatus", orderStatus}
-                }),
+                    {"billId", orderId},
+                    {"billStatus", billStatus}
+                },
                 postCompleted: response => response.PrepareResponse(success, failure));
         }
 
@@ -40,7 +41,7 @@ namespace Hacker.Inko.Net.Api
         public static void SubmitOrderList(OrderSubmitRequest orderSubmit, Action<string> success, Action<string> failure = null)
         {
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<string>>(
-                "/order/submit",
+                "/bill/submit",
                 orderSubmit,
                 postCompleted: response => response.PrepareResponse(success, failure));
         }
@@ -49,7 +50,7 @@ namespace Hacker.Inko.Net.Api
         public static void GetAllOrderFilterByCreateTime(DateTime startDate, DateTime endDate, Action<List<OrderResponse>> success, Action<string> failure = null)
         {
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<Page<OrderResponse>>>(
-                "/order/getAll", new GetAllOrderRequest
+                "/bill/list", new GetAllOrderRequest
                 {
                     StarDateTime = startDate,
                     EndDateTime = endDate
@@ -61,7 +62,7 @@ namespace Hacker.Inko.Net.Api
         public static void ChangeOrderProcessor(string billId, Action<OrderResponse> success = null, Action<string> failure = null)
         {
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<OrderResponse>>(
-                "/order/{billId}/updateProcessor", null,
+                "/bill/{billId}/updateProcessor", null,
                 new Dictionary<string, object>
                 {
                     {
@@ -76,6 +77,21 @@ namespace Hacker.Inko.Net.Api
         {
             NetGlobalInfo.RestTemplate.GetForMessageAsync<DataResponse<OrderResponse>>(
                 "/bill/{billId}/info",
+                new Dictionary<string, object>
+                {
+                    {
+                        "billId", billId
+                    }
+                },
+                response => response.PrepareResponse(success, failure));
+        }
+
+
+        public static void DeleteById(string billId, Action<bool> success, Action<string> failure = null)
+        {
+            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<bool>>(
+                "/bill/{billId}/delete",
+                null,
                 new Dictionary<string, object>
                 {
                     {
