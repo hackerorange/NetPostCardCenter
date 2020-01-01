@@ -9,10 +9,13 @@ using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Response.envelope;
 using Hacker.Inko.Net.Response.postCard;
 using iText.IO.Image;
+using iText.Kernel.Colors;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas;
+using iText.Kernel.Pdf.Colorspace;
 using iText.Layout;
-using iText.Layout.Element;
+using Image = iText.Layout.Element.Image;
 
 
 namespace Hacker.Inko.PostCard.Library.Support
@@ -190,6 +193,36 @@ namespace Hacker.Inko.PostCard.Library.Support
             // 创建新的一页
             var leftWhite = (Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - _paperColumn * _envelopeResponse.ProductWidth.MMtoPix()) / 2;
             var topWhite = (Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - _paperRow * _envelopeResponse.ProductHeight.MMtoPix()) / 2;
+
+            // 添加辅助线
+            var pdfCanvas = new PdfCanvas(Document.GetPdfDocument(), FrontPageNumber);
+            pdfCanvas.SetLineDash(10).SetColor(new DeviceGray(1), true);
+
+
+            // 画竖线
+            for (var i = 0; i <= _paperColumn; i++)
+            {
+                pdfCanvas
+                    .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), 0)
+                    .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), topWhite - 5)
+                    .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), Document.GetPdfDocument().GetDefaultPageSize().GetHeight())
+                    .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite + 5);
+            }
+
+            for (var j = 0; j <= _paperRow; j++)
+            {
+                pdfCanvas
+                    .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: 0)
+                    .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: leftWhite - 5)
+                    .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: Document.GetPdfDocument().GetDefaultPageSize().GetWidth())
+                    .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite + 5);
+            }
+
+            pdfCanvas.Stroke();
+
+
+            // 列
+
 
             // 正面
             // 行

@@ -203,5 +203,10 @@ namespace PostCardQueueProcessor
             listBoxControl1.Items.Add(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm:ss ]") + " " + message);
             listBoxControl1.SelectedIndex = listBoxControl1.ItemCount;
         }
+
+        private void listBoxControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

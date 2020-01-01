@@ -82,19 +82,19 @@ namespace PostCardProcessor
                 photoShopOperation.SwitchRuler(PsUnits.psPoints);
                 myDoc.Selection.SelectAll();
 
+                //
+                // var solidColor = new SolidColor
+                // {
+                //     CMYK = new CMYKColor
+                //     {
+                //         Cyan = 0,
+                //         Magenta = 0,
+                //         Yellow = 0,
+                //         Black = 40
+                //     }
+                // };
 
-                var solidColor = new SolidColor
-                {
-                    CMYK = new CMYKColor
-                    {
-                        Cyan = 0,
-                        Magenta = 0,
-                        Yellow = 0,
-                        Black = 40
-                    }
-                };
-
-                myDoc.Selection.Stroke(solidColor, 1, Opacity: 100);
+                // myDoc.Selection.Stroke(solidColor, 1, Opacity: 100);
 
                 //切换到厘米
                 photoShopOperation.SwitchRuler(PsUnits.psMM);
