@@ -39,8 +39,26 @@ namespace Hacker.Inko.Net.Api.Collection
                 resp => resp.PrepareResponse(success, failure));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="postCardId"></param>
+        /// <param name="success"></param>
+        /// <param name="failure"></param>
+        public static void ReCropPostCard(string postCardId, Action<PostCardResponse> success, Action<string> failure = null)
+        {
+            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<PostCardResponse>>(
+                "/postCard/{postCardId}/reCrop",
+                null,
+                new Dictionary<string, object>
+                {
+                    {"postCardId", postCardId}
+                },
+                resp => resp.PrepareResponse(success, failure));
+        }
 
-        public static void UpdatePostCardProcessStatus(string postCardId, string processStatus, Action<bool> success, Action<string> failure = null)
+
+        public static void UpdatePostCardProcessStatus(string postCardId, string processStatus, Action<bool> success = null, Action<string> failure = null)
         {
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<bool>>(
                 "/postCard/{postCardId}/updateProcessStatus/{processStatusCode}",

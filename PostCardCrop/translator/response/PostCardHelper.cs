@@ -25,7 +25,7 @@ public static class PostCardHelper
             PostCardId = postCardResponse.Id,
             ProcessorName = postCardResponse.ProcessorName,
             ProcessStatusText = postCardResponse.ProcessStatusText,
-            ProcessStatus = (PostCardProcessStatusEnum) postCardResponse.ProcessStatus
+            // ProcessStatus = (PostCardProcessStatusEnum) postCardResponse.ProcessStatus
         };
         return result;
     }

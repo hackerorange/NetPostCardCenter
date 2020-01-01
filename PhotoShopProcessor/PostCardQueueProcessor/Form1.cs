@@ -99,6 +99,8 @@ namespace PostCardQueueProcessor
         private void ProcessFront(DoubleSidePostCardCropInfo postCardProcessCropInfo)
         {
             Log(@"开始处理明信片[" + postCardProcessCropInfo.PostCardId + "]");
+            // 更新状态为正在处理中
+            PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESSING");
 
             // 创建临时目录
             if (!Directory.Exists("D:/postCard/tmpFile/")) Directory.CreateDirectory("D:/postCard/tmpFile/");

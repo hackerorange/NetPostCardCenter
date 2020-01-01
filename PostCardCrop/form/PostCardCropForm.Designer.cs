@@ -48,6 +48,7 @@ namespace PostCardCrop.form
             this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -76,6 +77,7 @@ namespace PostCardCrop.form
             this.timer1 = new System.Windows.Forms.Timer();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timer2 = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).BeginInit();
@@ -147,9 +149,10 @@ namespace PostCardCrop.form
             this.barButtonItem10,
             this.barToggleSwitchItem1,
             this.barButtonItem1,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.barButtonItem11});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 22;
+            this.ribbonControl1.MaxItemId = 23;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -264,12 +267,17 @@ namespace PostCardCrop.form
             // 
             // barButtonItem2
             // 
-            this.barButtonItem2.Caption = "下载PDF";
+            this.barButtonItem2.Caption = "生成PDF";
             this.barButtonItem2.Id = 21;
-            this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.barButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItem2_ItemClick);
+            // 
+            // barButtonItem11
+            // 
+            this.barButtonItem11.Caption = "重新加载数据";
+            this.barButtonItem11.Id = 22;
+            this.barButtonItem11.Name = "barButtonItem11";
+            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -309,6 +317,7 @@ namespace PostCardCrop.form
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem2);
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItem11);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "明信片集合";
             // 
@@ -540,6 +549,11 @@ namespace PostCardCrop.form
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
+            // 
             // PostCardCropForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -551,6 +565,7 @@ namespace PostCardCrop.form
             this.Name = "PostCardCropForm";
             this.Ribbon = this.ribbonControl1;
             this.Text = "postCardCropForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PostCardCropForm_FormClosed);
             this.Load += new System.EventHandler(this.PostCardCropForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PostCardCropForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PostCardCropForm_KeyUp);
@@ -627,5 +642,7 @@ namespace PostCardCrop.form
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private System.Windows.Forms.Timer timer2;
     }
 }

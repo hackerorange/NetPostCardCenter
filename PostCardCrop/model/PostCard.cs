@@ -85,10 +85,5 @@ namespace PostCardCrop.model
         ///     成品尺寸（裁切页面使用）
         /// </summary>
         public PostSize ProductSize { get; set; }
-
-        /// <summary>
-        ///     当前处理状态枚举
-        /// </summary>
-        public PostCardProcessStatusEnum ProcessStatus { get; set; }
     }
 }

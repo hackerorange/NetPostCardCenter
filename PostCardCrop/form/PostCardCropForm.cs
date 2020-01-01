@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -11,6 +12,8 @@ using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Base;
 using Hacker.Inko.Net.Request.postCard;
+using Hacker.Inko.Net.Response.envelope;
+using Hacker.Inko.Net.Response.postCard;
 using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
@@ -48,6 +51,7 @@ namespace PostCardCrop.form
                             dictionary.Add(currentSplit[0], currentSplit[1]);
                         }
                     }
+
                     streamReader.Close();
 
                     var queueName = dictionary["queueName"];
@@ -155,7 +159,16 @@ namespace PostCardCrop.form
                             photoCropper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
                             photoCropper.FrontStyle = "B";
                             photoCropper.Preview = false;
-                            photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.BackFileId);
+                            photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.BackFileId, action: (stream, tempCropInfo) =>
+                            {
+                                if (Math.Abs(tempCropInfo.CropWidth - 1) <= 0.001 && Math.Abs(tempCropInfo.CropHeight - 1) <= 0.001)
+                                {
+                                    timer1.Interval = 100;
+                                    //开始定时器，自动提交反面
+                                    timer1.Start();
+                                    // 提交
+                                }
+                            });
                             return;
                         }
                     }
@@ -173,44 +186,39 @@ namespace PostCardCrop.form
                     };
                 }
 
-                postCardInfo.ProcessStatusText = "裁切中";
-                PostCardView.RefreshRow(rowHandler);
-                PostCardProcessQueue.Process(_doubleSidePostCardCropInfo, ((info) =>
-                {
-                    postCardInfo.ProcessStatusText = "已提交";
-                    PostCardView.RefreshRow(rowHandler);
-                }), failure: ((info) =>
-                {
-                    postCardInfo.ProcessStatusText = "提交失败";
-                    PostCardView.RefreshRow(rowHandler);
-                }));
+
+                PostCardProcessQueue.Process(_doubleSidePostCardCropInfo,
+                    ((info) => { PostCardItemApi.UpdatePostCardProcessStatus(postCardInfo.PostCardId, "AFTER_SUBMIT"); }),
+                    failure: ((info) => { PostCardItemApi.UpdatePostCardProcessStatus(postCardInfo.PostCardId, "SUBMIT_FAILURE"); }));
             }
 
+            MoveToNextPosition(rowHandler);
+        }
+
+        private void MoveToNextPosition(int startPosition)
+        {
             if (PostCardView.DataSource is List<PostCardInfo> postCards)
             {
-                var flag = true;
-                for (var index = rowHandler; index < postCards.Count; index++)
+                var postCardInfo = postCards.Find(k => { return k.ProcessStatusText == "未提交"; });
+
+                if (postCardInfo == null)
+                {
+                    XtraMessageBox.Show("当前明信片集合已经提交完毕，请等待处理");
+                    return;
+                }
+
+                for (var index = startPosition + 1; index < postCards.Count; index++)
                 {
                     var postCard = postCards[index];
                     if (postCard.ProcessStatusText == "未提交")
                     {
                         PostCardView.FocusedRowHandle = index;
-                        flag = false;
-                        break;
+                        return;
                     }
                 }
 
-                if (flag)
-                {
-                    if (rowHandler < postCards.Count)
-                    {
-                        PostCardView.FocusedRowHandle = rowHandler + 1;
-                    }
-                    else
-                    {
-                        PostCardView.FocusedRowHandle = 0;
-                    }
-                }
+                // 后面没有未处理的明信片，从头开始找起！
+                MoveToNextPosition(0);
             }
         }
 
@@ -247,7 +255,13 @@ namespace PostCardCrop.form
 
         private void PostCardCropForm_Load(object sender, EventArgs e)
         {
-            PostCardCollectionApi.GetAllEnvelopeByOrderId(_orderId, envelopeList =>
+            InitData(_orderId);
+            this.timer2.Start();
+        }
+
+        private void InitData(string orderId)
+        {
+            PostCardCollectionApi.GetAllEnvelopeByOrderId(orderId, envelopeList =>
             {
                 var envelopeInfos = new List<EnvelopeInfo>();
 
@@ -277,6 +291,7 @@ namespace PostCardCrop.form
                 envelopeListControl.DataSource = envelopeInfos;
             }, failure: kk => { XtraMessageBox.Show(kk); });
         }
+
 
         private void PostCardCropForm_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
@@ -334,7 +349,7 @@ namespace PostCardCrop.form
                 PostCardItemApi.ChangePostCardFrontStyle(postCard.PostCardId, e.Item.Tag as string, resp =>
                 {
                     var postCardInfo = resp.TranlateToPostCard();
-                    postCard.ProcessStatus = postCardInfo.ProcessStatus;
+                    // postCard.ProcessStatus = postCardInfo.ProcessStatus;
                     postCard.ProductFileId = postCardInfo.ProductFileId;
                     postCard.FrontStyle = postCardInfo.FrontStyle;
                     postCard.ProcessStatusText = postCardInfo.ProcessStatusText;
@@ -378,11 +393,29 @@ namespace PostCardCrop.form
                         photoCropper.Preview = false;
 
                         //FileApi.GetInstance().
-                        photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.FileId, null, (stream) =>
+                        photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.FileId, null, (stream, cropInfo) =>
                         {
                             if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
                             {
+                                timer1.Interval = 1000;
                                 timer1.Start();
+                            }
+
+                            switch (postCardInfo.FrontStyle)
+                            {
+                                case "D":
+                                    if (postCardInfo.ProcessStatusText == "未提交")
+                                    {
+                                        timer1.Interval = 1000;
+                                        timer1.Start();
+                                    }
+
+                                    break;
+
+                                case "C":
+                                    photoCropper.LeftRotate();
+                                    photoCropper.FixMin();
+                                    break;
                             }
                         });
                     }
@@ -423,12 +456,13 @@ namespace PostCardCrop.form
         {
             if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
             {
-                PostCardItemApi.SubmitPostCardProductFile(
+                PostCardItemApi.ReCropPostCard(
                     postCardInfo.PostCardId,
-                    new PostCardItemProductFileSubmitRequest(),
-                    (boolean) =>
+                    (response) =>
                     {
-                        postCardInfo.ProductFileId = "";
+                        postCardInfo.ProductFileId = response.ProductFileId;
+                        postCardInfo.BackProductFileId = response.BackProductFileId;
+                        postCardInfo.ProcessStatusText = response.ProcessStatusText;
                         PostCardChanged();
                     });
             }
@@ -449,6 +483,49 @@ namespace PostCardCrop.form
             var envelopeId = _currentEnvelopeInfo.Id;
 
             new ExportForm(envelopeId).Show(this);
+        }
+
+        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            InitData(_orderId);
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            if (EnvelopeView.GetFocusedRow() is EnvelopeInfo envelopeInfo)
+            {
+                PostCardItemApi.GetPostCardByEnvelopeId(envelopeInfo.Id,
+                    result =>
+                    {
+                        var dictionary = result.ToDictionary(postCardResponse => postCardResponse.Id);
+                        if (postCardControl.DataSource is List<PostCardInfo> postCardResponses)
+                        {
+                            foreach (var postCardResponse in postCardResponses)
+                            {
+                                var cardResponse = dictionary[postCardResponse.PostCardId];
+                                if (cardResponse == null)
+                                {
+                                    continue;
+                                }
+
+                                // 处理状态
+                                postCardResponse.ProcessStatusText = cardResponse.ProcessStatusText;
+                                // 成品文件ID
+                                postCardResponse.ProductFileId = cardResponse.ProductFileId;
+                                // 反面成品文件ID
+                                postCardResponse.BackProductFileId = cardResponse.BackProductFileId;
+                            }
+
+                            postCardControl.RefreshDataSource();
+                        }
+                    }
+                );
+            }
+        }
+
+        private void PostCardCropForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            timer2.Stop();
         }
     }
 }
