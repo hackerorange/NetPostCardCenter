@@ -64,7 +64,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(284, 126);
+            this.layoutControl1.Size = new System.Drawing.Size(278, 110);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -72,7 +72,7 @@
             // 
             this.textEdit1.Location = new System.Drawing.Point(63, 12);
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(209, 20);
+            this.textEdit1.Size = new System.Drawing.Size(186, 20);
             this.textEdit1.StyleController = this.layoutControl1;
             this.textEdit1.TabIndex = 4;
             // 
@@ -97,7 +97,7 @@
             0,
             0,
             0});
-            this.spinEdit1.Size = new System.Drawing.Size(209, 20);
+            this.spinEdit1.Size = new System.Drawing.Size(186, 20);
             this.spinEdit1.StyleController = this.layoutControl1;
             this.spinEdit1.TabIndex = 5;
             // 
@@ -122,7 +122,7 @@
             0,
             0,
             0});
-            this.spinEdit2.Size = new System.Drawing.Size(209, 20);
+            this.spinEdit2.Size = new System.Drawing.Size(186, 20);
             this.spinEdit2.StyleController = this.layoutControl1;
             this.spinEdit2.TabIndex = 6;
             // 
@@ -131,7 +131,7 @@
             this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.simpleButton1.Location = new System.Drawing.Point(12, 84);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(128, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(116, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 7;
             this.simpleButton1.Text = "确定";
@@ -140,9 +140,9 @@
             // simpleButton2
             // 
             this.simpleButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButton2.Location = new System.Drawing.Point(144, 84);
+            this.simpleButton2.Location = new System.Drawing.Point(132, 84);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(128, 22);
+            this.simpleButton2.Size = new System.Drawing.Size(117, 22);
             this.simpleButton2.StyleController = this.layoutControl1;
             this.simpleButton2.TabIndex = 8;
             this.simpleButton2.Text = "取消";
@@ -157,9 +157,8 @@
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(284, 126);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(261, 118);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -167,7 +166,7 @@
             this.layoutControlItem1.Control = this.textEdit1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(264, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(241, 24);
             this.layoutControlItem1.Text = "尺寸名称";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -176,7 +175,7 @@
             this.layoutControlItem2.Control = this.spinEdit1;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(264, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(241, 24);
             this.layoutControlItem2.Text = "尺寸宽度";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -185,7 +184,7 @@
             this.layoutControlItem3.Control = this.spinEdit2;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(264, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(241, 24);
             this.layoutControlItem3.Text = "尺寸高度";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -194,16 +193,16 @@
             this.layoutControlItem4.Control = this.simpleButton1;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(132, 34);
+            this.layoutControlItem4.Size = new System.Drawing.Size(120, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.simpleButton2;
-            this.layoutControlItem5.Location = new System.Drawing.Point(132, 72);
+            this.layoutControlItem5.Location = new System.Drawing.Point(120, 72);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(132, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(121, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -212,7 +211,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.simpleButton2;
-            this.ClientSize = new System.Drawing.Size(284, 126);
+            this.ClientSize = new System.Drawing.Size(278, 110);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "NewPostCardSizeForm";

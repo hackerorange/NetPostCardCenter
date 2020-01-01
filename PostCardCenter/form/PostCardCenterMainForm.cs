@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using SystemSetting.backStyle;
 using SystemSetting.size.form;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -31,6 +32,7 @@ namespace postCardCenter.form
             }
 
             barStaticItem1.Caption = InkoSecurityContext.UserName;
+            OpenOrderCenter();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -89,6 +91,11 @@ namespace postCardCenter.form
 
 
             //new OrderCreateForm().Show();
+        }
+
+        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new BackStyleManageForm().Show(this);
         }
     }
 }

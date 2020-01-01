@@ -26,6 +26,7 @@ namespace Hacker.Inko.Net.Base.Helper
             if (responseBody.Code < 0)
             {
                 failure?.Invoke(responseBody.Message);
+                return;
             }
 
             success?.Invoke(responseBody.Data);

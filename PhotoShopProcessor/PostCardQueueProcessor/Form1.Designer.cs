@@ -46,7 +46,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(719, 251);
+            this.layoutControl1.Size = new System.Drawing.Size(713, 235);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -55,7 +55,7 @@
             this.listBoxControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.listBoxControl1.Location = new System.Drawing.Point(12, 12);
             this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(695, 227);
+            this.listBoxControl1.Size = new System.Drawing.Size(689, 211);
             this.listBoxControl1.StyleController = this.layoutControl1;
             this.listBoxControl1.TabIndex = 4;
             // 
@@ -66,7 +66,7 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(719, 251);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(713, 235);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -74,7 +74,7 @@
             this.layoutControlItem1.Control = this.listBoxControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(699, 231);
+            this.layoutControlItem1.Size = new System.Drawing.Size(693, 215);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 251);
+            this.ClientSize = new System.Drawing.Size(713, 235);
             this.Controls.Add(this.layoutControl1);
             this.Name = "Form1";
             this.Text = "Form1";

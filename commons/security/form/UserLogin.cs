@@ -29,7 +29,12 @@ namespace Inko.Security.form.security
             loginButton.Enabled = false;
             UserApi.UserLogin(textEdit1.Text, textEdit2.Text, success: result =>
             {
-                var stream = new StreamWriter(new FileStream("D:\\postCard\\userLogin.ini", FileMode.CreateNew));
+                var fileInfo = new FileInfo("D:\\postCard\\userLogin.ini");
+                if (fileInfo.Exists)
+                {
+                    fileInfo.Delete();
+                }
+                var stream = new StreamWriter(new FileStream(fileInfo.FullName, FileMode.CreateNew));
                 stream.WriteLine(result.RefreshToken);
                 stream.Flush();
                 stream.Close();

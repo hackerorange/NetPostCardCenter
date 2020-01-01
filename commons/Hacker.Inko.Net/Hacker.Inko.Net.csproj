@@ -78,6 +78,8 @@
     <Compile Include="Request\postCard\PostCardInfoPatchRequest.cs" />
     <Compile Include="Request\postCard\PostCardItemProductFileSubmitRequest.cs" />
     <Compile Include="Request\postCard\PostCardProductFileIdSubmitRequest.cs" />
+    <Compile Include="Request\system\BackStyleUpdateRequest.cs" />
+    <Compile Include="Request\system\BackStyleCreateRequest.cs" />
     <Compile Include="Request\system\SizeRequest.cs" />
     <Compile Include="Request\UserLoginRequest.cs" />
     <Compile Include="Response\BodyResponse.cs" />

@@ -22,14 +22,14 @@ namespace Inko.Security
         {
             string token = null;
             if (File.Exists("D:\\postCard\\userLogin.ini"))
-            {
                 try
                 {
                     // TODO: 需要校验保存起来的Token是否有效，刷新Token
                     var fileReader = new StreamReader(new FileStream("D:\\postCard\\userLogin.ini", FileMode.Open));
                     var refreshToken = fileReader.ReadLine();
+                    fileReader.Close();
                     var isWait = true;
-                    UserApi.RefreshToken(refreshToken, success: result =>
+                    UserApi.RefreshToken(refreshToken, result =>
                     {
                         token = result.Token;
                         UserId = result.UserId;
@@ -39,17 +39,12 @@ namespace Inko.Security
                     {
                         XtraMessageBox.Show(message);
                         isWait = false;
-
                     });
-                    while (isWait)
-                    {
-                        Application.DoEvents();
-                    }
+                    while (isWait) Application.DoEvents();
                 }
                 catch
                 {
                 }
-            }
 
             // 如果当前用户没有登录过，Token已经失效
             if (string.IsNullOrEmpty(token))

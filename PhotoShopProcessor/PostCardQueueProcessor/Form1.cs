@@ -98,8 +98,6 @@ namespace PostCardQueueProcessor
 
         private void ProcessFront(DoubleSidePostCardCropInfo postCardProcessCropInfo)
         {
-            string resultFileId = null;
-            //postCardProcessCropInfo.Process();
             Log(@"开始处理明信片[" + postCardProcessCropInfo.PostCardId + "]");
 
             // 创建临时目录
