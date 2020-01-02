@@ -24,7 +24,7 @@ namespace SystemSetting.size.form
             var width = (int) spinEdit1.Value;
             var height = (int) spinEdit2.Value;
 
-            SystemSizeApi.InsertProductSizeToServer("成品尺寸", new SizeRequest
+            SystemSizeApi.InsertProductSizeToServer("productSize", new SizeRequest
             {
                 Height = height,
                 Width = width,

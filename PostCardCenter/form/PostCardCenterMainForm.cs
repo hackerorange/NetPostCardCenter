@@ -42,13 +42,13 @@ namespace postCardCenter.form
         }
 
 
-        private void batchCreateOrder_ItemClick(object sender, ItemClickEventArgs e)
+        private void BatchCreateOrder_ItemClick(object sender, ItemClickEventArgs e)
         {
             var orderBatchCreate = new OrderBatch();
             orderBatchCreate.ShowDialog(this);
         }
 
-        private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenOrderCenter();
         }
@@ -56,7 +56,6 @@ namespace postCardCenter.form
         private void OpenOrderCenter()
         {
             xtraTabbedMdiManager1.ClosePageButtonShowMode = ClosePageButtonShowMode.InActiveTabPageHeader;
-            var flag = false;
             foreach (XtraMdiTabPage page in xtraTabbedMdiManager1.Pages)
             {
                 if (page.MdiChild.GetType().FullName != typeof(OrderCenter).FullName) continue;
@@ -72,28 +71,14 @@ namespace postCardCenter.form
             xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[orderCenter];
         }
 
-        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             new SizeManageForm().ShowDialog();
         }
 
         public List<DirectoryInfo> BaseBath { get; set; }
 
-
-        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //var enumerator = BaseBath.GetEnumerator();
-            //while (enumerator.MoveNext())
-            //{
-
-            //}
-            //enumerator.Dispose();
-
-
-            //new OrderCreateForm().Show();
-        }
-
-        private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
         {
             new BackStyleManageForm().Show(this);
         }

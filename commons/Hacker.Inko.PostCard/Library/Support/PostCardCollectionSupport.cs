@@ -182,8 +182,8 @@ namespace Hacker.Inko.PostCard.Library.Support
 
         public Document Document { get; set; }
 
-        private bool _urgent;
-        private string _waterMark;
+        private readonly bool _urgent;
+        private readonly string _waterMark;
 
 
         public PostCardPageContext(DirectoryInfo templateDirectoryInfo, EnvelopeResponse envelopeResponse, bool urgent, string waterMark)

@@ -259,15 +259,19 @@ namespace PostCardCrop.model
         private void ResetRowAndColumn()
         {
             if (_productSize == null) return;
+            if (_paperSize == null) return;
             if (_productSize.Width != 0)
             {
+                // ReSharper disable once PossibleLossOfFraction
                 _arrayColumn = _paperSize.Width / ProductSize.Width;
+
                 NotifyPropertyChanged(() => ArrayColumn);
                 NotifyPropertyChanged(() => HorizontalWhite);
             }
 
             if (_productSize.Height != 0)
             {
+                // ReSharper disable once PossibleLossOfFraction
                 _arrayRow = _paperSize.Height / ProductSize.Height;
                 NotifyPropertyChanged(() => ArrayRow);
                 NotifyPropertyChanged(() => VerticalWhite);
@@ -277,13 +281,14 @@ namespace PostCardCrop.model
         public void NotifyPropertyChanged<T>(Expression<Func<T>> property)
         {
             if (PropertyChanged == null)
+            {
                 return;
+            }
 
-            var memberExpression = property.Body as MemberExpression;
-            if (memberExpression == null)
-                return;
-
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(memberExpression.Member.Name));
+            if (property.Body is MemberExpression memberExpression)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(memberExpression.Member.Name));
+            }
         }
 
         //public List<string> EnvelopeInfos {

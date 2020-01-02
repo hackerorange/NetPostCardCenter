@@ -17,7 +17,7 @@ namespace OrderBatchCreate.control.envelope
         public EnvelopeSettingControl()
         {
             InitializeComponent();
-            SystemSizeApi.GetSizeInfoFromServer("postCardProductSize", response =>
+            SystemSizeApi.GetSizeInfoFromServer("productSize", response =>
             {
                 response.ForEach(k => productSizeList.Items.Add(new PostSize
                 {
@@ -162,7 +162,7 @@ namespace OrderBatchCreate.control.envelope
             }
         }
 
-        private void productSizeList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ProductSizeList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_envelopeInfo == null) return;
 

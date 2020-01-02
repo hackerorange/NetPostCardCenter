@@ -33,12 +33,7 @@ namespace SystemSetting.backStyle
         {
         }
 
-        private void gridView1_FocusedRowLoaded(object sender, DevExpress.XtraGrid.Views.Base.RowEventArgs e)
-        {
-            var row = gridView1.GetRow(e.RowHandle);
-        }
-
-        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void GridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             var row = gridView1.GetRow(e.FocusedRowHandle);
 
@@ -57,11 +52,7 @@ namespace SystemSetting.backStyle
             }
         }
 
-        private void gridView1_FocusedColumnChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs e)
-        {
-        }
-
-        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private void GridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             var row = gridView1.GetRow(e.RowHandle);
 
@@ -80,7 +71,7 @@ namespace SystemSetting.backStyle
             }
         }
 
-        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             var xtraOpenFileDialog = new XtraOpenFileDialog
             {
@@ -110,7 +101,7 @@ namespace SystemSetting.backStyle
             }
         }
 
-        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (gridView1.GetRow(gridView1.FocusedRowHandle) is BackStyleResponse backStyleResponse)
             {

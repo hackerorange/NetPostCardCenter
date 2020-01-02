@@ -58,7 +58,6 @@
             this.listBoxControl1.Size = new System.Drawing.Size(689, 211);
             this.listBoxControl1.StyleController = this.layoutControl1;
             this.listBoxControl1.TabIndex = 4;
-            this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
             // 
             // layoutControlGroup1
             // 

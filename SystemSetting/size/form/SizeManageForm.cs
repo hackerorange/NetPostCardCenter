@@ -1,5 +1,8 @@
-﻿using DevExpress.XtraEditors;
+﻿using System.Collections.Generic;
+using DevExpress.Office.Utils;
+using DevExpress.XtraEditors;
 using Hacker.Inko.Net.Api;
+using Hacker.Inko.Net.Request.system;
 using Hacker.Inko.Net.Response.system;
 
 namespace SystemSetting.size.form
@@ -9,7 +12,7 @@ namespace SystemSetting.size.form
         public SizeManageForm()
         {
             InitializeComponent();
-            SystemSizeApi.GetSizeInfoFromServer("成品尺寸", postSizeList => { gridControl1.DataSource = postSizeList; });
+            SystemSizeApi.GetSizeInfoFromServer("productSize", postSizeList => { gridControl1.DataSource = postSizeList; });
         }
 
         private void SizeManageForm_Load(object sender, System.EventArgs e)
@@ -18,24 +21,48 @@ namespace SystemSetting.size.form
 
         private void BarButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            new NewPostCardSizeForm().ShowDialog(this);
-            SystemSizeApi.GetSizeInfoFromServer("成品尺寸", postSizeList =>
+            barButtonItem1.Enabled = false;
+            SystemSizeApi.InsertProductSizeToServer("productSize", new SizeRequest
             {
-                gridControl1.DataSource = postSizeList;
-                gridView1.RefreshData();
-            });
+                Height = 100,
+                Width = 148,
+                Name = "默认尺寸"
+            }, result =>
+            {
+                if (gridControl1.DataSource is List<PostCardSizeResponse> postCardSizeResponses)
+                {
+                    postCardSizeResponses.Add(result);
+                    gridControl1.RefreshDataSource();
+                }
+
+                barButtonItem1.Enabled = true;
+            }, failure => { barButtonItem1.Enabled = true; });
         }
 
         private void BarButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (gridView1.GetFocusedRow() is PostCardSizeResponse postSize)
-            {
-                XtraMessageBox.Show("此功能正在开发中，敬请期待！");
-            }
+                SystemSizeApi.DeleteById(postSize.Id, success =>
+                {
+                    if (gridControl1.DataSource is List<PostCardSizeResponse> postCardSizeResponses)
+                    {
+                        postCardSizeResponses.Remove(postSize);
+                        gridControl1.RefreshDataSource();
+                    }
+                }, message => { XtraMessageBox.Show(message); });
         }
 
-        private void ribbon_Click(object sender, System.EventArgs e)
+        private void GridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
+            if (gridView1.GetRow(gridView1.FocusedRowHandle) is PostCardSizeResponse postCardSizeResponse)
+            {
+                SystemSizeApi.UpdateProductSizeToServer(postCardSizeResponse.Id, new SizeRequest
+                {
+                    Name = postCardSizeResponse.Name,
+                    Width = postCardSizeResponse.Width,
+                    Height = postCardSizeResponse.Height
+                }, success => { });
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hacker.Inko.Net.Api;
+﻿using System;
+using Hacker.Inko.Net.Api;
 using Inko.Security.form.security;
 using System.IO;
 using System.Windows.Forms;
@@ -42,19 +43,19 @@ namespace Inko.Security
                     });
                     while (isWait) Application.DoEvents();
                 }
-                catch
+                catch (Exception)
                 {
+                    // ignored
                 }
 
-            // 如果当前用户没有登录过，Token已经失效
-            if (string.IsNullOrEmpty(token))
+            // 如果Token有效
+            if (!string.IsNullOrEmpty(token))
             {
-                var a = new UserLogin();
-                if (a.ShowDialog() != DialogResult.OK) return null;
-                return a.Token;
+                return token;
             }
 
-            return token;
+            var a = new UserLogin();
+            return a.ShowDialog() != DialogResult.OK ? null : a.Token;
         }
     }
 }

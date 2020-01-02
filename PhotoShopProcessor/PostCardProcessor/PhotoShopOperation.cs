@@ -78,13 +78,6 @@ namespace PostCardProcessor
             ResetColor();
         }
 
-        ~PhotoShopOperation()
-        {
-            //重置单位
-            
-        }
-
-
         public void SwitchRuler(PsUnits units)
         {
             Application.Preferences.RulerUnits = units;

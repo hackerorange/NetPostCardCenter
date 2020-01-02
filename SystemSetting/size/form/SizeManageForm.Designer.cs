@@ -66,9 +66,8 @@
             this.ribbonPage1});
             this.ribbon.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbon.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.ShowOnMultiplePages;
-            this.ribbon.Size = new System.Drawing.Size(686, 129);
+            this.ribbon.Size = new System.Drawing.Size(486, 129);
             this.ribbon.StatusBar = this.ribbonStatusBar;
-            this.ribbon.Click += new System.EventHandler(this.ribbon_Click);
             // 
             // barButtonItem1
             // 
@@ -107,7 +106,7 @@
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 476);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(686, 23);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(486, 23);
             // 
             // layoutControl1
             // 
@@ -116,7 +115,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 129);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(686, 347);
+            this.layoutControl1.Size = new System.Drawing.Size(486, 347);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -126,7 +125,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbon;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(662, 323);
+            this.gridControl1.Size = new System.Drawing.Size(462, 323);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -140,39 +139,41 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.GridView1_CellValueChanged);
             // 
             // SizeName
             // 
+            this.SizeName.AppearanceHeader.Options.UseTextOptions = true;
+            this.SizeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.SizeName.Caption = "尺寸名称";
             this.SizeName.FieldName = "Name";
             this.SizeName.Name = "SizeName";
-            this.SizeName.OptionsColumn.AllowEdit = false;
-            this.SizeName.OptionsColumn.ReadOnly = true;
             this.SizeName.Visible = true;
             this.SizeName.VisibleIndex = 0;
             // 
             // sizeWidth
             // 
+            this.sizeWidth.AppearanceHeader.Options.UseTextOptions = true;
+            this.sizeWidth.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.sizeWidth.Caption = "宽度";
             this.sizeWidth.FieldName = "Width";
             this.sizeWidth.MaxWidth = 100;
             this.sizeWidth.MinWidth = 100;
             this.sizeWidth.Name = "sizeWidth";
-            this.sizeWidth.OptionsColumn.AllowEdit = false;
-            this.sizeWidth.OptionsColumn.ReadOnly = true;
+            this.sizeWidth.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Like;
             this.sizeWidth.Visible = true;
             this.sizeWidth.VisibleIndex = 1;
             this.sizeWidth.Width = 100;
             // 
             // sizeHeight
             // 
+            this.sizeHeight.AppearanceHeader.Options.UseTextOptions = true;
+            this.sizeHeight.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.sizeHeight.Caption = "高度";
             this.sizeHeight.FieldName = "Height";
             this.sizeHeight.MaxWidth = 100;
             this.sizeHeight.MinWidth = 100;
             this.sizeHeight.Name = "sizeHeight";
-            this.sizeHeight.OptionsColumn.AllowEdit = false;
-            this.sizeHeight.OptionsColumn.ReadOnly = true;
             this.sizeHeight.Visible = true;
             this.sizeHeight.VisibleIndex = 2;
             this.sizeHeight.Width = 100;
@@ -184,7 +185,7 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(686, 347);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(486, 347);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -192,7 +193,7 @@
             this.layoutControlItem1.Control = this.gridControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(666, 327);
+            this.layoutControlItem1.Size = new System.Drawing.Size(466, 327);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -200,12 +201,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 499);
+            this.ClientSize = new System.Drawing.Size(486, 499);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
-            this.MaximumSize = new System.Drawing.Size(700, 500);
-            this.MinimumSize = new System.Drawing.Size(700, 500);
+            this.MaximumSize = new System.Drawing.Size(500, 500);
+            this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "SizeManageForm";
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

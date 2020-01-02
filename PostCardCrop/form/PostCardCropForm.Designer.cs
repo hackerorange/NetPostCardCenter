@@ -306,7 +306,7 @@ namespace PostCardCrop.form
             this.barButtonItem11.Caption = "重新加载数据";
             this.barButtonItem11.Id = 22;
             this.barButtonItem11.Name = "barButtonItem11";
-            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
+            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BarButtonItem11_ItemClick);
             // 
             // ribbonPage1
             // 

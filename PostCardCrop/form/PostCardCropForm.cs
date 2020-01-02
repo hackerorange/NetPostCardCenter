@@ -485,7 +485,7 @@ namespace PostCardCrop.form
             new ExportForm(envelopeId).ShowDialog(this);
         }
 
-        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
         {
             InitData(_orderId);
         }

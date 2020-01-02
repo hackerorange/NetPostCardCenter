@@ -231,7 +231,7 @@
             this.productSizeList.Size = new System.Drawing.Size(171, 141);
             this.productSizeList.StyleController = this.layoutControl1;
             this.productSizeList.TabIndex = 57;
-            this.productSizeList.SelectedIndexChanged += new System.EventHandler(this.productSizeList_SelectedIndexChanged);
+            this.productSizeList.SelectedIndexChanged += new System.EventHandler(this.ProductSizeList_SelectedIndexChanged);
             // 
             // paperNameList
             // 

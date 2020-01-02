@@ -35,7 +35,7 @@ namespace OrderBatchCreate.form
         {
             InitializeComponent();
             //异步获取尺寸信息
-            SystemSizeApi.GetSizeInfoFromServer("Product", success => { repositoryItemComboBox4.Items.AddRange(success); });
+            SystemSizeApi.GetSizeInfoFromServer("productSize", success => { repositoryItemComboBox4.Items.AddRange(success); });
             SystemBackStyleApi.GetAllBackStyleFromServer(success => success.ForEach(backStyle => repositoryItemComboBox3.Items.Add(backStyle)));
 
 
@@ -718,7 +718,7 @@ namespace OrderBatchCreate.form
         {
             new SizeManageForm().ShowDialog(this);
 
-            SystemSizeApi.GetSizeInfoFromServer("", success =>
+            SystemSizeApi.GetSizeInfoFromServer("productSize", success =>
             {
                 repositoryItemComboBox4.Items.Clear();
                 repositoryItemComboBox4.Items.AddRange(success);

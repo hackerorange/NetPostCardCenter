@@ -59,14 +59,5 @@ namespace SystemSetting.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   查找类似 http://192.168.1.136:8083/rest/size/productSize 的本地化字符串。
-        /// </summary>
-        internal static string GetAllProductSizeUrl {
-            get {
-                return ResourceManager.GetString("GetAllProductSizeUrl", resourceCulture);
-            }
-        }
     }
 }
