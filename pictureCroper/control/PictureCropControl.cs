@@ -276,7 +276,7 @@ namespace pictureCroper.control
             var tmpCropBox = CropBox;
 
 
-            wheelSpeed = wheelSpeed * Math.Max(oldRectangle.Width, oldRectangle.Height);
+            wheelSpeed *= Math.Max(oldRectangle.Width, oldRectangle.Height);
             if (isSlow) wheelSpeed *= 0.2;
             //缩放方向，+1为方大，-1为缩小
             var zoomDirect = delta / Math.Abs(delta);

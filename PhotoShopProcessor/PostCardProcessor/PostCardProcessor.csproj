@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="model\Size.cs" />
     <Compile Include="PhotoShopOperation.cs" />
     <Compile Include="Processor.cs" />

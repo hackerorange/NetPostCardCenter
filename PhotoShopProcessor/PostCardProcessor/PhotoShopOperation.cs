@@ -6,7 +6,7 @@ namespace PostCardProcessor
 {
     public class PhotoShopOperation
     {
-        private FileInfo _fileInfo;
+        private readonly FileInfo _fileInfo;
         private readonly PsUnits _oldPsUnits;
         public Application Application { get; }
 
@@ -21,7 +21,7 @@ namespace PostCardProcessor
                 Application.ActiveDocument = document;
                 return document;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if (RefreshFileInfo())
                 {
@@ -29,16 +29,16 @@ namespace PostCardProcessor
                 }
                 else
                 {
-                    throw e;
+                    throw;
                 }
             }
         }
 
         private bool RefreshFileInfo()
         {
-            var extention = _fileInfo.Extension;
+            var extension = _fileInfo.Extension;
             var fullName = _fileInfo.FullName;
-            fullName = fullName.Replace(extention, "(convertToJpg).jpg");
+            fullName = fullName.Replace(extension, "(convertToJpg).jpg");
             try
             {
                 using (System.Diagnostics.Process myProcess = new System.Diagnostics.Process())
@@ -46,7 +46,7 @@ namespace PostCardProcessor
                     myProcess.StartInfo = new System.Diagnostics.ProcessStartInfo()
                     {
                         UseShellExecute = false,
-                        Arguments = string.Format("\"-> JPG\" \"Original Size\" \"{0}\" \"{1}\" /hide", _fileInfo.FullName.Replace(@"\", @"/"), fullName.Replace(@"\", @"/")),
+                        Arguments = $"\"-> JPG\" \"Original Size\" \"{_fileInfo.FullName.Replace(@"\", @"/")}\" \"{fullName.Replace(@"\", @"/")}\" /hide",
                         CreateNoWindow = true,
                         FileName = "FormatFactory.exe"
                     };
@@ -62,6 +62,7 @@ namespace PostCardProcessor
             {
                 return false;
             }
+
             return true;
         }
 
@@ -103,6 +104,5 @@ namespace PostCardProcessor
             desc49.PutReference(Application.CharIDToTypeID("null"), ref22);
             Application.ExecuteAction(Application.CharIDToTypeID("Rset"), desc49, 3);
         }
-
     }
 }

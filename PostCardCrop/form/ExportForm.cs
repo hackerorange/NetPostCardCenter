@@ -75,9 +75,5 @@ namespace PostCardCrop.form
 
             DialogResult = DialogResult.OK;
         }
-
-        private void checkEdit1_CheckedChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

@@ -272,7 +272,6 @@
             this.checkEdit1.Size = new System.Drawing.Size(111, 19);
             this.checkEdit1.StyleController = this.layoutControl1;
             this.checkEdit1.TabIndex = 12;
-            this.checkEdit1.CheckedChanged += new System.EventHandler(this.checkEdit1_CheckedChanged);
             // 
             // layoutControlItem9
             // 
