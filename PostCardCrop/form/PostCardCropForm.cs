@@ -218,7 +218,10 @@ namespace PostCardCrop.form
                 }
 
                 // 后面没有未处理的明信片，从头开始找起！
-                MoveToNextPosition(0);
+                if (startPosition != 0)
+                {
+                    MoveToNextPosition(0);
+                }
             }
         }
 
