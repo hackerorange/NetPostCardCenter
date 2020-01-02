@@ -81,7 +81,7 @@ namespace PostCardProcessor
         ~PhotoShopOperation()
         {
             //重置单位
-            Application.Preferences.RulerUnits = _oldPsUnits;
+            
         }
 
 
