@@ -20,7 +20,7 @@ namespace PostCardQueueProcessor
         private readonly ISession _iSession;
         private readonly IMessageConsumer _iConsumer;
 
-        public static readonly log4net.ILog LogInfo = log4net.LogManager.GetLogger("loginfo");
+        public static readonly log4net.ILog LogInfo = log4net.LogManager.GetLogger("InfoLog");
 
 
         public PostCardProcessForm()
@@ -31,7 +31,7 @@ namespace PostCardQueueProcessor
             //通过工厂构建连接
             _iConnection = factory.CreateConnection();
             //这个是连接的客户端名称标识
-            _iConnection.ClientId = "firstQueueListener";
+            _iConnection.ClientId = Guid.NewGuid().ToString();
             //启动连接，监听的话要主动启动连接
             _iConnection.Start();
             //通过连接创建一个会话
@@ -40,6 +40,8 @@ namespace PostCardQueueProcessor
             _iConsumer = _iSession.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
             //注册监听事件
             _iConsumer.Listener += Consumer_Listener;
+
+            LogInfo.Info("初始化完成");
         }
 
         private void Consumer_Listener(IMessage message)
