@@ -83,6 +83,7 @@ namespace PostCardQueueProcessor
                         {
                             Log(@"正面文件处理失败");
                             PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                            isWait = false;
                             return;
                         }
 
