@@ -13,17 +13,16 @@ namespace Hacker.Inko.Net.Base
     {
         public static string AccessToken { get; set; }
 
-        public static readonly RestTemplate RestTemplate = new RestTemplate
+        public static readonly RestTemplate RestTemplate;
+
+#pragma warning disable CA1810 // Initialize reference type static fields inline
+        static NetGlobalInfo()
+#pragma warning restore CA1810 // Initialize reference type static fields inline
         {
-            BaseAddress = new Uri(Properties.Settings.Default.Host),
-            MessageConverters = new List<IHttpMessageConverter>
-            {
-                new NJsonHttpMessageConverter()
-            },
-            RequestInterceptors = new List<IClientHttpRequestInterceptor>
-            {
-                new RequestAuthorizationInterceptor()
-            }
-        };
+            AccessToken = null;
+            RestTemplate = new RestTemplate(Settings.Default.Host);
+            RestTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
+            RestTemplate.RequestInterceptors.Add(new RequestAuthorizationInterceptor());
+        }
     }
 }
