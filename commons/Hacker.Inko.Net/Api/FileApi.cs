@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -12,6 +13,40 @@ namespace Hacker.Inko.Net.Api
 {
     public static class FileApi
     {
+        public static FileInfo DownloadFileByFileIdAsync(string fileId, FileInfo fileInfo, Action<FileInfo> success, Action<string> failure)
+        {
+            if (fileInfo.Exists)
+            {
+                fileInfo.Delete();
+            }
+
+            NetGlobalInfo.RestTemplate.GetForObjectAsync<byte[]>("/file/{fileId}", new Dictionary<string, object>
+            {
+                {"fileId", fileId}
+            }, result =>
+            {
+                if (result.Cancelled)
+                {
+                    failure?.Invoke("请求已取消！");
+                    return;
+                }
+
+                if (result.Error != null)
+                {
+                    failure?.Invoke(result.Error.Message);
+                }
+
+                var fileStream = new BufferedStream(new FileStream(fileInfo.FullName, FileMode.CreateNew));
+                fileStream.Write(result.Response, 0, result.Response.Length);
+                fileStream.Flush();
+                fileStream.Close();
+
+                success?.Invoke(fileInfo);
+            });
+
+            return fileInfo;
+        }
+
         public static FileInfo DownloadFileByFileId(string fileId, FileInfo fileInfo)
         {
             if (fileInfo.Exists)
@@ -27,7 +62,6 @@ namespace Hacker.Inko.Net.Api
 
             return fileInfo;
         }
-
 
         public static byte[] DownloadBytesByFileId(string fileId)
         {
