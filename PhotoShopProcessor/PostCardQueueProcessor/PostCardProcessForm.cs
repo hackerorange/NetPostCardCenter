@@ -56,10 +56,11 @@ namespace PostCardQueueProcessor
             // 更新状态为正在处理中
             PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESSING");
 
+
             // 创建临时目录
-            if (!Directory.Exists("D:/postCard/tmpFile/"))
+            if (!Directory.Exists(Path.GetTempPath()))
             {
-                Directory.CreateDirectory("D:/postCard/tmpFile/");
+                Directory.CreateDirectory(Path.GetTempPath());
             }
 
             var isWait = true;
@@ -70,7 +71,7 @@ namespace PostCardQueueProcessor
                 if (postCardProcessCropInfo.FrontCropCropInfo != null)
                 {
                     // 正面文件
-                    var frontFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
+                    var frontFileInfo = new FileInfo(Path.GetTempPath() + "/" + Guid.NewGuid() + ".jpg");
                     Log(@"开始下载正面文件");
                     try
                     {

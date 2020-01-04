@@ -61,7 +61,7 @@ namespace PostCardCrop.form
                 case Keys.D:
                     ChangeFrontStyle(e.KeyCode.ToString());
                     break;
-                case Keys.R:
+                case Keys.Escape:
                     ReCropPostCard();
                     break;
             }
@@ -129,7 +129,7 @@ namespace PostCardCrop.form
                 case Key.D:
                     ChangeFrontStyle(e.Key.ToString());
                     break;
-                case Key.R: // 重新裁切
+                case Key.Escape: // 重新裁切
                     ReCropPostCard();
                     break;
             }
