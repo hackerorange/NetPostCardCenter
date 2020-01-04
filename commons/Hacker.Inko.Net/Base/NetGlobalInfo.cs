@@ -1,5 +1,6 @@
 ﻿using System;
 using Hacker.Inko.Net.Base.Interceptor;
+using Hacker.Inko.Net.Properties;
 using Spring.Http.Converters.Json;
 using Spring.Rest.Client;
 
@@ -7,24 +8,19 @@ namespace Hacker.Inko.Net.Base
 {
     public static class NetGlobalInfo
     {
-        private static string _host;
-
         public static string AccessToken { get; set; }
 
         public static string Host
         {
-            get => _host;
-
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    return;
-                }
+                if (string.IsNullOrEmpty(value)) return;
 
                 RestTemplate.BaseAddress = new Uri(value);
-                _host = value;
+                Settings.Default.Host = value;
+                Settings.Default.Save();
             }
+            get => Settings.Default.Host;
         }
 
 
@@ -36,8 +32,7 @@ namespace Hacker.Inko.Net.Base
 #pragma warning restore CA1810 // Initialize reference type static fields inline
         {
             AccessToken = null;
-            Host = "";
-            RestTemplate = new RestTemplate();
+            RestTemplate = new RestTemplate(Settings.Default.Host);
             RestTemplate.MessageConverters.Add(new NJsonHttpMessageConverter());
             RestTemplate.RequestInterceptors.Add(new RequestAuthorizationInterceptor());
         }

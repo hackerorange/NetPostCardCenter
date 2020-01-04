@@ -32,15 +32,13 @@ namespace Hacker.Inko.Net.Api
         /// <param name="failure">失败回调函数</param>
         public static void InsertBackStyle(string backStyleName, string fileId, Action<BackStyleResponse> success, Action<string> failure = null)
         {
-            var backStyleCreateRequest = new BackStyleCreateRequest
-            {
-                FileId = fileId,
-                Name = backStyleName
-            };
-
             NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<BackStyleResponse>>(
                 "/backStyle/insert",
-                backStyleCreateRequest,
+                new BackStyleCreateRequest
+                {
+                    FileId = fileId,
+                    Name = backStyleName
+                },
                 postCompleted: response => response.PrepareResponse(success, failure));
         }
 
@@ -68,7 +66,6 @@ namespace Hacker.Inko.Net.Api
         ///     从服务器端获取明信片尺寸信息
         /// </summary>
         /// <param name="backStyleId">反面样式名称</param>
-        /// <param name="backStyleUpdateRequest">更新信息</param>
         /// <param name="success">成功回调函数</param>
         /// <param name="failure">失败回调函数</param>
         public static void DeleteById(string backStyleId, Action<bool> success, Action<string> failure = null)

@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Windows.Forms;
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
 using DevExpress.XtraEditors;
 using Hacker.Inko.Net.Api;
-using Hacker.Inko.Net.Api.Collection;
-using Hacker.Inko.Net.Base;
 using Hacker.Inko.Net.Request.postCard;
 using Newtonsoft.Json;
 using PostCardProcessor;
@@ -17,78 +14,41 @@ using PostCardProcessor.model;
 
 namespace PostCardQueueProcessor
 {
-    public partial class Form1 : XtraForm
+    public partial class PostCardProcessForm : XtraForm
     {
-        public Form1()
+        private readonly IConnection _iConnection;
+        private readonly ISession _iSession;
+        private readonly IMessageConsumer _iConsumer;
+        private static IConnectionFactory _factory;
+
+        static PostCardProcessForm()
+        {
+            //创建连接工厂
+            _factory = new ConnectionFactory(Properties.Settings.Default.BrokerUrl);
+        }
+
+        public PostCardProcessForm()
         {
             InitializeComponent();
 
-            if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
-            {
-                var dictionary = new Dictionary<string, string>();
-                var fileInfo = new FileInfo(processModule.FileName);
-                fileInfo = new FileInfo(fileInfo.DirectoryName + "/inkoConfig.ini");
-                if (fileInfo.Exists)
-                {
-                    var streamReader = new StreamReader(new FileStream(fileInfo.FullName, FileMode.Open));
-                    while (!streamReader.EndOfStream)
-                    {
-                        var line = streamReader.ReadLine();
-                        if (line == null) continue;
-                        var currentSplit = line.Split('=');
-                        if (currentSplit.Length == 2) dictionary.Add(currentSplit[0], currentSplit[1]);
-                    }
-                    streamReader.Close();
 
-                    var brokerUrl = dictionary["brokerUrl"];
-                    if (string.IsNullOrEmpty(brokerUrl))
-                    {
-                        XtraMessageBox.Show("没有配置brokerUrl，无法初始化消息队列");
-                        return;
-                    }
-
-                    var clientId = dictionary["clientId"];
-                    if (string.IsNullOrEmpty(clientId))
-                    {
-                        XtraMessageBox.Show("没有配置clientId，无法初始化消息队列");
-                        return;
-                    }
-
-                    var queueName = dictionary["queueName"];
-                    if (string.IsNullOrEmpty(queueName))
-                    {
-                        XtraMessageBox.Show("没有配置queueName，无法初始化消息队列");
-                        return;
-                    }
-
-
-                    //创建连接工厂
-                    IConnectionFactory factory = new ConnectionFactory(brokerUrl);
-                    //通过工厂构建连接
-                    var connection = factory.CreateConnection();
-                    //这个是连接的客户端名称标识
-                    connection.ClientId = clientId;
-                    //启动连接，监听的话要主动启动连接
-                    connection.Start();
-                    //通过连接创建一个会话
-                    var session = connection.CreateSession();
-                    //通过会话创建一个消费者，这里就是Queue这种会话类型的监听参数设置
-                    var consumer = session.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue(queueName));
-                    //注册监听事件
-                    consumer.Listener += Consumer_Listener;
-                    //connection.Stop();
-                    //connection.Close();  
-                }
-                else
-                {
-                    XtraMessageBox.Show("没有找到配置文件，无法初始化消息队列");
-                }
-            }
+            //通过工厂构建连接
+            _iConnection = _factory.CreateConnection();
+            //这个是连接的客户端名称标识
+            _iConnection.ClientId = "firstQueueListener";
+            //启动连接，监听的话要主动启动连接
+            _iConnection.Start();
+            //通过连接创建一个会话
+            _iSession = _iConnection.CreateSession();
+            //通过会话创建一个消费者，这里就是Queue这种会话类型的监听参数设置
+            _iConsumer = _iSession.CreateConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
+            //注册监听事件
+            _iConsumer.Listener += Consumer_Listener;
         }
 
         private void Consumer_Listener(IMessage message)
         {
-            var msg = (ITextMessage)message;
+            var msg = (ITextMessage) message;
             //异步调用下，否则无法回归主线程
             Invoke(new DelegateRevMessage(RevMessage), msg);
         }
@@ -103,7 +63,10 @@ namespace PostCardQueueProcessor
             PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESSING");
 
             // 创建临时目录
-            if (!Directory.Exists("D:/postCard/tmpFile/")) Directory.CreateDirectory("D:/postCard/tmpFile/");
+            if (!Directory.Exists("D:/postCard/tmpFile/"))
+            {
+                Directory.CreateDirectory("D:/postCard/tmpFile/");
+            }
 
             var isWait = true;
             try
@@ -115,21 +78,37 @@ namespace PostCardQueueProcessor
                     // 正面文件
                     var frontFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
                     Log(@"开始下载正面文件");
-                    frontFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.FrontCropCropInfo.FileId, frontFileInfo);
-                    Log(@"正面文件下载完成");
-                    Log(@"开始处理正面文件");
-                    var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
-                    Log(@"正面文件处理完成");
-                    Log(@"开始上传正面成品文件");
-                    var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
-                    resultFileInfo.FrontProductFileId = frontFileUploadResponse.Id;
-                    Log(@"正面成品文件上传成功");
-                    Log(@"开始删除正面文件");
-                    // 删除文件
-                    frontFileInfo.Delete();
-                    // 删除文件
-                    frontProductFile.Delete();
-                    Log(@"正面文件删除成功");
+                    try
+                    {
+                        frontFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.FrontCropCropInfo.FileId, frontFileInfo);
+                        Log(@"正面文件下载完成");
+                        Log(@"开始处理正面文件");
+                        var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                        if (frontProductFile == null)
+                        {
+                            Log(@"正面文件处理失败");
+                            PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                            return;
+                        }
+
+                        Log(@"正面文件处理完成");
+                        Log(@"开始上传正面成品文件");
+                        var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
+                        resultFileInfo.FrontProductFileId = frontFileUploadResponse.Id;
+                        Log(@"正面成品文件上传成功");
+                        Log(@"开始删除正面文件");
+                        // 删除文件
+                        frontFileInfo.Delete();
+                        // 删除文件
+                        frontProductFile.Delete();
+                        Log(@"正面文件删除成功");
+                    }
+                    finally
+                    {
+                        // 删除文件
+                        frontFileInfo.Delete();
+                        Log(@"正面文件删除成功");
+                    }
                 }
 
 
@@ -137,14 +116,16 @@ namespace PostCardQueueProcessor
                 if (postCardProcessCropInfo.BackCropCropInfo != null)
                 {
                     var backCropInfo = postCardProcessCropInfo.BackCropCropInfo;
-                    if ((backCropInfo.CropLeft == 0) && (backCropInfo.CropTop == 0) && (backCropInfo.CropWidth == 1) && (backCropInfo.CropHeight == 1))
+                    if ((Math.Abs(backCropInfo.CropLeft) < 0.001) &&
+                        (Math.Abs(backCropInfo.CropTop) < 0.001) &&
+                        (Math.Abs(backCropInfo.CropWidth - 1) < 0.001) &&
+                        (Math.Abs(backCropInfo.CropHeight - 1) < 0.001))
                     {
                         Log(@"反面为标准尺寸，不需要裁切！");
                         resultFileInfo.BackProductFileId = backCropInfo.FileId;
                     }
                     else
                     {
-
                         // 反面文件
                         var backFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
                         Log(@"开始下载反面文件");
@@ -212,6 +193,14 @@ namespace PostCardQueueProcessor
         {
             listBoxControl1.Items.Add(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm:ss ]") + " " + message);
             listBoxControl1.SelectedIndex = listBoxControl1.ItemCount;
+            Application.DoEvents();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _iConsumer.Close();
+            _iSession.Close();
+            _iConnection.Close();
         }
     }
 }

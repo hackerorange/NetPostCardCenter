@@ -86,7 +86,7 @@ namespace SystemSetting.backStyle
                     var fileInfo = new FileInfo(fileName);
                     var fileUploadResponse = fileInfo.UploadFile("反面样式");
                     SystemBackStyleApi.InsertBackStyle(
-                        "反面样式" + fileInfo.Name,
+                        fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length),
                         fileUploadResponse.Id,
                         result =>
                         {

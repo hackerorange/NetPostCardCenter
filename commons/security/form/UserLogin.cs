@@ -1,19 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Hacker.Inko.Net.Api;
+using Hacker.Inko.Net.Base;
 
-namespace Inko.Security.form.security
+namespace Inko.Security.form
 {
     public partial class UserLogin : XtraForm
     {
-        private string _token = null;
-
-        public string Token
-        {
-            get { return _token; }
-        }
 
         public UserLogin()
         {
@@ -29,20 +23,12 @@ namespace Inko.Security.form.security
             loginButton.Enabled = false;
             UserApi.UserLogin(textEdit1.Text, textEdit2.Text, success: result =>
             {
-                var fileInfo = new FileInfo("D:\\postCard\\userLogin.ini");
-                if (fileInfo.Exists)
-                {
-                    fileInfo.Delete();
-                }
-                var stream = new StreamWriter(new FileStream(fileInfo.FullName, FileMode.CreateNew));
-                stream.WriteLine(result.RefreshToken);
-                stream.Flush();
-                stream.Close();
-
+                Properties.Settings.Default.RefreshToken = result.RefreshToken;
+                Properties.Settings.Default.Save();
                 loginButton.Enabled = true;
-                _token = result.Token;
                 InkoSecurityContext.UserId = result.UserId;
                 InkoSecurityContext.UserName = result.RealName;
+                NetGlobalInfo.AccessToken = result.Token;
                 DialogResult = DialogResult.OK;
             }, failure: message =>
             {
@@ -58,6 +44,7 @@ namespace Inko.Security.form.security
 
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
+            new GlobalSettingsForm().ShowDialog();
         }
     }
 }

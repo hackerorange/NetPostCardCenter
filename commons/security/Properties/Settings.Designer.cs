@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostCardQueueProcessor.Properties {
+namespace Inko.Security.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,13 +25,13 @@ namespace PostCardQueueProcessor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("tcp://zhongct-p1.grandsoft.com.cn:61616")]
-        public string BrokerUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RefreshToken {
             get {
-                return ((string)(this["BrokerUrl"]));
+                return ((string)(this["RefreshToken"]));
             }
             set {
-                this["BrokerUrl"] = value;
+                this["RefreshToken"] = value;
             }
         }
     }

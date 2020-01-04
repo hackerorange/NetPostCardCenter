@@ -53,6 +53,7 @@ namespace PostCardQueueProcessor
                                     dictionary.Add(currentSplit[0], currentSplit[1]);
                                 }
                             }
+
                             streamReader.Close();
 
                             var host = dictionary["host"];
@@ -72,11 +73,9 @@ namespace PostCardQueueProcessor
                         }
                     }
 
-                    var token = InkoSecurityContext.GetToken();
-                    if (!string.IsNullOrEmpty(token))
+                    if (InkoSecurityContext.GetToken())
                     {
-                        NetGlobalInfo.AccessToken = token;
-                        Application.Run(new Form1());
+                        Application.Run(new PostCardProcessForm());
                     }
                 }
                 else

@@ -13,6 +13,8 @@ using Hacker.Inko.Net.Base;
 using postCardCenter.form.order;
 using OrderBatchCreate.form;
 using Inko.Security;
+using Inko.Security.form;
+using PostCardQueueProcessor;
 
 namespace postCardCenter.form
 {
@@ -31,7 +33,8 @@ namespace postCardCenter.form
                 return;
             }
 
-            barStaticItem1.Caption = InkoSecurityContext.UserName;
+            barSubItem2.Caption = InkoSecurityContext.UserName;
+            barSubItem2.RibbonStyle = RibbonItemStyles.SmallWithText;
             OpenOrderCenter();
         }
 
@@ -82,5 +85,23 @@ namespace postCardCenter.form
         {
             new BackStyleManageForm().Show(this);
         }
+
+        private void BarButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            InkoSecurityContext.Logout();
+            Hide();
+            if (new UserLogin().ShowDialog(this) == DialogResult.OK)
+            {
+                InkoSecurityContext.GetToken();
+                Show();
+                barSubItem2.Caption = InkoSecurityContext.UserName;
+                barSubItem2.RibbonStyle = RibbonItemStyles.SmallWithText;
+            }
+            else
+            {
+                Close();
+            }
+        }
+
     }
 }

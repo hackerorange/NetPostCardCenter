@@ -19,25 +19,21 @@ namespace Hacker.Inko.Net.Api
                 fileInfo.Delete();
             }
 
-            var fileBytes = NetGlobalInfo.RestTemplate.GetForObject<byte[]>("/file/{fileId}", new Dictionary<string, object>
+            using (var webClient = new WebClient())
             {
-                {"fileId", fileId}
-            });
+                webClient.DownloadFile(new Uri(Properties.Settings.Default.Host + "/file/" + fileId), fileInfo.FullName);
+            }
 
-            var fileStream = new BufferedStream(new FileStream(fileInfo.FullName, FileMode.CreateNew));
-            fileStream.Write(fileBytes, 0, fileBytes.Length);
-            fileStream.Flush();
-            fileStream.Close();
             return fileInfo;
         }
 
 
         public static byte[] DownloadBytesByFileId(string fileId)
         {
-            return NetGlobalInfo.RestTemplate.GetForObject<byte[]>("/file/{fileId}", new Dictionary<string, object>
+            using (var webClient = new WebClient())
             {
-                {"fileId", fileId}
-            });
+                return webClient.DownloadData(new Uri(Properties.Settings.Default.Host + "/file/" + fileId));
+            }
         }
 
         public static void UploadAsync(this FileInfo file, string category, Action<FileUploadResponse> success, Action<string> failure = null)

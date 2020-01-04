@@ -6,7 +6,7 @@ using Hacker.Inko.Net.Request.postCard;
 using Hacker.Inko.Net.Response;
 using Hacker.Inko.Net.Response.postCard;
 
-namespace Hacker.Inko.Net.Api.Collection
+namespace Hacker.Inko.Net.Api
 {
     public static class PostCardItemApi
     {

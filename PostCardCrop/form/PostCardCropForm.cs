@@ -9,7 +9,6 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using Hacker.Inko.Net.Api;
-using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Base;
 using Hacker.Inko.Net.Request.postCard;
 using Hacker.Inko.Net.Response.envelope;
@@ -483,6 +482,15 @@ namespace PostCardCrop.form
                 return;
             }
 
+            if (PostCardView.DataSource is List<PostCardInfo> postCardInfos)
+            {
+                if (postCardInfos.Any(postCardInfo => postCardInfo.ProcessStatusText != "处理完成"))
+                {
+                    XtraMessageBox.Show("存在没有处理完的明信片，无法生成PDF");
+                    return;
+                }
+            }
+
             var envelopeId = _currentEnvelopeInfo.Id;
 
             new ExportForm(envelopeId).ShowDialog(this);
@@ -495,35 +503,49 @@ namespace PostCardCrop.form
 
         private void Timer2_Tick(object sender, EventArgs e)
         {
-            if (EnvelopeView.GetFocusedRow() is EnvelopeInfo envelopeInfo)
+            if (!(EnvelopeView.GetFocusedRow() is EnvelopeInfo envelopeInfo))
             {
-                PostCardItemApi.GetPostCardByEnvelopeId(envelopeInfo.Id,
-                    result =>
-                    {
-                        var dictionary = result.ToDictionary(postCardResponse => postCardResponse.Id);
-                        if (postCardControl.DataSource is List<PostCardInfo> postCardResponses)
-                        {
-                            foreach (var postCardResponse in postCardResponses)
-                            {
-                                if (!dictionary.ContainsKey(postCardResponse.PostCardId))
-                                {
-                                    ////////continue;
-                                }
-
-                                var cardResponse = dictionary[postCardResponse.PostCardId];
-                                // 处理状态
-                                postCardResponse.ProcessStatusText = cardResponse.ProcessStatusText;
-                                // 成品文件ID
-                                postCardResponse.ProductFileId = cardResponse.ProductFileId;
-                                // 反面成品文件ID
-                                postCardResponse.BackProductFileId = cardResponse.BackProductFileId;
-                            }
-
-                            postCardControl.RefreshDataSource();
-                        }
-                    }
-                );
+                return;
             }
+
+            if (!(postCardControl.DataSource is List<PostCardInfo> postCardResponses))
+            {
+                return;
+            }
+
+            // 如果所有的都处理完成了
+            if (postCardResponses.All(k => k.ProcessStatusText == "处理完成"))
+            {
+                barButtonItem2.Enabled = true;
+                return;
+            }
+
+            barButtonItem2.Enabled = false;
+
+            PostCardItemApi.GetPostCardByEnvelopeId(envelopeInfo.Id,
+                result =>
+                {
+                    var dictionary = result.ToDictionary(postCardResponse => postCardResponse.Id);
+
+                    foreach (var postCardResponse in postCardResponses)
+                    {
+                        if (!dictionary.ContainsKey(postCardResponse.PostCardId))
+                        {
+                            continue;
+                        }
+
+                        var cardResponse = dictionary[postCardResponse.PostCardId];
+                        // 处理状态
+                        postCardResponse.ProcessStatusText = cardResponse.ProcessStatusText;
+                        // 成品文件ID
+                        postCardResponse.ProductFileId = cardResponse.ProductFileId;
+                        // 反面成品文件ID
+                        postCardResponse.BackProductFileId = cardResponse.BackProductFileId;
+                    }
+
+                    postCardControl.RefreshDataSource();
+                }
+            );
         }
 
         private void PostCardCropForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)

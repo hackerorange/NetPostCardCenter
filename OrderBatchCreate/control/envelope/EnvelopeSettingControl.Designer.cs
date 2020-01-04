@@ -283,7 +283,7 @@
             this.ribbonPageCategory2});
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage4});
-            this.ribbon.Size = new System.Drawing.Size(1038, 145);
+            this.ribbon.Size = new System.Drawing.Size(1038, 144);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // barButtonItem6
@@ -406,10 +406,10 @@
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem3, true);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem4, true);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem5);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 811);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 810);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1038, 27);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1038, 28);
             // 
             // FrontStyleList
             // 
@@ -488,7 +488,7 @@
             this.repositoryItemRadioGroup2});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl1.Size = new System.Drawing.Size(966, 122);
             this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
             // 
             // barEditItem1
@@ -731,10 +731,10 @@
             // 
             // ribbonStatusBar1
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 748);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 747);
             this.ribbonStatusBar1.Name = "ribbonStatusBar1";
             this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 27);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(984, 28);
             // 
             // backStyleComboBox
             // 
@@ -954,7 +954,7 @@
             this.repositoryItemRadioGroup4});
             this.ribbonControl2.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl2.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl2.Size = new System.Drawing.Size(966, 123);
+            this.ribbonControl2.Size = new System.Drawing.Size(966, 122);
             this.ribbonControl2.StatusBar = this.ribbonStatusBar2;
             // 
             // barEditItem4
@@ -1197,10 +1197,10 @@
             // 
             // ribbonStatusBar2
             // 
-            this.ribbonStatusBar2.Location = new System.Drawing.Point(0, 748);
+            this.ribbonStatusBar2.Location = new System.Drawing.Point(0, 747);
             this.ribbonStatusBar2.Name = "ribbonStatusBar2";
             this.ribbonStatusBar2.Ribbon = this.ribbonControl2;
-            this.ribbonStatusBar2.Size = new System.Drawing.Size(984, 27);
+            this.ribbonStatusBar2.Size = new System.Drawing.Size(984, 28);
             // 
             // EnvelopeSettingControl
             // 

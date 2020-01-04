@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostCardQueueProcessor.Properties {
+namespace Hacker.Inko.Net.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,13 +25,13 @@ namespace PostCardQueueProcessor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("tcp://zhongct-p1.grandsoft.com.cn:61616")]
-        public string BrokerUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:8910")]
+        public string Host {
             get {
-                return ((string)(this["BrokerUrl"]));
+                return ((string)(this["Host"]));
             }
             set {
-                this["BrokerUrl"] = value;
+                this["Host"] = value;
             }
         }
     }

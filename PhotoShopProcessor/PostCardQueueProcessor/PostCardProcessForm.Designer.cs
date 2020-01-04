@@ -1,6 +1,6 @@
 ﻿namespace PostCardQueueProcessor
 {
-    partial class Form1
+    partial class PostCardProcessForm
     {
         /// <summary>
         /// Required designer variable.
@@ -78,14 +78,15 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // Form1
+            // PostCardProcessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 235);
             this.Controls.Add(this.layoutControl1);
-            this.Name = "Form1";
+            this.Name = "PostCardProcessForm";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

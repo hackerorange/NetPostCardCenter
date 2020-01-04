@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Hacker.Inko.Net.Api;
-using Hacker.Inko.Net.Api.Collection;
 using Hacker.Inko.Net.Response.envelope;
 using Hacker.Inko.Net.Response.postCard;
 using iText.IO.Font;

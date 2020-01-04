@@ -1,9 +1,10 @@
 ﻿using System;
 using Hacker.Inko.Net.Api;
-using Inko.Security.form.security;
 using System.IO;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Hacker.Inko.Net.Base;
+using Inko.Security.form;
 
 namespace Inko.Security
 {
@@ -19,43 +20,48 @@ namespace Inko.Security
         /// </summary>
         public static string UserName { get; set; }
 
-        public static string GetToken()
+        public static bool GetToken()
         {
-            string token = null;
-            if (File.Exists("D:\\postCard\\userLogin.ini"))
-                try
-                {
-                    // TODO: 需要校验保存起来的Token是否有效，刷新Token
-                    var fileReader = new StreamReader(new FileStream("D:\\postCard\\userLogin.ini", FileMode.Open));
-                    var refreshToken = fileReader.ReadLine();
-                    fileReader.Close();
-                    var isWait = true;
-                    UserApi.RefreshToken(refreshToken, result =>
+            var refreshToken = Properties.Settings.Default.RefreshToken;
+            if (!string.IsNullOrEmpty(refreshToken))
+            {
+                var isWait = true;
+                var refreshSuccess = false;
+
+                UserApi.RefreshToken(refreshToken,
+                    result =>
                     {
-                        token = result.Token;
+                        refreshSuccess = true;
+                        NetGlobalInfo.AccessToken = result.Token;
                         UserId = result.UserId;
                         UserName = result.RealName;
                         isWait = false;
-                    }, message =>
+                    },
+                    failure: message =>
                     {
                         XtraMessageBox.Show(message);
-                        isWait = false;
+                        refreshSuccess = false;
                     });
-                    while (isWait) Application.DoEvents();
-                }
-                catch (Exception)
+                while (isWait)
                 {
-                    // ignored
+                    Application.DoEvents();
                 }
 
-            // 如果Token有效
-            if (!string.IsNullOrEmpty(token))
-            {
-                return token;
+                if (refreshSuccess)
+                {
+                    return true;
+                }
             }
 
             var a = new UserLogin();
-            return a.ShowDialog() != DialogResult.OK ? null : a.Token;
+            return a.ShowDialog() != DialogResult.OK;
+        }
+
+        public static void Logout()
+        {
+            Properties.Settings.Default.RefreshToken = null;
+            Properties.Settings.Default.Save();
+            NetGlobalInfo.AccessToken = null;
         }
     }
 }

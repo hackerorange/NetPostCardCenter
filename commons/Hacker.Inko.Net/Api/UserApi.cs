@@ -18,11 +18,14 @@ namespace Hacker.Inko.Net.Api
         /// <param name="failure">失败后的回调函数</param>
         public static void UserLogin(string userName, string password, Action<LoginResponse> success, Action<string> failure)
         {
-            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<LoginResponse>>("/security/login", new UserLoginRequest
-            {
-                UserName = userName,
-                Password = password
-            }, result => result.PrepareResponse(success, failure));
+            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<LoginResponse>>(
+                "/security/login",
+                new UserLoginRequest
+                {
+                    UserName = userName,
+                    Password = password
+                },
+                result => result.PrepareResponse(success, failure));
         }
 
 
@@ -34,10 +37,13 @@ namespace Hacker.Inko.Net.Api
         /// <param name="failure"></param>
         public static void RefreshToken(string refreshToken, Action<LoginResponse> success, Action<string> failure)
         {
-            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<LoginResponse>>("/security/refreshToken", new HttpEntity(new HttpHeaders
-            {
-                {"refresh-token", refreshToken}
-            }), result => result.PrepareResponse(success, failure));
+            NetGlobalInfo.RestTemplate.PostForMessageAsync<DataResponse<LoginResponse>>(
+                "/security/refreshToken",
+                new HttpEntity(new HttpHeaders
+                {
+                    {"refresh-token", refreshToken}
+                }),
+                result => result.PrepareResponse(success, failure));
         }
     }
 }
