@@ -20,7 +20,7 @@ namespace Hacker.Inko.Global.Form
         private void SimpleButton1_Click(object sender, EventArgs e)
         {
             Net.Properties.Settings.Default.Host = textEdit1.Text;
-            Properties.Settings.Default.Save();
+            Net.Properties.Settings.Default.Save();
             Properties.Settings.Default.BrokerUrl = textEdit2.Text;
             Properties.Settings.Default.Save();
 

@@ -25,7 +25,7 @@ namespace Hacker.Inko.Net.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:9801")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:9802")]
         public string Host {
             get {
                 return ((string)(this["Host"]));
