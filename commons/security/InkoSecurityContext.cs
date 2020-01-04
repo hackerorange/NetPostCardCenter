@@ -41,6 +41,7 @@ namespace Inko.Security
                     {
                         XtraMessageBox.Show(message);
                         refreshSuccess = false;
+                        isWait = false;
                     });
                 while (isWait)
                 {
