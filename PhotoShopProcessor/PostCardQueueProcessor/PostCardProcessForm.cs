@@ -180,8 +180,6 @@ namespace PostCardQueueProcessor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var tempDirectory = new DirectoryInfo("D:/postCard/tmpFile/");
-            foreach (var f in tempDirectory.GetFiles()) f.Delete();
         }
 
         private void Log(string message)
