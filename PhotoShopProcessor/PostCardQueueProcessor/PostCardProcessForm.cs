@@ -58,9 +58,9 @@ namespace PostCardQueueProcessor
 
 
             // 创建临时目录
-            if (!Directory.Exists(Path.GetTempPath()))
+            if (!Directory.Exists(Path.GetTempPath() + "/PostCardCrop/"))
             {
-                Directory.CreateDirectory(Path.GetTempPath());
+                Directory.CreateDirectory(Path.GetTempPath() + "/PostCardCrop/");
             }
 
             var isWait = true;
@@ -71,7 +71,7 @@ namespace PostCardQueueProcessor
                 if (postCardProcessCropInfo.FrontCropCropInfo != null)
                 {
                     // 正面文件
-                    var frontFileInfo = new FileInfo(Path.GetTempPath() + "/" + Guid.NewGuid() + ".jpg");
+                    var frontFileInfo = new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg");
                     Log(@"开始下载正面文件");
                     try
                     {
@@ -122,7 +122,7 @@ namespace PostCardQueueProcessor
                     else
                     {
                         // 反面文件
-                        var backFileInfo = new FileInfo("D:/postCard/tmpFile/" + Guid.NewGuid() + ".jpg");
+                        var backFileInfo = new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg");
                         Log(@"开始下载反面文件");
                         backFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.BackCropCropInfo.FileId, backFileInfo);
 
