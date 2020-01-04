@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Input;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -17,7 +18,7 @@ using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
 using PostCardProcessor.model;
-using PostCardProcessor.queue;
+using PostCardQueueProcessor.queue;
 using CropInfo = PhotoCropper.viewModel.CropInfo;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Size = System.Windows.Size;
@@ -30,57 +31,6 @@ namespace PostCardCrop.form
 
         private DoubleSidePostCardCropInfo _doubleSidePostCardCropInfo;
 
-        static PostCardCropForm()
-        {
-            if (Process.GetCurrentProcess().MainModule is ProcessModule processModule)
-            {
-                var dictionary = new Dictionary<string, string>();
-                var fileInfo = new FileInfo(processModule.FileName);
-                fileInfo = new FileInfo(fileInfo.DirectoryName + "/inkoConfig.ini");
-                if (fileInfo.Exists)
-                {
-                    var streamReader = new StreamReader(new FileStream(fileInfo.FullName, FileMode.Open));
-                    while (!streamReader.EndOfStream)
-                    {
-                        var line = streamReader.ReadLine();
-                        if (line == null) continue;
-                        var currentSplit = line.Split('=');
-                        if (currentSplit.Length == 2)
-                        {
-                            dictionary.Add(currentSplit[0], currentSplit[1]);
-                        }
-                    }
-
-                    streamReader.Close();
-
-                    var queueName = dictionary["queueName"];
-                    if (string.IsNullOrEmpty(queueName))
-                    {
-                        XtraMessageBox.Show("没有配置host，无法初始化网络请求");
-                    }
-                    else
-                    {
-                        PostCardProcessQueue.QueueName = queueName;
-                    }
-
-                    var providerUri = dictionary["providerUri"];
-                    if (string.IsNullOrEmpty(providerUri))
-                    {
-                        XtraMessageBox.Show("没有配置providerUri，无法初始化消息队列");
-                    }
-                    else
-                    {
-                        PostCardProcessQueue.ProviderUri = providerUri;
-                    }
-                }
-            }
-            else
-            {
-                XtraMessageBox.Show("没有找到配置文件");
-            }
-        }
-
-
         //明信片集合
         public PostCardCropForm(string focusedRowOrderId)
         {
@@ -91,32 +41,97 @@ namespace PostCardCrop.form
                 photocroper.KeyUp += Photocroper_KeyUp;
             }
 
+            postCardControl.KeyUp += PostCardControlKeyUp;
+
             _orderId = focusedRowOrderId;
+        }
+
+        private void PostCardControlKeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (!(PostCardView.GetFocusedRow() is PostCardInfo postCard))
+            {
+                return;
+            }
+
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                case Keys.B:
+                case Keys.C:
+                case Keys.D:
+                    ChangeFrontStyle(e.KeyCode.ToString());
+                    break;
+                case Keys.R:
+                    ReCropPostCard();
+                    break;
+            }
+        }
+
+        private void ChangeFrontStyle(string style)
+        {
+            if (!(PostCardView.GetFocusedRow() is PostCardInfo postCard))
+            {
+                return;
+            }
+
+            PostCardItemApi.ChangePostCardFrontStyle(postCard.PostCardId, style, resp =>
+            {
+                var postCardInfo = resp.TranlateToPostCard();
+                // postCard.ProcessStatus = postCardInfo.ProcessStatus;
+                postCard.ProductFileId = postCardInfo.ProductFileId;
+                postCard.FrontStyle = postCardInfo.FrontStyle;
+                postCard.ProcessStatusText = postCardInfo.ProcessStatusText;
+                PostCardChanged();
+            }, message => { XtraMessageBox.Show(message); });
         }
 
         private void Photocroper_KeyUp(object sender, KeyEventArgs e)
         {
-            if (elementHost1.Child is Photocroper photocroper)
+            if (!(PostCardView.GetFocusedRow() is PostCardInfo postCard))
             {
-                //提交
-                switch (e.Key)
-                {
-                    case Key.Enter:
+                return;
+            }
+
+            if (!(elementHost1.Child is Photocroper photocroper))
+            {
+                return;
+            }
+
+            //提交
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    if (!photocroper.Preview)
+                    {
                         SubmitPostCard(PostCardView.FocusedRowHandle, photocroper.CropInfo);
-                        //photocroper.FastChange = true;
-                        break;
-                    case Key.LeftCtrl:
-                    case Key.RightCtrl:
-                        photocroper.FastChange = true;
-                        break;
-                    case Key.LeftShift:
-                    case Key.RightShift:
-                        photocroper.SizeLimit = true;
-                        break;
-                    case Key.Space:
-                        photocroper.Preview = false;
-                        break;
-                }
+                    }
+                    else
+                    {
+                        MoveToNextPosition(PostCardView.FocusedRowHandle);
+                    }
+
+                    //photocroper.FastChange = true;
+                    break;
+                case Key.LeftCtrl:
+                case Key.RightCtrl:
+                    photocroper.FastChange = true;
+                    break;
+                case Key.LeftShift:
+                case Key.RightShift:
+                    photocroper.SizeLimit = true;
+                    break;
+                case Key.Space:
+                    photocroper.Preview = false;
+                    break;
+                case Key.A:
+                case Key.B:
+                case Key.C:
+                case Key.D:
+                    ChangeFrontStyle(e.Key.ToString());
+                    break;
+                case Key.R: // 重新裁切
+                    ReCropPostCard();
+                    break;
             }
         }
 
@@ -158,7 +173,7 @@ namespace PostCardCrop.form
                             photoCropper.ProductSize = new Size(postCardInfo.ProductSize.Width, postCardInfo.ProductSize.Height);
                             photoCropper.FrontStyle = "B";
                             photoCropper.Preview = false;
-                            photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.BackFileId, action: (stream, tempCropInfo) =>
+                            photoCropper.InitImage(Hacker.Inko.Net.Properties.Settings.Default.Host + "/file/" + postCardInfo.BackFileId, action: (stream, tempCropInfo) =>
                             {
                                 if (Math.Abs(tempCropInfo.CropWidth - 1) <= 0.001 && Math.Abs(tempCropInfo.CropHeight - 1) <= 0.001)
                                 {
@@ -395,7 +410,7 @@ namespace PostCardCrop.form
                         photoCropper.Preview = false;
 
                         //FileApi.GetInstance().
-                        photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.FileId, null, (stream, cropInfo) =>
+                        photoCropper.InitImage(Hacker.Inko.Net.Properties.Settings.Default.Host + "/file/" + postCardInfo.FileId, null, (stream, cropInfo) =>
                         {
                             if (postCardInfo.ProcessStatusText == "未提交" && postCardInfo.FrontStyle == "D")
                             {
@@ -426,7 +441,7 @@ namespace PostCardCrop.form
                         //FileApi.GetInstance().
                         photoCropper.Preview = true;
                         photoCropper.FrontStyle = "B";
-                        photoCropper.InitImage(NetGlobalInfo.Host + "/file/" + postCardInfo.ProductFileId);
+                        photoCropper.InitImage(Hacker.Inko.Net.Properties.Settings.Default.Host + "/file/" + postCardInfo.ProductFileId);
                     }
                 }
             }
@@ -456,18 +471,22 @@ namespace PostCardCrop.form
 
         private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)
-            {
-                PostCardItemApi.ReCropPostCard(
-                    postCardInfo.PostCardId,
-                    (response) =>
-                    {
-                        postCardInfo.ProductFileId = response.ProductFileId;
-                        postCardInfo.BackProductFileId = response.BackProductFileId;
-                        postCardInfo.ProcessStatusText = response.ProcessStatusText;
-                        PostCardChanged();
-                    });
-            }
+            ReCropPostCard();
+        }
+
+        private void ReCropPostCard()
+        {
+            if (!(PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)) return;
+
+            PostCardItemApi.ReCropPostCard(
+                postCardInfo.PostCardId,
+                (response) =>
+                {
+                    postCardInfo.ProductFileId = response.ProductFileId;
+                    postCardInfo.BackProductFileId = response.BackProductFileId;
+                    postCardInfo.ProcessStatusText = response.ProcessStatusText;
+                    PostCardChanged();
+                });
         }
 
         /// <summary>

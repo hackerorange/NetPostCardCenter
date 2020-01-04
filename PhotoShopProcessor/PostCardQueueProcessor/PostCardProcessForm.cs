@@ -19,21 +19,15 @@ namespace PostCardQueueProcessor
         private readonly IConnection _iConnection;
         private readonly ISession _iSession;
         private readonly IMessageConsumer _iConsumer;
-        private static IConnectionFactory _factory;
 
-        static PostCardProcessForm()
-        {
-            //创建连接工厂
-            _factory = new ConnectionFactory(Properties.Settings.Default.BrokerUrl);
-        }
 
         public PostCardProcessForm()
         {
             InitializeComponent();
 
-
+            IConnectionFactory factory = new ConnectionFactory(Hacker.Inko.Global.Properties.Settings.Default.BrokerUrl);
             //通过工厂构建连接
-            _iConnection = _factory.CreateConnection();
+            _iConnection = factory.CreateConnection();
             //这个是连接的客户端名称标识
             _iConnection.ClientId = "firstQueueListener";
             //启动连接，监听的话要主动启动连接

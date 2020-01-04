@@ -168,9 +168,9 @@
       <Project>{7E9FB079-4906-4E36-82D4-1DFA68A3AC7A}</Project>
       <Name>PhotoCropper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PhotoShopProcessor\PostCardProcessor\PostCardProcessor.csproj">
-      <Project>{32596C1F-259D-410E-B6F3-BA61AEC6AEF6}</Project>
-      <Name>PostCardProcessor</Name>
+    <ProjectReference Include="..\PhotoShopProcessor\PostCardQueueProcessor\PostCardQueueProcessor.csproj">
+      <Project>{6AD412A7-F9E3-42ED-93EF-C16132173E9D}</Project>
+      <Name>PostCardQueueProcessor</Name>
     </ProjectReference>
     <ProjectReference Include="..\pictureCroper\pictureCroper.csproj">
       <Project>{89667af6-aebb-4ff8-b9e2-f4964353eefd}</Project>
@@ -183,9 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="inkoConfig.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\PostCardCrop.model.PostCardInfo.datasource" />
     <None Include="Resources\A.png" />

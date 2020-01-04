@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Apache.NMS;
-using Apache.NMS.ActiveMQ;
 using Newtonsoft.Json;
 using PostCardProcessor.model;
 
-namespace PostCardProcessor.queue
+namespace PostCardQueueProcessor.queue
 {
     public class PostCardProcessContext
     {
@@ -22,8 +20,6 @@ namespace PostCardProcessor.queue
         {
             set => _factory = new NMSConnectionFactory(value);
         }
-
-        public static string QueueName { get; set; } = "firstQueue";
 
         private static IConnectionFactory _factory;
 
@@ -47,13 +43,13 @@ namespace PostCardProcessor.queue
         {
             try
             {
-                using (var connection = _factory.CreateConnection())
+                using (var connection = new NMSConnectionFactory(Hacker.Inko.Global.Properties.Settings.Default.BrokerUrl).CreateConnection())
                 {
                     //通过连接创建Session会话
                     using (var session = connection.CreateSession())
                     {
                         //通过会话创建生产者，方法里面new出来的是MQ中的Queue
-                        var prod = session.CreateProducer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue(QueueName));
+                        var prod = session.CreateProducer(new Apache.NMS.ActiveMQ.Commands.ActiveMQQueue("firstQueue"));
                         //创建一个发送的消息对象
                         var message = prod.CreateTextMessage();
                         //给这个对象赋实际的消息

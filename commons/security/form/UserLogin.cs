@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Hacker.Inko.Global.Form;
 using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Base;
 

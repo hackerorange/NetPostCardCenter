@@ -104,6 +104,7 @@
     <Compile Include="Response\system\BackStyleResponse.cs" />
     <Compile Include="Response\system\FrontStyleResponse.cs" />
     <Compile Include="Response\system\PostCardSizeResponse.cs" />
+    <Compile Include="Properties\Settings.cs" />
     <Compile Include="Utils\JsonHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +120,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>

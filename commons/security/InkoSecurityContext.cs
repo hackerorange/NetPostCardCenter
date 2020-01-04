@@ -54,7 +54,7 @@ namespace Inko.Security
             }
 
             var a = new UserLogin();
-            return a.ShowDialog() != DialogResult.OK;
+            return a.ShowDialog() == DialogResult.OK;
         }
 
         public static void Logout()

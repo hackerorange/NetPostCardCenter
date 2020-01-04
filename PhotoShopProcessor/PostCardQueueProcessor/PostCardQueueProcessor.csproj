@@ -98,6 +98,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\PostCardProcessCropInfo.cs" />
+    <Compile Include="model\Size.cs" />
+    <Compile Include="PhotoShopOperation.cs" />
     <Compile Include="PostCardProcessForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,8 +108,11 @@
       <DependentUpon>PostCardProcessForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Processor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="queue\PostCardProcessQueue.cs" />
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="PostCardProcessForm.resx">
       <DependentUpon>PostCardProcessForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,12 +128,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="inkoConfig.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -137,6 +140,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\commons\Hacker.Inko.Global\Hacker.Inko.Global.csproj">
+      <Project>{7fca21e2-291d-4415-9ffa-544244d75d0f}</Project>
+      <Name>Hacker.Inko.Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\commons\Hacker.Inko.Net\Hacker.Inko.Net.csproj">
       <Project>{08B6D461-1EF2-439F-B79D-F805429EE72C}</Project>
       <Name>Hacker.Inko.Net</Name>
@@ -145,10 +152,17 @@
       <Project>{36989B59-FE22-40EC-A653-B7483E2A5E79}</Project>
       <Name>security</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PostCardProcessor\PostCardProcessor.csproj">
-      <Project>{32596c1f-259d-410e-b6f3-ba61aec6aef6}</Project>
-      <Name>PostCardProcessor</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Photoshop">
+      <Guid>{E891EE9A-D0AE-4CB4-8871-F92C0109F18E}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
