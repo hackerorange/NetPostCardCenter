@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -28,6 +29,13 @@ namespace PostCardQueueProcessor
                     BonusSkins.Register();
                     SkinManager.EnableFormSkins();
                     UserLookAndFeel.Default.SetSkinStyle("DevExpress Style"); // 设置皮肤样式
+
+
+                    var path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase +
+                               ConfigurationManager.AppSettings["log4net"];
+                    var fi = new System.IO.FileInfo(path);
+                    log4net.Config.XmlConfigurator.Configure(fi);
+
 
                     /* Application.EnableVisualStyles();
                      Application.SetCompatibleTextRenderingDefault(false);*/

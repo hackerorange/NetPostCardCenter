@@ -20,6 +20,8 @@ namespace PostCardQueueProcessor
         private readonly ISession _iSession;
         private readonly IMessageConsumer _iConsumer;
 
+        public static readonly log4net.ILog LogInfo = log4net.LogManager.GetLogger("loginfo");
+
 
         public PostCardProcessForm()
         {
@@ -58,10 +60,7 @@ namespace PostCardQueueProcessor
 
 
             // 创建临时目录
-            if (!Directory.Exists(Path.GetTempPath() + "/PostCardCrop/"))
-            {
-                Directory.CreateDirectory(Path.GetTempPath() + "/PostCardCrop/");
-            }
+            if (!Directory.Exists(Path.GetTempPath() + "/PostCardCrop/")) Directory.CreateDirectory(Path.GetTempPath() + "/PostCardCrop/");
 
             var isWait = true;
             try
@@ -74,6 +73,7 @@ namespace PostCardQueueProcessor
 
                 FileApi.DownloadFileByFileIdAsync(postCardProcessCropInfo.FrontCropCropInfo.FileId, new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg"), frontFileInfo =>
                 {
+                    Log(@"文件下载成功，开始处理正面文件");
                     //========================================================================================== 处理正面 ==========================================================================================
                     var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
                     if (frontProductFile == null)
@@ -122,10 +122,10 @@ namespace PostCardQueueProcessor
                     else
                     {
                         var backCropInfo = postCardProcessCropInfo.BackCropCropInfo;
-                        if ((Math.Abs(backCropInfo.CropLeft) < 0.001) &&
-                            (Math.Abs(backCropInfo.CropTop) < 0.001) &&
-                            (Math.Abs(backCropInfo.CropWidth - 1) < 0.001) &&
-                            (Math.Abs(backCropInfo.CropHeight - 1) < 0.001))
+                        if (Math.Abs(backCropInfo.CropLeft) < 0.001 &&
+                            Math.Abs(backCropInfo.CropTop) < 0.001 &&
+                            Math.Abs(backCropInfo.CropWidth - 1) < 0.001 &&
+                            Math.Abs(backCropInfo.CropHeight - 1) < 0.001)
                         {
                             Log(@"反面为标准尺寸，不需要裁切！");
                             resultFileInfo.BackProductFileId = backCropInfo.FileId;
@@ -227,6 +227,12 @@ namespace PostCardQueueProcessor
         {
             listBoxControl1.Items.Add(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm:ss ]") + " " + message);
             listBoxControl1.SelectedIndex = listBoxControl1.ItemCount;
+            if (listBoxControl1.Items.Count > 1000)
+            {
+                listBoxControl1.Items.Clear();
+            }
+
+            LogInfo.Info(message);
             Application.DoEvents();
         }
 
