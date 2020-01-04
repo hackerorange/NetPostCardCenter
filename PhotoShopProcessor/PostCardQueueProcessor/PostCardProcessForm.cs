@@ -67,99 +67,139 @@ namespace PostCardQueueProcessor
             try
             {
                 var resultFileInfo = new PostCardItemProductFileSubmitRequest();
-                // 有反面裁切
-                if (postCardProcessCropInfo.FrontCropCropInfo != null)
+
+
+                // 正面文件
+                Log(@"开始下载正面文件");
+
+                FileApi.DownloadFileByFileIdAsync(postCardProcessCropInfo.FrontCropCropInfo.FileId, new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg"), frontFileInfo =>
                 {
-                    // 正面文件
-                    var frontFileInfo = new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg");
-                    Log(@"开始下载正面文件");
-                    try
+                    //========================================================================================== 处理正面 ==========================================================================================
+                    var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                    if (frontProductFile == null)
                     {
-                        frontFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.FrontCropCropInfo.FileId, frontFileInfo);
-                        Log(@"正面文件下载完成");
-                        Log(@"开始处理正面文件");
-                        var frontProductFile = frontFileInfo.Process(postCardProcessCropInfo.FrontCropCropInfo, postCardProcessCropInfo.PostCardType, postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
-                        if (frontProductFile == null)
-                        {
-                            Log(@"正面文件处理失败");
-                            PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
-                            isWait = false;
-                            return;
-                        }
-
-                        Log(@"正面文件处理完成");
-                        Log(@"开始上传正面成品文件");
-                        var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
-                        resultFileInfo.FrontProductFileId = frontFileUploadResponse.Id;
-                        Log(@"正面成品文件上传成功");
-                        Log(@"开始删除正面文件");
-                        // 删除文件
-                        frontFileInfo.Delete();
-                        // 删除文件
-                        frontProductFile.Delete();
-                        Log(@"正面文件删除成功");
-                    }
-                    finally
-                    {
-                        // 删除文件
-                        frontFileInfo.Delete();
-                        Log(@"正面文件删除成功");
-                    }
-                }
-
-
-                // 有反面裁切
-                if (postCardProcessCropInfo.BackCropCropInfo != null)
-                {
-                    var backCropInfo = postCardProcessCropInfo.BackCropCropInfo;
-                    if ((Math.Abs(backCropInfo.CropLeft) < 0.001) &&
-                        (Math.Abs(backCropInfo.CropTop) < 0.001) &&
-                        (Math.Abs(backCropInfo.CropWidth - 1) < 0.001) &&
-                        (Math.Abs(backCropInfo.CropHeight - 1) < 0.001))
-                    {
-                        Log(@"反面为标准尺寸，不需要裁切！");
-                        resultFileInfo.BackProductFileId = backCropInfo.FileId;
-                    }
-                    else
-                    {
-                        // 反面文件
-                        var backFileInfo = new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg");
-                        Log(@"开始下载反面文件");
-                        backFileInfo = FileApi.DownloadFileByFileId(postCardProcessCropInfo.BackCropCropInfo.FileId, backFileInfo);
-
-                        Log(@"反面文件下载完成");
-                        Log(@"开始处理反面文件");
-                        var backProductFile = backFileInfo.Process(postCardProcessCropInfo.BackCropCropInfo, "B", postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
-                        Log(@"反面文件处理完成");
-                        Log(@"开始上传反面成品文件");
-                        var backFileUploadResponse = backProductFile.UploadFile("明信片正面成品");
-                        resultFileInfo.BackProductFileId = backFileUploadResponse.Id;
-                        Log(@"反面成品文件上传成功");
-                        Log(@"开始删除反面文件");
-                        // 删除文件
-                        backFileInfo.Delete();
-                        // 删除文件
-                        backProductFile.Delete();
-                        Log(@"反面文件删除成功");
-                    }
-                }
-
-                Log(@"开始提交成品ID");
-                PostCardItemApi.SubmitPostCardProductFile(
-                    postCardProcessCropInfo.PostCardId,
-                    resultFileInfo,
-                    k =>
-                    {
-                        Log(@"成品ID提交成功");
-                        PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "AFTER_PROCESS", null);
-                        isWait = false;
-                    },
-                    m =>
-                    {
-                        Log(@"成品ID提交失败");
+                        Log(@"正面文件处理失败");
                         PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
                         isWait = false;
-                    });
+                        // 流程结束
+                        return;
+                    }
+
+                    Log(@"正面文件处理完成");
+                    Log(@"开始上传正面成品文件");
+                    var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
+                    resultFileInfo.FrontProductFileId = frontFileUploadResponse.Id;
+                    Log(@"正面成品文件上传成功");
+                    Log(@"开始删除正面文件");
+                    // 删除文件
+                    frontFileInfo.Delete();
+                    // 删除文件
+                    frontProductFile.Delete();
+                    Log(@"正面文件删除成功");
+
+                    //========================================================================================== 没有反面，不用裁切 ==========================================================================================
+                    // 有反面裁切
+                    if (postCardProcessCropInfo.BackCropCropInfo == null)
+                    {
+                        Log(@"开始提交成品ID");
+                        PostCardItemApi.SubmitPostCardProductFile(
+                            postCardProcessCropInfo.PostCardId,
+                            resultFileInfo,
+                            k =>
+                            {
+                                Log(@"成品ID提交成功");
+                                PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "AFTER_PROCESS", null);
+                                isWait = false;
+                            },
+                            m =>
+                            {
+                                Log(@"成品ID提交失败");
+                                PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                                isWait = false;
+                            });
+                    }
+                    //========================================================================================== 有反面，但是不需要裁切 ==========================================================================================
+                    else
+                    {
+                        var backCropInfo = postCardProcessCropInfo.BackCropCropInfo;
+                        if ((Math.Abs(backCropInfo.CropLeft) < 0.001) &&
+                            (Math.Abs(backCropInfo.CropTop) < 0.001) &&
+                            (Math.Abs(backCropInfo.CropWidth - 1) < 0.001) &&
+                            (Math.Abs(backCropInfo.CropHeight - 1) < 0.001))
+                        {
+                            Log(@"反面为标准尺寸，不需要裁切！");
+                            resultFileInfo.BackProductFileId = backCropInfo.FileId;
+                            Log(@"开始提交成品ID");
+                            //========================================================================================== 提交 ==========================================================================================
+                            PostCardItemApi.SubmitPostCardProductFile(
+                                postCardProcessCropInfo.PostCardId,
+                                resultFileInfo,
+                                k =>
+                                {
+                                    Log(@"成品ID提交成功");
+                                    PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "AFTER_PROCESS", null);
+                                    isWait = false;
+                                },
+                                m =>
+                                {
+                                    Log(@"成品ID提交失败");
+                                    PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                                    isWait = false;
+                                });
+                        }
+                        //========================================================================================== 反面需要裁切 ==========================================================================================
+                        else
+                        {
+                            Log(@"开始下载反面文件");
+
+                            FileApi.DownloadFileByFileIdAsync(postCardProcessCropInfo.BackCropCropInfo.FileId, new FileInfo(Path.GetTempPath() + "/PostCardCrop/" + Guid.NewGuid() + ".jpg"), backFileInfo =>
+                            {
+                                Log(@"反面文件下载完成");
+                                Log(@"开始处理反面文件");
+                                var backProductFile = backFileInfo.Process(postCardProcessCropInfo.BackCropCropInfo, "B", postCardProcessCropInfo.ProductWidth, postCardProcessCropInfo.ProductHeight);
+                                Log(@"反面文件处理完成");
+                                Log(@"开始上传反面成品文件");
+                                var backFileUploadResponse = backProductFile.UploadFile("明信片正面成品");
+                                resultFileInfo.BackProductFileId = backFileUploadResponse.Id;
+                                Log(@"反面成品文件上传成功");
+                                Log(@"开始删除反面文件");
+                                // 删除文件
+                                backFileInfo.Delete();
+                                // 删除文件
+                                backProductFile.Delete();
+                                Log(@"反面文件删除成功");
+                                Log(@"开始提交成品ID");
+                                //========================================================================================== 提交 ==========================================================================================
+                                PostCardItemApi.SubmitPostCardProductFile(
+                                    postCardProcessCropInfo.PostCardId,
+                                    resultFileInfo,
+                                    k =>
+                                    {
+                                        Log(@"成品ID提交成功");
+                                        PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "AFTER_PROCESS", null);
+                                        isWait = false;
+                                    },
+                                    m =>
+                                    {
+                                        Log(@"成品ID提交失败");
+                                        PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                                        isWait = false;
+                                    });
+                                //========================================================================================== 反面下载失败 ==========================================================================================
+                            }, message =>
+                            {
+                                PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                                isWait = false;
+                            });
+                        }
+                    }
+                }, failure =>
+                {
+                    //========================================================================================== 正面下载失败 ==========================================================================================
+                    Log("正面文件下载失败");
+                    PostCardItemApi.UpdatePostCardProcessStatus(postCardProcessCropInfo.PostCardId, "PROCESS_FAILURE", null);
+                    isWait = false;
+                });
             }
             catch (Exception e)
             {
