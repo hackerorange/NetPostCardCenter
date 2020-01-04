@@ -22,6 +22,7 @@ namespace Hacker.Inko.Net.Api
             using (var webClient = new WebClient())
             {
                 webClient.DownloadFile(new Uri(Properties.Settings.Default.Host + "/file/" + fileId), fileInfo.FullName);
+                webClient.Dispose();
             }
 
             return fileInfo;
@@ -32,7 +33,9 @@ namespace Hacker.Inko.Net.Api
         {
             using (var webClient = new WebClient())
             {
-                return webClient.DownloadData(new Uri(Properties.Settings.Default.Host + "/file/" + fileId));
+                var downloadBytesByFileId = webClient.DownloadData(new Uri(Properties.Settings.Default.Host + "/file/" + fileId));
+                webClient.Dispose();
+                return downloadBytesByFileId;
             }
         }
 
