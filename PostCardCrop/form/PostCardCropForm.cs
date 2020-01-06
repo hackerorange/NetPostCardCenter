@@ -189,15 +189,19 @@ namespace PostCardCrop.form
                 }
                 else
                 {
-                    _doubleSidePostCardCropInfo.BackCropCropInfo = new PostCardProcessCropInfo
+                    // 如果有反面文件ID,提交反面数据，否则不提交
+                    if (!string.IsNullOrEmpty(postCardInfo.BackFileId))
                     {
-                        FileId = postCardInfo.BackFileId,
-                        CropLeft = cropInfo.CropLeft, // 反面左边
-                        CropTop = cropInfo.CropTop, // 反面右边
-                        CropHeight = cropInfo.CropHeight, // 反面高度
-                        CropWidth = cropInfo.CropWidth, // 反面宽度
-                        Rotation = cropInfo.Rotation, // 反面旋转角度
-                    };
+                        _doubleSidePostCardCropInfo.BackCropCropInfo = new PostCardProcessCropInfo
+                        {
+                            FileId = postCardInfo.BackFileId,
+                            CropLeft = cropInfo.CropLeft, // 反面左边
+                            CropTop = cropInfo.CropTop, // 反面右边
+                            CropHeight = cropInfo.CropHeight, // 反面高度
+                            CropWidth = cropInfo.CropWidth, // 反面宽度
+                            Rotation = cropInfo.Rotation, // 反面旋转角度
+                        };
+                    }
                 }
 
 
@@ -213,7 +217,7 @@ namespace PostCardCrop.form
         {
             if (PostCardView.DataSource is List<PostCardInfo> postCards)
             {
-                var postCardInfo = postCards.Find(k => { return k.ProcessStatusText == "未提交"; });
+                var postCardInfo = postCards.Find(k => k.ProcessStatusText == "未提交");
 
                 if (postCardInfo == null)
                 {
