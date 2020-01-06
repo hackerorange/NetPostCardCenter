@@ -25,7 +25,7 @@ namespace Hacker.Inko.Global.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("tcp://zhongct-p1.grandsoft.com.cn:61616")]
+        [global::System.Configuration.DefaultSettingValueAttribute("tcp://gongxiang:61616")]
         public string BrokerUrl {
             get {
                 return ((string)(this["BrokerUrl"]));

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BrokerUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">tcp://zhongct-p1.grandsoft.com.cn:61616</Value>
+      <Value Profile="(Default)">tcp://gongxiang:61616</Value>
     </Setting>
   </Settings>
 </SettingsFile>
