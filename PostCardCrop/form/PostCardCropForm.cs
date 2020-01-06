@@ -575,5 +575,22 @@ namespace PostCardCrop.form
         {
             timer2.Stop();
         }
+
+        private void BarButtonItem12_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            PostCardBillApi.ChangeOrderStatus(
+                _orderId,
+                "Finished",
+                result =>
+                {
+                    var dialogResult = XtraMessageBox.Show("状态修改成功,是否关闭当前窗口？", "订单完成", MessageBoxButtons.OKCancel);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        Close();
+                    }
+                },
+                message => { XtraMessageBox.Show("订单状态修改失败"); }
+            );
+        }
     }
 }
