@@ -248,6 +248,20 @@ namespace Hacker.Inko.PostCard.Library.Support
                 _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
                 _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
             _document.Add(paragraph);
+            if (_envelopeResponse.DoubleSide)
+            {
+                var backGroundParagraph = new Paragraph("反面样式为【" + _envelopeResponse.BackStyle + "】");
+                backGroundParagraph.SetFont(pdfFont);
+                backGroundParagraph.SetFontSize(8);
+                backGroundParagraph.SetFontColor(DeviceRgb.BLACK);
+                backGroundParagraph.SetPageNumber(BackPageNumber);
+                backGroundParagraph.SetFixedPosition(
+                    leftWhite + (_paperColumn - 1) * _envelopeResponse.ProductWidth.MMtoPix() + 10,
+                    _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
+                    _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
+                _document.Add(backGroundParagraph);
+            }
+
             // 正面
             // 行
             for (var i = 0; i < _paperRow; i++)
