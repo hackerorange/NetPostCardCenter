@@ -124,10 +124,14 @@ namespace PostCardQueueProcessor
                     else
                     {
                         var backCropInfo = postCardProcessCropInfo.BackCropCropInfo;
-                        if (Math.Abs(backCropInfo.CropLeft) < 0.001 &&
-                            Math.Abs(backCropInfo.CropTop) < 0.001 &&
-                            Math.Abs(backCropInfo.CropWidth - 1) < 0.001 &&
-                            Math.Abs(backCropInfo.CropHeight - 1) < 0.001)
+                        if (
+                            string.IsNullOrEmpty(backCropInfo.FileId) ||
+                            (
+                                Math.Abs(backCropInfo.CropLeft) < 0.001 &&
+                                Math.Abs(backCropInfo.CropTop) < 0.001 &&
+                                Math.Abs(backCropInfo.CropWidth - 1) < 0.001 &&
+                                Math.Abs(backCropInfo.CropHeight - 1) < 0.001)
+                        )
                         {
                             Log(@"反面为标准尺寸，不需要裁切！");
                             resultFileInfo.BackProductFileId = backCropInfo.FileId;
