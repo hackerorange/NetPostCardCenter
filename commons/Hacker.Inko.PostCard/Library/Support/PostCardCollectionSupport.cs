@@ -91,6 +91,7 @@ namespace Hacker.Inko.PostCard.Library.Support
             if (fileInfo.Directory != null && !fileInfo.Directory.Exists) fileInfo.Directory.Create();
 
             if (fileInfo.Exists)
+            {
                 try
                 {
                     fileInfo.Delete();
@@ -100,6 +101,7 @@ namespace Hacker.Inko.PostCard.Library.Support
                     onError(e.Message);
                     return;
                 }
+            }
 
             var tempDirectoryInfo = new DirectoryInfo(fileInfo.DirectoryName + "/" + Guid.NewGuid());
             if (!tempDirectoryInfo.Exists) tempDirectoryInfo.Create();
@@ -112,36 +114,20 @@ namespace Hacker.Inko.PostCard.Library.Support
                 pdfDocument.SetDefaultPageSize(new PageSize(envelopeResponse.PaperWidth.MMtoPix(), envelopeResponse.PaperHeight.MMtoPix()));
 
                 var pageContexts = new List<PostCardPageContext>();
-                var postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse, urgent, waterMark)
-                {
-                    Document = document
-                };
-
-                pdfDocument.AddNewPage(); // 添加一页
-                postCardPageContext.FrontPageNumber = pdfDocument.GetNumberOfPages(); // 正面为当前最后一页
-                // 如果是正反面，再添加一页
-                if (envelopeResponse.DoubleSide)
-                {
-                    pdfDocument.AddNewPage(); // 添加一页
-                    postCardPageContext.BackPageNumber = pdfDocument.GetNumberOfPages(); // 反面为最后一页
-                }
-
+                var postCardPageContext = new PostCardPageContext(document, tempDirectoryInfo, envelopeResponse, urgent, waterMark);
                 pageContexts.Add(postCardPageContext);
 
                 foreach (var postCard in postCardResponses)
-                    if (!postCardPageContext.AddPostCardResponse(postCard))
+                {
+                    if (postCardPageContext.IsFull())
                     {
-                        pdfDocument.AddNewPage();
-                        postCardPageContext = new PostCardPageContext(tempDirectoryInfo, envelopeResponse, urgent, waterMark)
-                        {
-                            FrontPageNumber = pdfDocument.GetNumberOfPages(),
-                            BackPageNumber = pdfDocument.GetNumberOfPages() + 1,
-                            Document = document
-                        };
-                        pdfDocument.AddNewPage();
+                        postCardPageContext = new PostCardPageContext(document, tempDirectoryInfo, envelopeResponse, urgent, waterMark);
                         pageContexts.Add(postCardPageContext);
-                        postCardPageContext.AddPostCardResponse(postCard);
                     }
+
+                    postCardPageContext.AddPostCardResponse(postCard);
+                }
+
 
                 for (var i = 0; i < pageContexts.Count; i++)
                 {
@@ -179,20 +165,35 @@ namespace Hacker.Inko.PostCard.Library.Support
         public int FrontPageNumber { get; set; }
         public int BackPageNumber { get; set; }
 
-        public Document Document { get; set; }
+        private Document _document;
 
         private readonly bool _urgent;
         private readonly string _waterMark;
 
 
-        public PostCardPageContext(DirectoryInfo templateDirectoryInfo, EnvelopeResponse envelopeResponse, bool urgent, string waterMark)
+        public PostCardPageContext(Document document, DirectoryInfo templateDirectoryInfo, EnvelopeResponse envelopeResponse, bool urgent, string waterMark)
         {
+            _document = document;
+            _document.GetPdfDocument().AddNewPage();
+            FrontPageNumber = _document.GetPdfDocument().GetNumberOfPages();
+            if (envelopeResponse.DoubleSide)
+            {
+                _document.GetPdfDocument().AddNewPage();
+                BackPageNumber = _document.GetPdfDocument().GetNumberOfPages();
+            }
+
             _templateDirectoryInfo = templateDirectoryInfo;
             _envelopeResponse = envelopeResponse;
             _paperColumn = envelopeResponse.PaperColumn;
             _paperRow = envelopeResponse.PaperColumn;
             _urgent = urgent;
             _waterMark = waterMark;
+        }
+
+
+        public bool IsFull()
+        {
+            return _postCardResponses.Count() >= _paperColumn * _paperRow;
         }
 
         public bool AddPostCardResponse(PostCardResponse postCardResponse)
@@ -207,11 +208,11 @@ namespace Hacker.Inko.PostCard.Library.Support
         public void PreparePdfPage()
         {
             // 创建新的一页
-            var leftWhite = (Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - _paperColumn * _envelopeResponse.ProductWidth.MMtoPix()) / 2;
-            var topWhite = (Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - _paperRow * _envelopeResponse.ProductHeight.MMtoPix()) / 2;
+            var leftWhite = (_document.GetPdfDocument().GetDefaultPageSize().GetWidth() - _paperColumn * _envelopeResponse.ProductWidth.MMtoPix()) / 2;
+            var topWhite = (_document.GetPdfDocument().GetDefaultPageSize().GetHeight() - _paperRow * _envelopeResponse.ProductHeight.MMtoPix()) / 2;
 
             // 添加辅助线
-            var pdfCanvas = new PdfCanvas(Document.GetPdfDocument(), FrontPageNumber);
+            var pdfCanvas = new PdfCanvas(_document.GetPdfDocument(), FrontPageNumber);
             pdfCanvas.SetLineDash(10).SetColor(new DeviceGray(1), true);
 
 
@@ -220,15 +221,15 @@ namespace Hacker.Inko.PostCard.Library.Support
                 pdfCanvas
                     .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), 0)
                     .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), topWhite - 5)
-                    .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), Document.GetPdfDocument().GetDefaultPageSize().GetHeight())
-                    .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite + 5);
+                    .MoveTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), _document.GetPdfDocument().GetDefaultPageSize().GetHeight())
+                    .LineTo(leftWhite + i * _envelopeResponse.ProductWidth.MMtoPix(), _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite + 5);
 
             for (var j = 0; j <= _paperRow; j++)
                 pdfCanvas
                     .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: 0)
                     .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: leftWhite - 5)
-                    .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: Document.GetPdfDocument().GetDefaultPageSize().GetWidth())
-                    .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite + 5);
+                    .MoveTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: _document.GetPdfDocument().GetDefaultPageSize().GetWidth())
+                    .LineTo(y: topWhite + j * _envelopeResponse.ProductHeight.MMtoPix(), x: _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite + 5);
 
 
             pdfCanvas.Stroke();
@@ -241,11 +242,12 @@ namespace Hacker.Inko.PostCard.Library.Support
             paragraph.SetFont(pdfFont);
             paragraph.SetFontSize(8);
             paragraph.SetFontColor(_urgent ? DeviceRgb.RED : DeviceRgb.BLACK);
+            paragraph.SetPageNumber(FrontPageNumber);
             paragraph.SetFixedPosition(
                 leftWhite + 10,
-                Document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
-                Document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
-            Document.Add(paragraph);
+                _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
+                _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
+            _document.Add(paragraph);
             // 正面
             // 行
             for (var i = 0; i < _paperRow; i++)
@@ -274,7 +276,7 @@ namespace Hacker.Inko.PostCard.Library.Support
                     frontImage.SetFixedPosition(
                         leftWhite + j * _envelopeResponse.ProductWidth.MMtoPix(),
                         topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
-                    Document.Add(frontImage);
+                    _document.Add(frontImage);
                 }
 
                 // 反面
@@ -293,7 +295,7 @@ namespace Hacker.Inko.PostCard.Library.Support
                     backImage.SetFixedPosition(
                         leftWhite + (_paperColumn - j - 1) * _envelopeResponse.ProductWidth.MMtoPix(),
                         topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
-                    Document.Add(backImage);
+                    _document.Add(backImage);
                 }
             }
         }
