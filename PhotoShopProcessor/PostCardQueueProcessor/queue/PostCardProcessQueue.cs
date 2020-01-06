@@ -16,14 +16,6 @@ namespace PostCardQueueProcessor.queue
     {
         private static PostCardProcessQueue _postCardUploadWorker;
 
-        public static string ProviderUri
-        {
-            set => _factory = new NMSConnectionFactory(value);
-        }
-
-        private static IConnectionFactory _factory;
-
-
         public static void Process(DoubleSidePostCardCropInfo postCardProcessInfo, Action<DoubleSidePostCardCropInfo> success, Action<DoubleSidePostCardCropInfo> failure = null)
         {
             if (_postCardUploadWorker == null)

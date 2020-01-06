@@ -139,18 +139,6 @@ namespace PostCardCrop.form
             }, failure => { XtraMessageBox.Show("获取明信片集合失败，请检查网络！"); });
         }
 
-        private void ReGenerateWaterMark()
-        {
-            // 如果没有明信片
-            if (_postCardResponses == null)
-            {
-                return;
-            }
-
-            // 如果没有明信片集合
-        }
-
-
         public void RefreshProgress(double progress)
         {
             progressBar1.Value = progressBar1.Minimum + (int) (progress * (progressBar1.Maximum - progressBar1.Minimum));

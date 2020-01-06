@@ -62,7 +62,7 @@ namespace PostCardCrop.form
                     ChangeFrontStyle(e.KeyCode.ToString());
                     break;
                 case Keys.Escape:
-                    ReCropPostCard();
+                    ReCropPostCard(postCard);
                     break;
             }
         }
@@ -92,7 +92,7 @@ namespace PostCardCrop.form
                 return;
             }
 
-            if (!(elementHost1.Child is Photocroper photocroper))
+            if (!(elementHost1.Child is Photocroper photoCroper))
             {
                 return;
             }
@@ -101,9 +101,9 @@ namespace PostCardCrop.form
             switch (e.Key)
             {
                 case Key.Enter:
-                    if (!photocroper.Preview)
+                    if (!photoCroper.Preview)
                     {
-                        SubmitPostCard(PostCardView.FocusedRowHandle, photocroper.CropInfo);
+                        SubmitPostCard(PostCardView.FocusedRowHandle, photoCroper.CropInfo);
                     }
                     else
                     {
@@ -114,14 +114,14 @@ namespace PostCardCrop.form
                     break;
                 case Key.LeftCtrl:
                 case Key.RightCtrl:
-                    photocroper.FastChange = true;
+                    photoCroper.FastChange = true;
                     break;
                 case Key.LeftShift:
                 case Key.RightShift:
-                    photocroper.SizeLimit = true;
+                    photoCroper.SizeLimit = true;
                     break;
                 case Key.Space:
-                    photocroper.Preview = false;
+                    photoCroper.Preview = false;
                     break;
                 case Key.A:
                 case Key.B:
@@ -130,7 +130,7 @@ namespace PostCardCrop.form
                     ChangeFrontStyle(e.Key.ToString());
                     break;
                 case Key.Escape: // 重新裁切
-                    ReCropPostCard();
+                    ReCropPostCard(postCard);
                     break;
             }
         }
@@ -475,13 +475,16 @@ namespace PostCardCrop.form
 
         private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ReCropPostCard();
+            if (!(PostCardView.GetFocusedRow() is PostCardInfo postCard))
+            {
+                return;
+            }
+
+            ReCropPostCard(postCard);
         }
 
-        private void ReCropPostCard()
+        private void ReCropPostCard(PostCardInfo postCardInfo)
         {
-            if (!(PostCardView.GetFocusedRow() is PostCardInfo postCardInfo)) return;
-
             PostCardItemApi.ReCropPostCard(
                 postCardInfo.PostCardId,
                 (response) =>
