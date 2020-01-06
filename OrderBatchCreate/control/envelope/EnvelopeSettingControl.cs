@@ -35,6 +35,21 @@ namespace OrderBatchCreate.control.envelope
                 })));
         }
 
+        public void ReloadSizeList()
+        {
+            SystemSizeApi.GetSizeInfoFromServer("productSize", response =>
+            {
+                productSizeList.Items.Clear();
+                response.ForEach(k => productSizeList.Items.Add(new PostSize
+                {
+                    Name = k.Name,
+                    Width = k.Width,
+                    Height = k.Height
+                }));
+                productSizeList.Refresh();
+            });
+        }
+
         private EnvelopeInfo _envelopeInfo;
 
         public EnvelopeInfo EnvelopeInfo
@@ -89,6 +104,7 @@ namespace OrderBatchCreate.control.envelope
                         {
                             productSizeList.SelectedIndex = i;
                             flag = false;
+                            break;
                         }
                     }
 
@@ -255,15 +271,21 @@ namespace OrderBatchCreate.control.envelope
             if (openFileDialog.ShowDialog(this) != DialogResult.OK) return;
             var fileInfo = new FileInfo(openFileDialog.FileName);
 
-            var tmpBackStyle = new CustomerBackStyleInfo(fileInfo);
-            fileInfo.UploadAsync("backStyle", result =>
+            var tmpBackStyle = new BackStyleInfo
             {
-                _envelopeInfo.BackStyle = tmpBackStyle;
-                _envelopeInfo.PostCards.ForEach(postCardINfo => { postCardINfo.BackStyle = tmpBackStyle; });
-                backStyleComboBox.EditValue = tmpBackStyle;
-                EnvelopeChanged?.Invoke(_envelopeInfo);
-                tmpBackStyle.FileId = result.Id;
-            }, failure: message => { XtraMessageBox.Show("反面文件上传失败，请重新上传"); });
+                Name = "自定义"
+            };
+            _envelopeInfo.BackStyle = tmpBackStyle;
+            _envelopeInfo.PostCards.ForEach(postCardInfo => { postCardInfo.BackStyle = tmpBackStyle; });
+            backStyleComboBox.EditValue = tmpBackStyle;
+
+            fileInfo.UploadAsync(
+                "backStyle",
+                result => { tmpBackStyle.FileId = result.Id; },
+                failure: message => { XtraMessageBox.Show("反面文件上传失败，请重新上传"); });
+
+
+            EnvelopeChanged?.Invoke(_envelopeInfo);
         }
 
         private void EnvelopePath_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)

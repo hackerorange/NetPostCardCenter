@@ -10,14 +10,7 @@ namespace SystemSetting.backStyle.model
 
         public override string ToString()
         {
-            var displayText = Name;
-
-            if (!string.IsNullOrEmpty(Name) && Name.Length > 1 && !string.IsNullOrEmpty(FileId))
-                if (FileId.Length > 4)
-                    displayText += "[" + FileId.Substring(0, 4) + "]";
-                else
-                    displayText += "[" + FileId + "]";
-            return displayText;
+            return Name;
         }
     }
 }

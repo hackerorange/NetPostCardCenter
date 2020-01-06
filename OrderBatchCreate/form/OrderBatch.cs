@@ -34,11 +34,6 @@ namespace OrderBatchCreate.form
         public OrderBatch()
         {
             InitializeComponent();
-            //异步获取尺寸信息
-            SystemSizeApi.GetSizeInfoFromServer("productSize", success => { repositoryItemComboBox4.Items.AddRange(success); });
-            SystemBackStyleApi.GetAllBackStyleFromServer(success => success.ForEach(backStyle => repositoryItemComboBox3.Items.Add(backStyle)));
-
-
             //            repositoryItemComboBox3.Items.AddRange(SystemConstant.BackStyleList);
             //repositoryItemComboBox3.Items.Add()
             gridControl1.DataSource = OrderInfos;
@@ -138,7 +133,10 @@ namespace OrderBatchCreate.form
                 {
                     if (tmpEnvelopeInfo.DoubleSide)
                     {
-                        tmpEnvelopeInfo.BackStyle = new CustomerBackStyleInfo(fileInfo);
+                        tmpEnvelopeInfo.BackStyle = new BackStyleInfo
+                        {
+                            Name = "自定义"
+                        };
                         tmpEnvelopeInfo.FrontStyle = "D";
                         //此集合下的所有明信片都设置为D;
                         tmpEnvelopeInfo.PostCards.ForEach(postCard =>
@@ -146,7 +144,10 @@ namespace OrderBatchCreate.form
                             postCard.FrontStyle = "D";
                             postCard.BackStyle = tmpEnvelopeInfo.BackStyle;
                         });
-                        //                        fileInfo.Upload("自定义反面样式", false, fileId => { tmpEnvelopeInfo.BackStyle.FileId = fileId; }, message => { XtraMessageBox.Show("反面文件上传失败！"); });
+                        fileInfo.UploadAsync(
+                            "backStyle",
+                            result => { tmpEnvelopeInfo.BackStyle.FileId = result.Id; },
+                            failure: message => { XtraMessageBox.Show("反面文件上传失败，请重新上传"); });
                     }
 
                     continue;
@@ -202,9 +203,10 @@ namespace OrderBatchCreate.form
             switch (postCardBasic)
             {
                 case PostCardInfo tmpPostCardInfo:
+                {
                     paperNameColumn.OptionsColumn.AllowEdit = false;
                     paperNameColumn.OptionsColumn.ReadOnly = true;
-                    productSizeColumn.OptionsColumn.AllowEdit = false;
+
                     if (tmpPostCardInfo.Parent is EnvelopeInfo tmpEnvelopeInfo)
                     {
                         envelopeSettingControl2.EnvelopeInfo = tmpEnvelopeInfo;
@@ -212,16 +214,17 @@ namespace OrderBatchCreate.form
                     }
 
                     break;
+                }
                 case EnvelopeInfo envelopeInfo:
+                {
                     //纸张名称只能是集合上设置
                     paperNameColumn.OptionsColumn.AllowEdit = true;
                     paperNameColumn.OptionsColumn.ReadOnly = false;
-                    //成品尺寸只能是集合上设置
-                    productSizeColumn.OptionsColumn.AllowEdit = true;
                     //paperNameColumn.OptionsColumn.ReadOnly = false;
                     envelopeSettingControl2.EnvelopeInfo = envelopeInfo;
                     backStyleColumn.OptionsColumn.AllowEdit = envelopeInfo.DoubleSide;
                     break;
+                }
             }
 
             //刷新订单数据
@@ -395,20 +398,32 @@ namespace OrderBatchCreate.form
                 }
             }
 
-            if (e.Column == backStyleColumn) postCardBasic.BackStyle = e.Value as BackStyleInfo;
-            if (e.Column == productSizeColumn) postCardBasic.ProductSize = e.Value as PostSize;
+            if (e.Column == backStyleColumn)
+            {
+                postCardBasic.BackStyle = e.Value as BackStyleInfo;
+            }
+
+            if (e.Column == productSizeColumn)
+            {
+                postCardBasic.ProductSize = e.Value as PostSize;
+            }
+
             if (e.Column == frontStyleColumn)
             {
                 postCardBasic.FrontStyle = e.Value as string;
                 if (postCardBasic is EnvelopeInfo envelopeInfo)
+                {
                     envelopeInfo.PostCards.ForEach(postCard => postCard.FrontStyle = e.Value as string);
+                }
             }
 
             if (e.Column == backStyleColumn)
             {
                 postCardBasic.BackStyle = e.Value as BackStyleInfo;
                 if (postCardBasic is EnvelopeInfo envelopeInfo)
+                {
                     envelopeInfo.PostCards.ForEach(postCard => postCard.BackStyle = e.Value as BackStyleInfo);
+                }
             }
 
             orderDetailListView.RefreshDataSource();
@@ -659,7 +674,10 @@ namespace OrderBatchCreate.form
         {
             OrderInfos.FindAll(orderInfo => orderInfo.Status == BatchStatus.OrderAlready).ForEach(orderInfo =>
             {
-                if (orderInfo.EnvelopeInfoList == null) return;
+                if (orderInfo.EnvelopeInfoList == null)
+                {
+                    return;
+                }
 
                 var prepareSubmitRequest = orderInfo.PrepareSubmitRequest();
                 prepareSubmitRequest.SelfProcess = checkEdit1.Checked;
@@ -670,7 +688,11 @@ namespace OrderBatchCreate.form
                     {
                         var fileInfo = new FileInfo(orderInfo.DirectoryInfo.FullName + "/hasSubmit.ini");
                         fileInfo.Create();
-                        if (!(gridView2.DataSource is List<OrderInfo> orderInfos)) return;
+                        if (!(gridView2.DataSource is List<OrderInfo> orderInfos))
+                        {
+                            return;
+                        }
+
                         orderInfos.Remove(orderInfo);
                         gridView2.RefreshData();
 
@@ -717,12 +739,8 @@ namespace OrderBatchCreate.form
         private void BarButtonItem20_ItemClick(object sender, ItemClickEventArgs e)
         {
             new SizeManageForm().ShowDialog(this);
-
-            SystemSizeApi.GetSizeInfoFromServer("productSize", success =>
-            {
-                repositoryItemComboBox4.Items.Clear();
-                repositoryItemComboBox4.Items.AddRange(success);
-            });
+            // 刷新尺寸列表
+            envelopeSettingControl2.ReloadSizeList();
         }
 
         private void EnvelopeSettingControl1_envelopeChanged(EnvelopeInfo envelopeInfo)

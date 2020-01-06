@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using SystemSetting.backStyle.model;
+using DevExpress.Mvvm.Native;
+using DictionaryExtensions = DevExpress.Mvvm.Native.DictionaryExtensions;
 
 namespace OrderBatchCreate.model
 {
@@ -22,36 +24,47 @@ namespace OrderBatchCreate.model
         {
             get
             {
-                var envelopeList = new List<EnvelopeInfo>();
+                IDictionary<string, EnvelopeInfo> envelopeInfos = new Dictionary<string, EnvelopeInfo>();
                 EnvelopeInfoList.ForEach(postCardBasic =>
                 {
-                    if (!(postCardBasic is EnvelopeInfo envelopeInfo) || envelopeInfo.Status == BatchStatus.EnvelopeEmptyPath) return;
-
-                    var find = envelopeList.Find(tmpEnvelope =>
+                    if (!(postCardBasic is EnvelopeInfo envelopeInfo) || envelopeInfo.Status == BatchStatus.EnvelopeEmptyPath)
                     {
-                        if (tmpEnvelope.DoubleSide != envelopeInfo.DoubleSide) return false;
-                        if (tmpEnvelope.ProductSize.Width != envelopeInfo.ProductSize.Width) return false;
-                        if (tmpEnvelope.ProductSize.Height != envelopeInfo.ProductSize.Height) return false;
-                        if (tmpEnvelope.PaperName != envelopeInfo.PaperName) return false;
-                        return true;
-                    });
-                    if (find == null)
-                    {
-                        find = (EnvelopeInfo) envelopeInfo.Clone();
-                        envelopeList.Add(find);
+                        return;
                     }
 
+                    var key = envelopeInfo.DoubleSide.ToString() + envelopeInfo.ProductSize.Width.ToString() + envelopeInfo.ProductSize.Height + envelopeInfo.PaperName;
+                    var find = envelopeInfos.GetOrAdd(key, () => new EnvelopeInfo
+                    {
+                        ProductSize = envelopeInfo.ProductSize,
+                        PaperName = envelopeInfo.PaperName,
+                        PaperSize = envelopeInfo.PaperSize,
+                        DoubleSide = envelopeInfo.DoubleSide,
+                        FrontStyle = envelopeInfo.FrontStyle,
+                        BackStyle = envelopeInfo.BackStyle,
+                        ArrayColumn = envelopeInfo.ArrayColumn,
+                        ArrayRow = envelopeInfo.ArrayRow
+                    });
+
                     if (find.FrontStyle != envelopeInfo.FrontStyle)
+                    {
                         find.FrontStyle = "MIX";
+                    }
+
                     if (find.BackStyle != null && envelopeInfo.BackStyle != null)
+                    {
                         if (find.BackStyle.Name != envelopeInfo.BackStyle.Name)
+                        {
                             find.BackStyle = new BackStyleInfo
                             {
                                 Name = "MIX"
                             };
+                        }
+                    }
+
                     find.PostCards.AddRange(envelopeInfo.PostCards);
                 });
-                return envelopeList;
+
+                return new List<EnvelopeInfo>(envelopeInfos.Values);
             }
         }
 

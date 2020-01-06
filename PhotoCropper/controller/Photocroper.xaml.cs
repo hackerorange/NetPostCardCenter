@@ -89,9 +89,9 @@ namespace PhotoCropper.controller
             get => CropContext.CropInfo;
             set => CropContext.CropInfo = value;
         }
-       
 
-        public void InitImage(string value, CropInfo cropInfo = null,Action<MemoryStream,CropInfo> action=null)
+
+        public void InitImage(string value, CropInfo cropInfo = null, Action<CropInfo> action = null)
         {
             {
                 if (value == null) return;
@@ -143,7 +143,8 @@ namespace PhotoCropper.controller
                             CropContext.CropInfo.CropTop = cropInfo.CropTop;
                             CropContext.InitSize();
                         }
-                        action?.Invoke(stream, CropContext.CropInfo);
+
+                        action?.Invoke(CropContext.CropInfo);
                     };
                     // 进度条
                     webClient.DownloadProgressChanged += (sender, e) => { CropContext.DownloadProcess = e.ProgressPercentage; };

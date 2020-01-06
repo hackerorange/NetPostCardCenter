@@ -80,20 +80,15 @@ namespace OrderBatchCreate.form
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.statusColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.productSizeColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.postCardCountColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemSpinEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.doubleSideColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.paperNameColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.postCardListColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.frontStyleColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemComboBox5 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.backStyleColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection();
-            this.repositoryItemPopupContainerEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.orderPathTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
@@ -189,14 +184,9 @@ namespace OrderBatchCreate.form
             ((System.ComponentModel.ISupportInitialize)(this.orderUrgentItemCheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailListView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderPathTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -708,17 +698,13 @@ namespace OrderBatchCreate.form
             this.backStyleColumn});
             this.orderDetailListView.ColumnsImageList = this.imageCollection1;
             this.orderDetailListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.orderDetailListView.CustomizationFormBounds = new System.Drawing.Rectangle(3204, 326, 266, 262);
             this.orderDetailListView.Location = new System.Drawing.Point(403, 303);
             this.orderDetailListView.Name = "orderDetailListView";
             this.orderDetailListView.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
-            this.repositoryItemComboBox1,
-            this.repositoryItemPopupContainerEdit1,
-            this.repositoryItemComboBox3,
             this.repositoryItemSpinEdit5,
-            this.repositoryItemComboBox4,
-            this.repositoryItemComboBox5,
-            this.repositoryItemButtonEdit1});
+            this.repositoryItemComboBox5});
             this.orderDetailListView.SelectImageList = this.imageCollection1;
             this.orderDetailListView.Size = new System.Drawing.Size(994, 359);
             this.orderDetailListView.TabIndex = 6;
@@ -747,7 +733,7 @@ namespace OrderBatchCreate.form
             this.textColumn.OptionsColumn.ShowInExpressionEditor = false;
             this.textColumn.Visible = true;
             this.textColumn.VisibleIndex = 0;
-            this.textColumn.Width = 81;
+            this.textColumn.Width = 363;
             // 
             // directoryInfoColumn
             // 
@@ -809,27 +795,18 @@ namespace OrderBatchCreate.form
             this.productSizeColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.productSizeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.productSizeColumn.Caption = "成品尺寸";
-            this.productSizeColumn.ColumnEdit = this.repositoryItemComboBox4;
             this.productSizeColumn.FieldName = "ProductSize";
             this.productSizeColumn.Fixed = DevExpress.XtraTreeList.Columns.FixedStyle.Right;
             this.productSizeColumn.MinWidth = 150;
             this.productSizeColumn.Name = "productSizeColumn";
+            this.productSizeColumn.OptionsColumn.AllowEdit = false;
             this.productSizeColumn.OptionsColumn.AllowMove = false;
             this.productSizeColumn.OptionsColumn.AllowSort = false;
             this.productSizeColumn.OptionsColumn.FixedWidth = true;
+            this.productSizeColumn.OptionsColumn.ReadOnly = true;
             this.productSizeColumn.Visible = true;
             this.productSizeColumn.VisibleIndex = 5;
             this.productSizeColumn.Width = 150;
-            // 
-            // repositoryItemComboBox4
-            // 
-            this.repositoryItemComboBox4.AutoHeight = false;
-            this.repositoryItemComboBox4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemComboBox4.Name = "repositoryItemComboBox4";
-            this.repositoryItemComboBox4.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.repositoryItemComboBox4.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemComboBox4_ButtonClick);
             // 
             // postCardCountColumn
             // 
@@ -861,7 +838,6 @@ namespace OrderBatchCreate.form
             this.doubleSideColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.doubleSideColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.doubleSideColumn.Caption = "双面";
-            this.doubleSideColumn.ColumnEdit = this.repositoryItemCheckEdit1;
             this.doubleSideColumn.FieldName = "DoubleSide";
             this.doubleSideColumn.Fixed = DevExpress.XtraTreeList.Columns.FixedStyle.Right;
             this.doubleSideColumn.MinWidth = 50;
@@ -878,34 +854,18 @@ namespace OrderBatchCreate.form
             this.paperNameColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.paperNameColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.paperNameColumn.Caption = "纸张名称";
-            this.paperNameColumn.ColumnEdit = this.repositoryItemComboBox1;
             this.paperNameColumn.FieldName = "PaperName";
             this.paperNameColumn.Fixed = DevExpress.XtraTreeList.Columns.FixedStyle.Right;
             this.paperNameColumn.MinWidth = 100;
             this.paperNameColumn.Name = "paperNameColumn";
+            this.paperNameColumn.OptionsColumn.AllowEdit = false;
             this.paperNameColumn.OptionsColumn.AllowSize = false;
             this.paperNameColumn.OptionsColumn.AllowSort = false;
             this.paperNameColumn.OptionsColumn.FixedWidth = true;
+            this.paperNameColumn.OptionsColumn.ReadOnly = true;
             this.paperNameColumn.Visible = true;
             this.paperNameColumn.VisibleIndex = 1;
             this.paperNameColumn.Width = 100;
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Items.AddRange(new object[] {
-            "年代白卡",
-            "时代白卡",
-            "经典白卡",
-            "荷兰白卡",
-            "晶钻亮卡",
-            "冰白（珠光）",
-            "牙粉",
-            "铜板"});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             // 
             // postCardListColumn
             // 
@@ -950,27 +910,18 @@ namespace OrderBatchCreate.form
             this.backStyleColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.backStyleColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.backStyleColumn.Caption = "反面";
-            this.backStyleColumn.ColumnEdit = this.repositoryItemComboBox3;
             this.backStyleColumn.FieldName = "BackStyle";
             this.backStyleColumn.Fixed = DevExpress.XtraTreeList.Columns.FixedStyle.Right;
-            this.backStyleColumn.MinWidth = 80;
+            this.backStyleColumn.MinWidth = 120;
             this.backStyleColumn.Name = "backStyleColumn";
+            this.backStyleColumn.OptionsColumn.AllowEdit = false;
             this.backStyleColumn.OptionsColumn.AllowSize = false;
             this.backStyleColumn.OptionsColumn.AllowSort = false;
             this.backStyleColumn.OptionsColumn.FixedWidth = true;
+            this.backStyleColumn.OptionsColumn.ReadOnly = true;
             this.backStyleColumn.Visible = true;
             this.backStyleColumn.VisibleIndex = 4;
-            this.backStyleColumn.Width = 80;
-            // 
-            // repositoryItemComboBox3
-            // 
-            this.repositoryItemComboBox3.AutoHeight = false;
-            this.repositoryItemComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemComboBox3.Name = "repositoryItemComboBox3";
-            this.repositoryItemComboBox3.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.repositoryItemComboBox3.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemComboBox3_ButtonClick);
+            this.backStyleColumn.Width = 120;
             // 
             // imageCollection1
             // 
@@ -979,23 +930,6 @@ namespace OrderBatchCreate.form
             this.imageCollection1.Images.SetKeyName(0, "open_16x16.png");
             this.imageCollection1.InsertGalleryImage("image_16x16.png", "images/content/image_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/content/image_16x16.png"), 1);
             this.imageCollection1.Images.SetKeyName(1, "image_16x16.png");
-            // 
-            // repositoryItemPopupContainerEdit1
-            // 
-            this.repositoryItemPopupContainerEdit1.AutoHeight = false;
-            this.repositoryItemPopupContainerEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemPopupContainerEdit1.Name = "repositoryItemPopupContainerEdit1";
-            this.repositoryItemPopupContainerEdit1.QueryResultValue += new DevExpress.XtraEditors.Controls.QueryResultValueEventHandler(this.RepositoryItemPopupContainerEdit1_QueryResultValue);
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.RepositoryItemButtonEdit1_ButtonClick);
             // 
             // orderPathTextEdit
             // 
@@ -1780,14 +1714,9 @@ namespace OrderBatchCreate.form
             ((System.ComponentModel.ISupportInitialize)(this.orderUrgentItemCheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailListView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupContainerEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderPathTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -1891,8 +1820,6 @@ namespace OrderBatchCreate.form
         private DevExpress.XtraTreeList.Columns.TreeListColumn postCardCountColumn;
         private DevExpress.XtraTreeList.Columns.TreeListColumn doubleSideColumn;
         private DevExpress.XtraTreeList.Columns.TreeListColumn paperNameColumn;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit repositoryItemPopupContainerEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn SizeName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
@@ -1910,8 +1837,6 @@ namespace OrderBatchCreate.form
         private DevExpress.XtraTreeList.Columns.TreeListColumn frontStyleColumn;
         private DevExpress.XtraTreeList.Columns.TreeListColumn backStyleColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit5;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox3;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox4;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox5;
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView envelopePrintInfoListView;
@@ -1956,7 +1881,6 @@ namespace OrderBatchCreate.form
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;
         private DevExpress.XtraBars.BarButtonItem barButtonItem21;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
