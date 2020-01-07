@@ -241,7 +241,14 @@ namespace OrderBatchCreate.form
                     {
                         using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Open))
                         {
-                            pictureEdit1.Image = Image.FromStream(fileStream);
+                            try
+                            {
+                                pictureEdit1.Image = Image.FromStream(fileStream);
+                            }
+                            catch
+                            {
+                                // ignored
+                            }
                         }
                     }
 
