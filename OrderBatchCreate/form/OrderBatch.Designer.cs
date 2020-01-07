@@ -31,6 +31,7 @@ namespace OrderBatchCreate.form
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderBatch));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
@@ -59,6 +60,12 @@ namespace OrderBatchCreate.form
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.checkButton1 = new DevExpress.XtraEditors.CheckButton();
             this.envelopePrintInfo2 = new OrderBatchCreate.control.envelope.EnvelopePrintInfo();
             this.envelopeSettingControl2 = new OrderBatchCreate.control.envelope.EnvelopeSettingControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -88,7 +95,7 @@ namespace OrderBatchCreate.form
             this.frontStyleColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemComboBox5 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.backStyleColumn = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.orderPathTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
@@ -103,6 +110,14 @@ namespace OrderBatchCreate.form
             this.envelopeDetailControlGroup = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.ribbonControl2 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barEditItem4 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
@@ -170,13 +185,18 @@ namespace OrderBatchCreate.form
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SizeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.envelopePrintInfoListView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -200,6 +220,14 @@ namespace OrderBatchCreate.form
             ((System.ComponentModel.ISupportInitialize)(this.envelopeDetailControlGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -468,13 +496,19 @@ namespace OrderBatchCreate.form
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem3, true);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem4, true);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem5);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 815);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 876);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1421, 23);
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.spinEdit1);
+            this.layoutControl1.Controls.Add(this.textEdit2);
+            this.layoutControl1.Controls.Add(this.textEdit1);
+            this.layoutControl1.Controls.Add(this.pictureEdit2);
+            this.layoutControl1.Controls.Add(this.pictureEdit1);
+            this.layoutControl1.Controls.Add(this.checkButton1);
             this.layoutControl1.Controls.Add(this.envelopePrintInfo2);
             this.layoutControl1.Controls.Add(this.envelopeSettingControl2);
             this.layoutControl1.Controls.Add(this.gridControl2);
@@ -486,16 +520,91 @@ namespace OrderBatchCreate.form
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 129);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(871, 310, 707, 792);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(871, 258, 707, 792);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1421, 686);
+            this.layoutControl1.Size = new System.Drawing.Size(1421, 747);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // spinEdit1
+            // 
+            this.spinEdit1.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEdit1.Location = new System.Drawing.Point(1215, 382);
+            this.spinEdit1.MenuManager = this.ribbon;
+            this.spinEdit1.Name = "spinEdit1";
+            this.spinEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEdit1.Properties.ReadOnly = true;
+            this.spinEdit1.Size = new System.Drawing.Size(170, 20);
+            this.spinEdit1.StyleController = this.layoutControl1;
+            this.spinEdit1.TabIndex = 77;
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.Location = new System.Drawing.Point(1215, 334);
+            this.textEdit2.MenuManager = this.ribbon;
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.ReadOnly = true;
+            this.textEdit2.Size = new System.Drawing.Size(170, 20);
+            this.textEdit2.StyleController = this.layoutControl1;
+            this.textEdit2.TabIndex = 76;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(1215, 358);
+            this.textEdit1.MenuManager = this.ribbon;
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.ReadOnly = true;
+            this.textEdit1.Size = new System.Drawing.Size(170, 20);
+            this.textEdit1.StyleController = this.layoutControl1;
+            this.textEdit1.TabIndex = 75;
+            // 
+            // pictureEdit2
+            // 
+            this.pictureEdit2.Location = new System.Drawing.Point(1164, 577);
+            this.pictureEdit2.MaximumSize = new System.Drawing.Size(221, 133);
+            this.pictureEdit2.MenuManager = this.ribbon;
+            this.pictureEdit2.MinimumSize = new System.Drawing.Size(221, 133);
+            this.pictureEdit2.Name = "pictureEdit2";
+            this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            this.pictureEdit2.Size = new System.Drawing.Size(221, 133);
+            this.pictureEdit2.StyleController = this.layoutControl1;
+            this.pictureEdit2.TabIndex = 74;
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.Location = new System.Drawing.Point(1164, 423);
+            this.pictureEdit1.MaximumSize = new System.Drawing.Size(221, 133);
+            this.pictureEdit1.MenuManager = this.ribbon;
+            this.pictureEdit1.MinimumSize = new System.Drawing.Size(221, 133);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            this.pictureEdit1.Size = new System.Drawing.Size(221, 133);
+            this.pictureEdit1.StyleController = this.layoutControl1;
+            this.pictureEdit1.TabIndex = 73;
+            // 
+            // checkButton1
+            // 
+            this.checkButton1.Checked = global::OrderBatchCreate.Properties.Settings.Default.displayPostCardDetails;
+            this.checkButton1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::OrderBatchCreate.Properties.Settings.Default, "displayPostCardDetails", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkButton1.Location = new System.Drawing.Point(1069, 701);
+            this.checkButton1.Name = "checkButton1";
+            this.checkButton1.Size = new System.Drawing.Size(79, 22);
+            this.checkButton1.StyleController = this.layoutControl1;
+            this.checkButton1.TabIndex = 72;
+            this.checkButton1.Text = "显示详情";
+            this.checkButton1.CheckedChanged += new System.EventHandler(this.CheckButton1_CheckedChanged);
             // 
             // envelopePrintInfo2
             // 
             this.envelopePrintInfo2.EnvelopeInfo = null;
-            this.envelopePrintInfo2.Location = new System.Drawing.Point(24, 470);
+            this.envelopePrintInfo2.Location = new System.Drawing.Point(24, 531);
             this.envelopePrintInfo2.Name = "envelopePrintInfo2";
             this.envelopePrintInfo2.Size = new System.Drawing.Size(351, 166);
             this.envelopePrintInfo2.TabIndex = 71;
@@ -517,7 +626,7 @@ namespace OrderBatchCreate.form
             this.gridControl2.MainView = this.envelopePrintInfoListView;
             this.gridControl2.MenuManager = this.ribbon;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(351, 163);
+            this.gridControl2.Size = new System.Drawing.Size(351, 224);
             this.gridControl2.TabIndex = 3;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.envelopePrintInfoListView});
@@ -706,7 +815,7 @@ namespace OrderBatchCreate.form
             this.repositoryItemSpinEdit5,
             this.repositoryItemComboBox5});
             this.orderDetailListView.SelectImageList = this.imageCollection1;
-            this.orderDetailListView.Size = new System.Drawing.Size(994, 359);
+            this.orderDetailListView.Size = new System.Drawing.Size(745, 394);
             this.orderDetailListView.TabIndex = 6;
             this.orderDetailListView.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.OrderDetailListView_FocusedNodeChanged);
             this.orderDetailListView.CellValueChanging += new DevExpress.XtraTreeList.CellValueChangedEventHandler(this.OrderDetailListView_CellValueChanging);
@@ -944,7 +1053,7 @@ namespace OrderBatchCreate.form
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(24, 640);
+            this.simpleButton1.Location = new System.Drawing.Point(24, 701);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(251, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
@@ -954,7 +1063,7 @@ namespace OrderBatchCreate.form
             // 
             // checkEdit1
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(279, 640);
+            this.checkEdit1.Location = new System.Drawing.Point(279, 701);
             this.checkEdit1.MenuManager = this.ribbon;
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "自己处理";
@@ -970,7 +1079,7 @@ namespace OrderBatchCreate.form
             this.layoutControlGroup4,
             this.envelopeDetailControlGroup});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1421, 686);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1421, 747);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup4
@@ -984,7 +1093,7 @@ namespace OrderBatchCreate.form
             this.layoutControlItem7});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(379, 666);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(379, 727);
             this.layoutControlGroup4.Text = "订单列表";
             // 
             // layoutControlItem11
@@ -1002,7 +1111,7 @@ namespace OrderBatchCreate.form
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.simpleButton1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 597);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 658);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(255, 26);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -1011,7 +1120,7 @@ namespace OrderBatchCreate.form
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.checkEdit1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(255, 597);
+            this.layoutControlItem6.Location = new System.Drawing.Point(255, 658);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(100, 23);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(100, 23);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -1023,7 +1132,7 @@ namespace OrderBatchCreate.form
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.envelopePrintInfo2;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 427);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 488);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(355, 170);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(355, 170);
             this.layoutControlItem8.Name = "layoutControlItem8";
@@ -1046,7 +1155,7 @@ namespace OrderBatchCreate.form
             this.layoutControlItem7.Control = this.gridControl2;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 260);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(355, 167);
+            this.layoutControlItem7.Size = new System.Drawing.Size(355, 228);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -1054,10 +1163,13 @@ namespace OrderBatchCreate.form
             // 
             this.envelopeDetailControlGroup.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem3,
-            this.layoutControlItem5});
+            this.layoutControlItem5,
+            this.layoutControlItem2,
+            this.emptySpaceItem1,
+            this.layoutControlGroup2});
             this.envelopeDetailControlGroup.Location = new System.Drawing.Point(379, 0);
             this.envelopeDetailControlGroup.Name = "envelopeDetailControlGroup";
-            this.envelopeDetailControlGroup.Size = new System.Drawing.Size(1022, 666);
+            this.envelopeDetailControlGroup.Size = new System.Drawing.Size(1022, 727);
             this.envelopeDetailControlGroup.Text = "集合列表";
             // 
             // layoutControlItem3
@@ -1066,7 +1178,7 @@ namespace OrderBatchCreate.form
             this.layoutControlItem3.CustomizationFormText = "layoutControlItem3";
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 260);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(998, 363);
+            this.layoutControlItem3.Size = new System.Drawing.Size(749, 398);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -1080,6 +1192,96 @@ namespace OrderBatchCreate.form
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.checkButton1;
+            this.layoutControlItem2.Location = new System.Drawing.Point(666, 658);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(83, 26);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 658);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(666, 26);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4,
+            this.layoutControlItem9,
+            this.layoutControlItem10,
+            this.layoutControlItem14,
+            this.layoutControlItem13});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(749, 260);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(249, 424);
+            this.layoutControlGroup2.Text = "条目详情";
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.pictureEdit1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(52, 41);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(225, 154);
+            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem4.Text = "正面";
+            this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.pictureEdit2;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 226);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(52, 41);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(225, 155);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem9.Text = "反面";
+            this.layoutControlItem9.TextLocation = DevExpress.Utils.Locations.Top;
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.textEdit1;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem10.MaxSize = new System.Drawing.Size(225, 24);
+            this.layoutControlItem10.MinSize = new System.Drawing.Size(225, 24);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(225, 24);
+            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem10.Text = "成品尺寸";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.spinEdit1;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem14.MaxSize = new System.Drawing.Size(225, 24);
+            this.layoutControlItem14.MinSize = new System.Drawing.Size(225, 24);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(225, 24);
+            this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem14.Text = "打印份数";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.textEdit2;
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem13.MaxSize = new System.Drawing.Size(225, 24);
+            this.layoutControlItem13.MinSize = new System.Drawing.Size(225, 24);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(225, 24);
+            this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem13.Text = "纸张名称";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(48, 14);
             // 
             // ribbonControl2
             // 
@@ -1695,7 +1897,7 @@ namespace OrderBatchCreate.form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1421, 838);
+            this.ClientSize = new System.Drawing.Size(1421, 899);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
@@ -1707,6 +1909,11 @@ namespace OrderBatchCreate.form
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.envelopePrintInfoListView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -1730,6 +1937,14 @@ namespace OrderBatchCreate.form
             ((System.ComponentModel.ISupportInitialize)(this.envelopeDetailControlGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -1908,5 +2123,19 @@ namespace OrderBatchCreate.form
         private DevExpress.XtraBars.BarButtonItem barButtonItem23;
         private DevExpress.XtraBars.BarButtonItem barButtonItem24;
         private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.CheckButton checkButton1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.SpinEdit spinEdit1;
+        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }

@@ -17,10 +17,12 @@ using OrderBatchCreate.translator.request;
 using postCardCenterSdk.helper;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using SystemSetting.backStyle.model;
 using SystemSetting.size.form;
+using DevExpress.XtraLayout.Utils;
 using CellValueChangedEventArgs = DevExpress.XtraTreeList.CellValueChangedEventArgs;
 
 namespace OrderBatchCreate.form
@@ -189,7 +191,10 @@ namespace OrderBatchCreate.form
 
         private void OrderBatch_Load(object sender, EventArgs e)
         {
+            RefreshColumnStatus(checkButton1.Checked);
         }
+
+        private PostCardBasic _postCardBasic;
 
         private void OrderDetailListView_FocusedNodeChanged(object sender, FocusedNodeChangedEventArgs e)
         {
@@ -199,8 +204,17 @@ namespace OrderBatchCreate.form
             if (e.Node == null) return;
             //            var nodes = e.PostCardInfo.ParentNode == null ? orderDetailListView.Nodes : e.PostCardInfo.ParentNode.Nodes;
             if (!(e.Node.GetValue("Key") is PostCardBasic postCardBasic)) return;
+            _postCardBasic = postCardBasic;
+            RefreshCurrentPostCard();
+        }
 
-            switch (postCardBasic)
+
+        private void RefreshCurrentPostCard()
+        {
+            pictureEdit1.Image = null;
+            pictureEdit2.Image = null;
+
+            switch (_postCardBasic)
             {
                 case PostCardInfo tmpPostCardInfo:
                 {
@@ -213,6 +227,30 @@ namespace OrderBatchCreate.form
                         backStyleColumn.OptionsColumn.AllowEdit = tmpEnvelopeInfo.DoubleSide;
                     }
 
+                    // 纸张名称
+                    textEdit2.Text = tmpPostCardInfo.PaperName;
+                    // 份数
+                    spinEdit1.EditValue = tmpPostCardInfo.Copy;
+                    // 成品尺寸
+                    if (tmpPostCardInfo.ProductSize != null)
+                    {
+                        textEdit1.Text = tmpPostCardInfo.ProductSize.Width + @"×" + tmpPostCardInfo.ProductSize.Height;
+                    }
+
+                    if (tmpPostCardInfo.DirectoryInfo is FileInfo fileInfo)
+                    {
+                        using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Open))
+                        {
+                            pictureEdit1.Image = Image.FromStream(fileStream);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(tmpPostCardInfo.BackStyle?.FileId))
+                    {
+                        var downloadBytesByFileId = FileApi.DownloadBytesByFileId(tmpPostCardInfo.BackStyle.FileId);
+                        pictureEdit2.Image = Image.FromStream(new MemoryStream(downloadBytesByFileId));
+                    }
+
                     break;
                 }
                 case EnvelopeInfo envelopeInfo:
@@ -223,6 +261,13 @@ namespace OrderBatchCreate.form
                     //paperNameColumn.OptionsColumn.ReadOnly = false;
                     envelopeSettingControl2.EnvelopeInfo = envelopeInfo;
                     backStyleColumn.OptionsColumn.AllowEdit = envelopeInfo.DoubleSide;
+                    textEdit2.Text = envelopeInfo.PaperName;
+                    spinEdit1.EditValue = 0;
+                    if (envelopeInfo.ProductSize != null)
+                    {
+                        textEdit1.Text = envelopeInfo.ProductSize.Width + @"×" + envelopeInfo.ProductSize.Height;
+                    }
+
                     break;
                 }
             }
@@ -230,6 +275,7 @@ namespace OrderBatchCreate.form
             //刷新订单数据
             gridView2.RefreshData();
         }
+
 
         /// <summary>
         ///     添加指定文件夹的订单
@@ -243,7 +289,9 @@ namespace OrderBatchCreate.form
             var directories = directoryInfo.GetDirectories();
 
             foreach (var t in directories)
+            {
                 AddNewOrder(t.FullName);
+            }
         }
 
 
@@ -753,6 +801,7 @@ namespace OrderBatchCreate.form
             }
 
             RefreshSubmitEnvelopeList();
+            RefreshCurrentPostCard();
         }
 
         private void EnvelopeSettingControl2_Load(object sender, EventArgs e)
@@ -786,6 +835,20 @@ namespace OrderBatchCreate.form
         {
             timer1.Stop();
             orderDetailListView.RefreshDataSource();
+        }
+
+        private void CheckButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshColumnStatus(checkButton1.Checked);
+        }
+
+        private void RefreshColumnStatus(bool status)
+        {
+            layoutControlGroup2.Visibility = status ? LayoutVisibility.Always : LayoutVisibility.Never;
+            frontStyleColumn.Visible = !status;
+            backStyleColumn.Visible = !status;
+            productSizeColumn.Visible = !status;
+            paperNameColumn.Visible = !status;
         }
     }
 }

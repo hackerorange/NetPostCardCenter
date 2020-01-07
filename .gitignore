@@ -19,4 +19,4 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 .vs
-*.licx
+# *.licx

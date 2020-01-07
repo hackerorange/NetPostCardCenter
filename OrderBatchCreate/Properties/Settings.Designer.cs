@@ -22,5 +22,17 @@ namespace OrderBatchCreate.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool displayPostCardDetails {
+            get {
+                return ((bool)(this["displayPostCardDetails"]));
+            }
+            set {
+                this["displayPostCardDetails"] = value;
+            }
+        }
     }
 }

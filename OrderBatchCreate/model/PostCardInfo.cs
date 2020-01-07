@@ -21,7 +21,9 @@ namespace OrderBatchCreate.model
             {
                 IsImage = tmpFileInfo.CheckIsImage();
                 if (!IsImage)
+                {
                     Status = BatchStatus.PostCardTypeError;
+                }
             }
         }
 

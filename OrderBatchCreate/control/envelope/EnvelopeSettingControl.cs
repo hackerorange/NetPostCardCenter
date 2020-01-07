@@ -281,7 +281,11 @@ namespace OrderBatchCreate.control.envelope
 
             fileInfo.UploadAsync(
                 "backStyle",
-                result => { tmpBackStyle.FileId = result.Id; },
+                result =>
+                {
+                    tmpBackStyle.FileId = result.Id;
+                    EnvelopeChanged?.Invoke(_envelopeInfo);
+                },
                 failure: message => { XtraMessageBox.Show("反面文件上传失败，请重新上传"); });
 
 
