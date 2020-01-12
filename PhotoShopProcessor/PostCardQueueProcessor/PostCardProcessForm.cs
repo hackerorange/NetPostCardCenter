@@ -92,12 +92,21 @@ namespace PostCardQueueProcessor
                     var frontFileUploadResponse = frontProductFile.UploadFile("明信片正面成品");
                     resultFileInfo.FrontProductFileId = frontFileUploadResponse.Id;
                     Log(@"正面成品文件上传成功");
-                    Log(@"开始删除正面文件");
-                    // 删除文件
-                    frontFileInfo.Delete();
-                    // 删除文件
-                    frontProductFile.Delete();
-                    Log(@"正面文件删除成功");
+
+                    try
+                    {
+                        Log(@"开始删除正面文件");
+                        // 删除文件
+                        frontFileInfo.Delete();
+                        // 删除文件
+                        frontProductFile.Delete();
+                        Log(@"正面文件删除成功");
+                    }
+                    catch (Exception e)
+                    {
+                        LogInfo.Error(e.Message, e);
+                        Log(@"正面文件删除失败");
+                    }
 
                     //========================================================================================== 没有反面，不用裁切 ==========================================================================================
                     // 有反面裁切
@@ -169,11 +178,20 @@ namespace PostCardQueueProcessor
                                 resultFileInfo.BackProductFileId = backFileUploadResponse.Id;
                                 Log(@"反面成品文件上传成功");
                                 Log(@"开始删除反面文件");
-                                // 删除文件
-                                backFileInfo.Delete();
-                                // 删除文件
-                                backProductFile.Delete();
-                                Log(@"反面文件删除成功");
+                                try
+                                {
+                                    // 删除文件
+                                    backFileInfo.Delete();
+                                    // 删除文件
+                                    backProductFile.Delete();
+                                    Log(@"反面文件删除成功");
+                                }
+                                catch (Exception e)
+                                {
+                                    LogInfo.Error(e.Message, e);
+                                    Log(@"反面文件删除失败");
+                                }
+
                                 Log(@"开始提交成品ID");
                                 //========================================================================================== 提交 ==========================================================================================
                                 PostCardItemApi.SubmitPostCardProductFile(
