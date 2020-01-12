@@ -165,7 +165,7 @@ namespace Hacker.Inko.PostCard.Library.Support
         public int FrontPageNumber { get; set; }
         public int BackPageNumber { get; set; }
 
-        private Document _document;
+        private readonly Document _document;
 
         private readonly bool _urgent;
         private readonly string _waterMark;
@@ -185,7 +185,7 @@ namespace Hacker.Inko.PostCard.Library.Support
             _templateDirectoryInfo = templateDirectoryInfo;
             _envelopeResponse = envelopeResponse;
             _paperColumn = envelopeResponse.PaperColumn;
-            _paperRow = envelopeResponse.PaperColumn;
+            _paperRow = envelopeResponse.PaperRow;
             _urgent = urgent;
             _waterMark = waterMark;
         }
@@ -238,78 +238,103 @@ namespace Hacker.Inko.PostCard.Library.Support
 
             // 添加水印
             var pdfFont = PdfFontFactory.CreateFont(fontPath, PdfEncodings.IDENTITY_H, false); // 列
-            var paragraph = new Paragraph(_waterMark);
-            paragraph.SetFont(pdfFont);
-            paragraph.SetFontSize(8);
-            paragraph.SetFontColor(_urgent ? DeviceRgb.RED : DeviceRgb.BLACK);
-            paragraph.SetPageNumber(FrontPageNumber);
-            paragraph.SetFixedPosition(
-                leftWhite + 10,
-                _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
-                _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
-            _document.Add(paragraph);
+            // 上方的水印
+            _document.Add(new Paragraph(_waterMark)
+                .SetFont(pdfFont)
+                .SetFontSize(8)
+                .SetFontColor(_urgent ? DeviceRgb.RED : DeviceRgb.BLACK)
+                .SetPageNumber(FrontPageNumber)
+                .SetFixedPosition(
+                    leftWhite + 10,
+                    _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
+                    _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10));
+
+            // 左下方的水印
+            _document.Add(new Paragraph(_waterMark)
+                .SetFont(pdfFont)
+                .SetFontSize(8)
+                .SetRotationAngle(Math.PI / 2)
+                .SetFontColor(_urgent ? DeviceRgb.RED : DeviceRgb.BLACK)
+                .SetPageNumber(FrontPageNumber)
+                .SetFixedPosition(
+                    leftWhite,
+                    topWhite + 10,
+                    _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - leftWhite - 10));
+
             if (_envelopeResponse.DoubleSide)
             {
-                var backGroundParagraph = new Paragraph("反面样式为【" + _envelopeResponse.BackStyle + "】");
-                backGroundParagraph.SetFont(pdfFont);
-                backGroundParagraph.SetFontSize(8);
-                backGroundParagraph.SetFontColor(DeviceRgb.BLACK);
-                backGroundParagraph.SetPageNumber(BackPageNumber);
-                backGroundParagraph.SetFixedPosition(
-                    leftWhite + (_paperColumn - 1) * _envelopeResponse.ProductWidth.MMtoPix() + 10,
-                    _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
-                    _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10);
-                _document.Add(backGroundParagraph);
+                _document.Add(new Paragraph("反面样式【" + _envelopeResponse.BackStyle + "】")
+                    .SetFont(pdfFont)
+                    .SetFontSize(8)
+                    .SetFontColor(DeviceRgb.BLACK)
+                    .SetPageNumber(BackPageNumber)
+                    .SetFixedPosition(
+                        leftWhite + (_paperColumn - 1) * _envelopeResponse.ProductWidth.MMtoPix() + 10,
+                        _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - topWhite,
+                        _document.GetPdfDocument().GetDefaultPageSize().GetWidth() - leftWhite - 10));
+
+                // 左下方的水印
+                _document.Add(new Paragraph("反面样式【" + _envelopeResponse.BackStyle + "】")
+                    .SetFont(pdfFont)
+                    .SetFontSize(8)
+                    .SetRotationAngle(Math.PI / 2)
+                    .SetFontColor(DeviceRgb.BLACK)
+                    .SetPageNumber(BackPageNumber)
+                    .SetFixedPosition(
+                        leftWhite,
+                        topWhite + 10,
+                        _document.GetPdfDocument().GetDefaultPageSize().GetHeight() - leftWhite - 10));
             }
 
             // 正面
             // 行
             for (var i = 0; i < _paperRow; i++)
-                // 列
-            for (var j = 0; j < _paperColumn; j++)
             {
-                var currentIndex = i * _paperRow + j;
-                if (currentIndex >= _postCardResponses.Count) continue;
-
-                var postCard = _postCardResponses[currentIndex];
-
-
-                // 正面
-                var fileId = postCard.ProductFileId;
-                if (!string.IsNullOrEmpty(fileId))
+                // 列
+                for (var j = 0; j < _paperColumn; j++)
                 {
-                    var frontFile = new FileInfo(_templateDirectoryInfo.FullName + "/" + fileId);
-                    if (!frontFile.Exists) frontFile = FileApi.DownloadFileByFileId(fileId, frontFile);
+                    var currentIndex = i * _paperColumn + j;
+                    if (currentIndex >= _postCardResponses.Count) continue;
 
-                    var frontImage = new Image(ImageDataFactory.Create(frontFile.FullName));
-                    // 转化尺寸
-                    frontImage.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
-                    frontImage.SetPageNumber(FrontPageNumber);
+                    var postCard = _postCardResponses[currentIndex];
 
-                    // 坐标po
-                    frontImage.SetFixedPosition(
-                        leftWhite + j * _envelopeResponse.ProductWidth.MMtoPix(),
-                        topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
-                    _document.Add(frontImage);
-                }
+                    // 正面
+                    var fileId = postCard.ProductFileId;
+                    if (!string.IsNullOrEmpty(fileId))
+                    {
+                        var frontFile = new FileInfo(_templateDirectoryInfo.FullName + "/" + fileId);
+                        if (!frontFile.Exists) frontFile = FileApi.DownloadFileByFileId(fileId, frontFile);
 
-                // 反面
-                var backFileId = postCard.BackProductFileId;
-                if (!string.IsNullOrEmpty(backFileId))
-                {
-                    var backFileInfo = new FileInfo(_templateDirectoryInfo.FullName + "/" + backFileId);
-                    if (!backFileInfo.Exists) FileApi.DownloadFileByFileId(backFileId, backFileInfo);
+                        var frontImage = new Image(ImageDataFactory.Create(frontFile.FullName));
+                        // 转化尺寸
+                        frontImage.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
+                        frontImage.SetPageNumber(FrontPageNumber);
 
-                    var backImage = new Image(ImageDataFactory.Create(backFileInfo.FullName));
-                    // 转化尺寸
-                    backImage.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
-                    backImage.SetPageNumber(BackPageNumber);
+                        // 坐标po
+                        frontImage.SetFixedPosition(
+                            leftWhite + j * _envelopeResponse.ProductWidth.MMtoPix(),
+                            topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
+                        _document.Add(frontImage);
+                    }
 
-                    // 坐标po
-                    backImage.SetFixedPosition(
-                        leftWhite + (_paperColumn - j - 1) * _envelopeResponse.ProductWidth.MMtoPix(),
-                        topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
-                    _document.Add(backImage);
+                    // 反面
+                    var backFileId = postCard.BackProductFileId;
+                    if (!string.IsNullOrEmpty(backFileId))
+                    {
+                        var backFileInfo = new FileInfo(_templateDirectoryInfo.FullName + "/" + backFileId);
+                        if (!backFileInfo.Exists) FileApi.DownloadFileByFileId(backFileId, backFileInfo);
+
+                        var backImage = new Image(ImageDataFactory.Create(backFileInfo.FullName));
+                        // 转化尺寸
+                        backImage.ScaleAbsolute(_envelopeResponse.ProductWidth.MMtoPix(), _envelopeResponse.ProductHeight.MMtoPix());
+                        backImage.SetPageNumber(BackPageNumber);
+
+                        // 坐标po
+                        backImage.SetFixedPosition(
+                            leftWhite + (_paperColumn - j - 1) * _envelopeResponse.ProductWidth.MMtoPix(),
+                            topWhite + i * _envelopeResponse.ProductHeight.MMtoPix());
+                        _document.Add(backImage);
+                    }
                 }
             }
         }

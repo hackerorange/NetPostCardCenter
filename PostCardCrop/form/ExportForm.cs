@@ -21,6 +21,8 @@ namespace PostCardCrop.form
             public string BackType { get; set; }
             public bool DoubleSide { get; set; }
 
+            public bool Urgent { get; set; }
+
             public int Count { get; set; } = 0;
 
 
@@ -61,7 +63,7 @@ namespace PostCardCrop.form
 
             public string GenerateFileName()
             {
-                return UserName + @"_" + PaperName + "_成品尺寸(" + Width + "×" + Height + ")";
+                return UserName + @"_" + PaperName + (DoubleSide ? "【单面】" : "【双面】") + (Urgent ? "【加急！！！】" : "") + "成品尺寸[" + Width + "×" + Height + "]";
             }
         }
 
@@ -98,6 +100,10 @@ namespace PostCardCrop.form
 
                 PostCardBillApi.GetOrderInfo(_envelopeResponse.OrderId, orderResponse =>
                 {
+                    // 用户ID
+                    waterMarkContext.UserName = orderResponse.TaobaoId;
+                    // 订单是否加急
+                    waterMarkContext.Urgent = orderResponse.Urgent;
                     textEditCustomerName.Text = orderResponse.TaobaoId;
                     _orderResponse = orderResponse;
                     PostCardItemApi.GetPostCardByEnvelopeId(
@@ -106,7 +112,6 @@ namespace PostCardCrop.form
                         {
                             _postCardResponses = postCardResponseList;
 
-                            waterMarkContext.UserName = orderResponse.TaobaoId; // 订单用户ID
 
                             for (var index = 0; index < _postCardResponses.Count; index++)
                             {

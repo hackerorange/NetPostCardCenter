@@ -87,25 +87,25 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(2617, 34, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(433, 264);
+            this.layoutControl1.Size = new System.Drawing.Size(628, 313);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // checkEdit1
             // 
             this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(12, 205);
+            this.checkEdit1.Location = new System.Drawing.Point(309, 279);
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "生成后打开文件";
-            this.checkEdit1.Size = new System.Drawing.Size(111, 19);
+            this.checkEdit1.Size = new System.Drawing.Size(125, 19);
             this.checkEdit1.StyleController = this.layoutControl1;
             this.checkEdit1.TabIndex = 12;
             // 
             // textEditFinalFileName
             // 
-            this.textEditFinalFileName.Location = new System.Drawing.Point(63, 157);
+            this.textEditFinalFileName.Location = new System.Drawing.Point(63, 231);
             this.textEditFinalFileName.Name = "textEditFinalFileName";
-            this.textEditFinalFileName.Size = new System.Drawing.Size(358, 20);
+            this.textEditFinalFileName.Size = new System.Drawing.Size(553, 20);
             this.textEditFinalFileName.StyleController = this.layoutControl1;
             this.textEditFinalFileName.TabIndex = 11;
             // 
@@ -114,16 +114,16 @@
             this.textEditProductWidth.Enabled = false;
             this.textEditProductWidth.Location = new System.Drawing.Point(63, 60);
             this.textEditProductWidth.Name = "textEditProductWidth";
-            this.textEditProductWidth.Size = new System.Drawing.Size(151, 20);
+            this.textEditProductWidth.Size = new System.Drawing.Size(248, 20);
             this.textEditProductWidth.StyleController = this.layoutControl1;
             this.textEditProductWidth.TabIndex = 10;
             // 
             // textEditProductHeight
             // 
             this.textEditProductHeight.Enabled = false;
-            this.textEditProductHeight.Location = new System.Drawing.Point(269, 60);
+            this.textEditProductHeight.Location = new System.Drawing.Point(366, 60);
             this.textEditProductHeight.Name = "textEditProductHeight";
-            this.textEditProductHeight.Size = new System.Drawing.Size(152, 20);
+            this.textEditProductHeight.Size = new System.Drawing.Size(250, 20);
             this.textEditProductHeight.StyleController = this.layoutControl1;
             this.textEditProductHeight.TabIndex = 9;
             // 
@@ -132,16 +132,16 @@
             this.textEditPaperName.Enabled = false;
             this.textEditPaperName.Location = new System.Drawing.Point(63, 36);
             this.textEditPaperName.Name = "textEditPaperName";
-            this.textEditPaperName.Size = new System.Drawing.Size(358, 20);
+            this.textEditPaperName.Size = new System.Drawing.Size(553, 20);
             this.textEditPaperName.StyleController = this.layoutControl1;
             this.textEditPaperName.TabIndex = 8;
             // 
             // simpleButton1
             // 
             this.simpleButton1.Enabled = false;
-            this.simpleButton1.Location = new System.Drawing.Point(127, 205);
+            this.simpleButton1.Location = new System.Drawing.Point(438, 279);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(294, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(178, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 7;
             this.simpleButton1.Text = "开始生成";
@@ -151,23 +151,23 @@
             // 
             this.textEditCustomerName.Location = new System.Drawing.Point(63, 12);
             this.textEditCustomerName.Name = "textEditCustomerName";
-            this.textEditCustomerName.Size = new System.Drawing.Size(358, 20);
+            this.textEditCustomerName.Size = new System.Drawing.Size(553, 20);
             this.textEditCustomerName.StyleController = this.layoutControl1;
             this.textEditCustomerName.TabIndex = 6;
             // 
             // textEditFinalMark
             // 
-            this.textEditFinalMark.Location = new System.Drawing.Point(63, 181);
+            this.textEditFinalMark.Location = new System.Drawing.Point(63, 255);
             this.textEditFinalMark.Name = "textEditFinalMark";
-            this.textEditFinalMark.Size = new System.Drawing.Size(358, 20);
+            this.textEditFinalMark.Size = new System.Drawing.Size(553, 20);
             this.textEditFinalMark.StyleController = this.layoutControl1;
             this.textEditFinalMark.TabIndex = 5;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 231);
+            this.progressBar1.Location = new System.Drawing.Point(12, 279);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(409, 21);
+            this.progressBar1.Size = new System.Drawing.Size(293, 21);
             this.progressBar1.TabIndex = 4;
             // 
             // Root
@@ -175,7 +175,6 @@
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
@@ -184,19 +183,20 @@
             this.layoutControlItem7,
             this.emptySpaceItem1,
             this.layoutControlItem8,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(433, 264);
+            this.Root.Size = new System.Drawing.Size(628, 313);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.progressBar1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 219);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 267);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(0, 25);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(24, 25);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(413, 25);
+            this.layoutControlItem1.Size = new System.Drawing.Size(297, 26);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -207,16 +207,16 @@
             this.layoutControlItem3.Enabled = false;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(413, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(608, 24);
             this.layoutControlItem3.Text = "客户名称";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.simpleButton1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(115, 193);
+            this.layoutControlItem4.Location = new System.Drawing.Point(426, 267);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(298, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(182, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -225,16 +225,16 @@
             this.layoutControlItem5.Control = this.textEditPaperName;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(413, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(608, 24);
             this.layoutControlItem5.Text = "纸张名称";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.textEditFinalMark;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 169);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 243);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(413, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(608, 24);
             this.layoutControlItem2.Text = "最终水印";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -243,16 +243,16 @@
             this.layoutControlItem6.Control = this.textEditProductWidth;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(206, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(303, 24);
             this.layoutControlItem6.Text = "成品宽度";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.textEditProductHeight;
-            this.layoutControlItem7.Location = new System.Drawing.Point(206, 48);
+            this.layoutControlItem7.Location = new System.Drawing.Point(303, 48);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(207, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(305, 24);
             this.layoutControlItem7.Text = "成品高度";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(48, 14);
             // 
@@ -261,24 +261,24 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 72);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(413, 73);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(608, 147);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.textEditFinalFileName;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 145);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 219);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(413, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(608, 24);
             this.layoutControlItem8.Text = "文件名称";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 14);
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.checkEdit1;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 193);
+            this.layoutControlItem9.Location = new System.Drawing.Point(297, 267);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(115, 26);
+            this.layoutControlItem9.Size = new System.Drawing.Size(129, 26);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -286,7 +286,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 264);
+            this.ClientSize = new System.Drawing.Size(628, 313);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MinimizeBox = false;
