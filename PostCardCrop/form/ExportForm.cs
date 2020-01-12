@@ -63,7 +63,7 @@ namespace PostCardCrop.form
 
             public string GenerateFileName()
             {
-                return UserName + @"_" + PaperName + (DoubleSide ? "【单面】" : "【双面】") + (Urgent ? "【加急！！！】" : "") + "成品尺寸[" + Width + "×" + Height + "]";
+                return UserName + @"_" + PaperName + (DoubleSide ? "【双面】" : "【单面】") + (Urgent ? "【加急！！！】" : "") + "成品尺寸[" + Width + "×" + Height + "]";
             }
         }
 
