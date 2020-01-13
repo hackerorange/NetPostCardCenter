@@ -237,27 +237,8 @@ namespace OrderBatchCreate.form
                         textEdit1.Text = tmpPostCardInfo.ProductSize.Width + @"×" + tmpPostCardInfo.ProductSize.Height;
                     }
 
-                    if (tmpPostCardInfo.DirectoryInfo is FileInfo fileInfo)
-                    {
-                        using (var fileStream = new FileStream(fileInfo.FullName, FileMode.Open))
-                        {
-                            try
-                            {
-                                pictureEdit1.Image = Image.FromStream(fileStream);
-                            }
-                            catch
-                            {
-                                // ignored
-                            }
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(tmpPostCardInfo.BackStyle?.FileId))
-                    {
-                        var downloadBytesByFileId = FileApi.DownloadBytesByFileId(tmpPostCardInfo.BackStyle.FileId);
-                        pictureEdit2.Image = Image.FromStream(new MemoryStream(downloadBytesByFileId));
-                    }
-
+                    pictureEdit1.Image = tmpPostCardInfo.FrontImage;
+                    pictureEdit2.Image = tmpPostCardInfo.BackImage;
                     break;
                 }
                 case EnvelopeInfo envelopeInfo:

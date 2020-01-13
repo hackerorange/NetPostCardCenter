@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using Hacker.Inko.Net.Api;
 using Hacker.Inko.PostCard.Library;
 using postCardCenterSdk.helper;
 
@@ -26,6 +27,40 @@ namespace OrderBatchCreate.model
                 }
             }
         }
+
+        public Image FrontImage
+        {
+            get
+            {
+                using (var fileStream = new FileStream(DirectoryInfo.FullName, FileMode.Open))
+                {
+                    try
+                    {
+                        return Image.FromStream(fileStream);
+                    }
+                    catch
+                    {
+                        return null;
+                        // ignored
+                    }
+                }
+            }
+        }
+
+        public Image BackImage
+        {
+            get
+            {
+                if (BackStyle == null || string.IsNullOrEmpty(BackStyle.FileId))
+                {
+                    return null;
+                }
+
+                var downloadBytesByFileId = FileApi.DownloadBytesByFileId(BackStyle.FileId);
+                return Image.FromStream(new MemoryStream(downloadBytesByFileId));
+            }
+        }
+
 
         public PostCardInfo(FileSystemInfo fileInfo, EnvelopeInfo envelopeInfo) : this(fileInfo)
         {
