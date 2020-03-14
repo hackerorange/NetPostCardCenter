@@ -91,7 +91,7 @@ namespace PhotoCropper.controller
         }
 
 
-        public void InitImage(string value, CropInfo cropInfo = null, Action<CropInfo> action = null)
+        public void InitImage(string value, Action<CropInfo> action = null)
         {
             {
                 if (value == null) return;
@@ -130,19 +130,19 @@ namespace PhotoCropper.controller
                         CropContext.IsDownloading = false;
                         CropContext.ImageSourceAvailable = true;
                         CropContext.FullInitSize();
-                        if (cropInfo == null)
-                        {
+                        // if (cropInfo == null)
+                        // {
                             FixMax();
-                        }
-                        else
-                        {
-                            CropContext.Rotate(cropInfo.Rotation);
-                            CropContext.CropInfo.CropHeight = cropInfo.CropHeight;
-                            CropContext.CropInfo.CropWidth = cropInfo.CropWidth;
-                            CropContext.CropInfo.CropLeft = cropInfo.CropLeft;
-                            CropContext.CropInfo.CropTop = cropInfo.CropTop;
-                            CropContext.InitSize();
-                        }
+                        // }
+                        // else
+                        // {
+                        //     CropContext.Rotate(cropInfo.Rotation);
+                        //     CropContext.CropInfo.CropHeight = cropInfo.CropHeight;
+                        //     CropContext.CropInfo.CropWidth = cropInfo.CropWidth;
+                        //     CropContext.CropInfo.CropLeft = cropInfo.CropLeft;
+                        //     CropContext.CropInfo.CropTop = cropInfo.CropTop;
+                        //     CropContext.InitSize();
+                        // }
 
                         action?.Invoke(CropContext.CropInfo);
                     };

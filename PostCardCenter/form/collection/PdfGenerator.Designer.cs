@@ -34,12 +34,12 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.Root)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -49,15 +49,15 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(670, 220);
+            this.layoutControl1.Size = new System.Drawing.Size(664, 204);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(460, 186);
+            this.simpleButton1.Location = new System.Drawing.Point(456, 170);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(198, 22);
+            this.simpleButton1.Size = new System.Drawing.Size(196, 22);
             this.simpleButton1.StyleController = this.layoutControl1;
             this.simpleButton1.TabIndex = 4;
             this.simpleButton1.Text = "生成PDF";
@@ -67,29 +67,27 @@
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.Root.GroupBordersVisible = false;
-            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.emptySpaceItem1,
-            this.emptySpaceItem2});
+            this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[]
+                {this.layoutControlItem1, this.emptySpaceItem1, this.emptySpaceItem2});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(670, 220);
+            this.Root.Size = new System.Drawing.Size(664, 204);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.simpleButton1;
-            this.layoutControlItem1.Location = new System.Drawing.Point(448, 174);
+            this.layoutControlItem1.Location = new System.Drawing.Point(444, 158);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(202, 26);
+            this.layoutControlItem1.Size = new System.Drawing.Size(200, 26);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 174);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 158);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(448, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(444, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -97,25 +95,24 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(650, 174);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(644, 158);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // PdfGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 220);
+            this.ClientSize = new System.Drawing.Size(664, 204);
             this.Controls.Add(this.layoutControl1);
             this.Name = "PdfGenerator";
             this.Text = "PdfGenerator";
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.Root)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

@@ -383,7 +383,7 @@ namespace PostCardCrop.form
                         photoCropper.Preview = false;
 
                         //FileApi.GetInstance().
-                        photoCropper.InitImage(Settings.Default.Host + "/file/" + postCardInfo.FileId, null, tempCropInfo =>
+                        photoCropper.InitImage(Settings.Default.Host + "/file/" + postCardInfo.FileId, tempCropInfo =>
                         {
                             switch (postCardInfo.FrontStyle)
                             {
@@ -447,7 +447,10 @@ namespace PostCardCrop.form
         private void Timer1_Tick(object sender, EventArgs e)
         {
             timer1.Stop();
-            if (elementHost1.Child is Photocroper photocroper) SubmitPostCard(PostCardView.FocusedRowHandle, photocroper.CropInfo);
+            if (elementHost1.Child is Photocroper photocroper)
+            {
+                SubmitPostCard(PostCardView.FocusedRowHandle, photocroper.CropInfo);
+            }
         }
 
         private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)

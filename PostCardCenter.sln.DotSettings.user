@@ -9,6 +9,7 @@
   &lt;Assembly Path="E:\INKO\明信片项目\NetPostCardCenter\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll" /&gt;&#xD;
   &lt;Assembly Path="E:\INKO\明信片项目\NetPostCardCenter\packages\Accusoft.ImageGear.Core.24.4.3\lib\net20\ImageGear24.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="E:\INKO\明信片项目\NetPostCardCenter\packages\Accusoft.ImageGear.Core.24.4.3\lib\net20\ImageGear24.Evaluation.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files (x86)\DevExpress 18.2\Components\Bin\Framework\DevExpress.Printing.v18.2.Core.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Int64 x:Key="/Default/Environment/SearchAndNavigation/DefaultOccurrencesGroupingIndex/@EntryValue">0</s:Int64>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Inko/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

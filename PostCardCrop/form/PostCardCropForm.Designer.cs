@@ -32,14 +32,14 @@ namespace PostCardCrop.form
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostCardCropForm));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue5 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule7 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue7 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule8 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue8 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.PostCardStatusColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
@@ -89,7 +89,6 @@ namespace PostCardCrop.form
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl1.Properties)).BeginInit();
@@ -144,7 +143,7 @@ namespace PostCardCrop.form
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(690, 306, 925, 400);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1233, 661);
+            this.layoutControl1.Size = new System.Drawing.Size(1233, 665);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -152,14 +151,14 @@ namespace PostCardCrop.form
             // 
             this.elementHost1.Location = new System.Drawing.Point(458, 43);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(751, 594);
+            this.elementHost1.Size = new System.Drawing.Size(751, 598);
             this.elementHost1.TabIndex = 33;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.photocroper1;
             // 
             // progressBarControl1
             // 
-            this.progressBarControl1.Location = new System.Drawing.Point(24, 619);
+            this.progressBarControl1.Location = new System.Drawing.Point(24, 623);
             this.progressBarControl1.MenuManager = this.ribbonControl1;
             this.progressBarControl1.Name = "progressBarControl1";
             this.progressBarControl1.Size = new System.Drawing.Size(406, 18);
@@ -192,7 +191,7 @@ namespace PostCardCrop.form
             this.ribbonPage1});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
-            this.ribbonControl1.Size = new System.Drawing.Size(1257, 129);
+            this.ribbonControl1.Size = new System.Drawing.Size(1257, 125);
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbonControl1.Click += new System.EventHandler(this.RibbonControl1_Click);
             // 
@@ -225,9 +224,7 @@ namespace PostCardCrop.form
             // 
             // barCheckItem1
             // 
-            this.barCheckItem1.BindableChecked = true;
             this.barCheckItem1.Caption = "自动裁切";
-            this.barCheckItem1.Checked = true;
             this.barCheckItem1.Id = 10;
             this.barCheckItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barCheckItem1.ImageOptions.Image")));
             this.barCheckItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barCheckItem1.ImageOptions.LargeImage")));
@@ -329,8 +326,7 @@ namespace PostCardCrop.form
             this.ribbonPageGroup2,
             this.ribbonPageGroup1,
             this.ribbonPageGroup5,
-            this.ribbonPageGroup4,
-            this.ribbonPageGroup6});
+            this.ribbonPageGroup4});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "相关操作";
             // 
@@ -374,11 +370,11 @@ namespace PostCardCrop.form
             // 
             // postCardControl
             // 
-            this.postCardControl.Location = new System.Drawing.Point(24, 291);
+            this.postCardControl.Location = new System.Drawing.Point(24, 293);
             this.postCardControl.MainView = this.PostCardView;
             this.postCardControl.MenuManager = this.ribbonControl1;
             this.postCardControl.Name = "postCardControl";
-            this.postCardControl.Size = new System.Drawing.Size(406, 324);
+            this.postCardControl.Size = new System.Drawing.Size(406, 326);
             this.postCardControl.TabIndex = 31;
             this.postCardControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.PostCardView});
@@ -388,48 +384,48 @@ namespace PostCardCrop.form
             this.PostCardView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.PostCardFileNameColumn,
             this.PostCardStatusColumn});
-            gridFormatRule1.ApplyToRow = true;
-            gridFormatRule1.Column = this.PostCardStatusColumn;
-            gridFormatRule1.ColumnApplyTo = this.PostCardStatusColumn;
-            gridFormatRule1.Name = "已提交";
-            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue1.Value1 = "已提交";
-            gridFormatRule1.Rule = formatConditionRuleValue1;
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Column = this.PostCardStatusColumn;
-            gridFormatRule2.ColumnApplyTo = this.PostCardStatusColumn;
-            gridFormatRule2.Name = "未提交";
-            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            formatConditionRuleValue2.Appearance.Options.UseFont = true;
-            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue2.Value1 = "未提交";
-            gridFormatRule2.Rule = formatConditionRuleValue2;
-            gridFormatRule3.ApplyToRow = true;
-            gridFormatRule3.Column = this.PostCardStatusColumn;
-            gridFormatRule3.ColumnApplyTo = this.PostCardStatusColumn;
-            gridFormatRule3.Name = "正在处理";
-            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue3.Value1 = "正在处理";
-            gridFormatRule3.Rule = formatConditionRuleValue3;
-            gridFormatRule4.ApplyToRow = true;
-            gridFormatRule4.Column = this.PostCardStatusColumn;
-            gridFormatRule4.ColumnApplyTo = this.PostCardStatusColumn;
-            gridFormatRule4.Name = "处理完成";
-            formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.Green;
-            formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue4.Value1 = "处理完成";
-            gridFormatRule4.Rule = formatConditionRuleValue4;
-            this.PostCardView.FormatRules.Add(gridFormatRule1);
-            this.PostCardView.FormatRules.Add(gridFormatRule2);
-            this.PostCardView.FormatRules.Add(gridFormatRule3);
-            this.PostCardView.FormatRules.Add(gridFormatRule4);
+            gridFormatRule5.ApplyToRow = true;
+            gridFormatRule5.Column = this.PostCardStatusColumn;
+            gridFormatRule5.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule5.Name = "已提交";
+            formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue5.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue5.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue5.Value1 = "已提交";
+            gridFormatRule5.Rule = formatConditionRuleValue5;
+            gridFormatRule6.ApplyToRow = true;
+            gridFormatRule6.Column = this.PostCardStatusColumn;
+            gridFormatRule6.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule6.Name = "未提交";
+            formatConditionRuleValue6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue6.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue6.Appearance.Options.UseFont = true;
+            formatConditionRuleValue6.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue6.Value1 = "未提交";
+            gridFormatRule6.Rule = formatConditionRuleValue6;
+            gridFormatRule7.ApplyToRow = true;
+            gridFormatRule7.Column = this.PostCardStatusColumn;
+            gridFormatRule7.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule7.Name = "正在处理";
+            formatConditionRuleValue7.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            formatConditionRuleValue7.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue7.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue7.Value1 = "正在处理";
+            gridFormatRule7.Rule = formatConditionRuleValue7;
+            gridFormatRule8.ApplyToRow = true;
+            gridFormatRule8.Column = this.PostCardStatusColumn;
+            gridFormatRule8.ColumnApplyTo = this.PostCardStatusColumn;
+            gridFormatRule8.Name = "处理完成";
+            formatConditionRuleValue8.Appearance.ForeColor = System.Drawing.Color.Green;
+            formatConditionRuleValue8.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue8.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue8.Value1 = "处理完成";
+            gridFormatRule8.Rule = formatConditionRuleValue8;
+            this.PostCardView.FormatRules.Add(gridFormatRule5);
+            this.PostCardView.FormatRules.Add(gridFormatRule6);
+            this.PostCardView.FormatRules.Add(gridFormatRule7);
+            this.PostCardView.FormatRules.Add(gridFormatRule8);
             this.PostCardView.GridControl = this.postCardControl;
             this.PostCardView.Name = "PostCardView";
             this.PostCardView.OptionsView.ShowGroupPanel = false;
@@ -456,7 +452,7 @@ namespace PostCardCrop.form
             this.envelopeListControl.MainView = this.EnvelopeView;
             this.envelopeListControl.MenuManager = this.ribbonControl1;
             this.envelopeListControl.Name = "envelopeListControl";
-            this.envelopeListControl.Size = new System.Drawing.Size(406, 201);
+            this.envelopeListControl.Size = new System.Drawing.Size(406, 203);
             this.envelopeListControl.TabIndex = 30;
             this.envelopeListControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.EnvelopeView});
@@ -492,7 +488,7 @@ namespace PostCardCrop.form
             this.layoutControlGroup2,
             this.postCardCropBoxGroup});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1233, 661);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1233, 665);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup4
@@ -500,9 +496,9 @@ namespace PostCardCrop.form
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem6});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 248);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 250);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(434, 393);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(434, 395);
             this.layoutControlGroup4.Text = "明信片图片信息";
             // 
             // layoutControlItem1
@@ -510,14 +506,14 @@ namespace PostCardCrop.form
             this.layoutControlItem1.Control = this.postCardControl;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(410, 328);
+            this.layoutControlItem1.Size = new System.Drawing.Size(410, 330);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.progressBarControl1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 328);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 330);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(410, 22);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -529,7 +525,7 @@ namespace PostCardCrop.form
             this.layoutControlItem5});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(434, 248);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(434, 250);
             this.layoutControlGroup2.Text = "明信片集合";
             // 
             // layoutControlItem5
@@ -537,7 +533,7 @@ namespace PostCardCrop.form
             this.layoutControlItem5.Control = this.envelopeListControl;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(410, 205);
+            this.layoutControlItem5.Size = new System.Drawing.Size(410, 207);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -547,7 +543,7 @@ namespace PostCardCrop.form
             this.layoutControlItem3});
             this.postCardCropBoxGroup.Location = new System.Drawing.Point(434, 0);
             this.postCardCropBoxGroup.Name = "postCardCropBoxGroup";
-            this.postCardCropBoxGroup.Size = new System.Drawing.Size(779, 641);
+            this.postCardCropBoxGroup.Size = new System.Drawing.Size(779, 645);
             this.postCardCropBoxGroup.Text = "明信片裁切";
             // 
             // layoutControlItem3
@@ -555,7 +551,7 @@ namespace PostCardCrop.form
             this.layoutControlItem3.Control = this.elementHost1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(755, 598);
+            this.layoutControlItem3.Size = new System.Drawing.Size(755, 602);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -576,11 +572,11 @@ namespace PostCardCrop.form
             // 
             this.PostCardCropFormlayoutControl2ConvertedLayout.Controls.Add(this.layoutControl1);
             this.PostCardCropFormlayoutControl2ConvertedLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PostCardCropFormlayoutControl2ConvertedLayout.Location = new System.Drawing.Point(0, 129);
+            this.PostCardCropFormlayoutControl2ConvertedLayout.Location = new System.Drawing.Point(0, 125);
             this.PostCardCropFormlayoutControl2ConvertedLayout.Name = "PostCardCropFormlayoutControl2ConvertedLayout";
             this.PostCardCropFormlayoutControl2ConvertedLayout.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(86, 384, 766, 615);
             this.PostCardCropFormlayoutControl2ConvertedLayout.Root = this.layoutControlGroup3;
-            this.PostCardCropFormlayoutControl2ConvertedLayout.Size = new System.Drawing.Size(1257, 685);
+            this.PostCardCropFormlayoutControl2ConvertedLayout.Size = new System.Drawing.Size(1257, 689);
             this.PostCardCropFormlayoutControl2ConvertedLayout.TabIndex = 3;
             // 
             // layoutControlGroup3
@@ -590,7 +586,7 @@ namespace PostCardCrop.form
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2});
             this.layoutControlGroup3.Name = "Root";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(1257, 685);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(1257, 689);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem2
@@ -598,7 +594,7 @@ namespace PostCardCrop.form
             this.layoutControlItem2.Control = this.layoutControl1;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControl1item";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1237, 665);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1237, 669);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -625,11 +621,6 @@ namespace PostCardCrop.form
             // 
             this.timer2.Interval = 1000;
             this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
-            // 
-            // ribbonPageGroup6
-            // 
-            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
-            this.ribbonPageGroup6.Text = "ribbonPageGroup6";
             // 
             // PostCardCropForm
             // 
@@ -723,6 +714,5 @@ namespace PostCardCrop.form
         private System.Windows.Forms.Timer timer2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
     }
 }

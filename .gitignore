@@ -20,3 +20,4 @@ obj/
 _ReSharper*/
 .vs
 # *.licx
+.idea/

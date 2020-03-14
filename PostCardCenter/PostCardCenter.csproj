@@ -154,6 +154,12 @@
     <Compile Include="form\collection\PdfGenerator.Designer.cs">
       <DependentUpon>PdfGenerator.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\HackerOrange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\HackerOrange.Designer.cs">
+      <DependentUpon>HackerOrange.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\order\OrderCenter.cs">
       <SubType>Form</SubType>
     </Compile>
