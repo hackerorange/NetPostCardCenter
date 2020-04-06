@@ -91,7 +91,7 @@ namespace PhotoCropper.controller
         }
 
 
-        public void InitImage(string value, CropInfo cropInfo = null, Action<CropInfo> action = null)
+        public void InitImage(string value, Action<CropInfo> action = null)
         {
             {
                 if (value == null) return;
@@ -127,22 +127,26 @@ namespace PhotoCropper.controller
                         bitmapImage.EndInit();
                         var tb1 = new TransformedBitmap(bitmapImage, new RotateTransform(0));
                         CropContext.ImageSource = tb1;
+                        // 原始图像高度
+                        CropContext.CropInfo.ImageHeight = bitmapImage.DecodePixelHeight;
+                        // 原始图像宽度
+                        CropContext.CropInfo.ImageWidth = bitmapImage.DecodePixelWidth;
                         CropContext.IsDownloading = false;
                         CropContext.ImageSourceAvailable = true;
                         CropContext.FullInitSize();
-                        if (cropInfo == null)
-                        {
-                            FixMax();
-                        }
-                        else
-                        {
-                            CropContext.Rotate(cropInfo.Rotation);
-                            CropContext.CropInfo.CropHeight = cropInfo.CropHeight;
-                            CropContext.CropInfo.CropWidth = cropInfo.CropWidth;
-                            CropContext.CropInfo.CropLeft = cropInfo.CropLeft;
-                            CropContext.CropInfo.CropTop = cropInfo.CropTop;
-                            CropContext.InitSize();
-                        }
+                        // if (cropInfo == null)
+                        // {
+                        FixMax();
+                        // }
+                        // else
+                        // {
+                        //     CropContext.Rotate(cropInfo.Rotation);
+                        //     CropContext.CropInfo.CropHeight = cropInfo.CropHeight;
+                        //     CropContext.CropInfo.CropWidth = cropInfo.CropWidth;
+                        //     CropContext.CropInfo.CropLeft = cropInfo.CropLeft;
+                        //     CropContext.CropInfo.CropTop = cropInfo.CropTop;
+                        //     CropContext.InitSize();
+                        // }
 
                         action?.Invoke(CropContext.CropInfo);
                     };

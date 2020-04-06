@@ -36,6 +36,8 @@
     public class PostCardProcessCropInfo
     {
         public string FileId { get; set; }
+        public long ImageWidth { get; set; }
+        public long ImageHeight { get; set; }
         public double CropLeft { get; set; }
         public double CropTop { get; set; }
         public double CropHeight { get; set; }
