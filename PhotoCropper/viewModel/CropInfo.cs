@@ -21,8 +21,8 @@ namespace PhotoCropper.viewModel
         private int _rotation;
 
 
-        public long ImageWidth { get; set; }
-        public long ImageHeight { get; set; }
+        public double ImageWidth { get; set; }
+        public double ImageHeight { get; set; }
 
         public void Clean()
         {
