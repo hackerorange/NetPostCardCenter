@@ -1,7 +1,7 @@
 ﻿using System;
 using Apache.NMS;
 using Newtonsoft.Json;
-using PostCardProcessor.model;
+using PostCardQueueProcessor.model;
 
 namespace PostCardQueueProcessor.queue
 {

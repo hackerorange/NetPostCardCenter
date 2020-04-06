@@ -2,7 +2,7 @@
 using System.IO;
 using Photoshop;
 
-namespace PostCardProcessor
+namespace PostCardQueueProcessor
 {
     public class PhotoShopOperation
     {

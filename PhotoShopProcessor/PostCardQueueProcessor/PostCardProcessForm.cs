@@ -9,8 +9,7 @@ using DevExpress.XtraEditors;
 using Hacker.Inko.Net.Api;
 using Hacker.Inko.Net.Request.postCard;
 using Newtonsoft.Json;
-using PostCardProcessor;
-using PostCardProcessor.model;
+using PostCardQueueProcessor.model;
 
 namespace PostCardQueueProcessor
 {

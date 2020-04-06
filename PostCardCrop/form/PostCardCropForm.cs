@@ -12,7 +12,7 @@ using Hacker.Inko.Net.Properties;
 using PhotoCropper.controller;
 using PostCardCrop.model;
 using PostCardCrop.translator.response;
-using PostCardProcessor.model;
+using PostCardQueueProcessor.model;
 using PostCardQueueProcessor.queue;
 using CropInfo = PhotoCropper.viewModel.CropInfo;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
