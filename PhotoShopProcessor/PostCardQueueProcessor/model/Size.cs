@@ -1,4 +1,4 @@
-﻿namespace PostCardProcessor.model
+﻿namespace PostCardQueueProcessor.model
 {
     public class Size
     {

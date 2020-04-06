@@ -1,17 +1,19 @@
 ﻿using System;
 using System.IO;
 using Photoshop;
-using PostCardProcessor.model;
+using PostCardQueueProcessor.model;
 
-
-namespace PostCardProcessor
+namespace PostCardQueueProcessor
 {
     public static class Processor
     {
+        public static readonly log4net.ILog LogInfo = log4net.LogManager.GetLogger("InfoLog");
+
         /**
          * 处理明信片信息
          */
-        public static FileInfo Process(this FileInfo sourceFileInfo, PostCardProcessCropInfo postCardProcessCropInfo, string frontStyle, int productWidth, int productHeight)
+        public static FileInfo Process(this FileInfo sourceFileInfo, PostCardProcessCropInfo postCardProcessCropInfo,
+            string frontStyle, int productWidth, int productHeight)
         {
             if (sourceFileInfo.Directory != null && !sourceFileInfo.Directory.Exists)
             {
@@ -25,9 +27,22 @@ namespace PostCardProcessor
                 var myDoc = photoShopOperation.OpenDocument();
 
                 //如果色彩模式不是CMYK、RGB、灰度的话，转化为CMYK模式
-                if ((myDoc.Mode != PsDocumentMode.psCMYK) && (myDoc.Mode != PsDocumentMode.psRGB) && (myDoc.Mode != PsDocumentMode.psGrayscale))
+                if ((myDoc.Mode != PsDocumentMode.psCMYK) && (myDoc.Mode != PsDocumentMode.psRGB) &&
+                    (myDoc.Mode != PsDocumentMode.psGrayscale))
                 {
                     myDoc.ChangeMode(PsChangeMode.psConvertToCMYK);
+                }
+
+                if ((
+                        myDoc.Width > myDoc.Height &&
+                        postCardProcessCropInfo.ImageWidth < postCardProcessCropInfo.ImageHeight
+                    ) || (
+                        myDoc.Width < myDoc.Height &&
+                        postCardProcessCropInfo.ImageWidth > postCardProcessCropInfo.ImageHeight
+                    ))
+                {
+                    LogInfo.Info("方向不正确，向右旋转90°");
+                    postCardProcessCropInfo.Rotation = (postCardProcessCropInfo.Rotation + 90) % 360;
                 }
 
                 myDoc.RotateCanvas(postCardProcessCropInfo.Rotation);
@@ -108,7 +123,8 @@ namespace PostCardProcessor
 
                 try
                 {
-                    photoShopOperation.Application.DoJavaScript("executeAction(charIDToTypeID( \"FltI\" ), undefined, DialogModes.NO );");
+                    photoShopOperation.Application.DoJavaScript(
+                        "executeAction(charIDToTypeID( \"FltI\" ), undefined, DialogModes.NO );");
                 }
                 catch
                 {
