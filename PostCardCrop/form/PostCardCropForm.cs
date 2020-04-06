@@ -139,7 +139,9 @@ namespace PostCardCrop.form
                             CropTop = cropInfo.CropTop,
                             CropHeight = cropInfo.CropHeight,
                             CropWidth = cropInfo.CropWidth,
-                            Rotation = cropInfo.Rotation
+                            Rotation = cropInfo.Rotation,
+                            ImageWidth = cropInfo.ImageWidth,
+                            ImageHeight = cropInfo.ImageHeight
                         }
                     };
                     // 如果是双面，裁切双面
@@ -178,7 +180,9 @@ namespace PostCardCrop.form
                             CropTop = cropInfo.CropTop, // 反面右边
                             CropHeight = cropInfo.CropHeight, // 反面高度
                             CropWidth = cropInfo.CropWidth, // 反面宽度
-                            Rotation = cropInfo.Rotation // 反面旋转角度
+                            Rotation = cropInfo.Rotation, // 反面旋转角度
+                            ImageWidth = cropInfo.ImageWidth, // 原始图像宽度
+                            ImageHeight = cropInfo.ImageHeight // 原始图像高度
                         };
                 }
 

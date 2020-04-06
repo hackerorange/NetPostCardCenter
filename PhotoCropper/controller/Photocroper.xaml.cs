@@ -127,12 +127,16 @@ namespace PhotoCropper.controller
                         bitmapImage.EndInit();
                         var tb1 = new TransformedBitmap(bitmapImage, new RotateTransform(0));
                         CropContext.ImageSource = tb1;
+                        // 原始图像高度
+                        CropContext.CropInfo.ImageHeight = bitmapImage.DecodePixelHeight;
+                        // 原始图像宽度
+                        CropContext.CropInfo.ImageWidth = bitmapImage.DecodePixelWidth;
                         CropContext.IsDownloading = false;
                         CropContext.ImageSourceAvailable = true;
                         CropContext.FullInitSize();
                         // if (cropInfo == null)
                         // {
-                            FixMax();
+                        FixMax();
                         // }
                         // else
                         // {

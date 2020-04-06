@@ -20,6 +20,10 @@ namespace PhotoCropper.viewModel
         private double _cropHeight;
         private int _rotation;
 
+
+        public long ImageWidth { get; set; }
+        public long ImageHeight { get; set; }
+
         public void Clean()
         {
             CropHeight = CropHeight = 0;
@@ -65,7 +69,7 @@ namespace PhotoCropper.viewModel
             set
             {
                 if (value.Equals(_cropHeight)) return;
-                _cropHeight = Math.Round(value,5);
+                _cropHeight = Math.Round(value, 5);
                 OnPropertyChanged();
             }
         }
